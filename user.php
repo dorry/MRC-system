@@ -75,7 +75,7 @@ static function login($username,$password)
                         $_SESSION['pagename'] = $row3["linkname"];
                     }
                 }
-                echo $_SESSION["link"];
+                //echo $_SESSION["link"];
                 header("Location:index.php");
             }
             else
