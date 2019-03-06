@@ -16,7 +16,8 @@ public $usertypeid;
 public $City;
 
 static function adduser ($obj)
-{
+{//ya sherif
+    
     $DB=new database();
     $conn=$DB->DBC();
     if(isset($_POST['signup_submit'])){ 
