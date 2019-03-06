@@ -43,7 +43,6 @@ static function login($username,$password)
         $DB=new database();
         $conn=$DB->DBC();
         session_start();
-        echo "<script>console.log('Alley');</script>";
 
         if(isset($_POST['signin_submit']))
         { 
