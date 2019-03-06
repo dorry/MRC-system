@@ -2,6 +2,14 @@
 <html lang="en">
 <?php
 session_start();
+if(!empty($_SESSION))
+{
+  
+}
+else
+{
+  header("Location:index.php");
+}
 
 
 ?>

@@ -1,6 +1,14 @@
 <?php
 
 session_start();
+if(!empty($_SESSION))
+{
+    header("Location:index.php");
+}
+else
+{
+  
+}
 $servername = "localhost";
 $username = "id8878100_root";
 $password = "fz@ayV3V#@2W!Zd^1qwN";

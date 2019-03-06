@@ -1,6 +1,14 @@
 <?php
 
 session_start();
+if(!empty($_SESSION))
+{
+  
+}
+else
+{
+  header("Location:index.php");
+}
 $servername = "localhost";
 $username = "https://mrcv1.000webhostapp.com/signin.html";
 $pasword = "fz@ayV3V#@2W!Zd^1qwN";
