@@ -15,8 +15,9 @@ $dbname = "id8878100_mrc";
 $conn = mysqli_connect($servername,$username,$password,$dbname);
 $i = 0;
 
-if(isset($_POST['utd_submit'])){ 
-	$sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId= (select id from usertype where type ='" . $_POST['roleid'] ."')" ;
+if(isset($_POST['utd_submit'])){
+	$R = $_POST['roleid'];
+	$sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId= (select id from usertype where type = $R)" ;
 	$result5 = mysqli_query($conn, $sql5);
  		if(mysqli_num_rows($result5) > 0){
 			$oname = array();
@@ -35,7 +36,7 @@ if(isset($_POST['utd_submit'])){
                 }
             }
         }
-	$get_uto_id = "select id from usertypeoptions where userTypeId =(select id from usertype where type ='" . $_POST['roleid'] ."')" ;
+	$get_uto_id = "select id from usertypeoptions where userTypeId =(select id from usertype where type = $R)" ;
 	echo $get_uto_id;
     $result_uto = mysqli_query($conn, $get_uto_id);
     

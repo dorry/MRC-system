@@ -11,8 +11,10 @@ static function addusertype($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
-
-
+    $sql = "Insert INTO usertype (type) values('".$R."')";
+    mysqli_query($conn,$sql);
+    echo "<script>alert('A New role  has been created')</script>";
+    header("Location:index.php");
 }
 
 
