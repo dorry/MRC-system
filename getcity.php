@@ -1,11 +1,11 @@
 <?php
  $servername = "localhost";
- $username = "id8878100_root";
- $password = "fz@ayV3V#@2W!Zd^1qwN";
- $dbname = "id8878100_mrc";
+ $username = "root";
+ $password = "";
+ $dbname = "mrc";
  $conn = mysqli_connect($servername,$username,$password,$dbname);
 
-
+//if we turned this to object oriented, will it work with ajax ? 
 $Cs = array();
 $sql3 = "SELECT  name  FROM `address` where pid = 0";
 $result3 = mysqli_query($conn, $sql3);

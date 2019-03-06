@@ -4,12 +4,13 @@
 
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
 <?php 
+//where should we put this query ? in which class!!
 session_start();
 
 $servername = "localhost";
-$username = "id8878100_root";
-$password = "fz@ayV3V#@2W!Zd^1qwN";
-$dbname = "id8878100_mrc";
+$username = "root";
+$password = "";
+$dbname = "mrc";
 $conn = mysqli_connect($servername,$username,$password,$dbname);
 
 $Cs = array();
