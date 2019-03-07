@@ -12,11 +12,11 @@ else
   header("Location:index.php");
 }
 
-$servername = "localhost";
-$username = "id8878100_root";
-$password = "fz@ayV3V#@2W!Zd^1qwN";
-$dbname = "id8878100_mrc";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
+// $servername = "localhost";
+// $username = "id8878100_root";
+// $password = "fz@ayV3V#@2W!Zd^1qwN";
+// $dbname = "id8878100_mrc";
+// $conn = mysqli_connect($servername,$username,$password,$dbname);
 ?>
   <head>
 
@@ -50,11 +50,11 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
       <div class="spinner"></div>
     </div>
     <!-- Preloader End -->
-
     <!-- Header Area Starts -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php");
+          include("usertype.php");
+    ?>
     <!-- Header Area End -->
-
     <!-- Banner Area Starts -->
     <section class="banner-area other-page">
       <div class="container">
@@ -65,23 +65,10 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
 
 <div>
   <h3> Usertype List </h3>
-
-<?php
-  $sql4 = "SELECT  *  FROM `usertype`";
-  $result4 = mysqli_query($conn, $sql4);
-  if(mysqli_num_rows($result4) > 0){
-     while($row = mysqli_fetch_array($result4))
-    {
- ?>
-
-         <h4> <?php echo "- ", $row['type']; ?> </h4>  
-         <h5 name = "<?php echo $row['id'];?>"><a href="edittype.php"> edit </a> </h5>
 <?php 
-}
-?>
+$usertype = new usertype();
+$usertype->retrive();
 
-<?php
-}
 
 ?>
 

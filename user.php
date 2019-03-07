@@ -15,6 +15,30 @@ public $username;
 public $usertypeid;
 public $City;
 
+
+static function retrive(){
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql4 = "SELECT  *  FROM `user`";
+    $result4 = mysqli_query($conn, $sql4);
+    if(mysqli_num_rows($result4) > 0){
+       while($row = mysqli_fetch_array($result4))
+      {
+   ?>
+  
+           <h4 value = "<?php echo $row['id'];?>"> <?php echo $row['id'];  echo '     ';  echo $row['firstname'];
+  echo '     ';  echo $row['lastname']; echo '     ';  echo $row['socialnumber'];
+           ?> </h4>  
+  <?php 
+  }
+  ?>
+  
+  <?php
+  }
+
+
+}
+
 static function adduser ($obj)
 {//ya sherif
     

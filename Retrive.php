@@ -11,12 +11,13 @@ else
 {
   header("Location:index.php");
 }
-
+/*
 $servername = "localhost";
 $username = "id8878100_root";
 $password = "fz@ayV3V#@2W!Zd^1qwN";
 $dbname = "id8878100_mrc";
 $conn = mysqli_connect($servername,$username,$password,$dbname);
+*/
 ?>
   <head>
 
@@ -52,7 +53,9 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+          include("user.php");
+    ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -63,31 +66,14 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
 
 
 
-<div>
-  <h3> <?php echo 'ID';  echo '     ';  echo 'FName';
-echo '     ';  echo 'LName'; echo '     ';  echo 'SSN'; ?></h3>
+<div> 
 
 <?php
-  $sql4 = "SELECT  *  FROM `user`";
-  $result4 = mysqli_query($conn, $sql4);
-  if(mysqli_num_rows($result4) > 0){
-     while($row = mysqli_fetch_array($result4))
-    {
- ?>
 
-         <h4 value = "<?php echo $row['id'];?>"> <?php echo $row['id'];  echo '     ';  echo $row['firstname'];
-echo '     ';  echo $row['lastname']; echo '     ';  echo $row['socialnumber'];
-         ?> </h4>  
-<?php 
-}
-?>
-
-<?php
-}
+  $user = new user();
+  $user->retrive();
 
 ?>
-
-
 </div>
 
 
