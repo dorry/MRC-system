@@ -157,7 +157,8 @@ static function login($username,$password)
     }
 static function logout()
     {
-     
+        $DB=new database();
+        $conn=$DB->DBC();
         session_start();
         if(!empty($_SESSION))
         {
@@ -174,8 +175,7 @@ static function logout()
 
 public function __construct()
     {
-        $DB=new database();
-        $conn=$DB->DBC();
+
 
     }
 }
