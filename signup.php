@@ -91,11 +91,13 @@ array_push($CityIDs, $x[0]);
     ?>
    <option value = "<?php echo $Cs[$x];?>"> <?php echo $Cs[$x];?> </option>  
     <br> 
-  </select>
 <?php
    }
+ 
  ?>
-   <span id = City></span>
+   </select>
+
+   <div id = City></div>
 
     <input type="submit" name="signup_submit" value="Sign me up" />
  </form>
