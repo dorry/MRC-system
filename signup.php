@@ -4,7 +4,8 @@
 
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
 <?php 
-//where should we put this query ? in which class!!
+//Not Edited to Object Oriented
+
 session_start();
 
 $servername = "localhost";

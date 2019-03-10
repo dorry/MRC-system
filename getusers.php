@@ -1,4 +1,5 @@
-<?php
+<?php//Not Edited to Object Oriented
+
  $servername = "localhost";
  $username = "id8878100_root";
  $password = "fz@ayV3V#@2W!Zd^1qwN";

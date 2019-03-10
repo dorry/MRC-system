@@ -1,5 +1,6 @@
 
-<?php
+<?php//Not Edited to Object Oriented
+
    session_start();
 class reservation{
  

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+<?php //Not Edited to Object Oriented , me7taga ta3del baset
+
 session_start();
 if(!empty($_SESSION))
 {

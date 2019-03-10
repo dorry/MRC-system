@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
+<?php//Not Edited to Object Oriented
+
 session_start();
 if(!empty($_SESSION))
 {

@@ -1,4 +1,5 @@
-<?php
+<?php //Not Edited to Object Oriented
+
  $servername = "localhost";
  $username = "root";
  $password = "";
