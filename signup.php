@@ -16,27 +16,6 @@ $dbname = "mrc";
 $conn = mysqli_connect($servername,$username,$password,$dbname);
 $Cs = array();
 
-
-
-
-$CIs = array();
-$sql4 = "SELECT  name  FROM `address` where pid = 1";
-$result4 = mysqli_query($conn, $sql4);
-while ($x = mysqli_fetch_array($result4)) {
-    global $CIs;
-array_push($CIs, $x[0]);
-}
-$CIDs = 0;
-
-$CityIDs = array();
-$sql5 = "SELECT  id  FROM `address` where pid = 1";
-$result5 = mysqli_query($conn, $sql5);
-while ($x = mysqli_fetch_array($result5)) {
-    global $CityIDs;
-array_push($CityIDs, $x[0]);
-}
-
-
 ?>
     <!-- Required Meta Tags -->
     <!-- Page Title -->

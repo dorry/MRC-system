@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<?php//Not Edited to Object Oriented
-
+<?php
 session_start();
 if(!empty($_SESSION))
 {
@@ -12,12 +11,9 @@ else
 {
   header("Location:index.php");
 }
-$servername = "localhost";
-$username = "id8878100_root";
-$password = "fz@ayV3V#@2W!Zd^1qwN";
-$dbname = "id8878100_mrc";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-
+include("usertype.php");
+include("links.php");
+/*
 $Rs = array();
 $sql3 = "SELECT  type  FROM `usertype` WHERE ID>'1'";
 $result3 = mysqli_query($conn, $sql3);
@@ -26,6 +22,7 @@ while ($x = mysqli_fetch_array($result3)) {
 array_push($Rs, $x[0]);
 }
 
+*/
 
 
 ?>
@@ -231,38 +228,18 @@ button.social-signin.google {
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-<div id="login-box">
-  <div class="left">
-    <form action="Givelink1.php" method="POST">
+    <div id="login-box">
+    <div class="left">
+<form action="Givelink1.php" method="POST">
     <h3>Authority Manipulation</h3>
-    <select name="roles">
-    <?php 
-    for ($x = 0; $x <count($Rs); $x++)    
-    {
-    ?>
-   <option value = "<?php echo $Rs[$x];?>"> <?php echo $Rs[$x];?> </option>  
-    <br> 
-<?php
-   }
-   ?>
-  </select>
-     <select name="link">
-   <?php
- $sql4 = "SELECT  *  FROM `links`";
-$result4 = mysqli_query($conn, $sql4);
-   if(mysqli_num_rows($result4) > 0){
-     while($row = mysqli_fetch_array($result4))
-    {
- ?>
-         <option value = "<?php echo $row['id'];?>"> <?php echo $row['linkname'];?> </option>  
 <?php 
-}
-?>
-         </select>
+$usertype = new usertype();
+$usertype->retriveforlinks();
+$links = new links();
+$links->retriveforgivelink();
 
-<?php
-}
 ?>
+  
     <input type="submit" name="Glink_submit" value="Authorize" />
  </form>
   </div>

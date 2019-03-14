@@ -6,6 +6,34 @@ class usertype
 public $type;
 public $id;
 
+static function retriveforlinks(){
+
+    $DB=new database();
+    $conn=$DB->DBC();
+    echo"<label>Links</label>";
+    echo" <select name='role'>";
+    $query = "SELECT  *  FROM `usertype` WHERE ID>'1'";
+    $result = mysqli_query($conn, $query);
+    echo"<label >Usertypes</label>";
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result))
+       {
+    ?>
+            <option value = "<?php echo $row['id'];?>"><?php echo $row['type'];?></option>
+      <?php 
+        }
+        echo "</select>";
+        echo "<br>";
+
+   ?>
+   
+   <?php
+   }
+
+
+
+}
+
 static function retrive()
 {
     $DB=new database();
@@ -46,7 +74,12 @@ static function editusertype ($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
-
+    
+	$sql="UPDATE usertypelinks
+		  SET linkid = $L
+		  WHERE typeid = $RIDs;";
+    mysqli_query($conn,$sql);
+           header("Location:index.php");
 
 }
 

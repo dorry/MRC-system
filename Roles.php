@@ -59,11 +59,9 @@ else
 <div>
   <h2>Admin Options : Manage Roles </h2>
 <a href="ViewType.php"> <h3>   - View all Roles </h3></a>
-<a href="CRUDType.php"> <h3>   - Create a new Role </h3></a>
-<a href="UTD.php"> <h3>   - Edit Usertype details </h3></a>
-<!-- <a href="Addlink.php"> <h3>   - Add Link </h3></a> -->
-<a href="Givelink.php"> <h3>   - Create role permissions </h3></a>
-<a href="Typelinks.php"> <h3>   - Change role permissions </h3></a>
+<a href="createtype.php"> <h3>   - Create a new Role </h3></a>
+<a href="UTD.php"> <h3>   - Edit Usertype details for a certain user </h3></a>
+
 
 
 
