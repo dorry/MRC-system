@@ -217,10 +217,12 @@ button.social-signin.google {
 
 <?php
 include"reserve.php";
+include"reservationdetails.php";
 
 $reserve=new reserve();
 $reserve->addreserve();
-
+$reservationdetails=new reservationdetails();
+$reservationdetails->addreservationdetails();
 
 // class reservation{
  

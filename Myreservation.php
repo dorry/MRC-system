@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php//Not Edited to Object Oriented
+
+session_start();
+if(!empty($_SESSION))
+{
+  
+}
+else
+{
+  header("Location:index.php");
+}
+?>
   <head>
-<?php include"reservationdetails.php";
- session_start(); ?>
+
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
@@ -205,8 +216,69 @@ button.social-signin.google {
 
 
 <?php
-$reservationdetails= new reservationdetails();
-$reservationdetails->Retrievereservationdetails();
+ $servername = "localhost";
+ $username = "id8878100_root";
+ $password = "fz@ayV3V#@2W!Zd^1qwN";
+ $dbname = "id8878100_mrc";
+ $conn = mysqli_connect($servername,$username,$password,$dbname);
+  if(!$conn){
+    die("connection failed:".mysqli_connect_error());}
+    $first=$_SESSION['FirstName'];
+    $second=$_SESSION['LastName'];
+echo "<h2>My Reservations</h2>";
+echo"<p>Name: $first $second</p>";
+$id=$_SESSION['ID'];
+$sql = "SELECT * FROM `reserve` WHERE PatientID= $id";
+$result = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_array($result))
+{
+    $IDD=$row['ID'];
+    $DoctorID = $row["DoctorID"];
+    $sql2="SELECT * FROM `mrc`.`user` WHERE `id` = $DoctorID";
+    $result2 = mysqli_query($conn, $sql2);
+    while($row2 = mysqli_fetch_array($result2))
+{
+    $drfirstn=$row2['firstname'];
+    $drlastn=$row2['lastname'];
+    echo"<p>Dr: $drfirstn $drlastn</p>";
+
+}
+
+$sql3="SELECT * FROM `mrc`.`reserve` WHERE `ID` = $id";
+$result3 = mysqli_query($conn, $sql3);
+while($row = mysqli_fetch_array($result3))
+{
+    $Date=$row["Date"];
+    echo"Date and Time: $Date";
+
+}
+
+
+    // $result3 = mysqli_query($conn, $sql3);
+    // if($row3 = mysqli_fetch_array($result3))
+    // {
+
+    // }
+    $sql4="SELECT * FROM `reservationdetails` WHERE ReserveID=$IDD";
+    $result5 = mysqli_query($conn, $sql4);
+    while($row2 = mysqli_fetch_array($result5))
+{
+    $RadID=$row2['RadiologyID'];
+
+    $sql6="SELECT * FROM `mrc`.`radiology` WHERE `ID` = $RadID";
+    $result6 = mysqli_query($conn, $sql6);
+    while($row6 = mysqli_fetch_array($result6))
+{
+$RadiologyName=$row6['Name'];
+$Price=$row6['price'];
+echo"<p>Operation: $RadiologyName</p>";
+echo"<p>Price: $Price</p>";
+
+}
+
+}
+}
+
 
 ?>
   

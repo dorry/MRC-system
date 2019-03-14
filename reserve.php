@@ -1,6 +1,6 @@
 <?php
 include"mydatabaseconnection.php";
-include"reservationdetails.php";
+// include"reservationdetails.php";
 
 class reserve
 {
@@ -56,11 +56,8 @@ public static function addreserve ()
   $reserve->date=$_POST['dob']." ".$_POST['Time'].":00";
   $insertReserve = "insert into reserve (PatientID , DoctorID, Date) values ($reserve->patientId, $reserve->doctorId,'$reserve->date')";
   mysqli_query($conn,$insertReserve);
-  $lastidreserved=mysqli_insert_id($conn);
-  $reservationdetails=new reservationdetails();
-  $reservationdetails->addreservationdetails($lastidreserved);
+
   //header("Location:index.php");
-  //echo"<script>alert('after here')</script>";
 
    }
 
