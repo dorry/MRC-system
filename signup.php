@@ -4,24 +4,19 @@
 
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
 <?php 
-//Not Edited to Object Oriented
-
+//where should we put this query ? in which class!!
 session_start();
+
+include("address.php");
 
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "mrc";
 $conn = mysqli_connect($servername,$username,$password,$dbname);
-
 $Cs = array();
-$sql3 = "SELECT  name  FROM `address` where pid = 0";
-$result3 = mysqli_query($conn, $sql3);
-while ($x = mysqli_fetch_array($result3)) {
-    global $Cs;
-array_push($Cs, $x[0]);
 
-}
+
 
 
 $CIs = array();
@@ -81,26 +76,15 @@ array_push($CityIDs, $x[0]);
     <input type="password" name="password" placeholder="Password"/>
     <input type="password" name="password2" placeholder="Retype password" />
 
-
-
     <label>Country</label>
-  <select name = "Country" onchange="test(this.value)">
-    <option selected=""></option>
-  <?php 
-    for ($x = 0; $x <count($Cs); $x++)    
-    {
-    ?>
-   <option value = "<?php echo $Cs[$x];?>"> <?php echo $Cs[$x];?> </option>  
-    <br> 
 <?php
-   }
- 
+$address = new address();
+$address->retriveforsignup();
  ?>
-   </select>
-
+ 
    <div id = City></div>
-
     <input type="submit" name="signup_submit" value="Sign me up" />
+ 
  </form>
   </div>
   
