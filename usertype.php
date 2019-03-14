@@ -104,11 +104,11 @@ static function editusertype ($obj)
     $DB=new database();
     $conn=$DB->DBC();
     
-	$sql="UPDATE usertypelinks
-		  SET linkid = $L
-		  WHERE typeid = $RIDs;";
+	$sql="UPDATE usertype
+		  SET type= '$obj->type'
+		  WHERE id = $obj->id;";
     mysqli_query($conn,$sql);
-           header("Location:index.php");
+    header("Location:Roles.php");
 
 }
 

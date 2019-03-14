@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php //Not Edited to Object Oriented , me7taga ta3del baset
-
+<?php
 session_start();
 if(!empty($_SESSION))
 {
@@ -11,10 +10,10 @@ else
 {
   header("Location:index.php");
 }
+include"usertype.php";
 ?>
   <head>
-
-    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+  <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
 }
@@ -31,8 +30,8 @@ body {
 #login-box {
   position: relative;
   margin: 5% auto;
-  width: 600px;
-  height: 700px;
+  width: 400px;
+  height: 270px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -43,7 +42,7 @@ body {
   left: 0;
   box-sizing: border-box;
   padding: 40px;
-  width: 600px;
+  width: 300px;
   height: 400px;
 }
 
@@ -172,14 +171,15 @@ button.social-signin.twitter {
 
 button.social-signin.google {
   background: #DD4B39;
+
 }</style>
-    <!-- Required Meta Tags -->
+  <!-- Required Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- Page Title -->
-    <title>Create Reserve</title>
+    <title>Create Role</title>
 
     <!-- Favicon -->
     <link
@@ -215,61 +215,32 @@ button.social-signin.google {
           <div class="col-lg-12">
 
 
+
+<div>
+  <h2>Admin Options : Manage Roles </h2>
+  <div id="login-box">
+  <div class="left">
+    <h3>delete type</h3>
+    <form action="doedittype.php" method="POST">
+
 <?php
-include"reserve.php";
-include"reservationdetails.php";
+$UT= new usertype();
+$UT->retriveforlinks();
+?>
 
-$reserve=new reserve();
-$reserve->addreserve();
-$reservationdetails=new reservationdetails();
-$reservationdetails->addreservationdetails();
-
-// class reservation{
- 
-//     public $patientId;
-//     public $doctorId;
-//     public $date;
-   
-//     public function __construct($patientId,$doctorId,$date){
-//         $this->patientId = $patientId;
-//         $this->doctorId = $doctorId;
-//         $this->date = $date;
-      
-        
-//     }
-//   }
-//   class reservationDetails{
-    
-//     public $reserveId;
-//     public $radiologyId;
-//     public $quantity;
-    
-   
-//     public function __construct($reserveId,$radiologyId,$quantity){
-//         $this->reserveId = $reserveId;
-//         $this->radiologyId = $radiologyId;
-//         $this->quantity = $quantity;
-      
-        
-//     }
-//   }
-//   $servername = "localhost";
-//   $username = "id8878100_root";
-//   $password = "fz@ayV3V#@2W!Zd^1qwN";
-//   $dbname = "id8878100_mrc";
-//   $conn = mysqli_connect($servername,$username,$password,$dbname);
-//   if(!$conn){
-//     die("connection failed:".mysqli_connect_error());
-// }
+       <input type="submit" name="option_submit" value="Delete"/>
+  </div>
   
 
+          </div>
+        </div>
+      </div>
+
+</form>
 
 
 
-
-
-
-?>
+</div>
 
 
   
@@ -288,6 +259,7 @@ $reservationdetails->addreservationdetails();
 
 
     <!-- Footer Area Starts -->
+    <?php include("footer.php"); ?>
     <!-- Footer Area End -->
 
     <!-- Javascript -->
@@ -296,6 +268,7 @@ $reservationdetails->addreservationdetails();
     <script src="assets/js/vendor/wow.min.js"></script>
     <script src="assets/js/vendor/owl-carousel.min.js"></script>
     <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
+    <!-- <script src="assets/js/vendor/jquery.nice-select.min.js"></script> -->
     <script src="assets/js/vendor/superfish.min.js"></script>
     <script src="assets/js/main.js"></script>
   </body>

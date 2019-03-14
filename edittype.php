@@ -10,10 +10,10 @@ else
 {
   header("Location:index.php");
 }
+include"usertype.php";
 ?>
   <head>
-
-    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+  <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
 }
@@ -31,7 +31,7 @@ body {
   position: relative;
   margin: 5% auto;
   width: 400px;
-  height: 240px;
+  height: 270px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -171,9 +171,9 @@ button.social-signin.twitter {
 
 button.social-signin.google {
   background: #DD4B39;
-}
-</style>
-    <!-- Required Meta Tags -->
+
+}</style>
+  <!-- Required Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
@@ -205,7 +205,7 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-     <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -213,12 +213,37 @@ button.social-signin.google {
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-<div id="login-box">
+
+
+
+<div>
+  <h2>Admin Options : Manage Roles </h2>
+  <div id="login-box">
   <div class="left">
-    <form action="CRUDType1.php" method="POST">
-  
-    </form>
+    <h3>edit type</h3>
+    <form action="doedittype.php" method="POST">
+
+<?php
+$UT= new usertype();
+$UT->retriveforlinks();
+?>
+<input type="text" name="newname" placeholder="Type the new usertype name">
+
+       <input type="submit" name="option_submit" value="Edit"/>
   </div>
+  
+
+          </div>
+        </div>
+      </div>
+
+</form>
+
+
+
+</div>
+
+
   
 
           </div>
@@ -231,6 +256,9 @@ button.social-signin.google {
     <!-- Patient Area Starts -->
     <!-- Patient Area Starts -->
 
+
+
+
     <!-- Footer Area Starts -->
     <?php include("footer.php"); ?>
     <!-- Footer Area End -->
@@ -241,7 +269,7 @@ button.social-signin.google {
     <script src="assets/js/vendor/wow.min.js"></script>
     <script src="assets/js/vendor/owl-carousel.min.js"></script>
     <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <script src="assets/js/vendor/jquery.nice-select.min.js"></script>
+    <!-- <script src="assets/js/vendor/jquery.nice-select.min.js"></script> -->
     <script src="assets/js/vendor/superfish.min.js"></script>
     <script src="assets/js/main.js"></script>
   </body>

@@ -14,7 +14,8 @@ public static function addreserve ()
     $DB=new database();
     $conn=$DB->DBC();
 
-    $selectDocs = "select * from user where usertypeid like (select id from usertype where type = 'Doctor')";
+    $selectDocs = "select * from user where usertypeid like
+     (select id from usertype where type = 'Doctor')";
     $result = mysqli_query($conn, $selectDocs);
     echo "<form  method='post'> ";
       echo "<div id='login-box'>";
