@@ -59,7 +59,8 @@ else
 <div>
   <h2>Admin Options : </h2>
   <a href="Retrive.php"> <h3>   - Retrive Data of all accounts </h3></a>
-  <a href="Roles.php"> <h3>   - Manage Roles </h3></a>
+  <a href="Roles.php"> <h3>   - Manage Usertypes </h3></a>
+  <a href="UTD.php"> <h3>   - Manage Usertype details </h3></a>
   <a href="linkCRUD.php"> <h3>   - Manage Links </h3></a>
 
 

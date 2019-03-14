@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php//Not Edited to Object Oriented
+<?php
 
 session_start();
 if(!empty($_SESSION))
@@ -11,20 +11,8 @@ else
 {
   header("Location:index.php");
 }
-$servername = "localhost";
-$username = "id8878100_root";
-$password = "fz@ayV3V#@2W!Zd^1qwN";
-$dbname = "id8878100_mrc";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
 
-$Rs = array();
-$sql3 = "SELECT  type  FROM `usertype` WHERE ID>'1'";
-$result3 = mysqli_query($conn, $sql3);
-while ($x = mysqli_fetch_array($result3)) {
-    global $Rs;
-array_push($Rs, $x[0]);
-}
-
+include"usertype.php";
 ?>
   <head>
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -231,23 +219,18 @@ button.social-signin.google {
 
 <div>
       <form action="postmodify.php" method="POST">
+
+
 <div id="login-box">
   <div class="left">
+
     <h3>Modify User</h3>
     <label>Role</label>
     <br>
-  <select name = "roleid" onchange="getform(this.value)">
-    <option selected=""></option>    <?php 
-    for ($x = 0; $x <count($Rs); $x++)    
-    {
-    ?>
-   <option value = "<?php echo $Rs[$x];?>"> <?php echo $Rs[$x];?> </option>  
-    <br> 
-<?php
-   }
-   ?>
-
- </select>
+    <?php
+  $UT = new usertype();
+  $UT->retriveforeav();
+?>
 <br>
 <span id="users"></span>
 <br>

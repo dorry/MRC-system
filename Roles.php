@@ -60,7 +60,6 @@ else
   <h2>Admin Options : Manage Roles </h2>
 <a href="ViewType.php"> <h3>   - View all Roles </h3></a>
 <a href="createtype.php"> <h3>   - Create a new Role </h3></a>
-<a href="UTD.php"> <h3>   - Edit Usertype details for a certain user </h3></a>
 
 
 

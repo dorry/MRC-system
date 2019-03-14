@@ -10,7 +10,7 @@ public $id;
 
 
 
-static function adduseropvalue ($obj)
+static function adduseropvalue($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
@@ -52,10 +52,11 @@ static function adduseropvalue ($obj)
 		 }
 			}
 
-}
 
 
-static function edituseropvalue ($obj)
+
+
+static function edituseropvalue($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
@@ -73,5 +74,5 @@ static function deleteuseropvalue ($obj)
 
 
 
-}
-?>
+
+}?>

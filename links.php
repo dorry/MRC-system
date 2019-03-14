@@ -75,7 +75,7 @@ static function deletelink ($obj)
     $sql="DELETE FROM links
     WHERE id = $obj->id";
 mysqli_query($conn,$sql);
-    echo $sql;
+header("Location:index.php");
 }
 
 }

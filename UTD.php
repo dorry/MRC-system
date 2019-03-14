@@ -63,6 +63,7 @@ else
 <a href="createoption.php"> <h3>   - Create Option </h3></a>
 <a href="addoption.php"> <h3>   - Add option to Usertype </h3></a>
 <a href="modifyuser.php"> <h3>   - Modify User </h3></a>
+<a href="deleteoption.php"> <h3>   - Delete Option </h3></a>
 
 
 

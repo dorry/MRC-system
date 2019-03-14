@@ -11,8 +11,8 @@ else
 {
   header("Location:index.php");
 }
-include("usertype.php");
-include("links.php");
+include("useroptions.php");
+include("mydatabaseconnection.php");
 
 
 
@@ -221,11 +221,11 @@ button.social-signin.google {
           <div class="col-lg-12">
     <div id="login-box">
     <div class="left">
-<form action="dodeletelink.php" method="POST">
-    <h3>Delete Link</h3>
+<form action="dodeleteoption.php" method="POST">
+    <h3>Delete Option</h3>
 <?php
-$links = new links();
-$links->retriveforgivelink();
+$Options = new useroptions();
+$Options->retriveforlinks();
 ?>
     <input type="submit" value="Delete" />
  </form>

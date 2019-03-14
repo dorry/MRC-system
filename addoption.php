@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php//Not Edited to Object Oriented
+<?php
 
 session_start();
 if(!empty($_SESSION))
@@ -13,30 +13,9 @@ else
 }
 
 
-$servername = "localhost";
-$username = "id8878100_root";
-$pasword = "fz@ayV3V#@2W!Zd^1qwN";
-$dbname = "id8878100_mrc";
+include"usertype.php";
+include"useroptions.php";
 
-// create connection
-$conn = new mysqli ($servername, $username, $pasword, $dbname);
-
-$Rs = array();
-$sql3 = "SELECT  type  FROM `usertype` WHERE ID>'1'";
-$result3 = mysqli_query($conn, $sql3);
-while ($x = mysqli_fetch_array($result3)) {
-    global $Rs;
-array_push($Rs, $x[0]);
-}
-
-
-$Os = array();
-$sql4 = "SELECT  name  FROM `useroptions`";
-$result4 = mysqli_query($conn, $sql4);
-while ($x = mysqli_fetch_array($result4)) {
-    global $Os;
-array_push($Os, $x[0]);
-}
 
 
 ?>
@@ -242,33 +221,15 @@ button.social-signin.google {
           
 <div id="login-box">
   <div class="left">
-    <form action="addoption1.php" method="POST">
+    <form action="doaddoption.php" method="POST">
     <h3>Add Option</h3>
-    <label>Role</label>
-    <select name="roleid">
-    <?php 
-    for ($x = 0; $x <count($Rs); $x++)    
-    {
+   <?php
+  $UT = new usertype();
+  $UT->retriveforlinks();
 
-    ?>
-   <option value = "<?php echo $Rs[$x];?>"> <?php echo $Rs[$x];?> </option>  
-    <br> 
-  <?php
-    }
-  ?> 
- </select>
- <br>
-    <label>Option</label>
-  <select name="option">
-    <?php 
-    for ($x = 0; $x <count($Os); $x++)    
-    {
-    ?>
-   <option value = "<?php echo $Os[$x];?>"> <?php echo $Os[$x];?> </option>  
-<?php
-   }
-   ?>
- </select>
+  $Options = new useroptions();
+  $Options->retriveforlinks();
+?>
        <input type="submit" name="option_submit" value="Add"/>
  </form>
   </div>
