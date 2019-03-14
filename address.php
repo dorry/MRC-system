@@ -65,3 +65,24 @@ static function deleteaddress ($obj)
 
 }
 ?>
+
+<script type="text/javascript">
+  
+function test(val){
+
+  var xhttp;
+  if (val.length == 0) { 
+    document.getElementById("City").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("City").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "getcity.php?e="+val, true);
+  xhttp.send();  
+}
+
+</script>
