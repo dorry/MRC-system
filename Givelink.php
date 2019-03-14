@@ -230,7 +230,7 @@ button.social-signin.google {
           <div class="col-lg-12">
     <div id="login-box">
     <div class="left">
-<form action="Givelink1.php" method="POST">
+<form action="doGivelink.php" method="POST">
     <h3>Authority Manipulation</h3>
 <?php 
 $usertype = new usertype();
