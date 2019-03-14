@@ -56,7 +56,6 @@ public static function addreserve ()
   $insertReserve = "insert into reserve (PatientID , DoctorID, Date) values ($reserve->patientId, $reserve->doctorId,'$reserve->date')";
   mysqli_query($conn,$insertReserve);
   $lastidreserved=mysqli_insert_id($conn);
-    echo"<script>alert('$lastidreserved')</script>";
   $reservationdetails=new reservationdetails();
   $reservationdetails->addreservationdetails($lastidreserved);
   //header("Location:index.php");
