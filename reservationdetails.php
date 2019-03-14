@@ -9,15 +9,15 @@ public $reserveid;
 public $id;
 
 
-public static function addreservationdetails ()
+public static function addreservationdetails ($lastidreserved)
 {
     $DB=new database();
     $conn=$DB->DBC();
     
-    $reserveDetails->reserveId=mysqli_insert_id($conn);
+    $reserveDetails->reserveId=$lastidreserved;
     $reserveDetails->radiologyId=$_POST['radiology'];
     $reserveDetails->quantity=1;
-    echo"<script>alert($reserveDetails->reserveId)</script>";
+    //echo"<script>alert($conn)</script>";
 
   //$reserveDetails = new reservationDetails( mysqli_insert_id($conn),$_POST['radiology'],1);
   $insertReserveDet = "insert into reservationdetails (ReserveID , RadiologyID, quantity) values ($reserveDetails->reserveId, $reserveDetails->radiologyId,$reserveDetails->quantity)";
