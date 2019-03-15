@@ -62,6 +62,7 @@ else
   <a href="Roles.php"> <h3>   - Manage Usertypes </h3></a>
   <a href="UTD.php"> <h3>   - Manage Usertype details </h3></a>
   <a href="linkCRUD.php"> <h3>   - Manage Links </h3></a>
+  <a href="radiologyCRUD.php"> <h3>   - Manage Radiologies </h3></a>
 
 
 
