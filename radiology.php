@@ -92,7 +92,7 @@ static function deleteradiology ($obj)
     $sql="UPDATE radiology SET isdeleted='true'
     WHERE ID = $obj->id";
     mysqli_query($conn,$sql);   
-    echo $sql;
+    header("Location:radiologyCRUD.php");
 }
 
 
