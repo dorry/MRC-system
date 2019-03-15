@@ -10,7 +10,5 @@ $links = new links();
 $usertype->id = $R;
 $links->id= $L;
 $links->addlink($links,$usertype);
-	
-
 
 ?>

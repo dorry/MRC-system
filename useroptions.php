@@ -1,5 +1,4 @@
 <?php
-
 class useroptions
 {
 public $type;
@@ -13,7 +12,7 @@ static function retriveforlinks(){
     
     echo"<label>Options</label>";
     echo" <select name='option'>";
-    $query = "SELECT  *  FROM `useroptions`";
+    $query = "SELECT  *  FROM `useroptions` WHERE isdeleted='false'";
     $result = mysqli_query($conn, $query);
     echo"<label >Options</label>";
     if(mysqli_num_rows($result) > 0){
@@ -69,7 +68,7 @@ static function deleteuseroptions ($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
-    $sql="DELETE FROM `useroptions`
+    $sql="UPDATE `useroptions` SET isdeleted = 'true'
     WHERE id = $obj->id";
     mysqli_query($conn,$sql);
     header("Location:UTD.php");

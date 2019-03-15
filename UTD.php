@@ -59,7 +59,7 @@ else
 
 
 <div>
-  <h2>Admin Options : Manage Roles : Manage Role Options </h2>
+  <h2>Admin Options : Manage Usertype detailss </h2>
 <a href="createoption.php"> <h3>   - Create Option </h3></a>
 <a href="addoption.php"> <h3>   - Add option to Usertype </h3></a>
 <a href="modifyuser.php"> <h3>   - Modify User </h3></a>

@@ -57,7 +57,7 @@ else
 
 
 <div>
-  <h2>Admin Options : Manage Roles </h2>
+  <h2>Admin Options : Manage Usertypes </h2>
 <a href="ViewType.php"> <h3>   - View all Roles </h3></a>
 <a href="createtype.php"> <h3>   - Create a new Role </h3></a>
 <a href="edittype.php"> <h3>   - Edit an existing Role </h3></a>

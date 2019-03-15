@@ -41,7 +41,7 @@ static function retriveforlinks(){
     $conn=$DB->DBC();
     echo"<label>Usertypes</label>";
     echo" <select name='role'>";
-    $query = "SELECT  *  FROM `usertype` WHERE ID>'1'";
+    $query = "SELECT  *  FROM `usertype` WHERE ID>'1' AND isdeleted='false'";
     $result = mysqli_query($conn, $query);
     echo"<label >Usertypes</label>";
     if(mysqli_num_rows($result) > 0){
@@ -67,7 +67,7 @@ static function retrive()
 {
     $DB=new database();
     $conn=$DB->DBC();
-    $query = "SELECT * from usertype";
+    $query = "SELECT * from usertype WHERE isdeleted='false'" ;
     $result = mysqli_query($conn, $query);
     if(mysqli_num_rows($result) > 0){
         while($row = mysqli_fetch_array($result))

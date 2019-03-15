@@ -1,5 +1,5 @@
 <?php
-include"mydatabaseconnection.php";
+require_once"mydatabaseconnection.php";
 
 class user
 {
@@ -16,10 +16,42 @@ public $usertypeid;
 public $City;
 
 
+static function retriveforlinks(){
+
+    $DB=new database();
+    $conn=$DB->DBC();
+    
+    echo"<label>Users</label>";
+    echo" <select name='user'>";
+    $query = "SELECT  *  FROM `user` WHERE isdeleted='false'";
+    $result = mysqli_query($conn, $query);
+    echo"<label >Users</label>";
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_array($result))
+       {
+    ?>
+            <option value = "<?php echo $row['id'];?>"><?php echo $row['firstname']; echo " "; 
+            echo $row['lastname'];?>
+            </option>
+      <?php 
+        }
+        echo "</select>";
+        echo "<br>";
+
+   ?>
+   
+   <?php
+   }
+
+
+
+}
+
+
 static function retrive(){
     $DB=new database();
     $conn=$DB->DBC();
-    $sql4 = "SELECT  *  FROM `user`";
+    $sql4 = "SELECT  *  FROM `user` WHERE isdeleted='false'";
     $result4 = mysqli_query($conn, $sql4);
     if(mysqli_num_rows($result4) > 0){
        while($row = mysqli_fetch_array($result4))

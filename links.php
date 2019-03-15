@@ -13,7 +13,7 @@ static function retriveforgivelink()
     $conn=$DB->DBC();
     echo"<label>Links</label>";
     echo" <select name='link'>";
-    $sql4 = "SELECT  *  FROM `links`";
+    $sql4 = "SELECT  *  FROM `links` WHERE isdeleted = 'false'";
     $result4 = mysqli_query($conn, $sql4);
     if(mysqli_num_rows($result4) > 0){
       while($row = mysqli_fetch_array($result4))
@@ -72,7 +72,7 @@ static function deletelink ($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
-    $sql="DELETE FROM links
+    $sql="UPDATE links SET isdeleted='true'
     WHERE id = $obj->id";
 mysqli_query($conn,$sql);
 header("Location:index.php");
