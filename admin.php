@@ -1,7 +1,9 @@
 <?php 
 include"user.php";
+include"IReserve.php";
+include"IRegister.php";
 require_once"mydatabaseconnection.php";
-class admin extends user{
+class admin extends user implements IReserve,IRegister{
 
 static function manipluateURL($URL){
 
@@ -85,8 +87,15 @@ static function editradiology($id,$name,$price){
 
 
 }
+public  function makeReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
+public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
+public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
+public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
 
-
+public  function register($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username,$department,$WorkingDaysHours){}
+   
+   
+public  function register($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username){}
 }
 
 ?>
