@@ -35,27 +35,20 @@ static function retriveradiology ()
 {
     $DB=new database();
     $conn=$DB->DBC();
-    echo"<label>Radiology</label>";
-    echo" <select name='option'>";
-    $query = "SELECT  *  FROM `radiology` WHERE isdeleted='false'";
-    $result = mysqli_query($conn, $query);
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_array($result))
-       {
-    ?>
-        <option value = "<?php echo $row['ID'];?>"><?php echo $row['Name']; echo " "; 
-        echo $row['price']; ?>
-        </option>
-      <?php 
-        }
-        echo "</select>";
-        echo "<br>";
-
-   ?>
-   
-   <?php
-   }
-
+    $sql4 = "SELECT  *  FROM `radiology` WHERE isdeleted = 'false'";
+    $result4 = mysqli_query($conn, $sql4);
+    if(mysqli_num_rows($result4) > 0){
+      while($row = mysqli_fetch_array($result4))
+     {
+  ?>
+          <h4  value = "<?php echo $row['ID'];?>"> <?php echo $row['Name'];?> </h4>  
+ <?php 
+ }
+ ?>
+        
+ 
+ <?php
+ }
 
 
 }
