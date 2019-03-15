@@ -41,7 +41,7 @@ static function retriveradiology ()
       while($row = mysqli_fetch_array($result4))
      {
   ?>
-          <h4  value = "<?php echo $row['ID'];?>"> <?php echo $row['Name'];?> </h4>  
+          <h4  value = "<?php echo $row['ID'];?>"> <?php echo $row['Name']; echo " " ; echo $row['price'];?> </h4>  
  <?php 
  }
  ?>
