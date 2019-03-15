@@ -1,9 +1,16 @@
 <?php 
 include"user.php";
 require_once"mydatabaseconnection.php";
-class receptionist extends user{
+include"Ilogin.php";
+class receptionist extends user implements Ilogin{
 
 public $department;
+
+static function login($name,$password){
+
+
+    
+}
 
 static function makereservation($doctor,$patient,$date,$rad){
 

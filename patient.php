@@ -1,9 +1,17 @@
 <?php 
 include"user.php";
 require_once"mydatabaseconnection.php";
-class patient extends user{
+class patient extends user implements Ilogin{
 
 public $cart;
+
+
+static function login($name,$password){
+
+
+    
+}
+
 static function showreports(){
 
 

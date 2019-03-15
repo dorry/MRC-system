@@ -1,12 +1,19 @@
 <?php 
 include"user.php";
 require_once"mydatabaseconnection.php";
-class admin extends user{
+class admin extends user implements Ilogin{
+
+
+    static function login($name,$password){
+
+
+    
+    }
 
 static function manipluateURL($URL){
 
 
-    
+
 }
 
 static function deletepatient($patient){
