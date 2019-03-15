@@ -5,12 +5,7 @@ include"IRegister.php";
 require_once"mydatabaseconnection.php";
 class admin extends user implements Ilogin,IReserve,IRegisterh{
 
-    public  function register($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username,$department,$WorkingDaysHours){}
-   
-   
-        public  function register2($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username){}
-        
-        
+
         public  function makeReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
         public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
         public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
