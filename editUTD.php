@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php //Not Edited to Object Oriented , me7taga ta3del baset
+<?php
 
 session_start();
 if(!empty($_SESSION))
@@ -11,9 +11,10 @@ else
 {
   header("Location:index.php");
 }
+
+include"usertype.php";
 ?>
   <head>
-
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
   outline: none;
@@ -31,8 +32,8 @@ body {
 #login-box {
   position: relative;
   margin: 5% auto;
-  width: 600px;
-  height: 700px;
+  width: 400px;
+  height: 400px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -43,7 +44,7 @@ body {
   left: 0;
   box-sizing: border-box;
   padding: 40px;
-  width: 600px;
+  width: 300px;
   height: 400px;
 }
 
@@ -179,7 +180,7 @@ button.social-signin.google {
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- Page Title -->
-    <title>Create Reserve</title>
+    <title>Modify User</title>
 
     <!-- Favicon -->
     <link
@@ -215,32 +216,31 @@ button.social-signin.google {
           <div class="col-lg-12">
 
 
-<?php
-include"reserve.php";
 
-$reserve=new reserve();
-$reserve->addreserve();
+<div>
+      <form action="postedit.php" method="POST">
 
 
-//     }
-//   }
-//   $servername = "localhost";
-//   $username = "id8878100_root";
-//   $password = "fz@ayV3V#@2W!Zd^1qwN";
-//   $dbname = "id8878100_mrc";
-//   $conn = mysqli_connect($servername,$username,$password,$dbname);
-//   if(!$conn){
-//     die("connection failed:".mysqli_connect_error());
-// }
-  
+<div id="login-box">
+  <div class="left">
 
-
-
-
-
-
-
+    <h3>Modify Usertype</h3>
+    <label>Role</label>
+    <br>
+    <?php
+  $UT = new usertype();
+  $UT->retriveforeav();
 ?>
+<br>
+<span id="users"></span>
+<br>
+<span id="form"></span>
+  <input type="submit" name="eutd_submit">
+
+</div>
+</div>
+      </form>
+</div>
 
 
   
@@ -254,11 +254,9 @@ $reserve->addreserve();
     <!-- Welcome Area End -->
     <!-- Patient Area Starts -->
     <!-- Patient Area Starts -->
-
-
-
-
     <!-- Footer Area Starts -->
+    <?php include("footer.php"); ?>
+
     <!-- Footer Area End -->
 
     <!-- Javascript -->
@@ -269,5 +267,44 @@ $reserve->addreserve();
     <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
     <script src="assets/js/vendor/superfish.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script type="text/javascript">
+
+
+function getform(val){
+
+  var xhttp;
+  if (val.length == 0) { 
+    document.getElementById("form").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("form").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "getform.php?e="+val, true);
+  xhttp.send();  
+}
+
+  
+function test(val){
+
+  var xhttp;
+  if (val.length == 0) { 
+    document.getElementById("users").innerHTML = "";
+    return;
+  }
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("users").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("POST", "getusers.php?e="+val, true);
+  xhttp.send();  
+}
+
+</script>
   </body>
 </html>

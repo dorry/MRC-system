@@ -71,6 +71,50 @@ static function retrive(){
 
 }
 
+static function RetrieveProfileForUser(){
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql4 = "SELECT  *  FROM `user` WHERE id=".$_SESSION['ID']." and isdeleted='false'";
+    $result4 = mysqli_query($conn, $sql4);
+    if(mysqli_num_rows($result4) > 0){
+       while($row = mysqli_fetch_array($result4))
+      {
+   ?>
+  
+           <h4 value = "<?php echo $row['id'];?>"> <?php echo'<h4>Full Name: </h4>';echo $row['firstname'];echo ' ';  echo $row['lastname']; echo '<br>'; 
+             echo'<h4>Social Number: </h4>'; echo $row['socialnumber']; echo '<br>'; 
+             echo'<h4>Email: </h4>'; echo $row['email']; echo '<br>'; 
+             echo'<h4>Password:</h4> '; echo $row['password']; echo '<br>'; 
+             echo'<h4>Username: </h4>'; echo $row['username']; echo '<br>'; 
+             echo'<h4>Date Of Birth: </h4>'; echo $row['dob']; echo '<br>'; 
+             echo'<h4>Address: </h4>';
+             $addressID=$row['addressid'];
+             while($addressID != 0)
+             {
+             $sql5 = "SELECT * FROM address WHERE id='$addressID'";
+             $result5 = mysqli_query($conn, $sql5);
+     
+             while($row2 = mysqli_fetch_array($result5))
+             {
+                 echo " ".$row2['name']." ";
+                 $addressID = $row2['pid'];
+     
+             }
+             }
+
+
+             
+             
+           ?> </h4>  
+  <?php 
+  }
+  ?>
+  
+  <?php
+  }
+
+
+}
 static function adduser ($obj)
 {//ya sherif
     
@@ -110,10 +154,53 @@ static function adduser ($obj)
 }
 
 
-static function edituser ($obj)
+static function edituser ()
 {
-
-
+    $DB=new database();
+    $conn=$DB->DBC();
+    if(isset($_POST['edit'])){ 
+        $sql = "update user set firstname = '" . $_POST["FName"] . 
+        "' , lastname ='" . $_POST["LName"] .  
+        "' , email ='" . $_POST["Email"] . 
+        "' , socialnumber ='" . $_POST["socialnumber"] . 
+        "' , password ='" . $_POST["Password"] . 
+        "' , dob ='" . $_POST["dob"] .  
+        "' , username ='" . $_POST["username"] . "' WHERE id ='".$_SESSION['ID']."'";
+        $result = mysqli_query($conn, $sql);
+    
+        if($result){
+            $_SESSION["FirstName"] = $_POST["FName"];
+            $_SESSION["LastName"] = $_POST["LName"];
+            $_SESSION["Email"] = $_POST["Email"];
+            $_SESSION["Password"] = $_POST["Password"];
+            $_SESSION["username"] = $_POST["username"];
+            // header("Location:index.php");
+        }else{
+            return $sql;
+        }
+    }
+    $sqlToGetExtraInfo="select * from user where id ='".$_SESSION['ID']."'";
+    $result=mysqli_query($conn , $sqlToGetExtraInfo);
+    if($row = mysqli_fetch_array($result)){
+    echo "
+    <form action='' method='post'>
+         FirstName:
+        <input type='text' value='".$_SESSION['FirstName']."' name='FName'><br>
+         LastName:
+        <input type='text' value='".$_SESSION['LastName']."' name='LName'><br>
+         Email: 
+        <input type='text' value='".$_SESSION['Email']."' name='Email'><br>
+        Password: 
+        <input type='text' value='".$_SESSION['Password']."' name='Password'><br>
+        Social Security Number: 
+        <input type='text' value='".$row['socialnumber']."' name='socialnumber'><br>
+        Date of birth:
+        <input type='text' value='".$row['dob']."' name='dob'><br>
+        username: 
+        <input type='text' value='".$_SESSION['username']."' name='username'><br> 
+        <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
+        </form> ";
+    }
 
 }
 
@@ -161,6 +248,7 @@ static function login($username,$password)
                   $typeId = $row["usertypeid"];
                 $_SESSION["FirstName"] = $row["firstname"];
                 $_SESSION["LastName"] = $row["lastname"];
+                $_SESSION["Email"] = $row["email"];
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["Password"] = $row["password"];
                 $_SESSION["ID"] = $row["id"];

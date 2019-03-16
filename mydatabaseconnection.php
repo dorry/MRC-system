@@ -14,7 +14,7 @@ $dbname = "mrc";
 
     //Database Conection for Classes:
     Class database{
-        function DBC(){
+        static function DBC(){
             $conn = mysqli_connect("localhost", "root", "", "mrc");
 
             if ($conn->connect_error) {

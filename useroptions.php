@@ -40,7 +40,7 @@ static function adduseroptions ($obj)
     $conn=$DB->DBC();
 	$sql = "Insert INTO useroptions (name,type) values('$obj->name','$obj->type')";
     mysqli_query($conn,$sql);
-	header("Location:UTD.php");
+    header("Location:UTD.php");
 	echo "<script>alert('A New Option  has been created')</script>";
 }
 
@@ -48,10 +48,10 @@ static function giveoption($obj,$obj1)
 {
     $DB=new database();
     $conn=$DB->DBC();
-	$sql = "Insert INTO usertypeoptions (userTypeId,optionsId) values('$obj->id','$obj1->id')";
+	$sql = "Insert INTO usertypeoptions (optionsId,userTypeId) values('$obj->id','$obj1->id')";
     mysqli_query($conn,$sql);
+    echo $sql;
     	   header("Location:UTD.php");
-	       echo "<script>alert('A New Option  has been added to a usertype')</script>";
 
 }
 
