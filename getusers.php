@@ -1,9 +1,4 @@
-<?php//Not Edited to Object Oriented
-
- $servername = "localhost";
- $username = "id8878100_root";
- $password = "fz@ayV3V#@2W!Zd^1qwN";
- $dbname = "id8878100_mrc";
+<?php
  $conn = mysqli_connect($servername,$username,$password,$dbname);
 
 $role = $_REQUEST["e"];
@@ -25,7 +20,9 @@ echo "<select name = 'users'>";
      while($row = mysqli_fetch_array($result5))
     {
  ?>
- <option  id = "<?php echo $row['id'];?>"> <?php echo $row['firstname'];  echo $row['lastname'];?> </option>  
+ <option  id = "<?php echo $row['id'];?>"> 
+ <?php echo $row['firstname'];  echo $row['lastname'];?> 
+ </option>  
   <br> 
 <?php
 }

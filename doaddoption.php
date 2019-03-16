@@ -20,9 +20,6 @@ else
 	$Options = new useroptions();
 	$Options->id =$O;
 	$Options->giveoption($Options, $UT);
-	$sql = "Insert INTO usertypeoptions (userTypeId,optionsId) values('".$RIDs."','".$OIDs."')";
-    mysqli_query($conn,$sql);
-    	   header("Location:UTD.php");
-	       echo "<script>alert('A New Option  has been add to a usertype')</script>";
+
 
 ?>
