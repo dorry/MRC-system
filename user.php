@@ -88,8 +88,8 @@ static function adduser ($obj)
             }
         //=========================================================================================
         
-            $sql = "Insert INTO user (firstname,lastname,username,email,Password,usertypeid,addressid,socialnumber,dob)  	
-             values('$obj->firstname','$obj->lastname','$obj->username','$obj->email','$obj->password','2','$CIDs','$obj->socialnumber','$obj->dob')" ;
+            $sql = "Insert INTO user (firstname,lastname,username,email,Password,usertypeid,addressid,socialnumber,dob,isdeleted)  	
+             values('$obj->firstname','$obj->lastname','$obj->username','$obj->email','$obj->password','2','$CIDs','$obj->socialnumber','$obj->dob','false')" ;
             mysqli_query($conn,$sql);
                    header("Location:index.php");
         
@@ -124,7 +124,9 @@ static function deleteuser ()
     session_start();
     if(!empty($_SESSION))
     {
-        $query = "Delete From user WHERE username = '".$_SESSION["username"]."'";
+        $query = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$_SESSION["ID"]."'";
+       
+
         mysqli_query($conn, $query);
         mysqli_close($conn);
         session_unset();
@@ -144,19 +146,18 @@ static function login($username,$password)
         $DB=new database();
         $conn=$DB->DBC();
         session_start();
-
+        $linkNameArray=array();
+        $linkPhysicalArray=array();
         if(isset($_POST['signin_submit']))
         { 
-            echo "<script>alert('here')</script>";
 
             $sql = "select * from user where
              username = '$username' and 
-             password = '$password'";
+             password = '$password' and `isdeleted`= 'false'";
              $result = mysqli_query($conn, $sql);
         
             if($row = mysqli_fetch_array($result))
             {
-                echo "<script>alert('Selected sucess')</script>";
                   $typeId = $row["usertypeid"];
                 $_SESSION["FirstName"] = $row["firstname"];
                 $_SESSION["LastName"] = $row["lastname"];
@@ -170,10 +171,14 @@ static function login($username,$password)
                     $linkId = $row2["linkid"];
                     $sql3="SELECT * FROM `links` WHERE id = $linkId";
                     $result3 = mysqli_query($conn, $sql3);
-                    if($row3 = mysqli_fetch_array($result3))
+                    while($row3 = mysqli_fetch_array($result3))
                     {
-                        $_SESSION['link'] = $row3["physicallink"];
-                        $_SESSION['pagename'] = $row3["linkname"];
+                        // $_SESSION['link']
+                          array_push($linkPhysicalArray,$row3["physicallink"]);
+                          array_push($linkNameArray,$row3["linkname"]);
+                       // $_SESSION['pagename'] ;
+                       $_SESSION['link']=$linkPhysicalArray;
+                       $_SESSION['pagename']=$linkNameArray;
                     }
                 }
                 echo $_SESSION["link"];
@@ -182,7 +187,7 @@ static function login($username,$password)
             else
             {
                 header("Location:signin.html");
-                echo "<script>alert('Invalid username or password')</script>";
+                // echo "<script>alert('Invalid username or password')</script>";
             }
         
     }

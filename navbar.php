@@ -67,7 +67,10 @@
                             
                             // echo "<div class='dropdown'>";
                             echo "<li><a href=''>".$_SESSION['username']."</a></li> ";
-                            echo "<li><a href='".$_SESSION['link']."'>".$_SESSION['pagename']."</a></li> ";
+                            foreach(array_combine($_SESSION['link'],$_SESSION['pagename']) as $links=>$pagenames){
+                                
+                            echo "<li><a href='".$links."'>".$pagenames."</a></li> ";
+                            }
                             echo "<li><a href='signout.php'>SIGNOUT</a></li> ";
                             echo "<li><a href='DeleteProfile.php'>Delete my account</a></li> ";
 
