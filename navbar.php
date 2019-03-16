@@ -72,7 +72,6 @@
                             echo "<li><a href='".$links."'>".$pagenames."</a></li> ";
                             }
                             echo "<li><a href='signout.php'>SIGNOUT</a></li> ";
-                            echo "<li><a href='DeleteProfile.php'>Delete my account</a></li> ";
 
                             // echo "<i class='fa fa-caret-down'></i>";
                             // echo "</button>";

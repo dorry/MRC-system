@@ -205,7 +205,9 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php");
+    include("user.php");
+    ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -216,29 +218,9 @@ button.social-signin.google {
 
 
 <?php
-include"reserve.php";
 
-$reserve=new reserve();
-$reserve->addreserve();
-
-
-//     }
-//   }
-//   $servername = "localhost";
-//   $username = "id8878100_root";
-//   $password = "fz@ayV3V#@2W!Zd^1qwN";
-//   $dbname = "id8878100_mrc";
-//   $conn = mysqli_connect($servername,$username,$password,$dbname);
-//   if(!$conn){
-//     die("connection failed:".mysqli_connect_error());
-// }
-  
-
-
-
-
-
-
+$user=new user();
+$user->edituser();
 
 ?>
 
