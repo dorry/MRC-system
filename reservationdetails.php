@@ -38,6 +38,44 @@ static function deletereservationdetails ($obj)
 
 
 }
+
+public static function retriveforedit()
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+
+    $sql1 = "SELECT * FROM  reservationdetails";    
+    $result1 = mysqli_query($conn, $sql1);
+    echo "<select  name='reserve'>";
+    while($row = mysqli_fetch_array($result1))
+    {
+        $ResID = $row['ReserveID'];
+        $RadID = $row['RadiologyID'];
+        
+        $sql2 = "SELECT * FROM reserve WHERE ID = '$ResID' ";
+        $result2 = mysqli_query($conn,$sql2);
+        while($row2 = mysqli_fetch_array($result2))
+        {   
+            $pid = $row2['PatientID'];
+            $sql3 = "SELECT * FROM user WHERE id = '$pid'";
+            $result3 = mysqli_query($conn,$sql3);
+            $row3 = mysqli_fetch_array($result3);
+                        
+            $did = $row2['DoctorID'];
+            $sql4 = "SELECT * FROM user WHERE id = '$did'";
+            $result4 = mysqli_query($conn,$sql4);
+            $row4 = mysqli_fetch_array($result4);
+            ?>
+            <option value="<?php echo $row2['ID']; ?>" >
+            <?php
+            echo $row3['lastname']; echo " with Dr : "; echo $row4['lastname'];
+            echo " On : "; echo $row2['Date']; echo "<br>";
+            echo "</option>";
+        }
+    }
+    echo "</select>";
+}
+
 public static function Retrievereservationdetails ()
 {
  //include"mydatabaseconnection.php";

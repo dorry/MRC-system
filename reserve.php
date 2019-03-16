@@ -1,5 +1,5 @@
 <?php
-include"mydatabaseconnection.php";
+require_once"mydatabaseconnection.php";
 include"reservationdetails.php";
 
 class reserve
@@ -15,7 +15,7 @@ public static function addreserve ()
     $conn=$DB->DBC();
 
     $selectDocs = "select * from user where usertypeid like
-     (select id from usertype where type = 'Doctor')";
+     (select id from usertype where type = 'doctor')";
     $result = mysqli_query($conn, $selectDocs);
     echo "<form  method='post'> ";
       echo "<div id='login-box'>";
@@ -67,11 +67,19 @@ public static function addreserve ()
 }
 
 
-static function editreserve ($obj)
+static function editreserve ($obj,$obj1)
 {
     $DB=new database();
     $conn=$DB->DBC();
-
+    $sql1 = "UPDATE reservationdetails 
+             SET RadiologyID='$obj1->radiologyid'
+             WHERE ReserveID='$obj1->id'";
+    $sql= "UPDATE reserve
+           SET DoctorID = '$obj->doctorid' , Date = '$obj->date' 
+           WHERE ID  = '$obj1->id' ";
+    $result = mysqli_query($conn, $sql);
+    $result1 = mysqli_query($conn, $sql1);
+    header("Location:ReservationCRUD.php");
 
 }
 

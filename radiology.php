@@ -1,5 +1,5 @@
 <?php
-include"mydatabaseconnection.php";
+require_once"mydatabaseconnection.php";
 
 class radiology
 {
