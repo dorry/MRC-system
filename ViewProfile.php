@@ -60,7 +60,7 @@ else
   <h2>Profile: </h2>
   <a href="Profile.php"> <h3>   - View Profile </h3></a>
   <a href="EditProfile.php"> <h3>   - Edit Profile </h3></a>
-  <a href='DeleteProfile.php'><h3> - Delete my account</h3></a><
+  <a onclick="confirmation()"><h3> - Delete my account</h3></a>
 
   <!-- <a href="linkCRUD.php"> <h3>   -  Links </h3></a> -->
 
@@ -90,6 +90,15 @@ else
     <!-- Footer Area End -->
 
     <!-- Javascript -->
+    <script>
+function confirmation() {
+  var r = confirm("Are you sure you want to delete your account ?");
+  if (r == true) {
+    window.location.href = "DeleteProfile.php";
+  } else {
+  }
+}
+</script>
     <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     <script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
     <script src="assets/js/vendor/wow.min.js"></script>
