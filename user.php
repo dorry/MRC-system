@@ -154,10 +154,53 @@ static function adduser ($obj)
 }
 
 
-static function edituser ($obj)
+static function edituser ()
 {
-
-
+    $DB=new database();
+    $conn=$DB->DBC();
+    if(isset($_POST['edit'])){ 
+        $sql = "update user set firstname = '" . $_POST["FName"] . 
+        "' , lastname ='" . $_POST["LName"] .  
+        "' , email ='" . $_POST["Email"] . 
+        "' , socialnumber ='" . $_POST["socialnumber"] . 
+        "' , password ='" . $_POST["Password"] . 
+        "' , dob ='" . $_POST["dob"] .  
+        "' , username ='" . $_POST["username"] . "' WHERE id ='".$_SESSION['ID']."'";
+        $result = mysqli_query($conn, $sql);
+    
+        if($result){
+            $_SESSION["FirstName"] = $_POST["FName"];
+            $_SESSION["LastName"] = $_POST["LName"];
+            $_SESSION["Email"] = $_POST["Email"];
+            $_SESSION["Password"] = $_POST["Password"];
+            $_SESSION["username"] = $_POST["username"];
+            // header("Location:index.php");
+        }else{
+            return $sql;
+        }
+    }
+    $sqlToGetExtraInfo="select * from user where id ='".$_SESSION['ID']."'";
+    $result=mysqli_query($conn , $sqlToGetExtraInfo);
+    if($row = mysqli_fetch_array($result)){
+    echo "
+    <form action='' method='post'>
+         FirstName:
+        <input type='text' value='".$_SESSION['FirstName']."' name='FName'><br>
+         LastName:
+        <input type='text' value='".$_SESSION['LastName']."' name='LName'><br>
+         Email: 
+        <input type='text' value='".$_SESSION['Email']."' name='Email'><br>
+        Password: 
+        <input type='text' value='".$_SESSION['Password']."' name='Password'><br>
+        Social Security Number: 
+        <input type='text' value='".$row['socialnumber']."' name='socialnumber'><br>
+        Date of birth:
+        <input type='text' value='".$row['dob']."' name='dob'><br>
+        username: 
+        <input type='text' value='".$_SESSION['username']."' name='username'><br> 
+        <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
+        </form> ";
+    }
 
 }
 
@@ -205,6 +248,7 @@ static function login($username,$password)
                   $typeId = $row["usertypeid"];
                 $_SESSION["FirstName"] = $row["firstname"];
                 $_SESSION["LastName"] = $row["lastname"];
+                $_SESSION["Email"] = $row["email"];
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["Password"] = $row["password"];
                 $_SESSION["ID"] = $row["id"];
