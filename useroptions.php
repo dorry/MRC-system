@@ -51,8 +51,7 @@ static function giveoption($obj,$obj1)
 	$sql = "Insert INTO usertypeoptions (optionsId,userTypeId) values('$obj->id','$obj1->id')";
     mysqli_query($conn,$sql);
     echo $sql;
-    	  // header("Location:UTD.php");
-	       echo "<script>alert('A New Option  has been added to a usertype')</script>";
+    	   header("Location:UTD.php");
 
 }
 

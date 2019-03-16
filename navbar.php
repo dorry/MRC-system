@@ -66,7 +66,7 @@
                         {
                             
                             // echo "<div class='dropdown'>";
-                            echo "<li><a href=''>".$_SESSION['username']."</a></li> ";
+                            echo "<li><a href='ViewProfile.php'>".$_SESSION['username']."</a></li> ";
                             foreach(array_combine($_SESSION['link'],$_SESSION['pagename']) as $links=>$pagenames){
                                 
                             echo "<li><a href='".$links."'>".$pagenames."</a></li> ";
