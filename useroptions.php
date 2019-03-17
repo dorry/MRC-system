@@ -1,4 +1,5 @@
 <?php
+require_once"mydatabaseconnection.php";
 class useroptions
 {
 public $type;
@@ -60,8 +61,9 @@ static function edituseroptions ($obj)
 {
     $DB=new database();
     $conn=$DB->DBC();
-
-
+    $sql = "UPDATE `useroptions` SET `name` = '$obj->name' WHERE id = '$obj->id'";
+    mysqli_query($conn,$sql);
+    header("Location:UTD.php");
 }
 
 static function deleteuseroptions ($obj)
