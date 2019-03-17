@@ -194,7 +194,7 @@ static function edituser ()
         "' , lastname ='" . $_POST["LName"] .  
         "' , email ='" . $_POST["Email"] . 
         "' , socialnumber ='" . $_POST["socialnumber"] . 
-        "' , password ='" . $_POST["Password"] . 
+        "' , password ='" . sha1($_POST["Password"]). 
         "' , dob ='" . $_POST["dob"] .  
         "' , username ='" . $_POST["username"] . "' WHERE id ='".$_SESSION['ID']."'";
         $result = mysqli_query($conn, $sql);
@@ -221,7 +221,7 @@ static function edituser ()
          Email: 
         <input type='text' value='".$_SESSION['Email']."' name='Email'><br>
         Password: 
-        <input type='text' value='".$_SESSION['Password']."' name='Password'><br>
+        <input type='text' value='".."' name='Password'><br>
         Social Security Number: 
         <input type='text' value='".$row['socialnumber']."' name='socialnumber'><br>
         Date of birth:
