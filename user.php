@@ -30,8 +30,10 @@ static function retriveforlinks(){
         while($row = mysqli_fetch_array($result))
        {
     ?>
-            <option value = "<?php echo $row['id'];?>"><?php echo $row['firstname']; echo " "; 
-            echo $row['lastname'];?>
+            <option value = "<?php echo $row['id'];?>">
+                             <?php echo $row['firstname'];
+                                   echo " "; 
+                                   echo $row['lastname'];?>
             </option>
       <?php 
         }
@@ -229,6 +231,31 @@ static function edituser ()
         <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
         </form> ";
     }
+
+}
+
+static function adminedituser ($obj){
+    $DB=new database();
+    $conn=$DB->DBC();
+
+    $sql = "update user set email ='" . $obj->email . 
+        "' , password ='" . $obj->password . 
+        "' , username ='" . $obj->username .
+         "' , usertypeid='". $obj->usertypeid."'
+        WHERE id ='".$obj->id."'";
+        $result = mysqli_query($conn, $sql); 
+        header("Location:userCRUD.php");
+
+}
+
+static function admindeleteuser ($obj)
+{
+
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$obj->id."'";
+    $result = mysqli_query($conn, $sql); 
+    echo $sql;
 
 }
 
