@@ -31,7 +31,6 @@ class report
             if(mysqli_num_rows($result) > 0)
             {
                 $row = mysqli_fetch_array($result);
-                echo $row[0];
                 $x = array("label"=> $radioarrayname[$i], "y"=> intval($row[0]));
                 array_push($dataPoints, $x);
             }
