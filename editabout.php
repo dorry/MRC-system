@@ -31,7 +31,8 @@ if(mysqli_num_rows($result) > 0){
     mysqli_query($conn,$applyChangesQuery);
     }
 echo'<script>
-CKEDITOR.replace( "editor1" );
+var editor = CKEDITOR.replace( "editor1" );
+editor.config.allowedContent = true;
 </script>
 </body>
 </html>';
