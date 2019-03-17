@@ -7,6 +7,7 @@
 //where should we put this query ? in which class!!
 session_start();
 include("user.php");
+include("usertype.php");
 include("address.php");
 
 $servername = "localhost";
@@ -48,26 +49,19 @@ $Cs = array();
 $user = new user();
 $user->retriveforlinks();
 ?>
-
-    <input type="text" name="FName" placeholder="First Name" />
-    <input type="text" name="LName" placeholder="Last Name" />
+<label>Username</label>
     <input type="text" name="UName" placeholder="Username" />
+    <label>email</label>
     <input type="text" name="email" placeholder="E-mail" />
-    <input type="text" name="SSN" placeholder="Social Security Number" />
-    <input type="radio" name="gender" value="male" checked> Male 
-    <input type="radio" name="gender" value="female"> Female<br>  <br> 
-    <input type="date" name="DOB"><br> <br>
+    <label>password</label>
     <input type="password" name="password" placeholder="Password"/>
-    <input type="password" name="password2" placeholder="Retype password" />
-
-    <label>Country</label>
+    <label>Usertype</label>
 <?php
-$address = new address();
-$address->retriveforsignup();
- ?>
- 
-   <div id = City></div>
-    <input type="submit" name="signup_submit" value="Edit User" />
+$UT = new usertype();
+$UT->retriveforlinks();
+?>
+
+     <input type="submit" name="edit" value="Edit User" />
  
  </form>
   </div>
