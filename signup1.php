@@ -6,6 +6,7 @@ $lastname = $_POST['LName'];
 $username = $_POST['UName'];
 $email = $_POST['email'];
 $password = $_POST['password'];
+$encrpassword = sha1($password);
 $Gender = $_POST['gender'];
 $socialnumber = $_POST['SSN'];	
 $dob = $_POST['DOB'];
@@ -13,7 +14,7 @@ $City = $_POST['City'];
 
 $user= new user();
 $user->email=$email;
-$user->password=$password;
+$user->password=$encrpassword;
 $user->firstname=$firstname;
 $user->lastname=$lastname;
 $user->username=$username;

@@ -65,6 +65,7 @@ else
   <a href="radiologyCRUD.php"> <h3>   - Manage Radiologies </h3></a>
   <a href="ReservationCRUD.php"> <h3>   - Manage Reservation </h3></a>
   <a href="AllEditablePages.php"> <h3>   - Editable pages </h3></a>
+  <a href="Statistics.php"> <h3>   - Statistics page </h3></a>
 
 
 

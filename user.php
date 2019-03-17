@@ -201,7 +201,6 @@ static function edituser ()
             $_SESSION["FirstName"] = $_POST["FName"];
             $_SESSION["LastName"] = $_POST["LName"];
             $_SESSION["Email"] = $_POST["Email"];
-            $_SESSION["Password"] = $_POST["Password"];
             $_SESSION["username"] = $_POST["username"];
             // header("Location:index.php");
         }else{
