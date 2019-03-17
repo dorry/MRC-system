@@ -221,7 +221,7 @@ static function edituser ()
          Email: 
         <input type='text' value='".$_SESSION['Email']."' name='Email'><br>
         Password: 
-        <input type='text' value='".."' name='Password'><br>
+        <input type='text' value='' name='Password'><br>
         Social Security Number: 
         <input type='text' value='".$row['socialnumber']."' name='socialnumber'><br>
         Date of birth:
