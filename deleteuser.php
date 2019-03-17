@@ -48,7 +48,7 @@ $Cs = array();
 $user = new user();
 $user->retriveforlinks();
 ?>
- 
+  
     <input type="submit" value="Delete User" />
  
  </form>
