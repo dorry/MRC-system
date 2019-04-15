@@ -55,8 +55,9 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
 
     <!-- Header Area Starts -->
     <?php include("navbar.php"); 
-          include("user.php");
-    ?>
+          require_once("user.php");
+          require_once("usercontroller.php");
+      ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -71,9 +72,8 @@ $conn = mysqli_connect($servername,$username,$password,$dbname);
 
 <?php
 
-  $user = new user();
-  $user->retrive();
-
+  $c = new usercontroller();
+  $c->view();
 ?>
 </div>
 

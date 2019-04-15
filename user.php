@@ -16,6 +16,25 @@ public $usertypeid;
 public $City;
 
 
+static function selectallusers(){
+  $DB=new database();
+  $conn=$DB->DBC();
+    
+  $query = "SELECT  *  FROM `user` WHERE isdeleted='false'";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+  
+}
 static function retriveforlinks(){
 
     $DB=new database();
@@ -152,7 +171,7 @@ static function adduser ($obj)
     $DB=new database();
     $conn=$DB->DBC();
     if(isset($_POST['signup_submit'])){ 
-	
+  
         if($_POST['password'] = $_POST['password2']){
         
             
@@ -163,7 +182,7 @@ static function adduser ($obj)
             }
         //=========================================================================================
         
-            $sql = "Insert INTO user (firstname,lastname,username,email,Password,usertypeid,addressid,socialnumber,dob,isdeleted)  	
+            $sql = "Insert INTO user (firstname,lastname,username,email,Password,usertypeid,addressid,socialnumber,dob,isdeleted)   
              values('$obj->firstname','$obj->lastname','$obj->username','$obj->email','$obj->password','2','$CIDs','$obj->socialnumber','$obj->dob','false')" ;
             mysqli_query($conn,$sql);
                    header("Location:index.php");
