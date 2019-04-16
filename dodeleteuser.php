@@ -8,6 +8,9 @@ if(!empty($_SESSION))
   $user = new user();
   $user->id = $ID;
   $user->admindeleteuser($user); 
+    header("Location:index.php");
+
+
 }
 else
 {
