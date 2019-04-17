@@ -204,7 +204,9 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-     <?php include("navbar.php"); ?>
+     <?php include("navbar.php");
+            require_once("usertypecontroller.php");
+       ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -214,10 +216,12 @@ button.social-signin.google {
           <div class="col-lg-12">
 <div id="login-box">
   <div class="left">
-    <form action="docreatetype.php" method="POST">
-    <h3>Add UserType</h3>
-    <input type="text" name="name" placeholder="Type name" />
-    <input type="submit" name="type_submit" value="Create" />
+    <form action="admincontroller.php" method="POST">
+   <?php
+$usertype = new usertypecontroller();
+$usertype->showcreatetype();
+
+   ?>
  </form>
   </div>
   

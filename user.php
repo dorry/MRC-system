@@ -35,6 +35,8 @@ static function selectallusers(){
 }
   
 }
+
+
 static function retriveforlinks(){
 
     $DB=new database();

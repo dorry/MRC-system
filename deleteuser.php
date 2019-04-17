@@ -8,13 +8,8 @@
 session_start();
 include("user.php");
 include("address.php");
+require_once("usercontroller.php")
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mrc";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$Cs = array();
 
 ?>
     <!-- Required Meta Tags -->
@@ -42,14 +37,16 @@ $Cs = array();
           <div class="col-lg-12">
 <div id="login-box">
   <div class="left">
-    <form action="dodeleteuser.php" method="POST">
+    <form action="admincontroller.php" method="POST">
     <h3>Delete User</h3>
 <?php
-$user = new user();
-$user->retriveforlinks();
+$c = new usercontroller();
+$c->viewdropdown();
+
 ?>
   
-    <input type="submit" value="Delete User" />
+
+    <input type="submit" name="doadmindeleteuser" value="Delete User" />
  
  </form>
   </div>

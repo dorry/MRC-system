@@ -19,7 +19,7 @@ else
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
     <!-- Page Title -->
-    <title>Create Role</title>
+    <title>Role Managment</title>
 
     <!-- Favicon -->
     <link

@@ -51,8 +51,9 @@ else
     </div>
     <!-- Preloader End -->
     <!-- Header Area Starts -->
-    <?php include("navbar.php");
-          include("usertype.php");
+    <?php require_once("navbar.php");
+          require_once("usertype.php");
+          require_once("usertypecontroller.php")
     ?>
     <!-- Header Area End -->
     <!-- Banner Area Starts -->
@@ -66,8 +67,8 @@ else
 <div>
   <h3> Usertype List </h3>
 <?php 
-$usertype = new usertype();
-$usertype->retrive();
+$usertype = new usertypecontroller();
+$usertype->viewtypes();
 
 
 ?>

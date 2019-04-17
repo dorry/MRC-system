@@ -11,6 +11,7 @@ else
   header("Location:index.php");
 }
 include"usertype.php";
+require_once"usertypecontroller.php";
 ?>
   <head>
   <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -220,16 +221,17 @@ button.social-signin.google {
   <h2>Admin Options : Manage Roles </h2>
   <div id="login-box">
   <div class="left">
-    <h3>edit type</h3>
-    <form action="doedittype.php" method="POST">
+    <h3>Edit Usertype</h3>
+    <form action="admincontroller.php" method="POST">
 
 <?php
 $UT= new usertype();
 $UT->retriveforlinks();
-?>
-<input type="text" name="newname" placeholder="Type the new usertype name">
+$C = new usertypecontroller();
+$C->showedittype();
 
-       <input type="submit" name="option_submit" value="Edit"/>
+?>
+
   </div>
   
 

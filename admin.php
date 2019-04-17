@@ -1,107 +1,66 @@
 <?php 
-include"user.php";
-include"IReserve.php";
-include"IRegister.php";
+require_once"user.php";
+require_once"IReserve.php";
+require_once"IRegister.php";
 require_once"mydatabaseconnection.php";
-class admin extends user implements Ilogin,IReserve,IRegister{
 
 
-        public  function makeReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
-        public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
-        public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
-        public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
-
-    static function login($name,$password){
+class admin extends user{
 
 
-    
-    }
+public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
+public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
+public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
 
-static function manipluateURL($URL){
+
+
+static function editusertype ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql="UPDATE usertype
+          SET type= '$obj->type'
+          WHERE id = $obj->id;";
+    mysqli_query($conn,$sql);
+    header("Location:Roles.php");
+}
+
+
+static function addusertype($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = "Insert INTO usertype (type) values('$obj->type')";
+    mysqli_query($conn,$sql);
+    header("Location:Roles.php");
+}
+
+
+static function admindeleteuser ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$obj->id."'";
+    $result = mysqli_query($conn, $sql); 
+    echo $sql;
+}
+
+
+static function adminedituser ($obj){
+    $DB=new database();
+    $conn=$DB->DBC();
+
+    $sql = "update user set email ='" . $obj->email . 
+        "' , password ='" . $obj->password . 
+        "' , username ='" . $obj->username .
+         "' , usertypeid='". $obj->usertypeid."'
+        WHERE id ='".$obj->id."'";
+        $result = mysqli_query($conn, $sql); 
+        header("Location:userCRUD.php");
+
+}
 
 
 
 }
-
-static function deletepatient($patient){
-
-
-
-}
-static function retrivepatient($patient){
-
-
-}
-
-static function updatepatient($patient){
-
-
-}
-
-static function deletereceptionist($receptionist){
-
-
-
-}
-
-static function updatereceptionist($receptionist){
-
-
-
-}
-
-static function retrivereceptionist($receptionist){
-
-
-
-}
-
-static function showdoctor($doctor){
-
-
-
-}
-
-static function updatedoctor($doctor){
-
-
-
-}
-static function deletedoctor($doctor){
-
-
-
-}
-
-static function createdoctor($doctor){
-
-
-
-}
-
-static function createreceptionist($receptionist){
-
-
-
-}
-
-static function createradiology($name , $price){
-
-
-}
-
-static function deleteradiology($id){
-
-
-}
-
-static function editradiology($id,$name,$price){
-
-
-}
-public  function register($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username,$department,$WorkingDaysHours){} 
-public  function registers($firstName,$lastName,$email,$password,$dob,$telephone,$gender,$username){}
-
-}
-
 ?>

@@ -6,17 +6,11 @@
 <?php 
 //where should we put this query ? in which class!!
 session_start();
-include("user.php");
-include("usertype.php");
-include("address.php");
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "mrc";
-$conn = mysqli_connect($servername,$username,$password,$dbname);
-$Cs = array();
-
+require_once("user.php");
+require_once("usertype.php");
+require_once("address.php");
+require_once("usercontroller.php");
+require_once("usertypecontroller.php");
 ?>
     <!-- Required Meta Tags -->
     <!-- Page Title -->
@@ -43,25 +37,18 @@ $Cs = array();
           <div class="col-lg-12">
 <div id="login-box">
   <div class="left">
-    <form action="doedituser.php" method="POST">
+    <form action="admincontroller.php" method="POST">
     <h3>Edit User</h3>
 <?php
-$user = new user();
-$user->retriveforlinks();
-?>
-<label>Username</label>
-    <input type="text" name="UName" placeholder="Username" />
-    <label>email</label>
-    <input type="text" name="email" placeholder="E-mail" />
-    <label>password</label>
-    <input type="password" name="password" placeholder="Password"/>
-    <label>Usertype</label>
-<?php
-$UT = new usertype();
-$UT->retriveforlinks();
+$c = new usercontroller();
+$c->viewdropdown();
+$c->showedituser();
+
+$c2 = new usertypecontroller();
+$c2->viewdropdown();
 ?>
 
-     <input type="submit" name="edit" value="Edit User" />
+     <input type="submit" name="admindoedituser" value="Edit User" />
  
  </form>
   </div>
