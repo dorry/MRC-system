@@ -7,6 +7,18 @@ require_once 'usertype.php';
 
 //USER TYPE MANAGER 
 
+if(isset($_POST['dodeletetype']))
+{
+$Rid = $_POST['role'];
+$admin = new admin();
+$UT = new usertype();
+$UT->id = $Rid;
+
+$admin->deleteusertype($UT); 
+    header("Location:Roles.php");
+
+}
+
 if(isset($_POST['doedittype']))
 {
 $Rid = $_POST['role'];

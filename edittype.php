@@ -10,7 +10,6 @@ else
 {
   header("Location:index.php");
 }
-include"usertype.php";
 require_once"usertypecontroller.php";
 ?>
   <head>
@@ -223,11 +222,11 @@ button.social-signin.google {
   <div class="left">
     <h3>Edit Usertype</h3>
     <form action="admincontroller.php" method="POST">
-
+ 
 <?php
-$UT= new usertype();
-$UT->retriveforlinks();
+
 $C = new usertypecontroller();
+$C->viewdropdown();
 $C->showedittype();
 
 ?>

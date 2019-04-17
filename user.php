@@ -276,7 +276,7 @@ static function admindeleteuser ($obj)
     $conn=$DB->DBC();
     $sql = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$obj->id."'";
     $result = mysqli_query($conn, $sql); 
-    echo $sql;
+    header("Location:userCRUD.php");
 
 }
 

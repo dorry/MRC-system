@@ -14,6 +14,16 @@ public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment
 
 
 
+
+static function deleteusertype ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = " UPDATE `usertype` SET `isdeleted` = 'true' WHERE `id` = '".$obj->id."'";
+    $result = mysqli_query($conn, $sql);     
+}
+
+
 static function editusertype ($obj)
 {
     $DB=new database();

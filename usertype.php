@@ -83,12 +83,6 @@ static function retriveforlinks(){
 }
 
 
-static function deleteusertype ($obj)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-}
-
 
 }
 ?>

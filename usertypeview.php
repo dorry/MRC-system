@@ -4,6 +4,14 @@ require_once 'usertypeview.php';
 class usertypeview
 {
 
+public static function deletetypeform (){
+
+?>
+         <input type="submit" name="dodeletetype" value="Delete"/>
+<?php
+
+}
+
 public static function edittypeform (){
 
 ?>

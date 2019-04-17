@@ -6,6 +6,10 @@ require_once 'usertypeview.php';
 
 class usertypecontroller{
 
+static function showdeletetype(){
+		$view = new usertypeview();
+		$view->deletetypeform();
+}
 static function showedittype(){
 		$view = new usertypeview();
 		$view->edittypeform();

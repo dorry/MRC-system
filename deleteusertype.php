@@ -11,6 +11,7 @@ else
   header("Location:index.php");
 }
 include"usertype.php";
+require_once"usertypecontroller.php"
 ?>
   <head>
   <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -221,14 +222,14 @@ button.social-signin.google {
   <div id="login-box">
   <div class="left">
     <h3>delete type</h3>
-    <form action="doedittype.php" method="POST">
+    <form action="admincontroller.php" method="POST">
 
 <?php
-$UT= new usertype();
-$UT->retriveforlinks();
+$C = new usertypecontroller();
+$C->viewdropdown();
+$C->showdeletetype();
 ?>
 
-       <input type="submit" name="option_submit" value="Delete"/>
   </div>
   
 
