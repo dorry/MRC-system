@@ -11,7 +11,8 @@ else
 {
   header("Location:index.php");
 }
-include("radiology.php");
+require_once("radiologycontroller.php");
+require_once("radiology.php");
 include("links.php");
 /*
 $Rs = array();
@@ -231,13 +232,13 @@ button.social-signin.google {
     <div id="login-box">
     <div class="left">
     <h3>Create new Radiology</h3>
-<form action="dodeleterad.php" method="POST">
-<?php 
-$rad = new radiology();
-$rad->retriveforgivelink();
+<form action="admincontroller.php" method="POST">
+<?php
+$rad = new radiologycontroller();
+$rad->viewradiologydropdown();
 ?>
 
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete" name="dodeleteadminrad"/>
  </form>
   </div>
   

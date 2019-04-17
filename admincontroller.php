@@ -4,6 +4,8 @@ require_once 'user.php';
 require_once 'userview.php';
 require_once 'admin.php';
 require_once 'usertype.php';
+require_once 'radiology.php';
+require_once 'radiologyview.php';
 
 //USER TYPE MANAGER 
 
@@ -68,5 +70,41 @@ $user->id=$_POST['user'];
 $user->usertypeid=$_POST['role'];
 
 $admin->adminedituser($user);
+}
+
+if(isset($_POST['doeditadminrad']))
+{
+  $R = $_POST['name'];
+  $P = $_POST['price'];
+  $ID = $_POST['rad'];
+  $Rad = new radiology();
+  $admin = new admin();
+  $Rad->name = $R;
+  $Rad->price = $P;
+  $Rad->id = $ID;
+  $admin->editradiology($Rad);
+  header("Location:index.php");
+}
+
+if(isset($_POST['dodeleteadminrad']))
+{
+  $ID = $_POST['rad'];
+  $Rad = new radiology();
+  $admin = new admin();
+  $Rad->id = $ID;
+  $admin->deleteradiology($Rad); 
+  header("Location:index.php");
+}
+
+if(isset($_POST['docreateadminrad']))
+{
+  $R = $_POST['name'];
+  $P = $_POST['price'];
+  $Rad = new radiology();
+  $admin = new admin();
+  $Rad->name = $R;
+  $Rad->price = $P;
+  $admin->addradiology($Rad);  
+  header("Location:index.php");
 }
 ?>

@@ -11,7 +11,8 @@ else
 {
   header("Location:index.php");
 }
-include("radiology.php");
+require_once("radiologycontroller.php");
+require_once("radiology.php");
 include("links.php");
 /*
 $Rs = array();
@@ -231,10 +232,11 @@ button.social-signin.google {
     <div id="login-box">
     <div class="left">
     <h3>Create new Radiology</h3>
-<form action="docreaterad.php" method="POST">
-<input type="text" name="name" placeholder="type Rad name"/>
-<input type="text" name="price" placeholder="type Rad price"/>
-    <input type="submit" value="Authorize" />
+<form action="admincontroller.php" method="POST">
+<?php
+$rad = new radiologycontroller();
+$rad->viewcreateradform();
+?>
  </form>
   </div>
   
