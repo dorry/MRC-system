@@ -3,28 +3,24 @@ require_once 'user.php';
 require_once 'userview.php';
 
 
-class usercontroller{
-
-static  function showedituser()
+class usercontroller
 {
+	static  function showedituser()
+	{
+		$view = new userview();
+		$view->showedituserform();
+	}
 
-	$view = new userview();
-	$view->showedituserform();
-
-}
-
-
-static function viewdropdown(){
+	static function viewdropdown()
+	{
 		$view = new userview();
 		$view->showuserdropdown();
 	}
 
-
-static function view(){
+	static function view()
+	{
 		$view = new userview();
 		$view->showuser();
 	}
-
-
 }
 ?>

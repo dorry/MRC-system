@@ -120,6 +120,39 @@ static function adminedituser ($obj){
         header("Location:userCRUD.php");
 
 }
+static function addradiology ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = "Insert INTO radiology (Name,price) values('$obj->name' ,'$obj->price')";
+    mysqli_query($conn,$sql);
+    echo "<script>alert('A New role  has been created')</script>";
+    header("Location:radiologyCRUD.php");
+
+}
+
+
+static function editradiology ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql = "UPDATE radiology SET Name= '$obj->name' ,  price = '$obj->price' WHERE ID='$obj->id'";
+    mysqli_query($conn,$sql);
+    header("Location:radiologyCRUD.php");
+
+}
+
+static function deleteradiology ($obj)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql="UPDATE radiology SET isdeleted='true'
+    WHERE ID = $obj->id";
+    mysqli_query($conn,$sql);   
+    header("Location:radiologyCRUD.php");
+}
 
 
 

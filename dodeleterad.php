@@ -1,5 +1,5 @@
 <?php
-include("Radiology.php");
+require_once("radiology.php");
 session_start();
 if(!empty($_SESSION))
 {

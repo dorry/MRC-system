@@ -11,7 +11,6 @@ else
 {
   header("Location:index.php");
 }
-
 // $servername = "localhost";
 // $username = "id8878100_root";
 // $password = "fz@ayV3V#@2W!Zd^1qwN";
@@ -52,7 +51,8 @@ else
     <!-- Preloader End -->
     <!-- Header Area Starts -->
     <?php include("navbar.php");
-          include("radiology.php");
+          require_once("radiologycontroller.php");
+          require_once("radiology.php");
     ?>
     <!-- Header Area End -->
     <!-- Banner Area Starts -->
@@ -66,10 +66,9 @@ else
 <div>
   <h3> Radiology List </h3>
 <?php 
-$rad = new radiology();
-$rad->retriveradiology();
+$rad = new radiologycontroller();
+$rad->viewradiologytable();
 ?>
-
 
 </div>
 

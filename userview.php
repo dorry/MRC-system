@@ -51,7 +51,7 @@ public static function showuser(){
   	$result = user::selectallusers();
 		$length =  count($result);
 
-  			for ($i=0; $i<$length;$i++)
+  	for ($i=0; $i<$length;$i++)
 		{
 ?>
 
