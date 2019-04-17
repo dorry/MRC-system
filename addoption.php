@@ -14,7 +14,8 @@ else
 
 
 include"usertype.php";
-include"useroptions.php";
+require_once"useroptionscontroller.php";
+require_once"usertypecontroller.php";
 
 
 
@@ -180,6 +181,7 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }</style>
+
     <!-- Required Meta Tags -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -221,16 +223,17 @@ button.social-signin.google {
           
 <div id="login-box">
   <div class="left">
-    <form action="doaddoption.php" method="POST">
+    <form action="admincontroller.php" method="POST">
     <h3>Add Option</h3>
    <?php
-  $UT = new usertype();
-  $UT->retriveforlinks();
+$c = new useroptionscontroller();
+$UT = new usertypecontroller();
+$UT->viewdropdown();
+$c->viewdropdown();
+$c->viewgiveform();
 
-  $Options = new useroptions();
-  $Options->retriveforlinks();
+
 ?>
-       <input type="submit" name="option_submit" value="Add"/>
  </form>
   </div>
   

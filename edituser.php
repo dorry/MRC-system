@@ -25,7 +25,6 @@ require_once("usertypecontroller.php");
       <div class="spinner"></div>
     </div>
     <!-- Preloader End -->
-
     <!-- Header Area Starts -->
       <?php include("navbar.php"); ?>
     <!-- Header Area End -->
@@ -51,7 +50,7 @@ $c2->viewdropdown();
      <input type="submit" name="admindoedituser" value="Edit User" />
  
  </form>
-  </div>
+ </div>
   
 </div>
 

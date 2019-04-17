@@ -204,7 +204,9 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-     <?php include("navbar.php"); ?>
+     <?php require_once("navbar.php");
+           require_once("useroptionscontroller.php")
+         ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -214,11 +216,12 @@ button.social-signin.google {
           <div class="col-lg-12">
 <div id="login-box">
   <div class="left">
-    <form action="docreateoption.php" method="POST">
-    <h3>Add Option</h3>
-    <input type="text" name="name" placeholder="Type Option name" />
-    <input type="text" name="datatype" placeholder="Type it's datatype in capslock" />
-    <input type="submit" name="option_submit" value="Create" />
+    <form action="admincontroller.php" method="POST">
+<?php
+  $c = new useroptionscontroller();
+  $c->viewcreateform();
+ ?>
+
  </form>
   </div>
   

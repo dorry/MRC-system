@@ -28,6 +28,10 @@ static function viewdropdown(){
 		$view = new usertypeview();
 		$view->showusertypedropdown();
 	}
+static function viewdropdowneav(){
+		$view = new usertypeview();
+		$view->showusertypedropdowneav();
+	}
 
 
 

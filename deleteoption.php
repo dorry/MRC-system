@@ -11,8 +11,7 @@ else
 {
   header("Location:index.php");
 }
-include("useroptions.php");
-include("mydatabaseconnection.php");
+include("useroptionscontroller.php");
 
 
 
@@ -211,7 +210,9 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-   <?php include("navbar.php"); ?>
+   <?php include("navbar.php");
+         require_once("useroptionscontroller.php");
+    ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -221,13 +222,13 @@ button.social-signin.google {
           <div class="col-lg-12">
     <div id="login-box">
     <div class="left">
-<form action="dodeleteoption.php" method="POST">
+<form action="admincontroller.php" method="POST">
     <h3>Delete Option</h3>
 <?php
-$Options = new useroptions();
-$Options->retriveforlinks();
+$c = new useroptionscontroller();
+$c->viewdropdown();
+$c->viewdeleteform();
 ?>
-    <input type="submit" value="Delete" />
  </form>
   </div>
   

@@ -11,8 +11,7 @@ else
 {
   header("Location:index.php");
 }
-include("useroptions.php");
-require_once("mydatabaseconnection.php");
+include("useroptionscontroller.php");
 
 
 
@@ -211,7 +210,7 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-   <?php include("navbar.php"); ?>
+   <?php require_once("navbar.php"); ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -221,14 +220,15 @@ button.social-signin.google {
           <div class="col-lg-12">
     <div id="login-box">
     <div class="left">
-<form action="doeditoption.php" method="POST">
+<form action="admincontroller.php" method="POST">
     <h3>Edit Option</h3>
 <?php
-$Options = new useroptions();
-$Options->retriveforlinks();
+$c = new useroptionscontroller();
+$c->viewdropdown();
+$c->vieweditform();
+$c->vieweavtypeform();
 ?>
-    <input type="text" name="new" placeholder="Type new option name">
-    <input type="submit" value="Edit" />
+
  </form>
   </div>
   

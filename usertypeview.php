@@ -79,6 +79,27 @@ public static function showusertypedropdown(){
 }
 	echo "</select>";
 }
-}  
+ 
 
+public static function showusertypedropdowneav(){
+
+  $result = usertype::selectallusertypes();
+  $length =  count($result);
+ 
+    echo"<label>Usertypes</label>";
+   echo "<select name = 'roleid' onchange='getform(this.value)'>";
+    for ($i=0; $i<$length;$i++)
+    {
+?>
+    <option value = "<?php echo $result[$i]['id'];?>">
+              <?php 
+              echo $result[$i]['type'];
+              ?>
+      </option>
+<?php
+
+}
+  echo "</select>";
+}
+}  
 ?>

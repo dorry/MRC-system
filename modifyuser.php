@@ -13,6 +13,8 @@ else
 }
 
 include"usertype.php";
+require_once"usertypecontroller.php";
+require_once"useroptionscontroller.php";
 ?>
   <head>
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -218,24 +220,22 @@ button.social-signin.google {
 
 
 <div>
-      <form action="postmodify.php" method="POST">
+    <form action="admincontroller.php" method="POST">
 
 
 <div id="login-box">
   <div class="left">
 
     <h3>Modify User</h3>
-    <label>Role</label>
     <br>
     <?php
-  $UT = new usertype();
-  $UT->retriveforeav();
+  $UT = new usertypecontroller();
+  $UT->viewdropdowneav();
+  $c = new useroptionscontroller();
+  $c->vieweavtypeform();
 ?>
 <br>
-<span id="users"></span>
-<br>
-<span id="form"></span>
-  <input type="submit" name="utd_submit">
+
 
 </div>
 </div>

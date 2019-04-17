@@ -8,17 +8,17 @@ public $id;
 
 
 
-static function selectallusertypes(){
-  $DB=new database();
+static function selectalloptions(){
+$DB=new database();
   $conn=$DB->DBC();
     
-  $query = "SELECT  *  FROM `usertype` WHERE ID>'0' AND isdeleted='false'";
+  $query = "SELECT  *  FROM `useroptions` WHERE isdeleted='false'";
   $result = mysqli_query($conn, $query);
   $i = 0;
   $array;
   if(mysqli_num_rows($result) > 0)
   {
-        while($row = mysqli_fetch_array($result))
+   while($row = mysqli_fetch_array($result))
        {
         $array[$i]=$row;
         $i++;
@@ -57,47 +57,11 @@ static function retriveforlinks(){
 
 }
 
-static function adduseroptions ($obj)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-	$sql = "Insert INTO useroptions (name,type) values('$obj->name','$obj->type')";
-    mysqli_query($conn,$sql);
-    header("Location:UTD.php");
-	echo "<script>alert('A New Option  has been created')</script>";
-}
-
-static function giveoption($obj,$obj1)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-	$sql = "Insert INTO usertypeoptions (optionsId,userTypeId) values('$obj->id','$obj1->id')";
-    mysqli_query($conn,$sql);
-    echo $sql;
-    	   header("Location:UTD.php");
-
-}
 
 
-static function edituseroptions ($obj)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "UPDATE `useroptions` SET `name` = '$obj->name' WHERE id = '$obj->id'";
-    mysqli_query($conn,$sql);
-    header("Location:UTD.php");
-}
 
-static function deleteuseroptions ($obj)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql="UPDATE `useroptions` SET isdeleted = 'true'
-    WHERE id = $obj->id";
-    mysqli_query($conn,$sql);
-    header("Location:UTD.php");
 
-}
+
 
 
 }

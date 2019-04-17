@@ -233,31 +233,6 @@ static function edituser ()
 
 }
 
-static function adminedituser ($obj){
-    $DB=new database();
-    $conn=$DB->DBC();
-
-    $sql = "update user set email ='" . $obj->email . 
-        "' , password ='" . $obj->password . 
-        "' , username ='" . $obj->username .
-         "' , usertypeid='". $obj->usertypeid."'
-        WHERE id ='".$obj->id."'";
-        $result = mysqli_query($conn, $sql); 
-        header("Location:userCRUD.php");
-
-}
-
-static function admindeleteuser ($obj)
-{
-
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$obj->id."'";
-    $result = mysqli_query($conn, $sql); 
-    header("Location:userCRUD.php");
-
-}
-
 static function deleteuser ()
 {
     $DB=new database();

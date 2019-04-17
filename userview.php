@@ -13,8 +13,6 @@ public static function showedituserform(){
     <input type="password" name="password" placeholder="Password"/>
     <label>Usertype</label>
 <?php
-
-
 }
 
 public static function showuserdropdown(){
