@@ -60,12 +60,13 @@ $password = $_POST['password'];
 $encrpassword = sha1($password);
 
 $user = new user();
+$admin = new admin();
 $user->username = $_POST['UName'];
 $user->email= $_POST['email'];
 $user->password = $encrpassword;
 $user->id=$_POST['user'];
 $user->usertypeid=$_POST['role'];
 
-$user->adminedituser($user);
+$admin->adminedituser($user);
 }
 ?>

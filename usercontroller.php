@@ -4,15 +4,11 @@ require_once 'userview.php';
 
 if(isset($_POST['doadmindeleteuser']))
 {
-
-
   $ID = $_POST['user'];
   $user = new user();
   $user->id = $ID;
   $user->admindeleteuser($user); 
   header("Location:index.php");
-
-
 }
 
 
@@ -33,8 +29,8 @@ $user->adminedituser($user);
 
 class usercontroller{
 
-static  function showedituser(){
-
+static  function showedituser()
+{
 
 	$view = new userview();
 	$view->showedituserform();
