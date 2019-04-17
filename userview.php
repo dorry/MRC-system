@@ -1,12 +1,10 @@
 <?php 
 require_once 'user.php';
-require_once 'usertype.php';
 class userview
 {
 
 public static function showedituserform(){
 ?>
-  <h3>Edit User</h3>
 	<label>Username</label>
     <input type="text" name="UName" placeholder="Username" />
     <label>email</label>
@@ -52,7 +50,7 @@ public static function showuser(){
 	      <th>Lastname</th> 
 	      <th>id</th>
 	  	  </tr>";	
-  		$result = user::selectallusers();
+  	$result = user::selectallusers();
 		$length =  count($result);
 
   			for ($i=0; $i<$length;$i++)
