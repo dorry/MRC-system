@@ -60,10 +60,9 @@ public static function showuser(){
 ?>
 
 <tr>
+<td> <?php echo $result[$i]['id'];?> </td>
 <td> <?php echo $result[$i]['firstname'];?> </td>
 <td> <?php echo $result[$i]['lastname'];?> </td>
-<td> <?php echo $result[$i]['id'];?> </td>
-
 </tr>
 
 <?php
