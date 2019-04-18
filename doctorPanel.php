@@ -58,8 +58,8 @@ else
 
 <div>
   <h2>Reservation  : </h2>
-  <a href="CreateReserve.php"> <h3>   - Make a new Reservation </h3></a>
   <a href="Myreservation.php"> <h3>   - View your current reservations </h3></a>
+  <a href="writereport.php"> <h3>   - Write report for patient </h3></a>
 
 
 

@@ -5,13 +5,6 @@ class doctor extends user implements Ilogin{
 
 public $department;
 
-
-static function login($name,$password){
-
-
-    
-}
-
 static function writepatientreport($patient){
 
 
