@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+<head>
 <?php
 session_start();
 if(!empty($_SESSION))
@@ -14,18 +12,6 @@ else
 require_once("radiologycontroller.php");
 require_once("radiology.php");
 include("links.php");
-/*
-$Rs = array();
-$sql3 = "SELECT  type  FROM `usertype` WHERE ID>'1'";
-$result3 = mysqli_query($conn, $sql3);
-while ($x = mysqli_fetch_array($result3)) {
-    global $Rs;
-array_push($Rs, $x[0]);
-}
-
-*/
-
-
 ?>
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
@@ -186,49 +172,11 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }</style>
-    <!-- Required Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <!-- Page Title -->
     <title>Create Role</title>
-
-    <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="assets/images/logo/favicon.png"
-      type="image/x-icon"
-    />
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/animate-3.7.0.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css" />
-    <link rel="stylesheet" href="assets/css/owl-carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/linearicons.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-  </head>
+ </head>
   <body>
-
-
-
-    <!-- Preloader Starts -->
-    <div class="preloader">
-      <div class="spinner"></div>
-    </div>
-    <!-- Preloader End -->
-
-    <!-- Header Area Starts -->
    <?php include("navbar.php"); ?>
-    <!-- Header Area End -->
-
-    <!-- Banner Area Starts -->
-    <section class="banner-area other-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
     <div id="login-box">
     <div class="left">
     <h3>Create new Radiology</h3>
@@ -244,31 +192,7 @@ $rad->vieweditradform();
   </div>
   
 
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Banner Area End -->
-    <!-- Welcome Area Starts -->
-    <!-- Welcome Area End -->
-    <!-- Patient Area Starts -->
-    <!-- Patient Area Starts -->
-
-
-
-
-    <!-- Footer Area Starts -->
-    <?php include("footer.php"); ?>
-    <!-- Footer Area End -->
-
-    <!-- Javascript -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-    <script src="assets/js/vendor/wow.min.js"></script>
-    <script src="assets/js/vendor/owl-carousel.min.js"></script>
-    <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <!-- <script src="assets/js/vendor/jquery.nice-select.min.js"></script> -->
-    <script src="assets/js/vendor/superfish.min.js"></script>
-    <script src="assets/js/main.js"></script>
+  <?php include("footer.php"); ?>
+  
   </body>
 </html>

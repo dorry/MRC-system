@@ -98,7 +98,15 @@
         </div>
     </header>
 
-    <body>
 
+    <body>
+    <div class="preloader">
+      <div class="spinner"></div>
+    </div>
+    <section class="banner-area other-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+    
 </body>
 </html>

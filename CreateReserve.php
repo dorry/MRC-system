@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php //Not Edited to Object Oriented , me7taga ta3del baset
-
 session_start();
 if(!empty($_SESSION))
 {
@@ -32,7 +29,7 @@ body {
   position: relative;
   margin: 5% auto;
   width: 600px;
-  height: 700px;
+  height: 400px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -173,71 +170,18 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }</style>
-    <!-- Required Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Create Reserve</title>
 
-    <!-- Page Title -->
-    <title>Create Reserve</title>
-
-    <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="assets/images/logo/favicon.png"
-      type="image/x-icon"
-    />
-
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/animate-3.7.0.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css" />
-    <link rel="stylesheet" href="assets/css/owl-carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/linearicons.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
   </head>
   <body>
-    <!-- Preloader Starts -->
-    <div class="preloader">
-      <div class="spinner"></div>
-    </div>
-    <!-- Preloader End -->
 
-    <!-- Header Area Starts -->
     <?php include("navbar.php"); ?>
-    <!-- Header Area End -->
-
-    <!-- Banner Area Starts -->
-    <section class="banner-area other-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-
-
+  
 <?php
 include"reserve.php";
 
 $reserve=new reserve();
 $reserve->addreserve();
-
-
-//     }
-//   }
-//   $servername = "localhost";
-//   $username = "id8878100_root";
-//   $password = "fz@ayV3V#@2W!Zd^1qwN";
-//   $dbname = "id8878100_mrc";
-//   $conn = mysqli_connect($servername,$username,$password,$dbname);
-//   if(!$conn){
-//     die("connection failed:".mysqli_connect_error());
-// }
-  
-
-
-
-
-
 
 
 ?>
@@ -259,15 +203,10 @@ $reserve->addreserve();
 
 
     <!-- Footer Area Starts -->
+  <?php include("footer.php"); ?>
     <!-- Footer Area End -->
 
     <!-- Javascript -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-    <script src="assets/js/vendor/wow.min.js"></script>
-    <script src="assets/js/vendor/owl-carousel.min.js"></script>
-    <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <script src="assets/js/vendor/superfish.min.js"></script>
-    <script src="assets/js/main.js"></script>
+
   </body>
 </html>

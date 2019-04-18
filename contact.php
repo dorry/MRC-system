@@ -6,27 +6,13 @@ session_start();
   <head>
 
     <!-- Required Meta Tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
     <!-- Page Title -->
     <title>Contact Us</title>
 
     <!-- Favicon -->
-    <link
-      rel="shortcut icon"
-      href="assets/images/logo/favicon.png"
-      type="image/x-icon"
-    />
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="assets/css/animate-3.7.0.css" />
-    <link rel="stylesheet" href="assets/css/font-awesome-4.7.0.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap-4.1.3.min.css" />
-    <link rel="stylesheet" href="assets/css/owl-carousel.min.css" />
-    <link rel="stylesheet" href="assets/css/jquery.datetimepicker.min.css" />
-    <link rel="stylesheet" href="assets/css/linearicons.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+
   </head>
   <body>
     <!-- Preloader Starts -->
@@ -40,10 +26,7 @@ session_start();
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
-    <section class="banner-area other-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
+
             <h1>Contact Us</h1>
             <a href="index.html">Home</a> <span>|</span>
             <a href="contact.html">Contact Us</a>

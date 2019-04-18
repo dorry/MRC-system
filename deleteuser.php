@@ -1,6 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
+
+<head>
 
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
 <?php 
@@ -12,29 +11,14 @@ require_once("usercontroller.php")
 
 
 ?>
-    <!-- Required Meta Tags -->
-    <!-- Page Title -->
+
     <title>Delete User</title>
-    <!-- Favicon -->
-    <!-- CSS Files -->
-    
+
   </head>
   <body>
-    <!-- Preloader Starts -->
-    <div class="preloader">
-      <div class="spinner"></div>
-    </div>
-    <!-- Preloader End -->
 
-    <!-- Header Area Starts -->
-      <?php include("navbar.php"); ?>
-    <!-- Header Area End -->
-
-    <!-- Banner Area Starts -->
-    <section class="banner-area other-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
+    <?php include("navbar.php"); ?>
+ 
 <div id="login-box">
   <div class="left">
     <form action="admincontroller.php" method="POST">
@@ -72,16 +56,7 @@ $c->viewdropdown();
     <?php include("footer.php"); ?>
     <!-- Footer Area End -->
 
-    <!-- Javascript -->
-    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
-    <script src="assets/js/vendor/bootstrap-4.1.3.min.js"></script>
-    <script src="assets/js/vendor/wow.min.js"></script>
-    <script src="assets/js/vendor/owl-carousel.min.js"></script>
-    <script src="assets/js/vendor/jquery.datetimepicker.full.min.js"></script>
-    <!-- <script src="assets/js/vendor/jquery.nice-select.min.js"></script> -->
-    <script src="assets/js/vendor/superfish.min.js"></script>
-    <script src="assets/js/main.js"></script>
-
+  
 
   </body>
 </html>
