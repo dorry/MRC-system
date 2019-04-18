@@ -6,22 +6,13 @@ session_start();
     <title>MRC</title>
 </head>
 <body>
-    <!-- Preloader Starts -->
-    <div class="preloader">
-        <div class="spinner"></div>
-    </div>
-    <!-- Preloader End -->
-
     <!-- Header Area Starts -->
   <?php include("navbar.php"); ?>
 
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
-    <section class="banner-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-5">
+ 
                     <h4>Caring for better life</h4>
                     <h1>Leading the way in medical excellence</h1>
                     <p>Earth greater grass for good. Place for divide evening yielding them that. Creeping beginning over gathered brought.</p>
