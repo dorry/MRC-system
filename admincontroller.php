@@ -70,7 +70,7 @@ $conn=$DB->DBC();
 
 if(isset($_POST['utd_submit'])){
   $DB=new database();
-$conn=$DB->DBC();
+  $conn=$DB->DBC();
 
   $R = $_POST['roleid'];
   $sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId = $R" ;

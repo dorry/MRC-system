@@ -177,7 +177,7 @@ button.social-signin.google {
     <title>Modify User</title>
 
    
-  </head>
+</head>
   <body>
  
  <?php include("navbar.php"); ?>
@@ -190,7 +190,6 @@ button.social-signin.google {
 
 <div id="login-box">
   <div class="left">
-
     <h3>Modify User</h3>
     <br>
     <?php
@@ -198,13 +197,14 @@ button.social-signin.google {
   $UT->viewdropdowneav();
   $c = new useroptionscontroller();
   $c->vieweavtypeform();
+
 ?>
 <br>
 
 
 </div>
 </div>
-      </form>
+</form>
 </div>
 
 

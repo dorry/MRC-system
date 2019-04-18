@@ -1,5 +1,5 @@
 <?php
-include"mydatabaseconnection.php";
+require_once"mydatabaseconnection.php";
 
 class usertypeoptions
 {
@@ -7,6 +7,27 @@ public $usertypeid;
 public $optionsid;
 public $id;
 
+
+static function selectUTOeav($id)
+{
+  $DB=new database();
+  $conn=$DB->DBC();
+    
+ $query = "SELECT  * FROM `usertypeoptions` where userTypeId= '$id';";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+  
+}
 
 
 static function addusertypeoptions ($obj)

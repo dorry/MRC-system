@@ -1,7 +1,30 @@
 <?php 
 require_once 'useroptions.php';
+require_once"mydatabaseconnection.php";
 class useroptionsview
 {
+
+
+public static function showoptionsforeav($rid){
+
+  $result = useroptions::selectUTO($rid);
+  $length =  count($result);
+  if ($length > 0){
+      for ($i=0; $i<$length;$i++)
+    {
+?>
+  <input name="<?php echo $result[$i]['name']?>" 
+         type="<?php echo $result[$i]['type']; ?>" 
+         placeholder="Type<?php echo $result[$i]['name']; ?>"> 
+<?php
+}
+}
+else {
+
+echo " No Option Avaliabe";
+
+}
+}
 
 public static function showediteavtypeform(){
 ?>

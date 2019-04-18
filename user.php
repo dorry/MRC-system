@@ -15,6 +15,26 @@ public $username;
 public $usertypeid;
 public $City;
 
+static function selectauserseav($id){
+  $DB=new database();
+  $conn=$DB->DBC();
+    
+ $query = "SELECT  * FROM `user` where usertypeid= '$id';";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+  
+}
+
 
 static function selectallusers(){
   $DB=new database();

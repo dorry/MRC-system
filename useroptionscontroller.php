@@ -4,6 +4,11 @@ require_once 'useroptionsview.php';
 class useroptionscontroller
 {
 
+static function viewoptionseav($rid){
+		$view = new useroptionsview();
+		$view->showoptionsforeav($rid);
+	}
+
 static function viewdropdown(){
 		$view = new useroptionsview();
 		$view->showoptiondropdown();

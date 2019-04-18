@@ -41,6 +41,31 @@ public static function showuserdropdown(){
 	echo "</select>";
 }
 
+public static function showuserdropdowneav($rid){
+
+
+	$result = user::selectauserseav($rid);
+	$length =  count($result);
+ 
+    echo"<label>Users</label>";
+    echo" <select name='user'>";
+    for ($i=0; $i<$length;$i++)
+		{
+?>
+	  <option  value = "<?php echo $result[$i]['id'];?>">
+                <?php 
+                echo $result[$i]['firstname'];
+                echo " "; 
+                echo $result[$i]['lastname'];
+                ?>
+      </option>
+
+
+<?php
+
+}
+	echo "</select>";
+}
 public static function showuser(){
 	echo "<table width='30%'>";
 	echo "<tr>

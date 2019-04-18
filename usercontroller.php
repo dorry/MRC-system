@@ -16,6 +16,11 @@ class usercontroller
 		$view = new userview();
 		$view->showuserdropdown();
 	}
+		static function viewdropdowneav($rid)
+	{
+		$view = new userview();
+		$view->showuserdropdowneav($rid);
+	}
 
 	static function view()
 	{
