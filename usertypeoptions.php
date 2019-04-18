@@ -7,6 +7,25 @@ public $usertypeid;
 public $optionsid;
 public $id;
 
+//TO BE USED EL T7T DE
+static function selectforUTDsubmit($rid){
+  $DB=new database();
+  $conn=$DB->DBC();
+    
+  $query = "SELECT  *  FROM `usertype` WHERE ID='$rid' AND isdeleted='false'";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+}
 
 static function selectUTOeav($id)
 {

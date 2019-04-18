@@ -71,9 +71,9 @@ $conn=$DB->DBC();
 if(isset($_POST['utd_submit'])){
   $DB=new database();
   $conn=$DB->DBC();
-
+  
   $R = $_POST['roleid'];
-  $sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId = $R" ;
+  $sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId = $R";
   $result5 = mysqli_query($conn, $sql5);
     if(mysqli_num_rows($result5) > 0){
       $oname = array();

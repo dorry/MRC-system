@@ -34,8 +34,5 @@ static function viewdropdowneav(){
 	}
 
 
-
-
-
 }
 ?>
