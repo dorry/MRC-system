@@ -5,6 +5,7 @@ require_once 'userview.php';
 require_once 'admin.php';
 require_once 'usertype.php';
 require_once 'useroptions.php';
+require_once 'links.php';
 
 //USER OPTION MANAGER and EAV
 
@@ -254,5 +255,15 @@ if(isset($_POST['docreateadminrad']))
   $Rad->price = $P;
   $admin->addradiology($Rad);  
   header("Location:index.php");
+}
+
+if(isset($_POST['CreateAuthorize']))
+{
+  $L = $_POST['link'];
+  $P = $_POST['plink'];
+  $links = new links();
+  $links->linkname =$L;
+  $links->physicallink =$P;
+  $links->createlink($links);
 }
 ?>

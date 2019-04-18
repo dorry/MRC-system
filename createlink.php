@@ -220,7 +220,9 @@ button.social-signin.google {
     <!-- Preloader End -->
 
     <!-- Header Area Starts -->
-   <?php include("navbar.php"); ?>
+   <?php include("navbar.php");
+             require_once("LinksController.php");
+   ?>
     <!-- Header Area End -->
 
     <!-- Banner Area Starts -->
@@ -231,10 +233,12 @@ button.social-signin.google {
     <div id="login-box">
     <div class="left">
     <h3>Create a new link</h3>
-<form action="docreatelink.php" method="POST">
-<input type="text" name="link" placeholder="type linkname"/>
-<input type="text" name="plink" placeholder="type physicalname" />
-    <input type="submit" value="Authorize" />
+<form action="admincontroller.php" method="POST">
+<?php
+$c = new LinksController();
+$c->CreateLinkForm();
+
+?>
  </form>
   </div>
   
