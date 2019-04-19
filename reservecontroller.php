@@ -1,7 +1,7 @@
 <?php
 require_once "reserve.php";
 require_once "reserveview.php";
-session_start();
+require_once "CreateReserve.php";
 
 if(isset($_POST['addreserve']))
 {

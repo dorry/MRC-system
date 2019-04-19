@@ -21,8 +21,14 @@ class radiology
             $ID=$PId[$i]['RadiologyID']; 
             $query="SELECT * FROM `radiology` WHERE ID = $ID";
             $result = mysqli_query($conn, $query);
-            if($row = mysqli_fetch_array($result)){ $array[$i] = $row;}
-              else {return;}
+            if($row = mysqli_fetch_array($result))
+            { 
+              $array[$i] = $row;
+            }
+            else 
+            {
+              return;
+              }
           } 
           return $array;
   }
