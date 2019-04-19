@@ -262,8 +262,44 @@ if(isset($_POST['CreateAuthorize']))
   $L = $_POST['link'];
   $P = $_POST['plink'];
   $links = new links();
+  $admin = new admin();
   $links->linkname =$L;
   $links->physicallink =$P;
-  $links->createlink($links);
+  $admin->createlink($links);
+  header("Location:linkCRUD.php");
+}
+if(isset($_POST['Glink_submit']))
+{
+  $R = $_POST['role'];
+  $L = $_POST['link'];
+  $usertype = new usertype();
+  $links = new links();
+  $admin = new admin();
+  $usertype->id = $R;
+  $links->id= $L;
+  $admin->addlink($links,$usertype);
+  header("Location:linkCRUD.php");
+}
+if(isset($_POST['link_submit']))
+{
+  $R = $_POST['role'];
+  $L = $_POST['link'];
+  $usertype = new usertype();
+  $links = new links();
+  $admin = new admin();
+  $usertype->id = $R;
+  $links->id= $L;
+  $admin->editlink($links,$usertype);
+  header("Location:linkCRUD.php");
+}
+
+if(isset($_POST['DeleteLink']))
+{
+  $L = $_POST['link'];
+$links = new links();
+$admin = new admin();
+$links->id= $L;
+$admin->deletelink($links);
+header("Location:linkCRUD.php");
 }
 ?>

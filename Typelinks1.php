@@ -1,4 +1,4 @@
-<?php
+<?php //malhash lazmaa
 session_start();
 
 include"usertype.php";

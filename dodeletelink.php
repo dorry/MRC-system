@@ -1,4 +1,5 @@
 <?php
+//malhash lazma now
 include"mydatabaseconnection.php";
 //Edited to Object Oriented
 include"links.php"; 

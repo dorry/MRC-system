@@ -186,7 +186,7 @@ button.social-signin.google {
 
     <div id="login-box">
     <div class="left">
-<form action="doGivelink.php" method="POST">
+<form action="admincontroller.php" method="POST">
     <h3>Authority Manipulation</h3>
 <?php 
 $c = new LinksController();

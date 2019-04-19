@@ -176,24 +176,27 @@ button.social-signin.google {
   background: #DD4B39;
 }</style>
  
-    <title>Create Role</title>
+    <title>Change Role</title>
   </head>
   <body>
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php");
+       require_once("LinksController.php");
+
+    ?>
 
 
 
 
 <div id="login-box">
   <div class="left">
-    <form action="Typelinks1.php" method="POST">
+    <form action="admincontroller.php" method="POST">
     <h3>Authority Manipulation</h3>
  
    <?php
-$usertype = new usertype();
-$usertype->retriveforlinks();
-$links = new links();
-$links->retriveforgivelink();
+$c = new LinksController();
+$c->ShowUserTypedropdown();
+$c2 = new LinksController();
+$c2->ShowLinksdropdown();
 ?>
     <input type="submit" name="link_submit" value="Authorize" />
  </form>

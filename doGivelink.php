@@ -1,4 +1,5 @@
 <?php
+//malhash lazma bardo
 //Edited to Object Oriented
 include"usertype.php";
 include"links.php"; 

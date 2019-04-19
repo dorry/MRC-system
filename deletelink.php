@@ -180,16 +180,19 @@ button.social-signin.google {
   </head>
   <body>
 
-   <?php include("navbar.php"); ?>
+   <?php include("navbar.php"); 
+      require_once("LinksController.php");
+
+   ?>
     <div id="login-box">
     <div class="left">
-<form action="dodeletelink.php" method="POST">
+<form action="admincontroller.php" method="POST">
     <h3>Delete Link</h3>
 <?php
-$links = new links();
-$links->retriveforgivelink();
+$c2 = new LinksController();
+$c2->ShowLinksdropdown();
 ?>
-    <input type="submit" value="Delete" />
+    <input type="submit" value="Delete" name="DeleteLink" />
  </form>
   </div>
     <?php include("footer.php"); ?>
