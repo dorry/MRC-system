@@ -1,6 +1,5 @@
 <?php
  require_once"mydatabaseconnection.php";
-//msh ha3rf a7ot el include di hena 3ashan btegy include database di mn function gwa class tanya betndah 3ala function hena
 class reservationdetails
 {
 public $quantity;
@@ -8,6 +7,27 @@ public $radiologyid;
 public $reserveid;
 public $id;
 
+
+
+public static function selectforadminview(){
+
+  $DB=new database(); 
+  $conn=$DB->DBC();
+    
+  $query="SELECT * FROM `reservationdetails`";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}   
+}
 
 public static function addreservationdetails ($lastidreserved)
 {

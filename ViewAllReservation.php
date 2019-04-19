@@ -1,39 +1,22 @@
 <?php
-//Edited to Object Oriented
-
 session_start();
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
-
+if(!empty($_SESSION)){}
+else{header("Location:index.php");}
 ?>
   <head>
-
-  
-    <title>Accounts list</title>
+<title>Accounts list</title>
   </head>
   <body>
- 
     <?php include("navbar.php"); 
-          include("reservationdetails.php");
+         // require_once("reservationdetails.php");
+          require_once("admincontroller.php");
     ?>
-
 <div> 
-
 <?php
-
-//   $user = new user();
-//   $user->retrive();
-$reservationdetails= new reservationdetails();
-$reservationdetails->ViewAllReservationForAdmin();
+$c= new admincontroller();
+$c->showDP();
 ?>
 </div>
-
     <?php include("footer.php"); ?>
   
   </body>

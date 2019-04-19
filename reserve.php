@@ -9,6 +9,26 @@ public $doctorid;
 public $patientid;
 public $id;
 
+public static function selectforviewadmin(){
+    $DB=new database();
+    $conn=$DB->DBC();
+  $query = "SELECT * FROM `reserve` WHERE PatientID> '0' and isdeleted = 'false'";
+  $result = mysqli_query($conn, $query);
+  $i = 0;
+  $array;
+  if(mysqli_num_rows($result) > 0)
+  {
+        while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+} 
+
+
+
 public static function addreserve ()
 {
     $DB=new database();

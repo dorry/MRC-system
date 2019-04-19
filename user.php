@@ -1,5 +1,6 @@
 <?php
 require_once"mydatabaseconnection.php";
+require_once"reserve.php";
 
 class user
 {
@@ -15,10 +16,53 @@ public $username;
 public $usertypeid;
 public $City;
 
+
+static function selectpatientforresview(){
+  $DB=new database();
+  $conn=$DB->DBC();   
+  $PId = reserve::selectforviewadmin();  
+  $length = count($PId);
+  $array;
+  for ($i=0; $i<$length;$i++)
+  { 
+    $ID=$PId[$i]['PatientID']; 
+    $query="SELECT * FROM `user` WHERE `id` = '$ID'";
+    $result = mysqli_query($conn, $query);
+   if($row = mysqli_fetch_array($result))
+    {
+      $array[$i] = $row;
+    }
+      else {
+      return;
+    }
+
+
+   } 
+  return $array;
+}
+
+static function selectdocforresview(){
+  $DB=new database();
+  $conn=$DB->DBC();   
+  $DrId = reserve::selectforviewadmin();  
+  $length = count($DrId);
+  $array;
+  for ($i=0; $i<$length;$i++)
+  { 
+    $ID=$DrId[$i]['DoctorID']; 
+    $query="SELECT * FROM `user` WHERE `id` = '$ID'";
+    $result = mysqli_query($conn, $query);
+  if($row = mysqli_fetch_array($result)) {$array[$i] = $row;}
+      else {return;} 
+ } 
+ 
+  return $array;
+
+}
+
 static function selectauserseav($id){
   $DB=new database();
-  $conn=$DB->DBC();
-    
+  $conn=$DB->DBC();   
  $query = "SELECT  * FROM `user` where usertypeid= '$id';";
   $result = mysqli_query($conn, $query);
   $i = 0;
@@ -31,8 +75,7 @@ static function selectauserseav($id){
         $i++;
        }
       return $array;
-}
-  
+}  
 }
 
 
@@ -56,39 +99,6 @@ static function selectallusers(){
   
 }
 
-
-static function retriveforlinks(){
-
-    $DB=new database();
-    $conn=$DB->DBC();
-    
-    echo"<label>Users</label>";
-    echo" <select name='user'>";
-    $query = "SELECT  *  FROM `user` WHERE isdeleted='false'";
-    $result = mysqli_query($conn, $query);
-    echo"<label >Users</label>";
-    if(mysqli_num_rows($result) > 0){
-        while($row = mysqli_fetch_array($result))
-       {
-    ?>
-            <option  value = "<?php echo $row['id'];?>">
-                             <?php echo $row['firstname'];
-                                   echo " "; 
-                                   echo $row['lastname'];?>
-            </option>
-      <?php 
-        }
-        echo "</select>";
-        echo "<br>";
-
-   ?>
-   
-   <?php
-   }
-
-
-
-}
 static function retrivedoctorsforeditres()
 {
     $DB=new database();

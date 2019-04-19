@@ -3,11 +3,24 @@
 require_once 'user.php';
 require_once 'userview.php';
 require_once 'admin.php';
+require_once 'adminview.php';
 require_once 'usertype.php';
 require_once 'useroptions.php';
 require_once 'links.php';
 
 //USER OPTION MANAGER and EAV
+
+
+class admincontroller{
+
+
+  static function showDP()
+  {
+    $view = new adminview();
+    $view->showdrpatient();
+  }
+
+}
 
 $i = 0;
 

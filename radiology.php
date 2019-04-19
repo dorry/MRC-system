@@ -1,12 +1,36 @@
 <?php
 require_once "mydatabaseconnection.php";
-
+require_once "reservationdetails.php";
 class radiology
 {
     public $name;
     public $price;
     public $id;
 
+    public static function selectforadminview(){
+
+
+         $DB=new database();
+         $conn=$DB->DBC();   
+         $PId = reservationdetails::selectforadminview();  
+         $length = count($PId);
+         $array;
+         for ($i=0; $i<$length;$i++)
+          { 
+            $ID=$PId[$i]['RadiologyID']; 
+            $query="SELECT * FROM `radiology` WHERE ID = $ID";
+            $result = mysqli_query($conn, $query);
+            if($row = mysqli_fetch_array($result))
+            {
+              $array[$i] = $row;
+            }
+              else {
+              return;
+            }
+           } 
+          return $array;
+        }
+ 
     static function retriveforgivelink()
     {
 
