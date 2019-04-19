@@ -180,17 +180,19 @@ button.social-signin.google {
 
 
 
-   <?php include("navbar.php"); ?>
+   <?php include("navbar.php"); 
+   require_once("LinksController.php");
+   ?>
 
     <div id="login-box">
     <div class="left">
 <form action="doGivelink.php" method="POST">
     <h3>Authority Manipulation</h3>
 <?php 
-$usertype = new usertype();
-$usertype->retriveforlinks();
-$links = new links();
-$links->retriveforgivelink();
+$c = new LinksController();
+$c->ShowUserTypedropdown();
+$c2 = new LinksController();
+$c2->ShowLinksdropdown();
 
 ?>
   

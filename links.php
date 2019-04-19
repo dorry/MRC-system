@@ -11,21 +11,19 @@ static function retriveforgivelink()
 {
     $DB=new database();
     $conn=$DB->DBC();
-    echo"<label>Links</label>";
-    echo" <select name='link'>";
     $sql4 = "SELECT  *  FROM `links` WHERE isdeleted = 'false'";
     $result4 = mysqli_query($conn, $sql4);
+    $i = 0;
+    $array;
     if(mysqli_num_rows($result4) > 0){
       while($row = mysqli_fetch_array($result4))
      {
-  ?>
-          <option value = "<?php echo $row['id'];?>"> <?php echo $row['linkname'];?> </option>  
- <?php 
- }
- ?>
-          </select>
+        $array[$i]=$row;
+        $i++;
  
- <?php
+ }
+ return $array;
+
  }
 
 
