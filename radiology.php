@@ -7,6 +7,25 @@ class radiology
     public $price;
     public $id;
 
+
+    public static function selectformyres($lid){
+
+
+         $DB=new database();
+         $conn=$DB->DBC();   
+         $PId = reservationdetails::selectformyres($lid); 
+         $length = count($PId);
+         $array;
+         for ($i=0; $i<$length;$i++)
+          { 
+            $ID=$PId[$i]['RadiologyID']; 
+            $query="SELECT * FROM `radiology` WHERE ID = $ID";
+            $result = mysqli_query($conn, $query);
+            if($row = mysqli_fetch_array($result)){ $array[$i] = $row;}
+              else {return;}
+          } 
+          return $array;
+  }
     public static function selectforadminview(){
 
 

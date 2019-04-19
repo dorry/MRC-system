@@ -49,24 +49,17 @@ public static function showdrpatient(){
 </td>
 <td> <?php echo $Date; ?> 
 </td>
-
-</td>
 <td> <?php echo $Name; ?> 
-</td>
 </td>
 <td> <?php echo $Price; ?> 
 </td>
-
 </tr>
-
-
 
 <?php
 }
             echo "</table>";
-
 }
 
 
-  
+
 }

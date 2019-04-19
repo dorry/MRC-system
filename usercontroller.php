@@ -5,7 +5,12 @@ class usercontroller
 {
 
 
+	static function showmyres($lid){
 
+		$view = new userview();
+		$view->showformyres($lid);
+
+	}
 	static  function showedituser()
 	{
 		$view = new userview();

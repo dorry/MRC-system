@@ -7,6 +7,24 @@ public $radiologyid;
 public $reserveid;
 public $id;
 
+public static function selectformyres($lid){
+    
+  $DB=new database();
+  $conn=$DB->DBC();
+  $OID = reserve::selectmyres($lid);  
+  $length = count($OID);
+  $array;
+  for ($i=0; $i<$length;$i++)
+  { 
+    $ID=$OID[$i]['ID']; 
+    $query = "SELECT  * FROM `reservationdetails` where ReserveID= '$ID';";
+    $result = mysqli_query($conn, $query);
+
+    if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
+    else {return;}
+  } 
+  return $array;
+}
 
 
 public static function selectforadminview(){

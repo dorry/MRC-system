@@ -17,7 +17,55 @@ public $usertypeid;
 public $City;
 
 
-static function selectpatientforresview(){
+static function selectuserformyres($lid){
+
+  $DB=new database();
+  $conn=$DB->DBC();   
+  $PId = reserve::selectmyres($lid);  
+  $length = count($PId);
+  $array;
+  for ($i=0; $i<$length;$i++)
+  { 
+    $DID = $PId[$i]['DoctorID'];
+    $query="SELECT * FROM `user` WHERE `id` = '$DID'";
+    $result = mysqli_query($conn, $query);
+
+    if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
+  
+    else {return;}
+
+
+   } 
+  return $array;
+ }
+
+
+
+static function selectformyres($lid){
+
+  $DB=new database();
+  $conn=$DB->DBC();   
+  $PId = reserve::selectmyres($lid);  
+  $length = count($PId);
+  $array;
+  for ($i=0; $i<$length;$i++)
+  { 
+    $DID = $PId[$i]['PatientID'];
+    $query="SELECT * FROM `user` WHERE `id` = '$DID'";
+    $result = mysqli_query($conn, $query);
+
+    if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
+  
+    else {return;}
+
+
+   } 
+  return $array;
+ }
+
+
+
+static function selectforresview(){
   $DB=new database();
   $conn=$DB->DBC();   
   $PId = reserve::selectforviewadmin();  
