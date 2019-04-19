@@ -8,6 +8,8 @@ else
 {
   header("Location:index.php");
 }
+require_once "reserve.php";
+require_once "reservecontroller.php";
 ?>
   <head>
 
@@ -178,10 +180,12 @@ button.social-signin.google {
     <?php include("navbar.php"); ?>
   
 <?php
-include"reserve.php";
 
-$reserve=new reserve();
-$reserve->addreserve();
+
+$reserve=new reservecontroller();
+$reserve->viewreservedropdowndoc();
+$reserve->viewreservedropdownrad();
+$reserve->viewreserveform();
 
 
 ?>
