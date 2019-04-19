@@ -1,9 +1,13 @@
 <?php
 require_once "reserve.php";
 require_once "reserveview.php";
-session_start();
+require_once "CreateReserve.php";
+if(!empty($_SESSION))
+{
+  
+}
 
-if(isset($_POST['addreserve']))
+		if(isset($_POST['addreserve']))
 {
 	$reserve = new reserve();
 	$reservesend = new reserve();
@@ -12,9 +16,13 @@ if(isset($_POST['addreserve']))
 	$reserve->date=$_POST['dob']." ".$_POST['Time'].":00";
 	$reservesend->addreserve($reserve);
 }
+	
 
 class reservecontroller
 {
+
+
+
 	static  function selectforadminview()
 	{
 		$model = new reserve();

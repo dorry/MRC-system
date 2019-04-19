@@ -36,8 +36,7 @@ public static function showdrpatient(){
     $Name = $result3[$i]['Name'];
     $Price = $result3[$i]['price'];
 ?>
-    
-    
+
 <tr>
 <td> <?php echo $drfirstn; 
            echo " "; 

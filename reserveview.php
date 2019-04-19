@@ -1,17 +1,7 @@
 <?php
 class reserveview
 {
-    public static function addreserveform()
-    {
 
-        echo"<br> Reservation date:";
-        echo"<br> <input type='date' name = 'dob'/><br>";
-        echo"<br> <input type='time' name = 'Time'/>";
-        echo " <br> <input type='submit' name='addreserve' />";
-        echo "</div>";
-        echo "</div>";
-        echo "</form>";
-    }
     public static function addreservedropdowndoc()
     {
         echo "<form  method='post' action = 'reservecontroller.php'> ";
@@ -27,6 +17,17 @@ class reserveview
             echo "<option value='" . $result[$i]['id'] . "'> Dr. " . $result[$i]['firstname'] . " " .$result[$i]['lastname'] . "</option>";
         }
         echo "</select>";
+    }
+        public static function addreserveform()
+    {
+
+        echo"<br> Reservation date:";
+        echo"<br> <input type='date' name = 'dob'/><br>";
+        echo"<br> <input type='time' name = 'Time'/>";
+        echo " <br> <input type='submit' name='addreserve' />";
+        echo "</div>";
+        echo "</div>";
+        echo "</form>";
     }
     public static function addreservedropdownradiology()
     {
