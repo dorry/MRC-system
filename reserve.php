@@ -35,7 +35,7 @@ public static function addreserve ()
     $conn=$DB->DBC();
 
     $selectDocs = "select * from user where usertypeid like
-     (select id from usertype where type = 'doctor')";
+     (select id from usertype where type = 'Doktor')";
     $result = mysqli_query($conn, $selectDocs);
     echo "<form  method='post'> ";
       echo "<div id='login-box'>";
@@ -70,6 +70,7 @@ public static function addreserve ()
    echo " <br> <input type='submit' name='addreserve' />";
   echo "</div>";
   echo "</div>";
+  echo "</form>";
    if(isset($_POST['addreserve'])){
   $reserve->patientId=$_SESSION['ID'];
   $reserve->doctorId=$_POST['doctor'];

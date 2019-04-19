@@ -4,10 +4,10 @@
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
 <?php 
 //where should we put this query ? in which class!!
-session_start();
 include("address.php");
 require_once"mydatabaseconnection.php";
 include("navbar.php");
+$Cs = array();
 ?>
   
 <div id="login-box">
