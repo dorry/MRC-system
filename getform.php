@@ -2,7 +2,7 @@
 //Not Edited to Object Oriented
 
 require_once"mydatabaseconnection.php";
-require_once"usercontroller.php";
+require_once"admincontroller.php";
 require_once"usertypeoptionscontroller.php";
 require_once"useroptionscontroller.php";
   
@@ -10,10 +10,9 @@ require_once"useroptionscontroller.php";
   $conn=$DB->DBC();
     
 $RIDs = $_REQUEST["e"];
-$c = new usercontroller();
+$c = new admincontroller();
 $c->viewdropdowneav($RIDs);
-$c2 = new useroptionscontroller();
-$c2->viewoptionseav($RIDs);
+$c->viewoptionseav($RIDs);
 ?>
 
 

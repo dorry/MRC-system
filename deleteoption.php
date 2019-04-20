@@ -182,16 +182,16 @@ button.social-signin.google {
 
 
    <?php include("navbar.php");
-         require_once("useroptionscontroller.php");
+         require_once("admincontroller.php");
     ?>
     <div id="login-box">
     <div class="left">
   <form action="admincontroller.php" method="POST">
     <h3>Delete Option</h3>
     <?php
-    $c = new useroptionscontroller();
-    $c->viewdropdown();
-    $c->viewdeleteform();
+    $c = new admincontroller();
+    $c->viewoptiondropdown();
+    $c->viewdeleteoptionform();
     ?>
   </form>
   </div>

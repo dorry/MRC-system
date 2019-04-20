@@ -11,9 +11,6 @@ else
 }
 include("usertype.php");
 include("links.php");
-
-
-
 ?>
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
@@ -181,7 +178,7 @@ button.social-signin.google {
   <body>
 
    <?php include("navbar.php"); 
-      require_once("LinksController.php");
+      require_once("admincontroller.php");
 
    ?>
     <div id="login-box">
@@ -189,8 +186,8 @@ button.social-signin.google {
 <form action="admincontroller.php" method="POST">
     <h3>Delete Link</h3>
 <?php
-$c2 = new LinksController();
-$c2->ShowLinksdropdown();
+$c = new admincontroller();
+$c->ShowLinksdropdown();
 ?>
     <input type="submit" value="Delete" name="DeleteLink" />
  </form>

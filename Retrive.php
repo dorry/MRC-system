@@ -14,13 +14,13 @@ else
   <body>
      <?php include("navbar.php"); 
           require_once("user.php");
-          require_once("usercontroller.php");
+          require_once("admincontroller.php");
       ?>
 <div> 
 
 <?php
 
-  $c = new usercontroller();
+  $c = new admincontroller();
   $c->view();
 ?>
 </div>

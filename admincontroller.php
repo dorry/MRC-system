@@ -14,6 +14,105 @@ require_once 'links.php';
 class admincontroller{
 
 
+static function viewuserdropdown()
+  {
+    $view = new adminview();
+    $view->showuserdropdown();
+  }
+
+static function viewdropdowneav($rid)
+  {
+    $view = new adminview();
+    $view->showuserdropdowneav($rid);
+  }
+static function viewoptionseav($rid){
+    $view = new adminview();
+    $view->showoptionsforeav($rid);
+  }
+
+
+static function viewediteavtypeform(){
+    $view = new adminview();
+    $view->showediteavtypeform();
+}
+static function viewtypedropdowneav(){
+    $view = new adminview();
+    $view->showusertypedropdowneav();
+  }
+static function vieweavtypeform(){
+    $view = new adminview();
+    $view->showeavtypeform();
+}
+static function viewgiveoptionform(){
+    $view = new adminview();
+    $view->showgiveform();
+}
+static function vieweditoptionform(){
+    $view = new adminview();
+    $view->showeditoptionform();
+}
+
+  static function viewoptiondropdown(){
+    $view = new adminview();
+    $view->showoptiondropdown();
+  }
+static function viewdeleteoptionform(){
+    $view = new adminview();
+    $view->showdeleteoptionform();
+}
+
+  static function viewcreateoptionform()
+  {
+    $view = new adminview();
+    $view->showcreateoptionform();
+   }
+  static  function ShowLinksdropdown()
+  {
+    $view = new adminview();
+    $view->ShowLinksdropdown();
+  }
+static  function CreateLinkForm()
+  {
+    $view = new adminview();
+    $view->CreateLinkForm();
+  }
+static function showdeletetype(){
+    $view = new adminview();
+    $view->deletetypeform();
+}
+
+static function showedittype(){
+    $view = new adminview();
+    $view->edittypeform();
+}
+
+static function showcreatetype(){
+    $view = new adminview();
+    $view->createtypeform();
+}
+
+static function viewtypes(){
+    $view = new adminview();
+    $view->showusertypes();
+}
+
+  static function viewUTdropdown()
+  {
+    $view = new adminview();
+    $view->showusertypedropdown();
+  }
+  static  function showedituser()
+  {
+    $view = new adminview();
+    $view->showedituserform();
+  }
+
+  static function view()
+  {
+    $view = new adminview();
+    $view->showuser();
+  }
+
   static function showDP()
   {
     $view = new adminview();

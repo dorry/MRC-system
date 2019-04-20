@@ -177,14 +177,14 @@ button.social-signin.google {
   <body>
 
      <?php require_once("navbar.php");
-           require_once("useroptionscontroller.php")
+           require_once("admincontroller.php")
          ?>
 <div id="login-box">
   <div class="left">
     <form action="admincontroller.php" method="POST">
 <?php
-  $c = new useroptionscontroller();
-  $c->viewcreateform();
+  $c = new admincontroller();
+  $c->viewcreateoptionform();
  ?>
 
  </form>

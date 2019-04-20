@@ -175,13 +175,13 @@ button.social-signin.google {
   <body>
 
      <?php include("navbar.php");
-            require_once("usertypecontroller.php");
+            require_once("admincontroller.php");
        ?>
 <div id="login-box">
   <div class="left">
     <form action="admincontroller.php" method="POST">
    <?php
-$usertype = new usertypecontroller();
+$usertype = new admincontroller();
 $usertype->showcreatetype();
    ?>
  </form>

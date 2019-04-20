@@ -180,7 +180,7 @@ button.social-signin.google {
   </head>
   <body>
     <?php include("navbar.php");
-       require_once("LinksController.php");
+       require_once("admincontroller.php");
 
     ?>
 
@@ -193,10 +193,9 @@ button.social-signin.google {
     <h3>Authority Manipulation</h3>
  
    <?php
-$c = new LinksController();
-$c->ShowUserTypedropdown();
-$c2 = new LinksController();
-$c2->ShowLinksdropdown();
+$c = new admincontroller();
+$c->viewUTdropdown();
+$c->ShowLinksdropdown();
 ?>
     <input type="submit" name="link_submit" value="Authorize" />
  </form>

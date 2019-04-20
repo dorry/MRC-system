@@ -7,7 +7,7 @@
 session_start();
 include("user.php");
 include("address.php");
-require_once("usercontroller.php")
+require_once("admincontroller.php")
 
 
 ?>
@@ -24,12 +24,10 @@ require_once("usercontroller.php")
     <form action="admincontroller.php" method="POST">
     <h3>Delete User</h3>
 <?php
-$c = new usercontroller();
-$c->viewdropdown();
+$c = new admincontroller();
+$c->viewuserdropdown();
 
 ?>
-  
-
     <input type="submit" name="doadmindeleteuser" value="Delete User" />
  
  </form>

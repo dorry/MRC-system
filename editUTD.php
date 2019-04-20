@@ -11,7 +11,7 @@ else
 }
 
 include"usertype.php";
-require_once"usertypecontroller.php";
+require_once"admincontroller.php";
 require_once"useroptionscontroller.php";
 ?>
   <head>
@@ -187,10 +187,9 @@ button.social-signin.google {
 
     <h3>Modify Usertype</h3>
     <br>
-    <?php
-  $UT = new usertypecontroller();
-  $UT->viewdropdowneav();
-  $c = new useroptionscontroller();
+  <?php
+  $c = new admincontroller();
+  $c->viewtypedropdowneav();
   $c->viewediteavtypeform();
 ?>
 <br>

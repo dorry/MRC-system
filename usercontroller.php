@@ -11,32 +11,12 @@ class usercontroller
 		$view->showformyres($lid);
 
 	}
-	static  function showedituser()
-	{
-		$view = new userview();
-		$view->showedituserform();
-	}
 
-	static function viewdropdown()
-	{
-		$view = new userview();
-		$view->showuserdropdown();
-	}
 	static function DoctorDropdown()
 	{
 		$view = new userview();
 		$view->ShowDoctorNamesdropdown();
 	}
-		static function viewdropdowneav($rid)
-	{
-		$view = new userview();
-		$view->showuserdropdowneav($rid);
-	}
-
-	static function view()
-	{
-		$view = new userview();
-		$view->showuser();
-	}
+		
 }
 ?>
