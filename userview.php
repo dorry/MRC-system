@@ -5,7 +5,30 @@ require_once 'reservationdetails.php';
 require_once 'radiology.php';
 class userview
 {
+    public static function ShowDoctorNamesdropdown(){
 
+
+        $result = user::retrivedoctorsforeditres();
+        $length =  count($result);
+ 
+        echo" <select name='doc'>";
+        for ($i=0; $i<$length;$i++)
+            {
+    ?>
+          <option  value = "<?php echo $result[$i]['id'];?>">
+                    <?php 
+                    echo $result[$i]['firstname'];
+                    echo " "; 
+                    echo $result[$i]['lastname'];
+                    ?>
+          </option>
+    
+    
+    <?php
+    
+    }
+        echo "</select>";
+    }
 static function showformyres($lid){
 
     $result = user::selectuserformyres($lid);
@@ -99,6 +122,7 @@ public static function showuserdropdown(){
 	echo "</select>";
 }
 
+
 public static function showuserdropdowneav($rid){
 
 
@@ -150,6 +174,9 @@ public static function showuser(){
 
 		  	echo "</table>";
 		  		}
+
+
+
 
 }
 

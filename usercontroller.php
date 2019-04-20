@@ -22,6 +22,11 @@ class usercontroller
 		$view = new userview();
 		$view->showuserdropdown();
 	}
+	static function DoctorDropdown()
+	{
+		$view = new userview();
+		$view->ShowDoctorNamesdropdown();
+	}
 		static function viewdropdowneav($rid)
 	{
 		$view = new userview();

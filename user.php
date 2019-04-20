@@ -151,26 +151,18 @@ static function retrivedoctorsforeditres()
 {
     $DB=new database();
     $conn=$DB->DBC();
-    echo "<select name = 'doc'>";
     $sql4 = "SELECT  *  FROM `user` WHERE isdeleted='false' 
     and usertypeid = (select id from usertype where type = 'doctor')";
     $result4 = mysqli_query($conn, $sql4);
-    echo $sql4;
+    $i = 0;
+    $array;
     if(mysqli_num_rows($result4) > 0){
        while($row = mysqli_fetch_array($result4))
       {
-   ?>
-
-  <option value="<?php echo $row['id'];?>">
-   Dr. 
-  <?php echo $row['lastname']; ?>
-  </option>
-  <?php 
-  }
-  echo"</select>";
-  ?>
-  
-  <?php
+        $array[$i]=$row;
+        $i++;
+      }
+      return $array;
   }
 
 

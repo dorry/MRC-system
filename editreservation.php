@@ -31,8 +31,8 @@ body {
 #login-box {
   position: relative;
   margin: 5% auto;
-  width: 480px;
-  height: 350px;
+  width: 619px;
+  height: 400px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -177,31 +177,36 @@ button.social-signin.google {
     <title>Create Role</title>
   </head>
   <body>
-   <?php include("navbar.php"); ?>
+   <?php include("navbar.php"); include("usercontroller.php");include("radiologycontroller.php");
+   include("admincontroller.php");
+   ?>
 
     <div id="login-box">
     <div class="left">
     <h3>Edit reservations</h3>
-<form action="doeditreservation.php" method="POST">
+<form action="admincontroller.php" method="POST">
+<label>Which Appointment:</label>
 <?php 
-$resdetail = new reservationdetails();
-$resdetail->retriveforedit();
+$c= new admincontroller();
+$c->showDropdown();
 ?>
 <br><br>
-<label>Change</label>
 <?php 
-$rad = new radiology();
-$rad->retriveforgivelink();
+$c = new radiologycontroller();
+$c->viewradiologydropdown();
 ?>
 <label> Change appointed doctor</label>
 <?php
-$user = new user();
-$user->retrivedoctorsforeditres();
+$c2 = new usercontroller();
+$c2->DoctorDropdown();
+
 ?>
 <br><br>
 <label>Change date</label>
-<input type="date" name="date"/>
-    <input type="submit" value="Edit" />
+<input type="date" name="date" min="<?php $date=date("Y-m-d");echo $date;?>" max="2022-01-01"/>
+<input type="time" name="time" />
+
+    <input type="submit" value="Edit" name="AdminEditReservation" />
  </form>
   </div>
   

@@ -20,6 +20,11 @@ class admincontroller{
     $view->showdrpatient();
   }
 
+  static function showDropdown()
+  {
+    $view = new adminview();
+    $view-> showdrpatientdropdown();
+  }
 }
 
 $i = 0;
@@ -314,5 +319,22 @@ $admin = new admin();
 $links->id= $L;
 $admin->deletelink($links);
 header("Location:linkCRUD.php");
+}
+
+if(isset($_POST['AdminEditReservation']))
+{//lesa
+  $Date = $_POST['date'];
+  $dr = $_POST['doc'];
+  $radid = $_POST['rad'];
+  $Resid = $_POST['reserve'];
+  $resd = new reservationdetails();
+  $res = new reserve();
+  $admin = new admin();
+  $res->doctorid=$dr;
+  $res->date = $Date;
+  $resd->id = $Resid;
+  $resd->radiologyid = $radid;
+  $admin->editreserve($res,$resd);
+  header("Location:ReservationCRUD.php");
 }
 ?>
