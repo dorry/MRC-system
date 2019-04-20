@@ -10,7 +10,7 @@ public static function showdrpatient(){
 
     $result = user::selectdocforresview();
     $length =  count($result);
-    $result1 = user::selectpatientforresview();
+    $result1 = user::selectforresview();
     $length1 =  count($result1);
     $result2 = reserve::selectforviewadmin();
     $length2 = count($result2);
