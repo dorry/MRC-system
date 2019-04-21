@@ -7,6 +7,58 @@ class userview
 {
 
 
+static function showprofileedit($lid)
+{
+    $result = user::RetrieveProfileForUser($lid);
+    $length =  count($result);
+   for ($i=0; $i<$length;$i++)
+    { 
+
+        ?>  
+    <form action='' method='post'>
+         FirstName:
+        <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName'><br>
+         LastName:
+        <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' ><br>
+         Email: 
+        <input type='text' value="<?php echo $result[$i]['email'];?>" name='Email'><br>
+        Password: 
+        <input type='text' value='' name='Password'><br>
+        Social Security Number: 
+        <input type='text' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber'><br>
+        Date of birth:
+        <input type='text' value="<?php echo $result[$i]['dob'];?>"name='dob'><br>
+        username: 
+        <input type='text' value="<?php echo $result[$i]['username'];?>" name='username'><br> 
+        <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
+        </form> ;
+<?php
+
+        }
+  } 
+static function showprofile($lid)
+{
+    $result = user::RetrieveProfileForUser($lid);
+    $length =  count($result);
+   for ($i=0; $i<$length;$i++)
+    { 
+?>
+           <h4 value = "<?php echo $result[$i]['id'];?>">
+            <?php
+             echo'<span><b> Full Name: </b></span>';echo $result[$i]['firstname'];echo ' ';  echo $result[$i]['lastname']; echo '<br>'; 
+             echo'<span><b>Social Number: </b><span>'; echo $result[$i]['socialnumber']; echo '<br>'; 
+             echo'<span><b>Email: </b></span>'; echo $result[$i]['email']; echo '<br>'; 
+             echo'<span><b> Password:</b></span> '; echo $result[$i]['password']; echo '<br>'; 
+             echo'<span><b>Username: </b></span>'; echo $result[$i]['username']; echo '<br>'; 
+             echo'<span><b>Date Of Birth: </b></span>'; echo $result[$i]['dob']; echo '<br>';            
+           ?> </h4>  
+
+<?php
+
+        } 
+
+} 
+
 static function signinform(){
 		?>
   <div id="login-box">

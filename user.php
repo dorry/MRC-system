@@ -166,14 +166,27 @@ static function retrivedoctorsforeditres()
       }
       return $array;
   }
-
-
-
-
 }
 
+static function RetrieveProfileForUser($lid)
+{
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql4 = "SELECT  *  FROM `user` WHERE id='$lid' and isdeleted='false'";
+    $result4 = mysqli_query($conn, $sql4);
+    $i = 0;
+    $array;
+    if(mysqli_num_rows($result4) > 0){
+       while($row = mysqli_fetch_array($result4))
+      {
+        $array[$i]=$row;
+        $i++;
+      }
+      return $array;
+  }
+}
 
-static function RetrieveProfileForUser(){
+static function PROTOTYPE(){
     $DB=new database();
     $conn=$DB->DBC();
     $sql4 = "SELECT  *  FROM `user` WHERE id=".$_SESSION['ID']." and isdeleted='false'";
@@ -182,8 +195,9 @@ static function RetrieveProfileForUser(){
        while($row = mysqli_fetch_array($result4))
       {
    ?>
-  
-           <h4 value = "<?php echo $row['id'];?>"> <?php echo'<h4>Full Name: </h4>';echo $row['firstname'];echo ' ';  echo $row['lastname']; echo '<br>'; 
+           <h4 value = "<?php echo $row['id'];?>">
+            <?php
+             echo'<h4>Full Name: </h4>';echo $row['firstname'];echo ' ';  echo $row['lastname']; echo '<br>'; 
              echo'<h4>Social Number: </h4>'; echo $row['socialnumber']; echo '<br>'; 
              echo'<h4>Email: </h4>'; echo $row['email']; echo '<br>'; 
              echo'<h4>Password:</h4> '; echo $row['password']; echo '<br>'; 
@@ -195,23 +209,16 @@ static function RetrieveProfileForUser(){
              {
              $sql5 = "SELECT * FROM address WHERE id='$addressID'";
              $result5 = mysqli_query($conn, $sql5);
-     
              while($row2 = mysqli_fetch_array($result5))
              {
                  echo " ".$row2['name']." ";
                  $addressID = $row2['pid'];
-     
              }
-             }
-
-
-             
-             
+             }        
            ?> </h4>  
   <?php 
   }
   ?>
-  
   <?php
   }
 
@@ -253,26 +260,6 @@ static function edituser ()
 {
     $DB=new database();
     $conn=$DB->DBC();
-    if(isset($_POST['edit'])){ 
-        $sql = "update user set firstname = '" . $_POST["FName"] . 
-        "' , lastname ='" . $_POST["LName"] .  
-        "' , email ='" . $_POST["Email"] . 
-        "' , socialnumber ='" . $_POST["socialnumber"] . 
-        "' , password ='" . sha1($_POST["Password"]). 
-        "' , dob ='" . $_POST["dob"] .  
-        "' , username ='" . $_POST["username"] . "' WHERE id ='".$_SESSION['ID']."'";
-        $result = mysqli_query($conn, $sql);
-    
-        if($result){
-            $_SESSION["FirstName"] = $_POST["FName"];
-            $_SESSION["LastName"] = $_POST["LName"];
-            $_SESSION["Email"] = $_POST["Email"];
-            $_SESSION["username"] = $_POST["username"];
-            // header("Location:index.php");
-        }else{
-            return $sql;
-        }
-    }
     $sqlToGetExtraInfo="select * from user where id ='".$_SESSION['ID']."'";
     $result=mysqli_query($conn , $sqlToGetExtraInfo);
     if($row = mysqli_fetch_array($result)){
