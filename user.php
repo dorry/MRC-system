@@ -17,7 +17,8 @@ public $usertypeid;
 public $City;
 
 
-static function selectuserformyres($lid){
+static function selectuserformyres($lid)
+{
 
   $DB=new database();
   $conn=$DB->DBC();   
@@ -31,13 +32,12 @@ static function selectuserformyres($lid){
     $result = mysqli_query($conn, $query);
 
     if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
-  
     else {return;}
-
-
    } 
-  return $array;
- }
+  $length2 = count($PId);
+  if($length2==0){return;}
+  else return $array;
+}
 
 
 
@@ -60,8 +60,10 @@ static function selectformyres($lid){
 
 
    } 
-  return $array;
- }
+     $length2 = count($PId);
+  if($length2==0){return;}
+  else return $array;
+}
 
 
 
@@ -80,13 +82,13 @@ static function selectforresview(){
     {
       $array[$i] = $row;
     }
-      else {
-      return;
-    }
+      else {return;}
 
 
    } 
-  return $array;
+   $length2 = $PId;
+  if($length2==0){return;}
+  else return $array;
 }
 
 static function selectdocforresview(){

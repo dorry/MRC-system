@@ -12,6 +12,11 @@ require_once 'links.php';
 
 
 class admincontroller{
+ static function showmyres($lid)
+ {
+    $view = new adminview();
+    $view->showformyres($lid);
+  }
   static  function viewradiologydropdown()
   {
         $view = new adminview();

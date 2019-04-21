@@ -23,7 +23,10 @@ public static function selectformyres($lid){
     if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
     else {return;}
   } 
-  return $array;
+        $length2 = count($OID);
+        if($length2==0){return;}
+        else return $array;
+
 }
 
 
