@@ -3,6 +3,68 @@ require_once 'admin.php';
 
 
 class adminview{
+
+public static function showradiologydropdown()
+    {
+        echo"<label>Radiologies</label>";
+        echo" <select name='rad'>";
+        $result = radiology::retriveforgivelink();
+        $length =  count($result);
+        for ($i=0; $i<$length;$i++)
+    {
+            ?>
+            <option value = "<?php echo $result[$i]['ID'];?>">
+            <?php echo $result[$i]['Name'];?> 
+            <?php echo  " " ;?> 
+            <?php echo $result[$i]['price'];?> 
+            </option>  
+            <?php
+        }
+        ?>
+        </select>
+        <?php
+}
+public static function showeditradiologyform()
+    {
+        ?>
+        <input type="text" name="name" placeholder="type Rad name"/>
+        <input type="text" name="price" placeholder="type Rad price"/>
+        <input type="submit" value="Edit" name="doeditadminrad"/>
+        <?php
+    }
+public static function showcreateradiologyform()
+    {
+        ?>
+        <input type="text" name="name" placeholder="type Rad name"/>
+        <input type="text" name="price" placeholder="type Rad price"/>
+        <input type="submit" value="Create" name = "docreateadminrad"/>
+        <?php
+}
+
+public static function showradiology()
+    {
+        $result = radiology::retriveforgivelink();   
+        $length =  count($result);
+          echo "<table width='30%'>";
+          echo "<tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        </tr>"; 
+        for ($i=0; $i<$length;$i++)
+    {
+            ?>
+            <tr>
+            <td> <?php echo $result[$i]['ID'];?> </td>
+            <td> <?php echo $result[$i]['Name'];?> </td>
+            <td> <?php echo $result[$i]['price'];?> </td>
+            <br>
+            </tr>
+            <?php
+        }
+         echo "</table>";
+
+}
 public static function showuserdropdowneav($rid){
 
 
@@ -228,6 +290,25 @@ public static function showusertypes(){
 <?php
  }
  echo "</table>";
+}
+
+ public static function ShowDoctorNamesdropdown(){
+        $result = user::retrivedoctorsforeditres();
+        $length =  count($result);
+        echo" <select name='doc'>";
+        for ($i=0; $i<$length;$i++)
+            {
+    ?>
+          <option  value = "<?php echo $result[$i]['id'];?>">
+                    <?php 
+                    echo $result[$i]['firstname'];
+                    echo " "; 
+                    echo $result[$i]['lastname'];
+                    ?>
+          </option>
+    <?php 
+   }
+  echo "</select>";
 }
 
 public static function showuser(){

@@ -192,13 +192,11 @@ $c->showDropdown();
 ?>
 <br><br>
 <?php 
-$c = new radiologycontroller();
 $c->viewradiologydropdown();
 ?>
 <label> Change appointed doctor</label>
 <?php
-$c2 = new usercontroller();
-$c2->DoctorDropdown();
+$c->DoctorDropdown();
 
 ?>
 <br><br>

@@ -12,11 +12,7 @@ class usercontroller
 
 	}
 
-	static function DoctorDropdown()
-	{
-		$view = new userview();
-		$view->ShowDoctorNamesdropdown();
-	}
+
 		
 }
 ?>

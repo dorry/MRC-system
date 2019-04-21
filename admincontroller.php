@@ -12,7 +12,26 @@ require_once 'links.php';
 
 
 class admincontroller{
-
+  static  function viewradiologydropdown()
+  {
+        $view = new adminview();
+        $view->showradiologydropdown();
+  }
+  static  function vieweditradform()
+  {
+        $view = new adminview();
+        $view->showeditradiologyform();
+  }
+ static  function viewcreateradform()
+  {
+        $view = new adminview();
+        $view->showcreateradiologyform();
+  }
+static  function viewradiologytable()
+  {
+        $view = new adminview();
+        $view->showradiology();
+  }
 
 static function viewuserdropdown()
   {
@@ -112,7 +131,11 @@ static function viewtypes(){
     $view = new adminview();
     $view->showuser();
   }
-
+  static function DoctorDropdown()
+  {
+    $view = new adminview();
+    $view->ShowDoctorNamesdropdown();
+  }
   static function showDP()
   {
     $view = new adminview();
