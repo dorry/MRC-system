@@ -18,8 +18,7 @@ else
 <div>
   <h2>Reservation  : </h2>
   <a href="CreateReserve.php"> <h3>   - Make a new Reservation </h3></a>
-  <a href="deletereservation.php"> <h3>   - Delete Reservation </h3></a>
-  <a href="Myreservation.php"> <h3>   - View your current reservations </h3></a>
+  <a href="Myreservation.php"> <h3>   - View/Delete your current reservations </h3></a>
 
 
 

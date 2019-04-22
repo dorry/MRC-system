@@ -449,7 +449,7 @@ header("Location:linkCRUD.php");
 }
 
 if(isset($_POST['AdminEditReservation']))
-{//lesa
+{
   $Date = $_POST['date']." ".$_POST['time'].":00";
   $dr = $_POST['doc'];
   $radid = $_POST['rad'];
@@ -465,14 +465,14 @@ if(isset($_POST['AdminEditReservation']))
   header("Location:ReservationCRUD.php");
 }
 if(isset($_POST['DeleteReservation']))
-{//lesa
+{
  
   $Resid = $_POST['ReserveID'];
   $resd = new reservationdetails();
   $admin = new admin();
   $resd->id = $Resid;
   $admin->deletereserve ($resd);
-  header("Location:ReservationCRUD.php");
+  header("Location:index.php");
 }
 
 ?>

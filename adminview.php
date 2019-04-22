@@ -26,7 +26,8 @@ static function showformyres($lid){
           <th>Price</th>         
           </tr>";   
                for ($i=0; $i<$length;$i++)
-        { 
+        {   echo'<form action="admincontroller.php" method="POST">';
+
     $firstn=$result[$i]['firstname'];
     $lastn=$result[$i]['lastname']; 
     $firstn2=$result1[$i]['firstname'];
@@ -53,7 +54,9 @@ static function showformyres($lid){
 </td>
 <td> <?php echo $Price; ?> 
 </td>
-
+<td><input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>"></td>
+<td> <input type="submit" name="DeleteReservation" value="Delete"></td>
+</form>
 </tr>
 <?php
 
@@ -515,7 +518,8 @@ public static function showdrpatient(){
           <th>Price</th>         
           </tr>";   
         for ($i=0; $i<$length;$i++)
-        {   
+        { echo'<form action="admincontroller.php" method="POST">';
+  
     $drfirstn=$result[$i]['firstname'];
     $drlastn=$result[$i]['lastname'];
     $Pfirstn=$result1[$i]['firstname'];
@@ -542,6 +546,7 @@ public static function showdrpatient(){
 </td>
 <input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>">
 <td> <input type="submit" name="DeleteReservation" value="Delete"></td>
+</form>
 </tr>
 
 <?php

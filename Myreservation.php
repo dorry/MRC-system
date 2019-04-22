@@ -11,13 +11,15 @@
 
      <?php include("navbar.php"); ?>
 
+     <!-- <form action="admincontroller.php" method="POST"> -->
 
 <?php
 $id=$_SESSION['ID'];
 $c= new admincontroller();
 $c->showmyres($id);
 ?>
-  
+  <!-- </form> -->
+
     <?php include("footer.php"); ?>
 
   </body>

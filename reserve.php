@@ -13,7 +13,7 @@ static function selectmyres($id){
   $DB=new database();
   $conn=$DB->DBC();
     
-  $query = "SELECT * FROM `reserve` WHERE DoctorID = $id or PatientID = $id";
+  $query = "SELECT * FROM `reserve` WHERE DoctorID = $id or PatientID = $id AND isdeleted = 'false'";
   $result = mysqli_query($conn, $query);
   $i = 0;
   $array;
@@ -31,7 +31,7 @@ static function selectformyres($id){
   $DB=new database();
   $conn=$DB->DBC();
     
-  $query = "SELECT * FROM `reserve` WHERE DoctorID = $id or PatientID = $id";
+  $query = "SELECT * FROM `reserve` WHERE DoctorID = $id or PatientID = $id AND isdeleted = 'false'";
   $result = mysqli_query($conn, $query);
   $i = 0;
   $array;
@@ -70,7 +70,7 @@ static function selectformyres($id){
     $DB=new database();
     $conn=$DB->DBC();
     $selectDocs = "select * from user where usertypeid like
-    (select id from usertype where type = 'Doctor')";
+    (select id from usertype where type = 'Doctor') AND isdeleted = 'false'";
     $result = mysqli_query($conn, $selectDocs);
     $i = 0;
     if(mysqli_num_rows($result) > 0)

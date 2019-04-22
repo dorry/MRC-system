@@ -17,7 +17,7 @@ class radiology
          for ($i=0; $i<$length;$i++)
           { 
             $ID=$PId[$i]['RadiologyID']; 
-            $query="SELECT * FROM `radiology` WHERE ID = $ID";
+            $query="SELECT * FROM `radiology` WHERE ID = $ID AND isdeleted = 'false'";
             $result = mysqli_query($conn, $query);
             if($row = mysqli_fetch_array($result))
             { 
@@ -43,7 +43,7 @@ class radiology
          for ($i=0; $i<$length;$i++)
           { 
             $ID=$PId[$i]['RadiologyID']; 
-            $query="SELECT * FROM `radiology` WHERE ID = $ID";
+            $query="SELECT * FROM `radiology` WHERE ID = $ID AND isdeleted = 'false'";
             $result = mysqli_query($conn, $query);
             if($row = mysqli_fetch_array($result))
             {
