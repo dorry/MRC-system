@@ -26,7 +26,7 @@ static function showformyres($lid){
           <th>Price</th>         
           </tr>";   
                for ($i=0; $i<$length;$i++)
-        {   echo'<form action="admincontroller.php" method="POST">';
+        { 
 
     $firstn=$result[$i]['firstname'];
     $lastn=$result[$i]['lastname']; 
@@ -54,9 +54,6 @@ static function showformyres($lid){
 </td>
 <td> <?php echo $Price; ?> 
 </td>
-<td><input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>"></td>
-<td> <input type="submit" name="DeleteReservation" value="Delete"></td>
-</form>
 </tr>
 <?php
 
