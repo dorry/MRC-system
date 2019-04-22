@@ -471,7 +471,7 @@ public static function showdrpatientdropdown(){
     $Price = $result3[$i]['price'];
 ?>
 
-<option  value = "<?php echo $result[$i]['id'];?>">
+<option  value = "<?php echo $result2[$i]['ID'];?>">
                     <?php 
 echo $drfirstn; 
  echo " "; 

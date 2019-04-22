@@ -127,7 +127,7 @@ static function selectformyres($id){
           WHERE ID  = '$obj1->id' ";
     $result = mysqli_query($conn, $sql);
     $result1 = mysqli_query($conn, $sql1);
-    header("Location:ReservationCRUD.php");
+    // header("Location:ReservationCRUD.php");
   }
 
   static function deletereserve($obj)

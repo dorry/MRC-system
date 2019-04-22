@@ -213,12 +213,14 @@ public static function editreserve ($obj,$obj1)
     $sql1 = "UPDATE reservationdetails 
             SET RadiologyID='$obj1->radiologyid'
             WHERE ReserveID='$obj1->id'";
+
     $sql= "UPDATE reserve
           SET DoctorID = '$obj->doctorid' , Date = '$obj->date' 
           WHERE ID  = '$obj1->id' ";
+
     $result = mysqli_query($conn, $sql);
     $result1 = mysqli_query($conn, $sql1);
-    header("Location:ReservationCRUD.php");
+    // header("Location:ReservationCRUD.php");
   }
 }
 ?>

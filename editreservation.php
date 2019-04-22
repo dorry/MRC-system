@@ -32,7 +32,7 @@ body {
   position: relative;
   margin: 5% auto;
   width: 619px;
-  height: 400px;
+  height: 420px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -199,11 +199,11 @@ $c->viewradiologydropdown();
 $c->DoctorDropdown();
 
 ?>
-<br><br>
+<br>
 <label>Change date</label>
 <input type="date" name="date" min="<?php $date=date("Y-m-d");echo $date;?>" max="2022-01-01"/>
-<label>Change Time</label>
-<input type="time" name="time" />
+<label>Change Time</label><br>
+<input type="time" name="time"/>
 
     <input type="submit" value="Edit" name="AdminEditReservation" />
  </form>
