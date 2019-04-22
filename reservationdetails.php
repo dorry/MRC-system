@@ -17,7 +17,7 @@ public static function selectformyres($lid){
   for ($i=0; $i<$length;$i++)
   { 
     $ID=$OID[$i]['ID']; 
-    $query = "SELECT  * FROM `reservationdetails` where ReserveID= '$ID';";
+    $query = "SELECT  * FROM `reservationdetails` where ReserveID= '$ID' AND isdeleted = 'false'";
     $result = mysqli_query($conn, $query);
 
     if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
@@ -34,7 +34,7 @@ public static function selectforadminview(){
 
   $DB=new database(); 
   $conn=$DB->DBC();
-  $query="SELECT * FROM `reservationdetails`";
+  $query="SELECT * FROM `reservationdetails` WHERE isdeleted = 'false'";
   $result = mysqli_query($conn, $query);
   $i = 0;
   $array;
@@ -88,17 +88,17 @@ public static function retriveforedit()
     {
         $ResID = $row['ReserveID'];
         $RadID = $row['RadiologyID'];
-        $sql2 = "SELECT * FROM reserve WHERE ID = '$ResID' ";
+        $sql2 = "SELECT * FROM reserve WHERE ID = '$ResID' AND isdeleted = 'false'";
         $result2 = mysqli_query($conn,$sql2);
         while($row2 = mysqli_fetch_array($result2))
         {   
             $pid = $row2['PatientID'];
-            $sql3 = "SELECT * FROM user WHERE id = '$pid'";
+            $sql3 = "SELECT * FROM user WHERE id = '$pid' AND isdeleted = 'false'";
             $result3 = mysqli_query($conn,$sql3);
             $row3 = mysqli_fetch_array($result3);
                         
             $did = $row2['DoctorID'];
-            $sql4 = "SELECT * FROM user WHERE id = '$did'";
+            $sql4 = "SELECT * FROM user WHERE id = '$did' AND isdeleted = 'false'";
             $result4 = mysqli_query($conn,$sql4);
             $row4 = mysqli_fetch_array($result4);
             ?>
@@ -123,13 +123,13 @@ public static function Retrievereservationdetails ()
     echo "<h2>My Reservations</h2>";
     echo"<p>Name: $first $second</p>";
     $id=$_SESSION['ID'];
-    $sql = "SELECT * FROM `reserve` WHERE PatientID= $id";
+    $sql = "SELECT * FROM `reserve` WHERE PatientID= $id AND isdeleted = 'false'";
     $result = mysqli_query($conn, $sql);
     while($row = mysqli_fetch_array($result))
     {
         $IDD=$row['ID'];
         $DoctorID = $row["DoctorID"];
-        $sql2="SELECT * FROM `mrc`.`user` WHERE `id` = $DoctorID";
+        $sql2="SELECT * FROM `mrc`.`user` WHERE `id` = $DoctorID AND isdeleted = 'false'";
         $result2 = mysqli_query($conn, $sql2);
         while($row2 = mysqli_fetch_array($result2))
     {
@@ -139,7 +139,7 @@ public static function Retrievereservationdetails ()
 
     }
 
-    $sql3="SELECT * FROM `mrc`.`reserve` WHERE `ID` = $IDD";
+    $sql3="SELECT * FROM `mrc`.`reserve` WHERE `ID` = $IDD AND isdeleted = 'false'";
     $result3 = mysqli_query($conn, $sql3);
     if($row = mysqli_fetch_array($result3))
     {
@@ -149,13 +149,13 @@ public static function Retrievereservationdetails ()
     }
 
     
-        $sql4="SELECT * FROM `reservationdetails` WHERE ReserveID=$IDD";
+        $sql4="SELECT * FROM `reservationdetails` WHERE ReserveID=$IDD AND isdeleted = 'false'";
         $result5 = mysqli_query($conn, $sql4);
         while($row2 = mysqli_fetch_array($result5))
         {
         $RadID=$row2['RadiologyID'];
 
-        $sql6="SELECT * FROM `mrc`.`radiology` WHERE `ID` = $RadID";
+        $sql6="SELECT * FROM `mrc`.`radiology` WHERE `ID` = $RadID AND isdeleted = 'false'";
         $result6 = mysqli_query($conn, $sql6);
         while($row6 = mysqli_fetch_array($result6))
         {

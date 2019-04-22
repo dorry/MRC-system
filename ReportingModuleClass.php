@@ -1,12 +1,11 @@
 <?php
 require_once"mydatabaseconnection.php";
-class report
+require_once"IReport.php";
+class report implements IReport
 {
-    public $radiologyname;
-    public $numberoftimes;
     public $dataPoints = array();
 
-    static function retriveradiology()
+    static function Statistics()
     {
         $DB=new database();
         $conn=$DB->DBC();
@@ -37,5 +36,45 @@ class report
         }
         return $dataPoints;
     }
+}
+
+class report2 implements IReport
+{
+
+    public $dataPoints = array();
+
+    static function Statistics()
+    {
+        $DB=new database();
+        $conn=$DB->DBC();
+        $query = "SELECT * FROM `usertype`";
+        $userarrayid = array();
+        $userarrayname = array();
+        $result = mysqli_query($conn, $query);
+        if(mysqli_num_rows($result) > 0)
+        {
+            while($row = mysqli_fetch_array($result))
+            {
+                array_push($userarrayid, $row['id']);
+                array_push($userarrayname, $row['type']);
+            }
+        }
+        $i= 0;
+        $dataPoints = array();
+        for($i; $i < sizeof($userarrayid); $i++)
+        {
+            $query = "SELECT  COUNT(*)  FROM user WHERE usertypeid = '$userarrayid[$i]'";
+            $result = mysqli_query($conn, $query);
+            if(mysqli_num_rows($result) > 0)
+            {
+                $row = mysqli_fetch_array($result);
+                $x = array("label"=> $userarrayname[$i], "y"=> intval($row[0]));
+                array_push($dataPoints, $x);
+            }
+        }
+        return $dataPoints;
+    }
+
+
 }
 ?>

@@ -27,6 +27,7 @@ static function showformyres($lid){
           </tr>";   
                for ($i=0; $i<$length;$i++)
         { 
+
     $firstn=$result[$i]['firstname'];
     $lastn=$result[$i]['lastname']; 
     $firstn2=$result1[$i]['firstname'];
@@ -53,7 +54,6 @@ static function showformyres($lid){
 </td>
 <td> <?php echo $Price; ?> 
 </td>
-
 </tr>
 <?php
 
@@ -370,9 +370,10 @@ public static function showusertypes(){
 public static function showuser(){
   echo "<table width='30%'>";
   echo "<tr>
-        <th>Firstname</th>
-        <th>Lastname</th> 
-        <th>id</th>
+        <th>ID</th>
+        <th>First Name</th> 
+        <th>Last Name</th>
+        <th>User Name</th>
         </tr>"; 
     $result = user::selectallusers();
     $length =  count($result);
@@ -381,7 +382,8 @@ public static function showuser(){
 ?>
 <tr><td> <?php echo $result[$i]['id'];?> </td>
 <td> <?php echo $result[$i]['firstname'];?> </td>
-<td> <?php echo $result[$i]['lastname'];?> </td></tr>
+<td> <?php echo $result[$i]['lastname'];?> </td>
+<td> <?php echo $result[$i]['username'];?> </td></tr>
 
 <?php
 
@@ -515,7 +517,8 @@ public static function showdrpatient(){
           <th>Price</th>         
           </tr>";   
         for ($i=0; $i<$length;$i++)
-        {   
+        { echo'<form action="admincontroller.php" method="POST">';
+  
     $drfirstn=$result[$i]['firstname'];
     $drlastn=$result[$i]['lastname'];
     $Pfirstn=$result1[$i]['firstname'];
@@ -540,6 +543,9 @@ public static function showdrpatient(){
 </td>
 <td> <?php echo $Price; ?> 
 </td>
+<input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>">
+<td> <input type="submit" name="DeleteReservation" value="Delete"></td>
+</form>
 </tr>
 
 <?php

@@ -12,6 +12,7 @@ else{header("Location:index.php");}
           require_once("admincontroller.php");
     ?>
 <div> 
+
 <?php
 $c= new admincontroller();
 $c->showDP();

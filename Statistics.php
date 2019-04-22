@@ -1,6 +1,8 @@
 <?php
 session_start();
 include"ReportingModuleClass.php";
+require_once"IReport.php";
+
 if(!empty($_SESSION))
 {
   
@@ -16,11 +18,19 @@ else
   <body>
     <?php include("navbar.php"); ?>
 <div>
-<h2>Radiology Statistics</h2>
+<h2>Statistics</h2>
+<form action="" method="POST">
+<input type="submit" class="template-btn mt-3" value="Radiology" name="Radiology"/>
+<input type="submit" class="template-btn mt-3" value="User Types" name="UserTypes"/>
+</form>
 <?php
-$report = new report();
+
+if(isset($_POST['Radiology']))
+{$report = new report();}
+else{$report = new report2();}
 $dataPoints = array();
-$dataPoints =  $report->retriveradiology();
+$dataPoints =  $report->Statistics();
+
 ?>
  <head>  
  
@@ -45,7 +55,7 @@ window.onload = function ()
     animationEnabled: true,
     exportEnabled: true,
     title:{
-        text: "Average Radiology type reservations"
+        text: "Statistics"
     },
     
     data: [{
