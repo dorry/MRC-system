@@ -17,13 +17,13 @@ else
   </head>
   <body>
     <?php include("navbar.php");
-          require_once("radiologycontroller.php");
+          require_once("admincontroller.php");
           require_once("radiology.php");
     ?>
 <div>
   <h3> Radiology List </h3>
 <?php 
-$rad = new radiologycontroller();
+$rad = new admincontroller();
 $rad->viewradiologytable();
 ?>
 

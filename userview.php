@@ -6,153 +6,123 @@ require_once 'radiology.php';
 class userview
 {
 
-static function showformyres($lid){
 
-    $result = user::selectuserformyres($lid);
+static function showprofileedit($lid)
+{
+    $result = user::RetrieveProfileForUser($lid);
     $length =  count($result);
-    $result1 = user::selectformyres($lid);
-    $length1 =  count($result1);
-    $result2 = reserve::selectmyres($lid);
-    $length2 = count($result2);
-    $result3 = radiology::selectformyres($lid);
-    $length3 = count($result3);
- echo "<h2>Patient Reservations</h2>";
-        echo "<table width='65%'>";
-    echo "<tr>
-          <th>Doctor Name</th>         
-          <th>Patient Name</th>         
-          <th>Date</th>         
-          <th>Radiology</th>         
-          <th>Price</th>         
-          </tr>";   
-               for ($i=0; $i<$length;$i++)
-        { 
-    $firstn=$result[$i]['firstname'];
-    $lastn=$result[$i]['lastname']; 
-    $firstn2=$result1[$i]['firstname'];
-    $lastn2=$result1[$i]['lastname'];
-    $Date = $result2[$i]['Date'];
-    $Name = $result3[$i]['Name'];
-    $Price = $result3[$i]['price'];
-?>
-<tr>
-    <td>
-        <?php echo $firstn; 
-           echo " "; 
-           echo $lastn?> 
-    </td>
-    <td>
-       <?php echo $firstn2; 
-           echo " "; 
-           echo $lastn2?>  
+   for ($i=0; $i<$length;$i++)
+    { 
 
-    </td>
-<td> <?php echo $Date; ?> 
-</td>
-<td> <?php echo $Name; ?> 
-</td>
-<td> <?php echo $Price; ?> 
-</td>
-
-</tr>
+        ?>  
+    <form action='' method='post'>
+         FirstName:
+        <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName'><br>
+         LastName:
+        <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' ><br>
+         Email: 
+        <input type='text' value="<?php echo $result[$i]['email'];?>" name='Email'><br>
+        Password: 
+        <input type='text' value='' name='Password'><br>
+        Social Security Number: 
+        <input type='text' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber'><br>
+        Date of birth:
+        <input type='text' value="<?php echo $result[$i]['dob'];?>"name='dob'><br>
+        username: 
+        <input type='text' value="<?php echo $result[$i]['username'];?>" name='username'><br> 
+        <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
+        </form> ;
 <?php
 
-}
-echo "</table>";
-}
-
-public static function showedituserform(){
+        }
+  } 
+static function showprofile($lid)
+{
+    $result = user::RetrieveProfileForUser($lid);
+    $length =  count($result);
+   for ($i=0; $i<$length;$i++)
+    { 
 ?>
-	<label>Username</label>
+           <h4 value = "<?php echo $result[$i]['id'];?>">
+            <?php
+             echo'<span><b> Full Name: </b></span>';echo $result[$i]['firstname'];echo ' ';  echo $result[$i]['lastname']; echo '<br>'; 
+             echo'<span><b>Social Number: </b><span>'; echo $result[$i]['socialnumber']; echo '<br>'; 
+             echo'<span><b>Email: </b></span>'; echo $result[$i]['email']; echo '<br>'; 
+             echo'<span><b> Password:</b></span> '; echo $result[$i]['password']; echo '<br>'; 
+             echo'<span><b>Username: </b></span>'; echo $result[$i]['username']; echo '<br>'; 
+             echo'<span><b>Date Of Birth: </b></span>'; echo $result[$i]['dob']; echo '<br>';            
+           ?> </h4>  
+
+<?php
+
+        } 
+
+} 
+
+static function signinform(){
+		?>
+  <div id="login-box">
+  <div class="left">
+    <h1>Sign In</h1>
+    <br><br><br>
+    <form action="usercontroller.php" method="POST">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password" />
+    <span>Don't have an account?</span> <a href="signup.php"> Create one</a>
+    <br>
+      <input type="submit" name="signin_submit" value="Sign me in" />
+  </form>
+  </div>
+  <div class="right">
+<br><br><br><br>    
+    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin twitter">Log in with Twitter</button>
+    <button class="social-signin google">Log in with Google+</button>
+  </div>
+  <div class="or">OR</div>
+</div>
+<?php
+	}
+
+   static function signupform(){
+   	?>
+   	<div id="login-box">
+  <div class="left">
+    <form action="usercontroller.php" method="POST">
+    <h1>Sign Up</h1>
+    <input type="text" name="FName" placeholder="First Name" />
+    <input type="text" name="LName" placeholder="Last Name" />
     <input type="text" name="UName" placeholder="Username" />
-    <label>email</label>
     <input type="text" name="email" placeholder="E-mail" />
-    <label>password</label>
+    <input type="text" name="SSN" placeholder="Social Security Number" />
+    <input type="radio" name="gender" value="male" checked> Male 
+    <input type="radio" name="gender" value="female"> Female<br>  <br> 
+    <input type="date" name="DOB"><br> <br>
     <input type="password" name="password" placeholder="Password"/>
-    <label>Usertype</label>
+    <input type="password" name="password2" placeholder="Retype password" />
+
+    <label>Country</label>
 <?php
-}
-
-public static function showuserdropdown(){
-
-
-	$result = user::selectallusers();
-	$length =  count($result);
+$address = new address();
+$address->retriveforsignup();
+ ?>
  
-    echo"<label>Users</label>";
-    echo" <select name='user'>";
-    for ($i=0; $i<$length;$i++)
-		{
-?>
-	  <option  value = "<?php echo $result[$i]['id'];?>">
-                <?php 
-                echo $result[$i]['firstname'];
-                echo " "; 
-                echo $result[$i]['lastname'];
-                ?>
-      </option>
-
-
-<?php
-
-}
-	echo "</select>";
-}
-
-public static function showuserdropdowneav($rid){
-
-
-	$result = user::selectauserseav($rid);
-	$length =  count($result);
+   <div id = City></div>
+    <input type="submit" name="signup_submit" value="Sign me up" />
  
-    echo"<label>Users</label>";
-    echo" <select name='user'>";
-    for ($i=0; $i<$length;$i++)
-		{
-?>
-	  <option  value = "<?php echo $result[$i]['id'];?>">
-                <?php 
-                echo $result[$i]['firstname'];
-                echo " "; 
-                echo $result[$i]['lastname'];
-                ?>
-      </option>
-
-
-<?php
-
-}
-	echo "</select>";
-}
-public static function showuser(){
-	echo "<table width='30%'>";
-	echo "<tr>
-	      <th>Firstname</th>
-	      <th>Lastname</th> 
-	      <th>id</th>
-	  	  </tr>";	
-  	$result = user::selectallusers();
-		$length =  count($result);
-
-  	for ($i=0; $i<$length;$i++)
-		{
-?>
-
-<tr>
-<td> <?php echo $result[$i]['id'];?> </td>
-<td> <?php echo $result[$i]['firstname'];?> </td>
-<td> <?php echo $result[$i]['lastname'];?> </td>
-</tr>
-
-<?php
-
-		}
-
-		  	echo "</table>";
-		  		}
-
-}
-
+ </form>
+  </div>
   
+  <div class="right">
+<br><br><br><br>    
+    <button class="social-signin facebook">Sign up with facebook</button>
+    <button class="social-signin twitter">Sign Up with Twitter</button>
+    <button class="social-signin google">Sign Up with Google+</button>
+  </div>
+  <div class="or">OR</div>
+</div>
+   <?php
+   }
 
+}
 ?>

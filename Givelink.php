@@ -181,7 +181,7 @@ button.social-signin.google {
 
 
    <?php include("navbar.php"); 
-   require_once("LinksController.php");
+   require_once("adminController.php");
    ?>
 
     <div id="login-box">
@@ -189,10 +189,9 @@ button.social-signin.google {
 <form action="admincontroller.php" method="POST">
     <h3>Authority Manipulation</h3>
 <?php 
-$c = new LinksController();
-$c->ShowUserTypedropdown();
-$c2 = new LinksController();
-$c2->ShowLinksdropdown();
+$c = new admincontroller();
+$c->viewUTdropdown();
+$c->ShowLinksdropdown();
 
 ?>
   

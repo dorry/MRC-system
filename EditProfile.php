@@ -181,9 +181,9 @@ button.social-signin.google {
     ?>
 
 <?php
-
-$user=new user();
-$user->edituser();
+require_once "usercontroller.php";
+$user=new usercontroller();
+$user->viewmyprofileedit($_SESSION['ID']);
 
 ?>
 

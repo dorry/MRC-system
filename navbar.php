@@ -88,7 +88,7 @@
                         }
                         else
                         {
-                            echo '<li><a href="signin.html">Sign in</a></li>';
+                            echo '<li><a href="signin.php">Sign in</a></li>';
                         }
                         ?>       				          
                     </ul>

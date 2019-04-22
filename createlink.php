@@ -187,7 +187,7 @@ button.social-signin.google {
   </head>
   <body>
    <?php include("navbar.php");
-             require_once("LinksController.php");
+             require_once("admincontroller.php");
    ?>
     <!-- Header Area End -->
 
@@ -197,7 +197,7 @@ button.social-signin.google {
     <h3>Create a new link</h3>
 <form action="admincontroller.php" method="POST">
 <?php
-$c = new LinksController();
+$c = new admincontroller();
 $c->CreateLinkForm();
 ?>
  </form>

@@ -9,7 +9,7 @@ else
   header("Location:index.php");
 }
 include"usertype.php";
-require_once"usertypecontroller.php"
+require_once"admincontroller.php"
 ?>
   <head>
   <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -188,8 +188,8 @@ button.social-signin.google {
     <form action="admincontroller.php" method="POST">
 
 <?php
-$C = new usertypecontroller();
-$C->viewdropdown();
+$C = new admincontroller();
+$C->viewuserdropdown();
 $C->showdeletetype();
 ?>
 

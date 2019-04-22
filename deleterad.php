@@ -9,9 +9,8 @@ else
 {
   header("Location:index.php");
 }
-require_once("radiologycontroller.php");
+require_once("admincontroller.php");
 require_once("radiology.php");
-include("links.php");
 ?>
     <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
 *:focus {
@@ -187,7 +186,7 @@ button.social-signin.google {
     <h3>Create new Radiology</h3>
 <form action="admincontroller.php" method="POST">
 <?php
-$rad = new radiologycontroller();
+$rad = new admincontroller();
 $rad->viewradiologydropdown();
 ?>
 

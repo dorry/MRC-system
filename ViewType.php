@@ -19,21 +19,15 @@ else
    
   </head>
   <body>
-
     <?php require_once("navbar.php");
-          require_once("usertype.php");
-          require_once("usertypecontroller.php")
+          require_once("admincontroller.php")
     ?>
-
 <div>
   <h3> Usertype List </h3>
 <?php 
-$usertype = new usertypecontroller();
+$usertype = new admincontroller();
 $usertype->viewtypes();
-
-
 ?>
-
 
 </div>
 

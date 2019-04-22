@@ -10,7 +10,7 @@ else
 {
   header("Location:index.php");
 }
-include("useroptionscontroller.php");
+include("admincontroller.php");
 
 
 
@@ -191,10 +191,9 @@ button.social-signin.google {
 <form action="admincontroller.php" method="POST">
     <h3>Edit Option</h3>
 <?php
-$c = new useroptionscontroller();
-$c->viewdropdown();
-$c->vieweditform();
-$c->vieweavtypeform();
+$c = new admincontroller();
+$c->viewoptiondropdown();
+$c->vieweditoptionform();
 ?>
 
  </form>

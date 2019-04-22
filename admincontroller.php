@@ -12,14 +12,146 @@ require_once 'links.php';
 
 
 class admincontroller{
+ static function showmyres($lid)
+ {
+    $view = new adminview();
+    $view->showformyres($lid);
+  }
+  static  function viewradiologydropdown()
+  {
+        $view = new adminview();
+        $view->showradiologydropdown();
+  }
+  static  function vieweditradform()
+  {
+        $view = new adminview();
+        $view->showeditradiologyform();
+  }
+ static  function viewcreateradform()
+  {
+        $view = new adminview();
+        $view->showcreateradiologyform();
+  }
+static  function viewradiologytable()
+  {
+        $view = new adminview();
+        $view->showradiology();
+  }
+
+static function viewuserdropdown()
+  {
+    $view = new adminview();
+    $view->showuserdropdown();
+  }
+
+static function viewdropdowneav($rid)
+  {
+    $view = new adminview();
+    $view->showuserdropdowneav($rid);
+  }
+static function viewoptionseav($rid){
+    $view = new adminview();
+    $view->showoptionsforeav($rid);
+  }
 
 
+static function viewediteavtypeform(){
+    $view = new adminview();
+    $view->showediteavtypeform();
+}
+static function viewtypedropdowneav(){
+    $view = new adminview();
+    $view->showusertypedropdowneav();
+  }
+static function vieweavtypeform(){
+    $view = new adminview();
+    $view->showeavtypeform();
+}
+static function viewgiveoptionform(){
+    $view = new adminview();
+    $view->showgiveform();
+}
+static function vieweditoptionform(){
+    $view = new adminview();
+    $view->showeditoptionform();
+}
+
+  static function viewoptiondropdown(){
+    $view = new adminview();
+    $view->showoptiondropdown();
+  }
+static function viewdeleteoptionform(){
+    $view = new adminview();
+    $view->showdeleteoptionform();
+}
+
+  static function viewcreateoptionform()
+  {
+    $view = new adminview();
+    $view->showcreateoptionform();
+   }
+  static  function ShowLinksdropdown()
+  {
+    $view = new adminview();
+    $view->ShowLinksdropdown();
+  }
+static  function CreateLinkForm()
+  {
+    $view = new adminview();
+    $view->CreateLinkForm();
+  }
+static function showdeletetype(){
+    $view = new adminview();
+    $view->deletetypeform();
+}
+
+static function showedittype(){
+    $view = new adminview();
+    $view->edittypeform();
+}
+
+static function showcreatetype(){
+    $view = new adminview();
+    $view->createtypeform();
+}
+
+static function viewtypes(){
+    $view = new adminview();
+    $view->showusertypes();
+}
+
+  static function viewUTdropdown()
+  {
+    $view = new adminview();
+    $view->showusertypedropdown();
+  }
+  static  function showedituser()
+  {
+    $view = new adminview();
+    $view->showedituserform();
+  }
+
+  static function view()
+  {
+    $view = new adminview();
+    $view->showuser();
+  }
+  static function DoctorDropdown()
+  {
+    $view = new adminview();
+    $view->ShowDoctorNamesdropdown();
+  }
   static function showDP()
   {
     $view = new adminview();
     $view->showdrpatient();
   }
 
+  static function showDropdown()
+  {
+    $view = new adminview();
+    $view-> showdrpatientdropdown();
+  }
 }
 
 $i = 0;
@@ -314,5 +446,22 @@ $admin = new admin();
 $links->id= $L;
 $admin->deletelink($links);
 header("Location:linkCRUD.php");
+}
+
+if(isset($_POST['AdminEditReservation']))
+{//lesa
+  $Date = $_POST['date']." ".$_POST['time'].":00";
+  $dr = $_POST['doc'];
+  $radid = $_POST['rad'];
+  $Resid = $_POST['reserve'];
+  $resd = new reservationdetails();
+  $res = new reserve();
+  $admin = new admin();
+  $res->doctorid=$dr;
+  $res->date = $Date;
+  $resd->id = $Resid;
+  $resd->radiologyid = $radid;
+  $admin->editreserve($res,$resd);
+  header("Location:ReservationCRUD.php");
 }
 ?>

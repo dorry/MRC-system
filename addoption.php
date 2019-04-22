@@ -10,7 +10,7 @@ else
   header("Location:index.php");
 }
 include"usertype.php";
-require_once"useroptionscontroller.php";
+require_once"admincontroller.php";
 require_once"usertypecontroller.php";
 ?>
   <head>
@@ -198,11 +198,11 @@ button.social-signin.google {
     <form action="admincontroller.php" method="POST">
     <h3>Add Option</h3>
    <?php
-$c = new useroptionscontroller();
+$c = new admincontroller();
 $UT = new usertypecontroller();
-$UT->viewdropdown();
-$c->viewdropdown();
-$c->viewgiveform();
+$c->viewUTdropdown();
+$c->viewoptiondropdown();
+$c->viewgiveoptionform();
 
 
 ?>

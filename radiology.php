@@ -9,8 +9,6 @@ class radiology
 
 
     public static function selectformyres($lid){
-
-
          $DB=new database();
          $conn=$DB->DBC();   
          $PId = reservationdetails::selectformyres($lid); 
@@ -30,7 +28,9 @@ class radiology
               return;
               }
           } 
-          return $array;
+          $length2 = count($PId);
+          if($length2==0){return;}
+          else return $array;
   }
     public static function selectforadminview(){
 

@@ -1,7 +1,7 @@
 
 <head>
 <?php //include"reservationdetails.php";
-		require_once"usercontroller.php";
+		require_once"admincontroller.php";
  session_start(); ?>
  
    
@@ -14,9 +14,8 @@
 
 <?php
 $id=$_SESSION['ID'];
-$c= new usercontroller();
+$c= new admincontroller();
 $c->showmyres($id);
-
 ?>
   
     <?php include("footer.php"); ?>
