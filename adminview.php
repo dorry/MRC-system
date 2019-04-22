@@ -373,9 +373,10 @@ public static function showusertypes(){
 public static function showuser(){
   echo "<table width='30%'>";
   echo "<tr>
-        <th>Firstname</th>
-        <th>Lastname</th> 
-        <th>id</th>
+        <th>ID</th>
+        <th>First Name</th> 
+        <th>Last Name</th>
+        <th>User Name</th>
         </tr>"; 
     $result = user::selectallusers();
     $length =  count($result);
@@ -384,7 +385,8 @@ public static function showuser(){
 ?>
 <tr><td> <?php echo $result[$i]['id'];?> </td>
 <td> <?php echo $result[$i]['firstname'];?> </td>
-<td> <?php echo $result[$i]['lastname'];?> </td></tr>
+<td> <?php echo $result[$i]['lastname'];?> </td>
+<td> <?php echo $result[$i]['username'];?> </td></tr>
 
 <?php
 
