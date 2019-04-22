@@ -12,10 +12,13 @@ else{header("Location:index.php");}
           require_once("admincontroller.php");
     ?>
 <div> 
+<form action="admincontroller.php" method="POST">
+
 <?php
 $c= new admincontroller();
 $c->showDP();
 ?>
+</form>
 </div>
     <?php include("footer.php"); ?>
   

@@ -464,4 +464,15 @@ if(isset($_POST['AdminEditReservation']))
   $admin->editreserve($res,$resd);
   header("Location:ReservationCRUD.php");
 }
+if(isset($_POST['DeleteReservation']))
+{//lesa
+ 
+  $Resid = $_POST['ReserveID'];
+  $resd = new reservationdetails();
+  $admin = new admin();
+  $resd->id = $Resid;
+  $admin->deletereserve ($resd);
+  header("Location:ReservationCRUD.php");
+}
+
 ?>

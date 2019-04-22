@@ -222,5 +222,21 @@ public static function editreserve ($obj,$obj1)
     $result1 = mysqli_query($conn, $sql1);
     // header("Location:ReservationCRUD.php");
   }
+  public static function deletereserve ($obj1)
+  {
+    $DB=new database();
+    $conn=$DB->DBC();
+    $sql1 = "UPDATE reservationdetails 
+            SET isdeleted='true'
+            WHERE ReserveID='$obj1->id'";
+
+    $sql= "UPDATE reserve
+          SET isdeleted='true'
+          WHERE ID  = '$obj1->id' ";
+
+    $result = mysqli_query($conn, $sql);
+    $result1 = mysqli_query($conn, $sql1);
+    // header("Location:ReservationCRUD.php");
+  }
 }
 ?>

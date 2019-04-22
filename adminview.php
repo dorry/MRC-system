@@ -540,6 +540,8 @@ public static function showdrpatient(){
 </td>
 <td> <?php echo $Price; ?> 
 </td>
+<input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>">
+<td> <input type="submit" name="DeleteReservation" value="Delete"></td>
 </tr>
 
 <?php
