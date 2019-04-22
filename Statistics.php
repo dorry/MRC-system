@@ -18,7 +18,7 @@ else
   <body>
     <?php include("navbar.php"); ?>
 <div>
-<h2>Radiology Statistics</h2>
+<h2>Statistics</h2>
 <form action="" method="POST">
 <input type="submit" class="template-btn mt-3" value="Radiology" name="Radiology"/>
 <input type="submit" class="template-btn mt-3" value="User Types" name="UserTypes"/>
@@ -55,7 +55,7 @@ window.onload = function ()
     animationEnabled: true,
     exportEnabled: true,
     title:{
-        text: "Average Radiology type reservations"
+        text: "Statistics"
     },
     
     data: [{
