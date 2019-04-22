@@ -70,7 +70,7 @@ static function selectformyres($id){
     $DB=new database();
     $conn=$DB->DBC();
     $selectDocs = "select * from user where usertypeid like
-    (select id from usertype where type = 'Doktor')";
+    (select id from usertype where type = 'Doctor')";
     $result = mysqli_query($conn, $selectDocs);
     $i = 0;
     if(mysqli_num_rows($result) > 0)

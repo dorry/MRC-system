@@ -450,7 +450,7 @@ header("Location:linkCRUD.php");
 
 if(isset($_POST['AdminEditReservation']))
 {//lesa
-  $Date = $_POST['date'];
+  $Date = $_POST['date']." ".$_POST['time'].":00";
   $dr = $_POST['doc'];
   $radid = $_POST['rad'];
   $Resid = $_POST['reserve'];

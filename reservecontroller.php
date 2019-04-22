@@ -9,7 +9,7 @@ require_once "CreateReserve.php";
 	$reservesend = new reserve();
 	$reserve->patientId=$_SESSION['ID'];
 	$reserve->doctorId=$_POST['doctor'];
-	$reserve->date=$_POST['dob']." ".$_POST['Time'].":00";
+	$reserve->date=$_POST['date']." ".$_POST['time'].":00";
 	$reservesend->addreserve($reserve);
 }
 	

@@ -20,11 +20,11 @@ class reserveview
     }
         public static function addreserveform()
     {
-
+        $date=date('Y-m-d');
         echo"<br> Reservation date:";
-        echo"<br> <input type='date' name = 'dob'/><br>";
-        echo"<br> <input type='time' name = 'Time'/>";
-        echo " <br> <input type='submit' name='addreserve' />";
+        echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01'/><br>";
+        echo"<br> <input type='time' name = 'time'/>";
+        echo " <br> <input type='submit' name='addreserve' value='Submit' />";
         echo "</div>";
         echo "</div>";
         echo "</form>";

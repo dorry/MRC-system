@@ -459,7 +459,7 @@ public static function showdrpatientdropdown(){
     $result3 = radiology::selectforadminview();
     $length3 = count($result3);
     // echo $length1;
-        echo "<select name='info'>"; 
+        echo "<select name='reserve'>"; 
         for ($i=0; $i<$length;$i++)
         {   
     $drfirstn=$result[$i]['firstname'];
