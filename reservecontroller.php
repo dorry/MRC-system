@@ -3,7 +3,7 @@ require_once "reserve.php";
 require_once "reserveview.php";
 require_once "CreateReserve.php";
 
-		if(isset($_POST['addreserve']))
+if(isset($_POST['addreserve']))
 {
 	$reserve = new reserve();
 	$reservesend = new reserve();
