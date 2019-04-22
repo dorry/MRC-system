@@ -1,4 +1,3 @@
-
 <?php
 session_start();
 if(!empty($_SESSION))
@@ -9,6 +8,8 @@ else
 {
   header("Location:index.php");
 }
+require_once "doctor.php";
+require_once "doctorcontroller.php";
 ?>
   <head>
   </head>
@@ -21,13 +22,13 @@ else
     <!-- Banner Area Starts -->
 
 <div>
-  <h2>Reservation  : </h2>
-  <a href="Myreservation.php"> <h3>   - View your current reservations </h3></a>
-  <a href="createreportdoctor.php"> <h3>   - Write report for patient </h3></a>
-  <a href="showreportdoctor.php"> <h3>   - View your current reports </h3></a>
+  <h2>Report : </h2>
+  <br>
+  <?php
+  $doc = new doctorcontroller();
+  $doc->viewreport($_GET['id']);
 
-
-
+  ?>
 </div>
 
 

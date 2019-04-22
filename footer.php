@@ -30,7 +30,6 @@
                     placeholder="Your email here"
                     onfocus="this.placeholder = ''"
                     onblur="this.placeholder = 'Your email here'"
-                    required
                   />
                   <button type="submit" class="template-btn">
                     subscribe now

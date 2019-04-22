@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 17, 2019 at 03:51 PM
+-- Generation Time: Apr 22, 2019 at 10:55 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `radiology` (
   `price` int(255) NOT NULL,
   `isdeleted` varchar(255) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `radiology`
@@ -115,7 +115,8 @@ INSERT INTO `radiology` (`ID`, `Name`, `price`, `isdeleted`) VALUES
 (1, 'PET', 300, 'false'),
 (2, 'CT', 100, 'false'),
 (3, 'XRay', 150, 'false'),
-(4, 'UV-Ray', 400, 'true');
+(4, 'UV-Ray', 400, 'true'),
+(5, 'MRI', 700, 'false');
 
 -- --------------------------------------------------------
 
@@ -133,14 +134,16 @@ CREATE TABLE IF NOT EXISTS `reservationdetails` (
   PRIMARY KEY (`ID`),
   KEY `RID` (`ReserveID`),
   KEY `PID` (`RadiologyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservationdetails`
 --
 
 INSERT INTO `reservationdetails` (`ID`, `ReserveID`, `RadiologyID`, `quantity`, `isdeleted`) VALUES
-(2, 3, 1, 1, 'false');
+(2, 3, 1, 1, 'false'),
+(5, 6, 5, 1, 'false'),
+(6, 7, 4, 1, 'false');
 
 -- --------------------------------------------------------
 
@@ -158,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `reserve` (
   PRIMARY KEY (`ID`),
   KEY `PID` (`PatientID`),
   KEY `DID` (`DoctorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reserve`
@@ -166,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `reserve` (
 
 INSERT INTO `reserve` (`ID`, `PatientID`, `DoctorID`, `Date`, `isdeleted`) VALUES
 (3, 1, 5, '2018-10-23 20:40:00.000000', 'false'),
-(4, 7, 8, '2019-03-14 12:59:00.000000', 'false'),
-(5, 7, 8, '2019-03-14 12:59:00.000000', 'false');
+(6, 1, 8, '2019-06-01 01:00:00.000000', 'false'),
+(7, 1, 5, '2019-03-19 01:00:00.000000', 'false');
 
 -- --------------------------------------------------------
 
@@ -211,24 +214,23 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `addressid` (`addressid`),
   KEY `UTID` (`usertypeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `socialnumber`, `password`, `usertypeid`, `username`, `dob`, `addressid`, `isdeleted`) VALUES
-(1, 'Mohamed', 'Radrod', 'reda@reda.com', '123456789', '123', 2, 'Mreda', '1998-09-23', 2, 'false'),
-(2, 'Sherif', 'Nayad', 'Email@email.com', '987654321', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'admin', '1998-10-25', 2, 'false'),
-(3, 'Omar', 'Anas', 'Email@email.com', '123431', 'omar', 2, 'oanas', '1997-11-29', 2, 'true'),
-(4, 'Alley', 'Dorry', 'Email@email.com', '748394827', '123', 2, 'Dorry3', '1997-09-22', 2, 'false'),
-(5, 'Mohamed', 'Abo El Rejal', 'email@email.com', '134983', '123', 3, 'MA', '2010-02-13', 2, 'false'),
-(6, 'Ahmed', 'Reda', 'Email@email.com', '123431', '123', 2, 'areda', '1996-03-04', 2, 'false'),
-(7, 'Karim', 'Dorry', 'email@email.com', '73894857481', '123', 6, 'kdorry', '2006-10-23', 4, 'true'),
-(8, 'Sherif', 'Dorry', 'email@email.com', '87654131', '123', 3, 'sdorry', '1992-01-01', 4, 'false'),
-(9, 'Karim', 'Karim', 'Email@email.com', '34565432', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 6, 'Yukimura', '1987-02-03', 4, 'false'),
-(10, 'Mego', 'Cena', 'Email@email.com', '1235431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 12, 'Magoichi', '1992-10-28', 4, 'true'),
-(11, 'pro', 'pro', 'pro@pro.com', '134543', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'pro', '1990-01-01', 4, 'true');
+(1, 'Mohamed', 'Radrod', 'reda@reda.com', '123456789', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Mreda', '1998-09-23', 2, 'false'),
+(2, 'Sherif', 'Nayad', 'reda@reda.com', '987654321', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'admin', '1998-10-25', 2, 'false'),
+(3, 'Omar', 'Anas', 'Email@email.com', '123431', '4a6db2314c199446c0e2d3e48e30295622c96639', 2, 'oanas', '1997-11-29', 2, 'true'),
+(4, 'Alley', 'Dorry', 'Email@email.com', '748394827', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Dorry3', '1997-09-22', 2, 'false'),
+(5, 'Mohamed', 'Abo El Rejal', 'email@email.com', '134983', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'MA', '2010-02-13', 2, 'false'),
+(6, 'Ahmed', 'Reda', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'areda', '1996-03-04', 2, 'false'),
+(7, 'Karim', 'Dorry', 'Email@email.com', '73894857481', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'kdorry', '2006-10-23', 4, 'false'),
+(8, 'Sherif', 'Dorry', 'email@email.com', '87654131', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'sdorry', '1992-01-01', 4, 'false'),
+(9, 'Karim', 'Karim', 'Email@email.com', '34565432', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'kdorry', '1987-02-03', 4, 'false'),
+(10, 'Mego', 'Cena', 'Email@email.com', '1235431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'mCena', '1992-10-28', 4, 'false');
 
 -- --------------------------------------------------------
 
@@ -292,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `usertype` (
   `type` varchar(255) NOT NULL,
   `isdeleted` varchar(255) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usertype`
@@ -301,12 +303,11 @@ CREATE TABLE IF NOT EXISTS `usertype` (
 INSERT INTO `usertype` (`id`, `type`, `isdeleted`) VALUES
 (1, 'Admin', 'false'),
 (2, 'Patient', 'false'),
-(3, 'Doktor', 'false'),
+(3, 'doctor', 'false'),
 (6, 'Janitor', 'false'),
 (10, 'Receptionist', 'false'),
 (11, 'intern', 'true'),
-(12, 'Diseased', 'true'),
-(14, 'test', 'true');
+(12, 'Diseased', 'false');
 
 -- --------------------------------------------------------
 
@@ -401,6 +402,27 @@ ALTER TABLE `reserve`
 ALTER TABLE `user`
   ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`addressid`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`usertypeid`) REFERENCES `usertype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `useropvalue`
+--
+ALTER TABLE `useropvalue`
+  ADD CONSTRAINT `useropvalue_ibfk_1` FOREIGN KEY (`userTyOpId`) REFERENCES `usertypeoptions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `useropvalue_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `usertypelinks`
+--
+ALTER TABLE `usertypelinks`
+  ADD CONSTRAINT `usertypelinks_ibfk_1` FOREIGN KEY (`typeid`) REFERENCES `usertype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usertypelinks_ibfk_2` FOREIGN KEY (`linkid`) REFERENCES `links` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `usertypeoptions`
+--
+ALTER TABLE `usertypeoptions`
+  ADD CONSTRAINT `usertypeoptions_ibfk_1` FOREIGN KEY (`userTypeId`) REFERENCES `usertype` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `usertypeoptions_ibfk_2` FOREIGN KEY (`optionsId`) REFERENCES `useroptions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
