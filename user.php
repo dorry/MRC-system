@@ -1,7 +1,7 @@
 <?php
 require_once"mydatabaseconnection.php";
 require_once"reserve.php";
-
+require_once"IReport.php";
 class user
 {
 public $addressid;
