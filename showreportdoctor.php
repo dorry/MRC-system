@@ -1,5 +1,8 @@
 <?php
-session_start();
+// session_start();
+
+require_once "doctor.php";
+require_once "doctorcontroller.php";
 if(!empty($_SESSION))
 {
   
@@ -8,8 +11,6 @@ else
 {
   header("Location:index.php");
 }
-require_once "doctor.php";
-require_once "doctorcontroller.php";
 ?>
   <head>
   </head>
