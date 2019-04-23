@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 22, 2019 at 10:55 AM
+-- Generation Time: Apr 23, 2019 at 10:39 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `physicallink` varchar(255) NOT NULL,
   `isdeleted` varchar(255) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `links`
@@ -69,7 +69,9 @@ CREATE TABLE IF NOT EXISTS `links` (
 
 INSERT INTO `links` (`id`, `linkname`, `physicallink`, `isdeleted`) VALUES
 (1, 'RESERVATION', 'reservation.php', 'false'),
-(2, 'ADMIN PANEL', 'adminPanel.php', 'false');
+(2, 'ADMIN PANEL', 'adminPanel.php', 'false'),
+(3, 'REPORTS', 'doctorreport.php', 'true'),
+(4, 'DOCTOR PANEL', 'doctorPanel.php', 'false');
 
 -- --------------------------------------------------------
 
@@ -86,11 +88,21 @@ CREATE TABLE IF NOT EXISTS `patientreport` (
   `technique` varchar(255) NOT NULL,
   `findings` varchar(255) NOT NULL,
   `opinion` varchar(255) NOT NULL,
+  `isdeleted` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `docid` (`docid`),
   KEY `patid` (`patid`),
   KEY `radid` (`radid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `patientreport`
+--
+
+INSERT INTO `patientreport` (`id`, `docid`, `patid`, `radid`, `technique`, `findings`, `opinion`, `isdeleted`, `date`) VALUES
+(5, 5, 1, 1, 'hello', 'heheheh', '121212', 'false', '2019-04-22 19:21:51'),
+(6, 5, 12, 2, 'hello', 'wewresdfgh', 'dfghfdsadfghj', 'false', '2019-04-22 22:50:51');
 
 -- --------------------------------------------------------
 
@@ -134,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `reservationdetails` (
   PRIMARY KEY (`ID`),
   KEY `RID` (`ReserveID`),
   KEY `PID` (`RadiologyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservationdetails`
@@ -143,7 +155,9 @@ CREATE TABLE IF NOT EXISTS `reservationdetails` (
 INSERT INTO `reservationdetails` (`ID`, `ReserveID`, `RadiologyID`, `quantity`, `isdeleted`) VALUES
 (2, 3, 1, 1, 'false'),
 (5, 6, 5, 1, 'false'),
-(6, 7, 4, 1, 'false');
+(6, 7, 4, 1, 'false'),
+(8, 9, 3, 1, 'false'),
+(9, 10, 3, 1, 'false');
 
 -- --------------------------------------------------------
 
@@ -161,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `reserve` (
   PRIMARY KEY (`ID`),
   KEY `PID` (`PatientID`),
   KEY `DID` (`DoctorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reserve`
@@ -170,7 +184,9 @@ CREATE TABLE IF NOT EXISTS `reserve` (
 INSERT INTO `reserve` (`ID`, `PatientID`, `DoctorID`, `Date`, `isdeleted`) VALUES
 (3, 1, 5, '2018-10-23 20:40:00.000000', 'false'),
 (6, 1, 8, '2019-06-01 01:00:00.000000', 'false'),
-(7, 1, 5, '2019-03-19 01:00:00.000000', 'false');
+(7, 1, 5, '2019-03-19 01:00:00.000000', 'false'),
+(9, 11, 8, '2019-04-23 00:59:00.000000', 'false'),
+(10, 12, 5, '2019-05-15 00:00:00.000000', 'false');
 
 -- --------------------------------------------------------
 
@@ -214,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `addressid` (`addressid`),
   KEY `UTID` (`usertypeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -230,7 +246,9 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `socialnumber`, `pas
 (7, 'Karim', 'Dorry', 'Email@email.com', '73894857481', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'kdorry', '2006-10-23', 4, 'false'),
 (8, 'Sherif', 'Dorry', 'email@email.com', '87654131', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'sdorry', '1992-01-01', 4, 'false'),
 (9, 'Karim', 'Karim', 'Email@email.com', '34565432', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'kdorry', '1987-02-03', 4, 'false'),
-(10, 'Mego', 'Cena', 'Email@email.com', '1235431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'mCena', '1992-10-28', 4, 'false');
+(10, 'Mego', 'Cena', 'Email@email.com', '1235431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'mCena', '1992-10-28', 4, 'false'),
+(11, 'Shehab', 'Mohamed', 'shobymoh@gmail.com', '2132324324234', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, 'sheboo', '2019-04-23', 2, 'false'),
+(12, 'Shehab', 'Mohamed', 'shobymoh@gmail.com', '2122324332424', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, 'shabo', '2019-04-24', 2, 'false');
 
 -- --------------------------------------------------------
 
@@ -324,7 +342,7 @@ CREATE TABLE IF NOT EXISTS `usertypelinks` (
   PRIMARY KEY (`id`),
   KEY `LID` (`linkid`),
   KEY `TID` (`typeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usertypelinks`
@@ -333,10 +351,12 @@ CREATE TABLE IF NOT EXISTS `usertypelinks` (
 INSERT INTO `usertypelinks` (`id`, `typeid`, `linkid`, `isdeleted`) VALUES
 (1, 2, 1, 'false'),
 (2, 1, 2, 'true'),
-(3, 3, 1, 'false'),
+(3, 3, 4, 'false'),
 (4, 10, 1, 'false'),
 (5, 11, 2, 'false'),
-(8, 12, 1, 'false');
+(8, 12, 1, 'false'),
+(9, 3, 4, 'false'),
+(10, 3, 4, 'false');
 
 -- --------------------------------------------------------
 

@@ -53,7 +53,9 @@ class doctor extends user
                 }
             }
         }
-        return $arraypatients;
+        $length2 = count($array);
+        if($length2==0){return;}
+        else return $arraypatients;
     }
     static function showpatientreport($reportid)
     {
