@@ -31,106 +31,77 @@ static function insertoptiontypeeav($obj,$obj1,$obj2)
 
 static function giveoption($obj,$obj1)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "Insert INTO usertypeoptions (optionsId,userTypeId) values('$obj->id','$obj1->id')";
-    mysqli_query($conn,$sql);
-           header("Location:UTD.php");
-
+    $DB=database::getinstance();
+    $result = $DB->insertquery("usertypeoptions", "optionsId,userTypeId" , "'$obj->id','$obj1->id'");
+    header("Location:UTD.php");
 }
-
-
 static function edituseroptions ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "UPDATE `useroptions` SET `name` = '$obj->name' WHERE id = '$obj->id'";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->updatequery("useroptions", "name" , "'$obj->name'" , "id = '$obj->id'");
     header("Location:UTD.php");
 }
 
 static function deleteuseroptions ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql="UPDATE `useroptions` SET isdeleted = 'true'
-    WHERE id = $obj->id";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->updatequery("useroptions", "isdeleted" , "'true'" , "id = '$obj->id'");
     header("Location:UTD.php");
-
 }
 
 static function adduseroptions ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "Insert INTO useroptions (name,type) values('$obj->name','$obj->type')";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->insertquery("useroptions", "name,type" , "'$obj->name','$obj->type'");
     header("Location:UTD.php");
-    echo "<script>alert('A New Option  has been created')</script>";
 }
 
 static function deleteusertype ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = " UPDATE `usertype` SET `isdeleted` = 'true' WHERE `id` = '".$obj->id."'";
-    $result = mysqli_query($conn, $sql);     
+    $DB=database::getinstance();
+    $result = $DB->updatequery("usertype", "isdeleted" , "'true'" , "id = '$obj->id'");
+    header("Location:Roles.php");
 }
 
 
 static function editusertype ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql="UPDATE usertype
-          SET type= '$obj->type'
-          WHERE id = $obj->id;";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->updatequery("usertype", "type" , "'$obj->type'" , "id = '$obj->id'");
     header("Location:Roles.php");
 }
 
 
 static function addusertype($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "Insert INTO usertype (type) values('$obj->type')";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->insertquery("usertype", "type" , "'$obj->type'");
     header("Location:Roles.php");
 }
 
 
 static function admindeleteuser ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$obj->id."'";
-    $result = mysqli_query($conn, $sql); 
-    echo $sql;
+    $DB=database::getinstance();
+    $result = $DB->updatequery("user", "isdeleted" , "'true'" ,"id='$obj->id'" );
+        echo $sql;
 }
 
 
 static function adminedituser ($obj){
-    $DB=new database();
-    $conn=$DB->DBC();
-
-    $sql = "update user set email ='" . $obj->email . 
-        "' , password ='" . $obj->password . 
-        "' , username ='" . $obj->username .
-         "' , usertypeid='". $obj->usertypeid."'
-        WHERE id ='".$obj->id."'";
-        $result = mysqli_query($conn, $sql); 
-        header("Location:userCRUD.php");
+    $DB=database::getinstance();
+        $result = $DB->update4query("user", 
+        "email" ,"password", "username" , "usertypeid"
+        ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
+         "id='$obj->id'" );
+       header("Location:userCRUD.php");
 
 }
 static function addradiology ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "Insert INTO radiology (Name,price) values('$obj->name' ,'$obj->price')";
-    mysqli_query($conn,$sql);
-    echo "<script>alert('A New role  has been created')</script>";
+  
+    $DB=database::getinstance();
+    $result = $DB->insertquery("radiology", "Name,price" , "'$obj->name' ,'$obj->price'" );
     header("Location:radiologyCRUD.php");
 
 }
@@ -138,57 +109,42 @@ static function addradiology ($obj)
 
 static function editradiology ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "UPDATE radiology SET Name= '$obj->name' ,  price = '$obj->price' WHERE ID='$obj->id'";
-    mysqli_query($conn,$sql);
-    header("Location:radiologyCRUD.php");
+    $DB=database::getinstance();
+    $result = $DB->update2query("radiology", "Name" , "price" , "'$obj->name'" , "'$obj->price'" ,
+                               "ID = '$obj->id'"); 
+
+      //  header("Location:radiologyCRUD.php");
 
 }
 
 static function deleteradiology ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql="UPDATE radiology SET isdeleted='true'
-    WHERE ID = $obj->id";
-    mysqli_query($conn,$sql);   
+    $DB=database::getinstance();
+    $result = $DB->updatequery("radiology", "isdeleted" , "'true'" , "id = '$obj->id'");   
     header("Location:radiologyCRUD.php");
 }
 
 static function addlink ($obj,$obj1)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-	$sql = "Insert INTO usertypelinks (typeid,linkid) values('$obj1->id', '$obj->id')";
-    mysqli_query($conn,$sql);
-    header("Location:Roles.php");
+
+    $DB=database::getinstance();
+    $result = $DB->insertquery("usertypelinks", "typeid,linkid" , "'$obj1->id','$obj->id'" );
+    header("Location:linkCRUD.php");
 
 }
 
 static function createlink ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-	$sql = "Insert INTO links (linkname,physicallink) values('$obj->linkname','$obj->physicallink')";
-    mysqli_query($conn,$sql);
-    echo $sql;
+    $DB=database::getinstance();
+    $result = $DB->insertquery("links", "linkname,physicallink" , "'$obj->linkname','$obj->physicallink'" );
     header("Location:linkCRUD.php");
-
 }
 
 
 static function editlink ($obj,$obj1)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-
-	$sql="UPDATE usertypelinks
-		  SET linkid = $obj->id
-		  WHERE typeid = $obj1->id;";
-    mysqli_query($conn,$sql);
+    $DB=database::getinstance();
+    $result = $DB->updatequery("usertypelinks", "linkid" , "'$obj->id'" , "typeid = '$obj1->id'");
     header("Location:index.php");
 
 
@@ -197,43 +153,24 @@ static function editlink ($obj,$obj1)
 
 static function deletelink ($obj)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql="UPDATE links SET isdeleted='true'
-    WHERE id = $obj->id";
-mysqli_query($conn,$sql);
-header("Location:index.php");
-
-
+    $DB=database::getinstance();
+    $result = $DB->updatequery("links", "isdeleted" , "'true'" , "id = '$obj->id'");
+    header("Location:index.php");
 }
 public static function editreserve ($obj,$obj1)
   {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql1 = "UPDATE reservationdetails 
-            SET RadiologyID='$obj1->radiologyid'
-            WHERE ReserveID='$obj1->id'";
-
-    $sql= "UPDATE reserve
-          SET DoctorID = '$obj->doctorid' , Date = '$obj->date' 
-          WHERE ID  = '$obj1->id' ";
-
-    $result = mysqli_query($conn, $sql);
-    $result1 = mysqli_query($conn, $sql1);
-    // header("Location:ReservationCRUD.php");
+    $DB=database::getinstance();
+    $result = $DB->updatequery("reservationdetails", "RadiologyID" , "'$obj1->radiologyid'" 
+        , "ReserveID='$obj1->id'");
+    $result1 = $DB->update2query("reserve", "DoctorID" , "Date" , "'$obj->doctorid'" , "'$obj->date'" 
+        , "ID = '$obj1->id' ");
+     header("Location:ReservationCRUD.php");
   }
   public static function deletereserve ($obj1)
   {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql1 = "UPDATE reservationdetails 
-            SET isdeleted='true'
-            WHERE ReserveID='$obj1->id'";
-    $sql= "UPDATE reserve
-          SET isdeleted='true'
-          WHERE ID  = '$obj1->id' ";
-    $result = mysqli_query($conn, $sql);
-    $result1 = mysqli_query($conn, $sql1);
+    $DB=database::getinstance();
+    $result = $DB->updatequery("reservationdetails", "isdeleted" , "'true'" , "ReserveID='$obj1->id'");
+    $result = $DB->updatequery("reserve", "isdeleted" , "'true'" , "ID  = '$obj1->id'");
     // header("Location:ReservationCRUD.php");
   }
 }

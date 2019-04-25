@@ -38,16 +38,18 @@ $user->socialnumber=$socialnumber;
 $user->adduser($user);
 }
 if(isset($_POST['edit'])){ 
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql = "update user set firstname = '" . $_POST["FName"] . 
-    "' , lastname ='" . $_POST["LName"] .  
-    "' , email ='" . $_POST["Email"] . 
-    "' , socialnumber ='" . $_POST["socialnumber"] . 
-    "' , password ='" . sha1($_POST["Password"]). 
-    "' , dob ='" . $_POST["dob"] .  
-    "' , username ='" . $_POST["username"] . "' WHERE id ='".$_SESSION['ID']."'";
-    $result = mysqli_query($conn, $sql);
+    $DB=database::getinstance();   
+
+    $F =$_POST["FName"];
+    $L =$_POST["LName"];
+    $E =$_POST["Email"];
+    $S =$_POST["socialnumber"];
+    $P =sha1($_POST["Password"]);
+    $D =$_POST["dob"];
+    $U =$_POST["username"];
+    $ID = $_SESSION['ID'];
+
+    $result = $DB->update7query("user","firstname","lastname","email","socialnumber","password","dob","username" , "'$F'", "'$L'","'$E'" , "'$S'", "'$P'","'$D'", "'$U'"," id = '$ID'");
        if($result){
             $_SESSION["FirstName"] = $_POST["FName"];
             $_SESSION["LastName"] = $_POST["LName"];
@@ -55,7 +57,6 @@ if(isset($_POST['edit'])){
             $_SESSION["username"] = $_POST["username"];
             // header("Location:index.php");
         }
-        else{return $sql;}
     }
 class usercontroller
 {

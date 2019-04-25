@@ -29,11 +29,8 @@ static function selectforUTDsubmit($rid){
 
 static function selectUTOeav($id)
 {
-  $DB=new database();
-  $conn=$DB->DBC();
-    
- $query = "SELECT  * FROM `usertypeoptions` where userTypeId= '$id';";
-  $result = mysqli_query($conn, $query);
+    $DB=database::getinstance();
+    $result = $DB->query("usertypeoptions", "userTypeId= '$id' and isdeleted='false'");
   $i = 0;
   $array;
   if(mysqli_num_rows($result) > 0)

@@ -129,8 +129,9 @@ public static function showuserdropdowneav($rid){
  
     echo"<label>Users</label>";
     echo" <select name='user'>";
-    for ($i=0; $i<$length;$i++)
-    {
+  if ($length > 0){
+     for ($i=0; $i<$length;$i++)
+    { 
 ?>
     <option  value = "<?php echo $result[$i]['id'];?>">
                 <?php 
@@ -144,7 +145,11 @@ public static function showuserdropdowneav($rid){
 <?php
 
 }
+
+
   echo "</select>";
+}
+else {echo " No User Avaliabe";}
 }
 
 public static function showoptionsforeav($rid){
@@ -155,17 +160,13 @@ public static function showoptionsforeav($rid){
       for ($i=0; $i<$length;$i++)
     {
 ?>
-  <input name="<?php echo $result[$i]['name']?>" 
+    <input name="<?php echo $result[$i]['name']?>" 
          type="<?php echo $result[$i]['type']; ?>" 
          placeholder="Type<?php echo $result[$i]['name']; ?>"> 
 <?php
 }
 }
-else {
-
-echo " No Option Avaliabe";
-
-}
+else {echo " No Option Avaliabe";}
 }
 
 public static function showediteavtypeform(){
@@ -337,14 +338,14 @@ public static function showusertypes(){
         $result = usertype::selectallusertypes();
         $length =  count($result);
         for ($i=0; $i<$length;$i++)
-    {
+{
 ?>
 <tr>
 <td> <?php echo $result[$i]['type'];?> </td>
 <td> <?php echo $result[$i]['id'];?> </td>
 </tr>
 <?php
- }
+}
  echo "</table>";
 }
 

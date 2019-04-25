@@ -6,8 +6,6 @@ require_once"admincontroller.php";
 require_once"usertypeoptionscontroller.php";
 require_once"useroptionscontroller.php";
   
-  $DB=new database();
-  $conn=$DB->DBC();
     
 $RIDs = $_REQUEST["e"];
 $c = new admincontroller();

@@ -196,8 +196,7 @@ button.social-signin.google {
   $c = new admincontroller();
   $c->viewtypedropdowneav();
   $c->vieweavtypeform();
-
-?>
+  ?>
 <br>
 
 

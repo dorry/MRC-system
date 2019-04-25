@@ -7,90 +7,63 @@ class radiology
   public $price;
   public $id;
 
-
   public static function selectformyres($lid)
   {
-    $DB=new database();
-    $conn=$DB->DBC();   
+    $DB=database::getinstance();  
     $PId = reservationdetails::selectformyres($lid); 
     $length = count($PId);
     $array;
     for ($i=0; $i<$length;$i++)
     { 
       $ID=$PId[$i]['RadiologyID']; 
-      $query="SELECT * FROM `radiology` WHERE ID = $ID";
-      $result = mysqli_query($conn, $query);
-      if($row = mysqli_fetch_array($result))
-      { 
-        $array[$i] = $row;
-      }
-      else 
-      {
-        return;
-      }
+      $result = $DB->query("radiology", "ID = '$ID' and isdeleted='false'");
+      while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
     } 
     $length2 = count($PId);
     if($length2==0){return;}
     else return $array;
-}
+  }
   public static function selectforadminview()
   {
-    $DB=new database();
-    $conn=$DB->DBC();   
+    $DB=database::getinstance();
     $PId = reservationdetails::selectforadminview();  
     $length = count($PId);
     $array;
     for ($i=0; $i<$length;$i++)
     { 
       $ID=$PId[$i]['RadiologyID']; 
-      $query="SELECT * FROM `radiology` WHERE ID = $ID";
-      $result = mysqli_query($conn, $query);
-      if($row = mysqli_fetch_array($result))
-      {
-        $array[$i] = $row;
-      }
-      else 
-      {
-        return;
-      }
+    //  $query="SELECT * FROM `radiology` WHERE ID = $ID";
+      $result = $DB->query("radiology", " ID = '$ID' and isdeleted='false'");
+      while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
     } 
     return $array;
   }
-
   static function retriveforgivelink()
   {
-    $DB=new database();
-    $conn=$DB->DBC();
+    $DB=database::getinstance();
+    $result4 = $DB->query("radiology", "isdeleted='false'");
     $i = 0;
-    $sql4 = "SELECT  *  FROM `radiology` WHERE isdeleted = 'false'";
-    $result4 = mysqli_query($conn, $sql4);
-    if(mysqli_num_rows($result4) > 0)
-    {
+
       while($row = mysqli_fetch_array($result4))
       {
         $array[$i]=$row;
         $i++;
       }
-      return $array;
-    }
+      return $array;    
   }
 
   static function retriveradiology ()
   {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $i = 0;
+    $DB=database::getinstance();
+    $result = $DB->query("radiology", "isdeleted='false'");
     $sql4 = "SELECT  *  FROM `radiology` WHERE isdeleted = 'false'";
-    $result4 = mysqli_query($conn, $sql4);
-    if(mysqli_num_rows($result4) > 0)
-    {
-      while($row = mysqli_fetch_array($result4))
+    $i =0;
+     while($row = mysqli_fetch_array($result4))
       {
         $array[$i]=$row;
         $i++;
       }
       return $array;
-    }
   }
 }
 ?>

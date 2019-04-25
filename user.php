@@ -19,21 +19,19 @@ public $City;
 
 static function selectuserformyres($lid)
 {
-
-  $DB=new database();
-  $conn=$DB->DBC();   
+  $DB=database::getinstance();  
   $PId = reserve::selectmyres($lid);  
   $length = count($PId);
   $array;
   for ($i=0; $i<$length;$i++)
   { 
     $DID = $PId[$i]['DoctorID'];
-    $query="SELECT * FROM `user` WHERE `id` = '$DID'";
-    $result = mysqli_query($conn, $query);
-
-    if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
-    else {return;}
+    $result = $DB->query("user", "id= '$DID'");
+        while($row = mysqli_fetch_array($result))
+       {
+    $array[$i] = $row;
    } 
+}
   $length2 = count($PId);
   if($length2==0){return;}
   else return $array;
@@ -43,22 +41,18 @@ static function selectuserformyres($lid)
 
 static function selectformyres($lid){
 
-  $DB=new database();
-  $conn=$DB->DBC();   
+  $DB=database::getinstance();  
   $PId = reserve::selectmyres($lid);  
   $length = count($PId);
   $array;
   for ($i=0; $i<$length;$i++)
   { 
     $DID = $PId[$i]['PatientID'];
-    $query="SELECT * FROM `user` WHERE `id` = '$DID'";
-    $result = mysqli_query($conn, $query);
-
-    if($row = mysqli_fetch_array($result)){$array[$i] = $row;}
-  
-    else {return;}
-
-
+    $result = $DB->query("user", "id= '$DID'");
+        while($row = mysqli_fetch_array($result))
+       {
+    $array[$i] = $row;
+    }
    } 
      $length2 = count($PId);
   if($length2==0){return;}
@@ -68,42 +62,34 @@ static function selectformyres($lid){
 
 
 static function selectforresview(){
-  $DB=new database();
-  $conn=$DB->DBC();   
+  $DB=database::getinstance();    
   $PId = reserve::selectforviewadmin();  
   $length = count($PId);
   $array;
   for ($i=0; $i<$length;$i++)
   { 
     $ID=$PId[$i]['PatientID']; 
-    $query="SELECT * FROM `user` WHERE `id` = '$ID'";
-    $result = mysqli_query($conn, $query);
-   if($row = mysqli_fetch_array($result))
-    {
-      $array[$i] = $row;
-    }
-      else {return;}
-
-
+    $result = $DB->query("user", "id= '$ID'");
+        while($row = mysqli_fetch_array($result))
+       {
+    $array[$i] = $row;
    } 
+ }
    $length2 = $PId;
   if($length2==0){return;}
   else return $array;
 }
 
 static function selectdocforresview(){
-  $DB=new database();
-  $conn=$DB->DBC();   
+  $DB=database::getinstance();
   $DrId = reserve::selectforviewadmin();  
   $length = count($DrId);
   $array;
   for ($i=0; $i<$length;$i++)
   { 
     $ID=$DrId[$i]['DoctorID']; 
-    $query="SELECT * FROM `user` WHERE `id` = '$ID'";
-    $result = mysqli_query($conn, $query);
-  if($row = mysqli_fetch_array($result)) {$array[$i] = $row;}
-      else {return;} 
+    $result = $DB->query("user", "id= '$ID'");
+     while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
  } 
  
   return $array;
@@ -111,81 +97,67 @@ static function selectdocforresview(){
 }
 
 static function selectauserseav($id){
-  $DB=new database();
-  $conn=$DB->DBC();   
- $query = "SELECT  * FROM `user` where usertypeid= '$id';";
-  $result = mysqli_query($conn, $query);
+
+  $DB=database::getinstance();
+  $result = $DB->query("user", "usertypeid= '$id' and isdeleted='false'");
   $i = 0;
   $array;
-  if(mysqli_num_rows($result) > 0)
-  {
-        while($row = mysqli_fetch_array($result))
+      while($row = mysqli_fetch_array($result))
        {
         $array[$i]=$row;
         $i++;
        }
+       if($i>0)
       return $array;
-}  
+    else return;
 }
 
 
 static function selectallusers(){
-  $DB=new database();
-  $conn=$DB->DBC();
-    
-  $query = "SELECT  *  FROM `user` WHERE isdeleted='false'";
-  $result = mysqli_query($conn, $query);
+  $DB=database::getinstance();
+  $result = $DB->query("user", "isdeleted='false'");
+
   $i = 0;
-  $array;
-  if(mysqli_num_rows($result) > 0)
-  {
-        while($row = mysqli_fetch_array($result))
+  $array;  
+   while($row = mysqli_fetch_array($result))
        {
         $array[$i]=$row;
         $i++;
        }
       return $array;
-}
+
   
 }
 
 static function retrivedoctorsforeditres()
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql4 = "SELECT  *  FROM `user` WHERE isdeleted='false' 
-    and usertypeid = (select id from usertype where type = 'doctor')";
-    $result4 = mysqli_query($conn, $sql4);
+  $DB=database::getinstance();   
+  $result4 = $DB->query("user", "isdeleted='false' 
+    and usertypeid = (select id from usertype where type = 'doctor')");
     $i = 0;
     $array;
-    if(mysqli_num_rows($result4) > 0){
        while($row = mysqli_fetch_array($result4))
       {
         $array[$i]=$row;
         $i++;
       }
       return $array;
-  }
 }
 
 static function RetrieveProfileForUser($lid)
 {
-    $DB=new database();
-    $conn=$DB->DBC();
+    $DB=database::getinstance();   
     $sql4 = "SELECT  *  FROM `user` WHERE id='$lid' and isdeleted='false'";
-    $result4 = mysqli_query($conn, $sql4);
+    $result4 = $DB->query("user", "id= '$lid'");
     $i = 0;
     $array;
-    if(mysqli_num_rows($result4) > 0){
-       while($row = mysqli_fetch_array($result4))
+    while($row = mysqli_fetch_array($result4))
       {
         $array[$i]=$row;
         $i++;
       }
       return $array;
-  }
 }
-
 static function PROTOTYPE(){
     $DB=new database();
     $conn=$DB->DBC();
@@ -225,80 +197,37 @@ static function PROTOTYPE(){
 
 }
 static function adduser ($obj)
-{//ya sherif
-    
-    $DB=new database();
-    $conn=$DB->DBC();
-  
+{   
+        $DB=database::getinstance();
         if($_POST['password'] = $_POST['password2']){
-        
-            
             $sql7 = "SELECT id FROM `address` WHERE name='$obj->City'";
-            $result7 = mysqli_query($conn, $sql7);
-            while ($x = mysqli_fetch_array($result7)) {
+            $result7 = $DB->query("address", "name='$obj->City'");
+            while ($x = mysqli_fetch_array($result7))
+             {
             $CIDs= $x[0];
             }        
-            $sql = "Insert INTO user (firstname,lastname,username,email,Password,usertypeid,addressid,socialnumber,dob,isdeleted)   
-              values('$obj->firstname','$obj->lastname','$obj->username','$obj->email','$obj->password','2','$CIDs','$obj->socialnumber','$obj->dob','false')" ;
-            mysqli_query($conn,$sql);
-                   header("Location:index.php");
+            $sql = $DB->insertquery("user", " firstname,lastname,username,email,Password,
+            usertypeid,addressid,socialnumber,dob,isdeleted" , "'$obj->firstname','$obj->lastname','$obj->username','$obj->email','$obj->password','2','$CIDs','$obj->socialnumber','$obj->dob','false'");
+
+                       header("Location:index.php");
         }
         else 
             {
               echo "<script>alert('Passwords written are not the same')</script>"; 
               header("Location:index.php");
             }
-        
-        
-        
-        
-        
-}
-
-
-static function edituser ()
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sqlToGetExtraInfo="select * from user where id ='".$_SESSION['ID']."'";
-    $result=mysqli_query($conn , $sqlToGetExtraInfo);
-    if($row = mysqli_fetch_array($result)){
-    echo "
-    <form action='' method='post'>
-         FirstName:
-        <input type='text' value='".$_SESSION['FirstName']."' name='FName'><br>
-         LastName:
-        <input type='text' value='".$_SESSION['LastName']."' name='LName'><br>
-         Email: 
-        <input type='text' value='".$_SESSION['Email']."' name='Email'><br>
-        Password: 
-        <input type='text' value='' name='Password'><br>
-        Social Security Number: 
-        <input type='text' value='".$row['socialnumber']."' name='socialnumber'><br>
-        Date of birth:
-        <input type='text' value='".$row['dob']."' name='dob'><br>
-        username: 
-        <input type='text' value='".$_SESSION['username']."' name='username'><br> 
-        <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
-        </form> ";
-    }
-
-}
+          }
 
 static function deleteuser ()
 {
-    $DB=new database();
-        $conn=$DB->DBC();
+        $DB=database::getinstance();
     session_start();
     if(!empty($_SESSION))
     {
-        $query = " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$_SESSION["ID"]."'";
-       
-
-        mysqli_query($conn, $query);
-        mysqli_close($conn);
+        $query =  " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$_SESSION["ID"]."'";
+        $result= $DB->updatequery("user","isdeleted" , "'true'" , "id = '".$_SESSION["ID"]."'");
         session_unset();
-        header("Location:index.php");
+       header("Location:index.php");
     }
     else
     {
@@ -311,19 +240,19 @@ static function deleteuser ()
 
 static function login($username,$password)
     {
-        $DB=new database();
-        $conn=$DB->DBC();
+        $DB=database::getinstance();
         session_start();
         $linkNameArray=array();
         $linkPhysicalArray=array();
         if(isset($_POST['signin_submit']))
         { 
 
-            $sql = "select * from user where
-             username = '$username' and 
-             password = '$password' and `isdeleted`= 'false'";
-             $result = mysqli_query($conn, $sql);
-        
+   //         $sql = "select * from user where
+     //        username = '$username' and 
+       //      password = '$password' and `isdeleted`= 'false'";
+          $result = $DB->query("user", "username = '$username' and 
+             password = '$password' and isdeleted= 'false'");
+
             if($row = mysqli_fetch_array($result))
             {
                   $typeId = $row["usertypeid"];
@@ -333,13 +262,12 @@ static function login($username,$password)
                 $_SESSION["username"] = $row["username"];
                 $_SESSION["Password"] = $row["password"];
                 $_SESSION["ID"] = $row["id"];
-                $sql2="SELECT * FROM `usertypelinks` WHERE typeId = $typeId";
-                $result2 = mysqli_query($conn, $sql2);
-                while($row2 = mysqli_fetch_array($result2))
+                $result2 = $DB->query("usertypelinks", "typeId = $typeId");
+             while($row2 = mysqli_fetch_array($result2))
                 {
                     $linkId = $row2["linkid"];
                     $sql3="SELECT * FROM `links` WHERE id = $linkId";
-                    $result3 = mysqli_query($conn, $sql3);
+                    $result3 = $DB->query("links", "id = $linkId");
                     while($row3 = mysqli_fetch_array($result3))
                     {
                         // $_SESSION['link']
@@ -363,8 +291,7 @@ static function login($username,$password)
     }
 static function logout()
     {
-        $DB=new database();
-        $conn=$DB->DBC();
+         $DB=database::getinstance();
         session_start();
         if(!empty($_SESSION))
         {

@@ -158,104 +158,85 @@ $i = 0;
 
 
 if(isset($_POST['eutd_submit'])){
-$DB=new database();
-$conn=$DB->DBC();
-  $R = $_POST['roleid'];
-  $U =  $_POST['user'];
-
-  $sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId=$R" ;
-  $result5 = mysqli_query($conn, $sql5);
-    if(mysqli_num_rows($result5) > 0){
+   $DB=database::getinstance();
+   $R = $_POST['roleid'];
+   $U =  $_POST['user'];
+   $result5 = $DB->query("usertypeoptions", "usertypeid= '$R' and isdeleted='false'");
       $oname = array();
       $usertypeoptions = array();
         while($row = mysqli_fetch_array($result5))
       {
-        $OID = $row['optionsId'];
-      $sql6 = "SELECT  * FROM `useroptions` where id= '$OID';";
-      $result6 = mysqli_query($conn, $sql6);
-         if(mysqli_num_rows($result6) > 0){
-             while($rowUsOp = mysqli_fetch_array($result6))
+      $OID = $row['optionsId'];
+      $result6 = $DB->query("useroptions", "id= '$OID' and isdeleted='false'");
+      while($rowUsOp = mysqli_fetch_array($result6))
           {
           
              array_push($oname, $rowUsOp['name']);
-                      
-                   }
-                }
-            }
-        }
-  $get_uto_id = "select id from usertypeoptions where userTypeId =$R" ;
+          }
+       }
   //echo $get_uto_id;
-  $result_uto = mysqli_query($conn, $get_uto_id);
-  $sql10 = "SELECT userTyOpId from useropvalue where userId = $U";
-  $result10 =mysqli_query($conn,$sql10);
+  $result_uto = $DB->idquery("usertypeoptions", "userTypeId ='$R' and isdeleted='false'");      
+
+  $sql10 = "SELECT * from useropvalue where userId = $U";
+  $result10 = $DB->query("useropvalue", "userId = '$U' and isdeleted='false'");      
   // secho $sql10;
-  if(mysqli_num_rows($result10) > 0){
     while($row55= mysqli_fetch_array($result10))
- {
-    
+  {
    array_push($usertypeoptions, $row55['userTyOpId']);
-            
-         }
-      }
-    if(mysqli_num_rows($result_uto) > 0){
-      
+  }
         while($row = mysqli_fetch_array($result_uto))
       {
-       $insert_values = "UPDATE useropvalue
-        SET value='".$_POST[$oname[$i]]."' 
-        WHERE userTyOpId = ".$usertypeoptions[$i]." " ;
-            echo $insert_values;
-             mysqli_query($conn , $insert_values);
-             $i++;
+        $o = $_POST[$oname[$i]];
+        $U = $usertypeoptions[$i];
+   //    $insert_values = "UPDATE useropvalue
+ //       SET value='".$_POST[$oname[$i]]."' 
+     //   WHERE userTyOpId = ".$usertypeoptions[$i]." " ;
+            $insert_values = $DB->updatequery("useropvalue", "value" , "'$o'", "userTyOpId ='$U'" );
+              $i++;
     }
       header("Location:UTD.php");
-   }
-     
+       
  }
 
 if(isset($_POST['utd_submit'])){
-  $DB=new database();
-  $conn=$DB->DBC();
-  
-  $R = $_POST['roleid'];
-  $sql5 = "SELECT  * FROM `usertypeoptions` where userTypeId = $R";
-  $result5 = mysqli_query($conn, $sql5);
-    if(mysqli_num_rows($result5) > 0){
+     $DB=database::getinstance();
+      $R = $_POST['roleid'];
+      $result5 = $DB->query("usertypeoptions", "usertypeid= '$R' and isdeleted='false'");
       $oname = array();
         while($row = mysqli_fetch_array($result5))
       {
         $OID = $row['optionsId'];
-      $sql6 = "SELECT  * FROM `useroptions` where id= '$OID';";
-      $result6 = mysqli_query($conn, $sql6);
-      if(mysqli_num_rows($result6) > 0){
+     // $sql6 = "SELECT  * FROM `useroptions` where id= '$OID';";
+    //  $result6 = mysqli_query($conn, $sql6);
+        $result6 = $DB->query("useroptions", "id= '$OID' and isdeleted='false'");
+
              while($rowUsOp = mysqli_fetch_array($result6))
           {
              array_push($oname, $rowUsOp['name']);
                       
                    }
                 }
-            }
-        }
-  $get_uto_id = "select id from usertypeoptions where userTypeId =$R" ;
-  echo $get_uto_id;
-    $result_uto = mysqli_query($conn, $get_uto_id);
-    
-
-    if(mysqli_num_rows($result_uto) > 0){
-      
+ // $get_uto_id = "select id from usertypeoptions where userTypeId =$R" ;
+//  echo $get_uto_id;
+ //   $result_uto = mysqli_query($conn, $get_uto_id);
+    $result_uto = $DB->idquery("usertypeoptions", "userTypeId ='$R' and isdeleted='false'");      
         while($row = mysqli_fetch_array($result_uto))
       {
-
-       $insert_values = 
+        $nid = $row['id'];
+        $nu = $_POST['user'];
+        $o = $_POST[$oname[$i]];
+       /* $insert_values = 
        "insert into useropvalue (userTyOpId , userId , value) 
-       values (" . $row['id'] .",". $_POST['user']. ",'" . $_POST[$oname[$i]]."' )" ;
+       values (" . $row['id'] .",". $_POST['user']. ",". $_POST[$oname[$i]]." )" ;
+      */
             echo $insert_values;
-             mysqli_query($conn , $insert_values);
+     //   mysqli_query($conn , $insert_values);
+    $insert_values = $DB->insertquery("useropvalue", "userTyOpId , userId , value" , "'$nid', '$nu','$o'");     
       $i++;
       
     }
     header("Location:UTD.php");
-  }
+  
 }
 
 if(isset($_POST['dogiveoption']))
@@ -377,7 +358,7 @@ if(isset($_POST['doeditadminrad']))
   $Rad->price = $P;
   $Rad->id = $ID;
   $admin->editradiology($Rad);
-  header("Location:index.php");
+  header("Location:radiologyCRUD.php");
 }
 
 if(isset($_POST['dodeleteadminrad']))
@@ -423,7 +404,7 @@ if(isset($_POST['Glink_submit']))
   $usertype->id = $R;
   $links->id= $L;
   $admin->addlink($links,$usertype);
-  header("Location:linkCRUD.php");
+  //header("Location:linkCRUD.php");
 }
 if(isset($_POST['link_submit']))
 {

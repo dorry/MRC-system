@@ -189,7 +189,7 @@ button.social-signin.google {
 <?php
 
 $C = new admincontroller();
-$C->viewuserdropdown();
+$C->viewUTdropdown();
 $C->showedittype();
 
 ?>

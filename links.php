@@ -9,10 +9,9 @@ public $physicallink;
 
 static function retriveforgivelink()
 {
-    $DB=new database();
-    $conn=$DB->DBC();
-    $sql4 = "SELECT  *  FROM `links` WHERE isdeleted = 'false'";
-    $result4 = mysqli_query($conn, $sql4);
+   
+    $DB=database::getinstance();
+    $result4 = $DB->query("links", "isdeleted = 'false'");
     $i = 0;
     $array;
     if(mysqli_num_rows($result4) > 0){
