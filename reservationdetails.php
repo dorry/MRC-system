@@ -19,9 +19,8 @@ public static function selectformyres($lid)
     $result = $DB->query("reservationdetails", " ReserveID= '$ID' and isdeleted='false'");
     while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
   } 
-        $length2 = count($OID);
-        if($length2==0){return;}
-        else return $array;
+        if($i>0){return $array;}
+        else return;
 
 }
 
