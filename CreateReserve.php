@@ -188,29 +188,7 @@ $reserve->viewreservedropdownrad();
 $reserve->viewreserveform();
 
 
-?>
-
-
-  
-
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Banner Area End -->
-    <!-- Welcome Area Starts -->
-    <!-- Welcome Area End -->
-    <!-- Patient Area Starts -->
-    <!-- Patient Area Starts -->
-
-
-
-
-    <!-- Footer Area Starts -->
+?>  
   <?php include("footer.php"); ?>
-    <!-- Footer Area End -->
-
-    <!-- Javascript -->
-
   </body>
 </html>
