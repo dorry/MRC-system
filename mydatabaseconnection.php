@@ -71,7 +71,7 @@ Class database{
      function updatequery($table, $attribute , $value, $condition) {
         $sql = "UPDATE  ".$table." SET ".$attribute." = ".$value." WHERE ".$condition."  " ;
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
+        // echo $sql;
         return $result;}
     function update4query($table, $attribute, $attribute2 ,  $attribute3,  $attribute4 , $value, $value2, $value3 , $value4, $condition)
         {
@@ -117,6 +117,10 @@ Class database{
 
         }
         return self::$instance;
+        }
+        function ckeditor($code)
+        {
+        return mysqli_real_escape_string($this->conn,$code);
         }
     }
 ?>

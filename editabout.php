@@ -8,12 +8,11 @@ echo'<html>
 <body>
 ';
 require_once"mydatabaseconnection.php";
-$DB=new database();
-$conn=$DB->DBC();
+$DB=database::getinstance();
 
-$query = "SELECT  content  FROM static WHERE id = 1";
-$result = mysqli_query($conn, $query);
-if(mysqli_num_rows($result) > 0){
+$result=$DB->query("static","id=1");
+
+
     if($row = mysqli_fetch_array($result))
    {    echo "<form method = 'Post'>";
         echo"<pre> <textarea name = 'editor1' style ='width:100%;height:100%'  >";
@@ -22,13 +21,12 @@ if(mysqli_num_rows($result) > 0){
        echo" </pre> ";
        echo "<input type = 'submit' name = 'submit' value = 'Apply Changes'>";
        echo "</form >";
-    }}
+    }
     
     if(isset($_POST['submit'])){
     $code = $_POST['editor1'];
-    $code = mysqli_real_escape_string($conn,$code);
-    $applyChangesQuery = "update static set content='$code' where id =1";
-    mysqli_query($conn,$applyChangesQuery);
+    $code=$DB->ckeditor($code);
+    $applyChangesQuery=$DB->updatequery("static","content", "'$code'","id =1");
     }
 echo'<script>
 var editor = CKEDITOR.replace( "editor1" );
