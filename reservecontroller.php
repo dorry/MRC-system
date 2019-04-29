@@ -3,6 +3,8 @@ require_once "reserve.php";
 require_once "reserveview.php";
 //require_once "CreateReserve.php";
 require_once "doctor.php";
+require_once "admin.php";
+require_once "patient.php";
 require_once "session.php";
 if(isset($_POST['addreserve']))
 {
@@ -22,7 +24,11 @@ class reservecontroller
 	{
 		$model = new reserve();
 		$dr = new doctor();
+		$admin = new admin();
+		$pat = new patient();
 		$model->add($dr);
+		$model->add($admin);
+		$model->add($pat);
 		$model->notify();
 	}
 

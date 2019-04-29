@@ -13,12 +13,15 @@ class doctor extends user implements IObserver
     {
         $length = count($array);
         $counter = 0;
+        if($_SESSION['ID']!=2)
+        {
         for ($i = 0; $i < $length; $i++){
         if($_SESSION['ID'] == $array[$i]['uid'] && $array[$i]['reportid'] == "")
         {
             $counter++;
         }
     }
+}
     if($counter != 0){
     echo "<li><b> $counter </b> </li>";
 }

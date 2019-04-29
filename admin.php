@@ -9,24 +9,24 @@ require_once 'radiology.php';
 
 class admin extends user{
 
+    public function update($array)
+    {
+        $length = count($array);
+        $counter = 0;
+        for ($i = 0; $i < $length; $i++){
+        if($_SESSION['ID'] == $array[$i]['uid'] && $array[$i]['reportid'] == "")
+        {
+            $counter++;
+        }
+    }
+    if($counter != 0){
+    echo "<li><b> $counter </b> </li>";
+}
+}
 
 public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
 public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
 public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
-
-/*
-static function insertoptiontypeeav($obj,$obj1,$obj2)
-{
-    $DB=new database();
-    $conn=$DB->DBC();
-    $insert_values = "insert into useropvalue (userTyOpId , userId , value) 
-                      values ('$obj->id', '$obj1->user','" . $_POST[$oname[$i]]."' )" ;
-             mysqli_query($conn , $insert_values);
-           header("Location:UTD.php");
-
-}
-*/
-
 
 static function giveoption($obj,$obj1)
 {
