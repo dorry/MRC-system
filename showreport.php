@@ -26,7 +26,7 @@ require_once "doctorcontroller.php";
   <br>
   <?php
   $doc = new doctorcontroller();
-  $doc->viewreport($_GET['id']);
+  $doc->viewreport($_GET['id'],$_SESSION['ID']);
 
   ?>
 </div>

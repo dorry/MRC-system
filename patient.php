@@ -22,6 +22,7 @@ class patient extends user implements IObserver{
 public function setviewreport($lid)
 {
   $DB=database::getinstance();  
+  echo "<h1> $lid </h1>";
   $result=$DB->updatequery("notifications","isviewed", "true" ,"patid = '$lid' and resid IS NULL");
 }
 

@@ -4,6 +4,7 @@ require_once "doctorcontroller.php";
 require_once "doctorview.php";
 require_once "report.php";
 require_once "session.php";
+require_once "patient.php";
 
 if(isset($_POST['savereport']))
 {
@@ -37,8 +38,10 @@ class doctorcontroller
 		$view = new doctorview();
 		$view->showdoctors();
     }
-    static  function viewreport($id)
+    static  function viewreport($id,$lid)
 	{
+        $model = new patient();
+        $model->setviewreport($lid);
 		$view = new doctorview();
 		$view->showreport($id);
     }
