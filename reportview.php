@@ -1,9 +1,10 @@
 <?php
+require_once "user.php";
 class reportview
 {
     public static function showdropdownforpatients()
     {
-        $result = report::showpatientsforreport();
+        $result = user::showpatientsforreport();
         $length =  count($result);
         echo "<form  method='post' action = 'doctorcontroller.php'> ";
         echo "<div id='login-box'>";
@@ -13,6 +14,7 @@ class reportview
         echo "<select name = 'patientreport' >";
         for ($i = 0; $i < $length; $i++)
 		{
+
             echo "<option value='" . $result[$i]['id'] . "'>" . $result[$i]['firstname'] . " " .$result[$i]['lastname'] . "</option>";
         }
         echo "</select>";

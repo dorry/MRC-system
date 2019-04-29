@@ -1,6 +1,7 @@
 <?php
 require_once"mydatabaseconnection.php";
 require_once"reserve.php";
+require_once"report.php";
 require_once"IReport.php";
 class user
 {
@@ -16,7 +17,23 @@ public $username;
 public $usertypeid;
 public $City;
 
-
+static function showpatientsforreport()
+{
+    $DB=database::getinstance();  
+    $report = new report();
+    $array = $report->showpatientsforreport();
+    $length = count($array);
+        for ($i = 0; $i < $length; $i++)
+        {
+            $id = $array[$i]['PatientID'];
+            $result4 = $DB->query("user", "isdeleted = 'false' AND id = '$id'");
+                while($row = mysqli_fetch_array($result4))
+                {
+                    $arraypatients[$i]=$row;
+                }
+            }
+        if($i!=0){return $arraypatients;}
+}
 
 static function selectuserformyres($lid)
 {
