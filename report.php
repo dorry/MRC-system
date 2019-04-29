@@ -18,6 +18,7 @@ class report
                 $i++;
             }
         $i = 0;
+        if($i!=0){
         $length = count($array);
         for ($i = 0; $i < $length; $i++)
         {
@@ -29,6 +30,7 @@ class report
                 }
             }
         return $arraypatients;
+        }
     }
     static function getradforreport()
     {

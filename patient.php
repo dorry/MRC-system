@@ -3,8 +3,6 @@ require_once"user.php";
 require_once "Interfaces.php";
 require_once"mydatabaseconnection.php";
 class patient extends user implements IObserver{
-
-
     public function update($array)
     {
         $length = count($array);
