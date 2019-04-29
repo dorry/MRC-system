@@ -57,6 +57,24 @@ class doctor extends user implements IObserver
             return $array;
             }
     }
+    static function getreportsforviewp()
+    {
+        $DB=database::getinstance();  
+        $i = 0;
+        $sql4 = "SELECT  *  FROM `patientreport`
+                 WHERE isdeleted = 'false'
+                 AND patid = '".$_SESSION['ID']."'";
+        $result4 = $DB->query("patientreport","isdeleted = 'false' AND patid = '".$_SESSION['ID']."' ");
+            while($row = mysqli_fetch_array($result4))
+            {
+                $array[$i]=$row;
+                $i++;
+            }
+            if($i!=0)
+            {
+            return $array;
+            }
+    }
     static function getpatientsforview($array)
     {
         $DB=database::getinstance();  
@@ -65,6 +83,24 @@ class doctor extends user implements IObserver
         for ($i = 0; $i < $length; $i++)
         {
             $id = $array[$i]['patid'];
+            $result4 = $DB->query("user", "isdeleted = 'false' AND id = '$id'");
+                while($row = mysqli_fetch_array($result4))
+                {
+                    $arraypatients[$i]=$row;
+                }
+        }
+        $length2 = count($array);
+        if($length2==0){return;}
+        else return $arraypatients;
+    }
+    static function getdoctorsforview($array)
+    {
+        $DB=database::getinstance();  
+        $i = 0;
+        $length = count($array);
+        for ($i = 0; $i < $length; $i++)
+        {
+            $id = $array[$i]['docid'];
             $result4 = $DB->query("user", "isdeleted = 'false' AND id = '$id'");
                 while($row = mysqli_fetch_array($result4))
                 {

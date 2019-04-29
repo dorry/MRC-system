@@ -9,7 +9,7 @@ class report
     public $opinion;
     static function showpatientsforreport()
     {
-    $DB=database::getinstance();  
+        $DB=database::getinstance();  
         $i = 0;
         $result4 = $DB->query("reserve", "isdeleted = 'false' AND DoctorID = '".$_SESSION['ID']."'");
             while($row = mysqli_fetch_array($result4))

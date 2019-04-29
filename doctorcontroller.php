@@ -32,6 +32,11 @@ class doctorcontroller
 		$view = new doctorview();
 		$view->showpateints();
     }
+    static  function viewdoctors()
+	{
+		$view = new doctorview();
+		$view->showdoctors();
+    }
     static  function viewreport($id)
 	{
 		$view = new doctorview();

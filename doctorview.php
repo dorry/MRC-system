@@ -18,6 +18,23 @@ class doctorview
             <?php
         }
     }
+    
+    public static function showdoctors()
+    {
+        $result = doctor::getreportsforviewp();
+        $doctor = new doctor();
+        $result2 = $doctor->getdoctorsforview($result);
+        $length =  count($result2);
+        $id = 0;
+        for ($i = 0; $i < $length; $i++)
+		{
+            
+            $id = $result[$i]['id'];
+            ?>
+            <a href="showreport.php?id=<?php echo $id; ?>"> <h3> <?php echo  "- ". $result2[$i]['firstname'] . " " . $result2[$i]['lastname'] . " " . $result[$i]['date'] ; ?> </h3></a>
+            <?php
+        }
+    }
     public static function showreport($id)
     {
         $result = doctor::showpatientreport($id);
