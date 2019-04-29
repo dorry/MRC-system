@@ -2,6 +2,7 @@
 require_once"mydatabaseconnection.php";
 require_once"reservationdetails.php";
 require_once"Interfaces.php";
+require_once"notifications.php";
 class reserve implements ISubject
 {
   public $date;
@@ -20,7 +21,7 @@ class reserve implements ISubject
   public  function notify()
   {
     $DB=database::getinstance();  
-    $result =$DB->query("reserve"," isviewed = false  AND isdeleted = 'false'");
+    $result =$DB->query("notifications","isviewed = false");
     $i = 0;
       while($row = mysqli_fetch_array($result))
    {
@@ -102,6 +103,8 @@ public static function addreserve ($obj){
                          "'$obj->patientId', '$obj->doctorId','$obj->date'");
     $reservationdetails=new reservationdetails();
     $reservationdetails->addreservationdetails($lastidreserved);
+    $notification = new notifications();
+    $notification->addresnot( $lastidreserved ,  $obj->doctorId);
     //header("Location:index.php");
     //echo"<script>alert('after here')</script>"; 
 }  

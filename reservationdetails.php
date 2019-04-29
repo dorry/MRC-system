@@ -1,5 +1,6 @@
 <?php
  require_once"mydatabaseconnection.php";
+ require_once"notifications.php";
 class reservationdetails
 {
 public $quantity;
@@ -51,6 +52,7 @@ public static function addreservationdetails ($lastidreserved)
     $reserveDetails->quantity=1;
     $insertReserveDet=$DB->insertquery("reservationdetails","ReserveID , RadiologyID, quantity", 
         "'$reserveDetails->reserveId', '$reserveDetails->radiologyId','$reserveDetails->quantity'");
+
    // header("Location:reservation.php");
 }
 

@@ -28,7 +28,6 @@ static function insertoptiontypeeav($obj,$obj1,$obj2)
 */
 
 
-
 static function giveoption($obj,$obj1)
 {
     $DB=database::getinstance();
