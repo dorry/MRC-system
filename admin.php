@@ -14,14 +14,15 @@ class admin extends user{
         $length = count($array);
         $counter = 0;
         for ($i = 0; $i < $length; $i++){
-        if($_SESSION['ID'] == $array[$i]['uid'] && $array[$i]['reportid'] == "")
+        if($_SESSION['ID'] == 2 && $array[$i]['reportid'] == "")
         {
             $counter++;
         }
     }
-    if($counter != 0){
+    if($counter != 0)
+    {
     echo "<li><b> $counter </b> </li>";
-}
+    }
 }
 
 public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
