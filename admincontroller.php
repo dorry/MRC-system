@@ -16,7 +16,7 @@ class admincontroller{
  static function showmyres($lid)
  {
     $view = new adminview();
-    $model = new user(); 
+    $model = new doctor(); 
     $model->setview($lid);
     $view->showformyres($lid);
   }

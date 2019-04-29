@@ -16,11 +16,7 @@ public $username;
 public $usertypeid;
 public $City;
 
-  public function setview($lid)
-  {
-        $DB=database::getinstance();  
-        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid'");
-  }
+
 
 static function selectuserformyres($lid)
 {

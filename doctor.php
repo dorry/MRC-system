@@ -2,6 +2,7 @@
 require_once "user.php";
 require_once "mydatabaseconnection.php";
 require_once "Interfaces.php";
+require_once "notifications.php";
 class doctor extends user implements IObserver
 {
 
@@ -22,12 +23,18 @@ class doctor extends user implements IObserver
     echo "<li><b> $counter </b> </li>";
 }
 }
-
+    public function setview($lid)
+    {
+        $DB=database::getinstance();  
+        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid'");
+    }
     static function writepatientreport($report)
     {
-         $DB=database::getinstance();  
-        $result = $DB->insertquery("patientreport","docid , patid, radid, technique, findings, opinion, isdeleted" , "'$report->docid', '$report->patid', '$report->radid', '$report->technique', '$report->findings', '$report->opinion', 'false'");
-        header("Location:doctorPanel.php");
+        $DB=database::getinstance();  
+        $lastidreserved = $DB->insertlast("patientreport","docid , patid, radid, technique, findings, opinion, isdeleted" , "'$report->docid', '$report->patid', '$report->radid', '$report->technique', '$report->findings', '$report->opinion', 'false'");
+        $notification = new notifications();
+        $notification->addrepnot( $lastidreserved ,  $report->docid , $report->patid);
+      //  header("Location:doctorPanel.php");
     }
     static function getreportsforview()
     {

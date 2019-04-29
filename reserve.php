@@ -28,10 +28,12 @@ class reserve implements ISubject
         $array[$i]=$row;
         $i++;
    }
+   if($i!=0){
     foreach($this->arr as $a)
     {
       $a->update($array);
     }
+  }
   }
 static function selectmyres($id){
   $DB=database::getinstance();  
@@ -98,13 +100,12 @@ public static function reserveadddropdopselectradiology(){
       return $array;}
 public static function addreserve ($obj){
     $DB=database::getinstance();
-    $insertReserve = "insert into reserve (PatientID , DoctorID, Date) values ($obj->patientId, $obj->doctorId,'$obj->date')";
     $lastidreserved = $DB->insertlast("reserve","PatientID , DoctorID, Date",
                          "'$obj->patientId', '$obj->doctorId','$obj->date'");
     $reservationdetails=new reservationdetails();
     $reservationdetails->addreservationdetails($lastidreserved);
     $notification = new notifications();
-    $notification->addresnot( $lastidreserved ,  $obj->doctorId);
+    $notification->addresnot($lastidreserved , $obj->doctorId, $obj->patientId);
     //header("Location:index.php");
     //echo"<script>alert('after here')</script>"; 
 }  
