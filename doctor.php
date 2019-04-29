@@ -52,7 +52,10 @@ class doctor extends user implements IObserver
                 $array[$i]=$row;
                 $i++;
             }
+            if($i!=0)
+            {
             return $array;
+            }
     }
     static function getpatientsforview($array)
     {
