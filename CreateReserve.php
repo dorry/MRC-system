@@ -1,5 +1,7 @@
 <?php //Not Edited to Object Oriented , me7taga ta3del baset
-session_start();
+//session_start();
+require_once "reserve.php";
+require_once "reservecontroller.php";
 if(!empty($_SESSION))
 {
   
@@ -8,8 +10,7 @@ else
 {
   header("Location:index.php");
 }
-require_once "reserve.php";
-require_once "reservecontroller.php";
+
 ?>
   <head>
 

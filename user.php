@@ -36,11 +36,8 @@ static function selectuserformyres($lid)
   if($length2==0){return;}
   else return $array;
 }
-
-
-
-static function selectformyres($lid){
-
+static function selectformyres($lid)
+{
   $DB=database::getinstance();  
   $PId = reserve::selectmyres($lid);  
   $length = count($PId);
@@ -61,7 +58,8 @@ static function selectformyres($lid){
 
 
 
-static function selectforresview(){
+static function selectforresview()
+{
   $DB=database::getinstance();    
   $PId = reserve::selectforviewadmin();  
   $length = count($PId);
@@ -80,7 +78,8 @@ static function selectforresview(){
   else return $array;
 }
 
-static function selectdocforresview(){
+static function selectdocforresview()
+{
   $DB=database::getinstance();
   $DrId = reserve::selectforviewadmin();  
   $length = count($DrId);
@@ -224,7 +223,6 @@ static function deleteuser ()
     session_start();
     if(!empty($_SESSION))
     {
-        $query =  " UPDATE `user` SET `isdeleted` = 'true' WHERE `user`.`id` = '".$_SESSION["ID"]."'";
         $result= $DB->updatequery("user","isdeleted" , "'true'" , "id = '".$_SESSION["ID"]."'");
         session_unset();
        header("Location:index.php");

@@ -1,18 +1,40 @@
 <?php 
-include "user.php";
+require_once "user.php";
 require_once "mydatabaseconnection.php";
-
-class doctor extends user
+require_once "Interfaces.php";
+class doctor extends user implements IObserver
 {
+
+
     public $department;
+
+    public function update($array)
+    {
+        $length = count($array);
+        $counter = 0;
+        for ($i = 0; $i < $length; $i++){
+        if($_SESSION['ID'] == $array[$i]['DoctorID'])
+        {
+            $counter++;
+        }
+    }
+    if($counter != 0){
+    echo "<li><b> $counter </b> </li>";
+}
+}
+
+    public function setview($lid)
+    {
+        $DB=database::getinstance();  
+        $result=$DB->updatequery("reserve","isviewed", "true" ,"DoctorID = '$lid'");
+    }
+
     static function writepatientreport($report)
     {
          $DB=database::getinstance();  
-
         $result = $DB->insertquery("patientreport","docid , patid, radid, technique, findings, opinion, isdeleted" , "'$report->docid', '$report->patid', '$report->radid', '$report->technique', '$report->findings', '$report->opinion', 'false'");
         header("Location:doctorPanel.php");
     }
-
     static function getreportsforview()
     {
         $DB=database::getinstance();  

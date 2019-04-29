@@ -7,6 +7,7 @@ require_once 'adminview.php';
 require_once 'usertype.php';
 require_once 'useroptions.php';
 require_once 'links.php';
+require_once 'doctor.php';
 
 //USER OPTION MANAGER and EAV
 
@@ -15,6 +16,8 @@ class admincontroller{
  static function showmyres($lid)
  {
     $view = new adminview();
+    $model = new doctor(); 
+    $model->setview($lid);
     $view->showformyres($lid);
   }
   static  function viewradiologydropdown()

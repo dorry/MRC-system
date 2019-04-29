@@ -61,6 +61,12 @@ if(isset($_POST['edit'])){
 class usercontroller
 {
 
+
+static function shownavbar()
+	{
+		$view = new userview();
+		$view->navbar();
+	}
 static function viewmyprofileedit($lid)
 	{
 		$view = new userview();
