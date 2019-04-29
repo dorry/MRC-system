@@ -14,7 +14,7 @@ class doctor extends user implements IObserver
         $length = count($array);
         $counter = 0;
         for ($i = 0; $i < $length; $i++){
-        if($_SESSION['ID'] == $array[$i]['uid'])
+        if($_SESSION['ID'] == $array[$i]['uid'] && $array[$i]['reportid'] == "")
         {
             $counter++;
         }
@@ -26,7 +26,7 @@ class doctor extends user implements IObserver
     public function setview($lid)
     {
         $DB=database::getinstance();  
-        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid'");
+        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid' AND reportid IS NULL");
     }
     static function writepatientreport($report)
     {
