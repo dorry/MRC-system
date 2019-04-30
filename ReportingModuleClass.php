@@ -1,14 +1,35 @@
 <?php
 require_once"mydatabaseconnection.php";
 require_once"IReport.php";
+$GLOBALS['dataPoints'] = array();
+
+class StrategyContext {
+    private $strategy = NULL; 
+    //bookList is not instantiated at construct time
+    public function __construct($strategy_ind_id) {
+        switch ($strategy_ind_id) {
+            case "Radiology": 
+                $this->strategy = new report1();
+            break;
+            case "UserTypes": 
+                $this->strategy = new report2();
+            break;
+
+        }
+        $GLOBALS['dataPoints']=$this->strategy->Statistics();
+
+    }
+
+}
+
+
 class report1 implements IReport
 {
-    public $dataPoints = array();
 
     static function Statistics()
     {
         $DB=database::getinstance();
-        $query = "SELECT * FROM radiology";
+        // $query = "SELECT * FROM radiology";
         $result = $DB->query("radiology","isdeleted='false'");
         $radioarrayid = array();
         $radioarrayname = array();
