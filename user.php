@@ -17,6 +17,22 @@ public $username;
 public $usertypeid;
 public $City;
 
+static function selecttype($lid)
+{
+  $DB=database::getinstance();
+  $result = $DB->query("user", "isdeleted='false' and usertypeid ='$lid'");
+  $i = 0;
+  $array;
+
+  while($row = mysqli_fetch_array($result))
+       {
+        $array[$i]=$row;
+        $i++;
+       }
+      return $array;
+}
+
+
 static function showpatientsforreport()
 {
     $DB=database::getinstance();  
@@ -262,16 +278,12 @@ static function login($username,$password)
         $linkPhysicalArray=array();
         if(isset($_POST['signin_submit']))
         { 
-
-   //         $sql = "select * from user where
-     //        username = '$username' and 
-       //      password = '$password' and `isdeleted`= 'false'";
           $result = $DB->query("user", "username = '$username' and 
-             password = '$password' and isdeleted= 'false'");
-
+                    password = '$password' and isdeleted= 'false'");
             if($row = mysqli_fetch_array($result))
             {
-                  $typeId = $row["usertypeid"];
+                $typeId = $row["usertypeid"];
+                $_SESSION['UTID']  = $row["usertypeid"];
                 $_SESSION["FirstName"] = $row["firstname"];
                 $_SESSION["LastName"] = $row["lastname"];
                 $_SESSION["Email"] = $row["email"];

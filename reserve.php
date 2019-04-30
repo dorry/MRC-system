@@ -3,7 +3,9 @@ require_once"mydatabaseconnection.php";
 require_once"reservationdetails.php";
 require_once"Interfaces.php";
 require_once"notifications.php";
-class reserve implements ISubject
+require_once"notification.php";
+require_once"rnoti.php";
+class reserve 
 {
   public $date;
   public $doctorid;
@@ -21,7 +23,7 @@ class reserve implements ISubject
   public  function notify()
   {
     $DB=database::getinstance();  
-    $result =$DB->query("notifications","isviewed = false");
+    $result =$DB->query(" recievednoti","isviewed = false");
     $i = 0;
       while($row = mysqli_fetch_array($result))
    {
@@ -100,14 +102,11 @@ public static function reserveadddropdopselectradiology(){
       return $array;}
 public static function addreserve ($obj){
     $DB=database::getinstance();
-    $lastidreserved = $DB->insertlast("reserve","PatientID , DoctorID, Date",
-                         "'$obj->patientId', '$obj->doctorId','$obj->date'");
+    $lastidreserved = $DB->insertlast("reserve","PatientID , DoctorID, Date","'$obj->patientId', '$obj->doctorId','$obj->date'");
     $reservationdetails=new reservationdetails();
     $reservationdetails->addreservationdetails($lastidreserved);
-    $notification = new notifications();
-    $notification->addresnot($lastidreserved , $obj->doctorId, $obj->patientId);
-    //header("Location:index.php");
-    //echo"<script>alert('after here')</script>"; 
+    $notification = new notification();
+    $notification->addnotification($obj->patientId,$obj->doctorId);
 }  
 static function deletereserve($obj)
 {
