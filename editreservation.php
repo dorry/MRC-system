@@ -9,8 +9,8 @@ else
 {
   header("Location:index.php");
 }
-include"user.php";
-include"radiology.php";
+require_once"user.php";
+require_once"radiology.php";
 require_once("reservationdetails.php");
 
 ?>
@@ -173,12 +173,14 @@ button.social-signin.twitter {
 button.social-signin.google {
   background: #DD4B39;
 }</style>
- 
     <title>Create Role</title>
   </head>
   <body>
-   <?php include("navbar.php"); include("usercontroller.php");include("radiologycontroller.php");
-   include("admincontroller.php");
+   <?php 
+   require_once("navbar.php"); 
+   require_once("usercontroller.php");
+   require_once("radiologycontroller.php");
+   require_once("admincontroller.php");
    ?>
 
     <div id="login-box">

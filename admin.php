@@ -25,6 +25,11 @@ class admin extends user{
     }
 }
 
+    public function setview($lid)
+    {
+        $DB=database::getinstance();  
+        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid' AND reportid IS NULL");
+    }
 public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
 public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
 public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 

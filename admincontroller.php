@@ -147,7 +147,7 @@ static function viewtypes(){
   static function showDP()
   {
     $view = new adminview();
-    $model = new user(); 
+    $model = new admin(); 
     $model->setview(2);
     $view->showdrpatient();
   }
