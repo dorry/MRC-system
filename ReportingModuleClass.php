@@ -1,7 +1,7 @@
 <?php
 require_once"mydatabaseconnection.php";
 require_once"IReport.php";
-class report implements IReport
+class report1 implements IReport
 {
     public $dataPoints = array();
 
@@ -21,7 +21,7 @@ class report implements IReport
         $dataPoints = array();
         for($i; $i < sizeof($radioarrayid); $i++)
         {
-            $query = "SELECT  COUNT(*)  FROM reservationdetails WHERE RadiologyID = '$radioarrayid[$i]'";
+            // $query = "SELECT  COUNT(*)  FROM reservationdetails WHERE RadiologyID = '$radioarrayid[$i]'";
             $result = $DB->cquery("reservationdetails","RadiologyID = '$radioarrayid[$i]'");
 
                 $row = mysqli_fetch_array($result);
@@ -53,7 +53,7 @@ class report2 implements IReport
         $dataPoints = array();
         for($i; $i < sizeof($userarrayid); $i++)
         {
-            $query = "SELECT  COUNT(*)  FROM user WHERE usertypeid = '$userarrayid[$i]'";
+            // $query = "SELECT  COUNT(*)  FROM user WHERE usertypeid = '$userarrayid[$i]'";
             $result = $DB->cquery("user","usertypeid = '$userarrayid[$i]'");
                 $row = mysqli_fetch_array($result);
                 $x = array("label"=> $userarrayname[$i], "y"=> intval($row[0]));
