@@ -52,7 +52,7 @@ class doctor extends user implements IObserver
                 $array[$i]=$row;
                 $i++;
             }
-            return $array;
+            if($i !=0){return $array;}
             
     }
     static function getreportsforviewp()

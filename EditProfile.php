@@ -177,7 +177,7 @@ button.social-signin.google {
   <body>
   
     <?php include("navbar.php");
-    include("user.php");
+    require_once("user.php");
     ?>
 
 <?php

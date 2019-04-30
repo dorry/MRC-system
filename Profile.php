@@ -8,7 +8,7 @@ else{header("Location:index.php");}
   </head>
   <body>
     <?php include("navbar.php");
-     include("user.php"); ?>
+     require_once("user.php"); ?>
 <div>
   <h2>View Profile: </h2>
 <?php  
