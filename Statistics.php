@@ -26,7 +26,7 @@ else
 <?php
 
 if(isset($_POST['Radiology']))
-{$report = new report();}
+{$report = new report1();}
 else{$report = new report2();}
 $dataPoints = array();
 $dataPoints =  $report->Statistics();
