@@ -6,8 +6,8 @@ $GLOBALS['dataPoints'] = array();
 class StrategyContext {
     private $strategy = NULL; 
     //bookList is not instantiated at construct time
-    public function __construct($strategy_ind_id) {
-        switch ($strategy_ind_id) {
+    public function __construct($WhichStrategy) {
+        switch ($WhichStrategy) {
             case "Radiology": 
                 $this->strategy = new report1();
             break;
