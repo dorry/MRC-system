@@ -9,10 +9,10 @@ class StrategyContext {
     public function __construct($WhichStrategy) {
         switch ($WhichStrategy) {
             case "Radiology": 
-                $this->strategy = new report1();
+                $this->strategy = new ReservationRep();
             break;
             case "UserTypes": 
-                $this->strategy = new report2();
+                $this->strategy = new UserTypesRep();
             break;
 
         }
@@ -23,7 +23,7 @@ class StrategyContext {
 }
 
 
-class report1 implements IReport
+class ReservationRep implements IReport
 {
 
     static function Statistics()
@@ -53,7 +53,7 @@ class report1 implements IReport
     }
 }
 
-class report2 implements IReport
+class UserTypesRep implements IReport
 {
 
     public $dataPoints = array();
