@@ -19,19 +19,6 @@ if(isset($_POST['addreserve']))
 
 class reservecontroller
 {
-
-	static function addobserver()
-	{
-		$model = new reserve();
-		$dr = new doctor();
-		$admin = new admin();
-		$pat = new patient();
-		$model->add($dr);
-		$model->add($admin);
-		$model->add($pat);
-		$model->notify();
-	}
-
 	static  function selectforadminview()
 	{
 		$model = new reserve();

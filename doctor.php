@@ -3,40 +3,46 @@ require_once "user.php";
 require_once "mydatabaseconnection.php";
 require_once "Interfaces.php";
 require_once "notifications.php";
+require_once "notification.php";
+require_once "usertype.php";
 class doctor extends user implements IObserver
 {
 
 
     public $department;
 
-    public function update($array)
-    {
+public function update($array)
+{
+    $UT = new usertype();
+    $Arr = $UT->selectallexcept($_SESSION['UTID']);
+    $c = count($Arr);
+    for ($i = 0; $i < $c; $i++)
+    if($_SESSION['UTID'] != $Arr[$i])
         $length = count($array);
         $counter = 0;
-        if($_SESSION['ID']!=2)
+        for ($i = 0; $i < $length; $i++)
         {
-        for ($i = 0; $i < $length; $i++){
-        if($_SESSION['ID'] == $array[$i]['uid'] && $array[$i]['reportid'] == "")
+        if($_SESSION['ID'] == $array[$i]['recieverID'] )
         {
             $counter++;
         }
-    }
 }
-    if($counter != 0){
+    if($counter != 0)
+    {
     echo "<li><b> $counter </b> </li>";
-}
+    }
 }
     public function setview($lid)
     {
         $DB=database::getinstance();  
-        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid' AND reportid IS NULL");
+        $result=$DB->updatequery("recievednoti","isviewed", "true" ,"recieverID = '$lid'");
     }
     static function writepatientreport($report)
     {
         $DB=database::getinstance();  
         $lastidreserved = $DB->insertlast("patientreport","docid , patid, radid, technique, findings, opinion, isdeleted" , "'$report->docid', '$report->patid', '$report->radid', '$report->technique', '$report->findings', '$report->opinion', 'false'");
-        $notification = new notifications();
-        $notification->addrepnot( $lastidreserved ,  $report->docid , $report->patid);
+     $notification = new notification();
+    $notification->addnotification($report->docid,$report->patid);
       //  header("Location:doctorPanel.php");
     }
     static function getreportsforview()

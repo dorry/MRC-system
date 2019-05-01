@@ -58,6 +58,8 @@ Class database{
         $sql = "Insert INTO ".$table." (".$attribute.") values(".$value.") ";
         $result = mysqli_query($this->conn,$sql);
         $lastidreserved=mysqli_insert_id($this->conn);
+        echo $sql;
+        echo "<br>";
         return $lastidreserved;
     }
     function insertquery($table, $attribute , $value )
