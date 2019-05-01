@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once"ReportingModuleClass.php";
+include"ReportingModuleClass.php";
 require_once"IReport.php";
 
 if(!empty($_SESSION))
@@ -24,12 +24,11 @@ else
 <input type="submit" class="template-btn mt-3" value="User Types" name="UserTypes"/>
 </form>
 <?php
-
+// $report = new IReport();
 if(isset($_POST['Radiology']))
-{$report = new report();}
-else{$report = new report2();}
-$dataPoints = array();
-$dataPoints =  $report->Statistics();
+{$report =new StrategyContext("Radiology");}
+else{$report = new StrategyContext("UserTypes");}
+
 
 ?>
  <head>  
