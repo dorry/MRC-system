@@ -9,7 +9,7 @@ else
   header("Location:index.php");
 }
 require_once "doctor.php";
-require_once "doctorcontroller.php";
+require_once "SharedFacadeUserAndDoctor.php";
 ?>
   <head>
   </head>
@@ -25,8 +25,10 @@ require_once "doctorcontroller.php";
   <h2>Report : </h2>
   <br>
   <?php
-  $doc = new doctorcontroller();
-  $doc->viewreport($_GET['id'],$_SESSION['ID']);
+    $doc= new SharedFacade();
+    $doc->Doctor->viewreport($_GET['id'],$_SESSION['ID']);
+  // $doc = new doctorcontroller();
+  // $doc->viewreport($_GET['id'],$_SESSION['ID']);
 
   ?>
 </div>

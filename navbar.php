@@ -25,10 +25,12 @@
 
  
  <?php
- require_once("usercontroller.php");
- $u = new usercontroller();
- $u->shownavbar();
+ require_once("SharedFacadeUserAndDoctor.php");
+//  $u = new usercontroller();
+//  $u->shownavbar();
 
+ $user= new SharedFacade();
+ $user->User->shownavbar();
 
  ?>
 

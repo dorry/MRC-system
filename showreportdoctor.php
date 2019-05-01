@@ -2,7 +2,9 @@
 // session_start();
 
 require_once "doctor.php";
-require_once "doctorcontroller.php";
+// require_once "doctorcontroller.php";
+require_once "SharedFacadeUserAndDoctor.php";
+
 if(!empty($_SESSION))
 {
   
@@ -32,8 +34,10 @@ else
           </tr>
           </table>
   <?php
-  $doc = new doctorcontroller();
-  $doc->viewpatients();
+      $doc= new SharedFacade();
+      $doc->Doctor->viewpatients();
+  // $doc = new doctorcontroller();
+  // $doc->viewpatients();
 
   ?>
 </div>

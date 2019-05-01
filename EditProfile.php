@@ -181,10 +181,11 @@ button.social-signin.google {
     ?>
 
 <?php
-require_once "usercontroller.php";
-$user=new usercontroller();
-$user->viewmyprofileedit($_SESSION['ID']);
-
+require_once "SharedFacadeUserAndDoctor.php";
+// $user=new usercontroller();
+// $user->viewmyprofileedit($_SESSION['ID']);
+$user= new SharedFacade();
+$user->User->viewmyprofileedit($_SESSION['ID']);
 ?>
 
 
