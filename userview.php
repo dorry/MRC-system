@@ -50,10 +50,10 @@ static function navbar(){
                         <?php
                         if(!empty($_SESSION))
                         {
-                            require_once "reservecontroller.php";
-                            $res = new reservecontroller();
+                            require_once "subjectcontroller.php";
+                            $res = new subjectcontroller();
                             echo "<li><a href='ViewProfile.php'>".$_SESSION['username']."</a></li> ";
-                            $noti =  $res->addobserver();
+                            $noti =  $res->notifyobservers();
                             foreach(array_combine($_SESSION['link'],$_SESSION['pagename']) as $links=>$pagenames){
                             echo "<li><a href='".$links."'>".$pagenames."</a></li> ";
                             }
