@@ -11,35 +11,25 @@ class admin extends user{
 
 public function update($array)
 {
-    if($_SESSION['UTID'] == 2){
-    $UT = new usertype();
-    $Arr = $UT->selectallexcept($_SESSION['UTID']);
-    $c = count($Arr);
-    for ($i = 0; $i < $c; $i++)
-    if($_SESSION['UTID'] != $Arr[$i])
+
+    if($_SESSION['UTID'] == 2)
+    {
         $length = count($array);
         $counter = 0;
-        for ($i = 0; $i < $length; $i++)
-        {
-        if($_SESSION['ID'] == $array[$i]['recieverID'] )
-        {
-            $counter++;
-        }
-}
+            for ($i = 0; $i < $length; $i++)
+            {
+                if($_SESSION['ID'] == $array[$i]['recieverID'] ){$counter++;}
+            }
 
-    if($counter != 0)
-    {
-    echo "<li><b> $counter </b> </li>";
+    if($counter != 0){echo "<li><b> $counter </b> </li>";}
     }
 }
 
+public function setview($lid)
+{
+    $DB=database::getinstance();  
+    $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid' AND reportid IS NULL");
 }
-
-    public function setview($lid)
-    {
-        $DB=database::getinstance();  
-        $result=$DB->updatequery("notifications","isviewed", "true" ,"uid = '$lid' AND reportid IS NULL");
-    }
 public  function editReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){}
 public  function showReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
 public  function deleteReservation(doctor $dr,patient $pat,DateTime $appointment,radiology $rad){} 
