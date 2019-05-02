@@ -8,7 +8,7 @@ class reserveview
         echo "<div id='login-box'>";
         echo "<div class='left'>";
         echo" <h2> Make a reservation: </h2>";
-        echo" <h4> Choose doctor: </h4>";
+        echo" <br> Choose doctor:<br>";
         echo "<select name = 'doctor'>";
         $result = reserve::reserveadddropdopselectdoctor();
 		$length =  count($result);
@@ -18,11 +18,12 @@ class reserveview
         }
         echo "</select>";
     }
-        public static function addreserveform()
+    public static function addreserveform()
     {
         $date=date('Y-m-d');
         echo"<br> Reservation date:";
-        echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01'/><br>";
+        echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01'/>";
+        echo"<br> Time:";
         echo"<br> <input type='time' name = 'time'/>";
         echo " <br> <input type='submit' name='addreserve' value='Submit' />";
         echo "</div>";
@@ -31,7 +32,7 @@ class reserveview
     }
     public static function addreservedropdownradiology()
     {
-        echo" <h4>Choose radiology type: </h4>";
+        echo" <br>Choose radiology type: <br>";
         echo "<select name = 'radiology'>";
         $result = reserve::reserveadddropdopselectradiology();
 		$length =  count($result);

@@ -44,10 +44,13 @@ class reportview
         <h4>Technique: </h4>
         <input type='text' name = 'tech' placeholder="Type the technique" required = "">
         <h4>Findings: </h4>
-        <input type='textarea' name = 'find' placeholder="Type the findings" required = "">
+        <input type='text' name = 'find' placeholder="Type the findings" required = "">
         <h4>Opinion: </h4>
         <input type='text' name = 'opinion' placeholder="Type your opinion" required = "">
         <input type = 'submit' name = "savereport" value = 'SAVE REPORT' >
+        </form>
+        </div>
+        </div>
         <?php
     }
 }
