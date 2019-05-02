@@ -14,6 +14,7 @@ static function notifyobservers()
 	$pat = new patient();
 	$model->add($dr);
 	$model->add($admin);
+	$model->add($pat);
 	$model->notify();
 }
 }
