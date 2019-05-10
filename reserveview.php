@@ -1,7 +1,26 @@
 <?php
+require_once "receptionist.php";
+
 class reserveview
 {
 
+    public static function showdropdownforpatients()
+    {
+        $result = receptionist::showpatientsforinvoice();
+        $length =  count($result);
+        echo "<form  method='post' action = 'doctorcontroller.php'> ";
+        echo "<div id='login-box'>";
+        echo "<div class='left'>";
+        echo" <h2> Generate Invoice: </h2>";
+        echo" <h4> Choose patient: </h4>";
+        echo "<select name = 'patientreport' onchange='getinvoice(this.value)' >";
+        echo "<option> </option>";
+        for ($i = 0; $i < $length; $i++)
+        {
+            echo "<option value='" . $result[$i]['id'] . "'>" . $result[$i]['firstname'] . " " .$result[$i]['lastname'] . "</option>";
+        }
+        echo "</select>";
+    }
     public static function addreservedropdowndoc()
     {
         echo "<form  method='post' action = 'reservecontroller.php'> ";

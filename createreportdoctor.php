@@ -1,9 +1,7 @@
 <?php //Not Edited to Object Oriented , me7taga ta3del baset
 // session_start();
 
-require_once "doctor.php";
-require_once "doctorcontroller.php";
-require_once "reportcontroller.php";
+
 if(!empty($_SESSION))
 {
   
@@ -12,6 +10,10 @@ else
 {
   header("Location:index.php");
 }
+require_once "doctor.php";
+require_once "doctorcontroller.php";
+require_once "reportcontroller.php";
+
 ?>
   <head>
 
@@ -170,15 +172,12 @@ button.social-signin.facebook {
 button.social-signin.twitter {
   background: #55ACEE;
 }
-
 button.social-signin.google {
   background: #DD4B39;
 }</style>
   <title>Create report for a patient</title>
-
   </head>
   <body>
-
     <?php include("navbar.php"); ?>
   
 <?php

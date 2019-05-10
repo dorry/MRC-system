@@ -11,7 +11,33 @@ class reserve
   public $doctorid;
   public $patientid;
   public $id;
- 
+
+static function selectpatientresforinvoice($pid)
+{
+  $DB=database::getinstance();  
+  $result = $DB->query("reserve", "isdeleted = 'false' and PatientID = '$pid' ");
+  $i = 0;
+  while($row = mysqli_fetch_array($result))
+    {
+      $array[$i]=$row;
+      $i++;
+    }
+   if($i != 0){return $array;}
+
+}
+
+static function showpatientswithreserves()
+{
+  $DB=database::getinstance();  
+  $i = 0;
+  $result4 = $DB->query("reserve", "isdeleted = 'false'");
+  while($row = mysqli_fetch_array($result4))
+    {
+      $array[$i]=$row;
+      $i++;
+    }
+   if($i != 0){return $array;}
+} 
 static function selectmyres($id){
   $DB=database::getinstance();  
   $result =$DB->query("reserve"," DoctorID = $id or PatientID = $id AND isdeleted = 'false'");
@@ -66,7 +92,6 @@ public static function reserveadddropdopselectdoctor()
 }
 public static function reserveadddropdopselectradiology(){
     $DB=database::getinstance();
-    $selectRad = " select * from radiology where isdeleted = 'false'";
     $result = $DB->query("radiology", "isdeleted = 'false'");
     $i=0;
       while($row = mysqli_fetch_assoc($result))

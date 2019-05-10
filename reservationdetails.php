@@ -8,6 +8,25 @@ public $radiologyid;
 public $reserveid;
 public $id;
 
+
+
+public static function selectforinvoice($pid)
+{
+  $DB=database::getinstance();
+  $OID = reserve::selectpatientresforinvoice($pid);  
+  $array;
+  $length = count($OID);
+  for ($i=0; $i<$length;$i++)
+  { 
+    $ID=$OID[$i]['ID']; 
+    $result = $DB->query("reservationdetails", " ReserveID= '$ID' and isdeleted='false'");
+    while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
+  } 
+    if($i>0){return $array;}
+    else return;
+}
+
+
 public static function selectformyres($lid)
 {    
   $DB=database::getinstance();

@@ -51,6 +51,7 @@ static function showpatientsforreport()
         if($i!=0){return $arraypatients;}
 }
 
+
 static function selectuserformyres($lid)
 {
   $DB=database::getinstance();  

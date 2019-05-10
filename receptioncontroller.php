@@ -1,13 +1,15 @@
 <?php
-require_once "reportview.php";
-require_once "report.php";
+require_once "receptionist.php";
+require_once "receptionistview.php";
 
-class reportcontroller
+class receptionistcontroller
 {
- 
-	static function showpatients()
-	{
 
+
+	static function viewinvoice($pid)
+	{
+		$model = new receptionist();
+		$model->viewpatientinvoice($pid);
 	}
     static  function viewrepatientsdropdowndoc()
 	{
