@@ -36,7 +36,7 @@ static function viewpatientinvoice($pid)
 
         }
        echo $DW->price();
-       echo $DW->list();
+    //    echo $DW->list();
         //return $DW;
 }
 static function showpatientsforinvoice()
