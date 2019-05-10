@@ -12,9 +12,5 @@ abstract class radiologypricedecorator implements Iinvoice
     {
         return $this->cost->price();
     }
-    public  function list()
-    {
-        return $this->desc->list();
-    }
 }
 ?>

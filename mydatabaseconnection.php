@@ -1,5 +1,4 @@
 <?php
-
 Class database{
     public static $instance;
     public  $servername;
