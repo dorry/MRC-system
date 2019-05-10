@@ -242,9 +242,11 @@ public $City;
       $emailvalidate = "Invalid email format.";
       header("Location:signup.php");
     }
-    else if (!preg_match("/^.{7,}$/" , $obj->password)
+    else if(strlen($obj->password) < 6)
     {
-      $passwordErr = "minimum 6 character";
+      //$passwordvalidate = 
+      echo "minimum 6 character";
+      header("Location:signup.php");
     }
     else if($obj->password != $obj->password2)
     {
@@ -269,7 +271,7 @@ public $City;
       usertypeid,addressid,socialnumber,dob,isdeleted" ,
       "'$obj->firstname','$obj->lastname','$obj->username','$obj->email',
       '$obj->password','2','2','$obj->socialnumber','$obj->dob','false'");
-      header("Location:index.php");
+      //header("Location:index.php");
     }
   }
 

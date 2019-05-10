@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 29, 2019 at 06:30 PM
+-- Generation Time: May 10, 2019 at 08:44 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `links` (
   `physicallink` varchar(255) NOT NULL,
   `isdeleted` varchar(255) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `links`
@@ -71,7 +71,32 @@ INSERT INTO `links` (`id`, `linkname`, `physicallink`, `isdeleted`) VALUES
 (1, 'RESERVATION', 'reservation.php', 'false'),
 (2, 'ADMIN PANEL', 'adminPanel.php', 'false'),
 (3, 'DOCTOR', 'doctorPanel.php', 'false'),
-(4, 'SINGLETON', 'text', '1');
+(4, 'SINGLETON', 'text', '1'),
+(5, 'RECEPTIONIST', 'reception.php', 'false');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notification`
+--
+
+DROP TABLE IF EXISTS `notification`;
+CREATE TABLE IF NOT EXISTS `notification` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `SenderID` int(90) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `SID` (`SenderID`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`id`, `SenderID`) VALUES
+(13, 5),
+(14, 11),
+(11, 16),
+(15, 16);
 
 -- --------------------------------------------------------
 
@@ -92,16 +117,7 @@ CREATE TABLE IF NOT EXISTS `notifications` (
   KEY `resid` (`resid`),
   KEY `repid` (`reportid`),
   KEY `pid` (`patid`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `notifications`
---
-
-INSERT INTO `notifications` (`id`, `uid`, `patid`, `resid`, `reportid`, `isviewed`) VALUES
-(25, 8, 16, 49, NULL, 1),
-(26, 2, 16, 49, NULL, 0),
-(27, 8, 16, NULL, 17, 0);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -124,14 +140,14 @@ CREATE TABLE IF NOT EXISTS `patientreport` (
   KEY `docid` (`docid`),
   KEY `patid` (`patid`),
   KEY `radid` (`radid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `patientreport`
 --
 
 INSERT INTO `patientreport` (`id`, `docid`, `patid`, `radid`, `technique`, `findings`, `opinion`, `isdeleted`, `date`) VALUES
-(17, 8, 16, 2, 'technique', 'de7k', 'kosm ramos', 'false', '2019-04-29 17:29:36');
+(20, 5, 16, 2, 'technique', 'de7k', 'kosm ramos', 'false', '2019-04-30 17:18:48');
 
 -- --------------------------------------------------------
 
@@ -162,6 +178,33 @@ INSERT INTO `radiology` (`ID`, `Name`, `price`, `isdeleted`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recievednoti`
+--
+
+DROP TABLE IF EXISTS `recievednoti`;
+CREATE TABLE IF NOT EXISTS `recievednoti` (
+  `id` int(90) NOT NULL AUTO_INCREMENT,
+  `nid` int(90) NOT NULL,
+  `recieverID` int(90) NOT NULL,
+  `isviewed` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `nid` (`nid`),
+  KEY `rid` (`recieverID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `recievednoti`
+--
+
+INSERT INTO `recievednoti` (`id`, `nid`, `recieverID`, `isviewed`) VALUES
+(3, 11, 5, 0),
+(5, 13, 16, 1),
+(7, 14, 5, 0),
+(8, 15, 8, 0);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `reservationdetails`
 --
 
@@ -175,14 +218,16 @@ CREATE TABLE IF NOT EXISTS `reservationdetails` (
   PRIMARY KEY (`ID`),
   KEY `RID` (`ReserveID`),
   KEY `PID` (`RadiologyID`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reservationdetails`
 --
 
 INSERT INTO `reservationdetails` (`ID`, `ReserveID`, `RadiologyID`, `quantity`, `isdeleted`) VALUES
-(34, 49, 2, 1, 'false');
+(51, 67, 4, 1, 'false'),
+(52, 68, 2, 1, 'false'),
+(53, 69, 2, 1, 'false');
 
 -- --------------------------------------------------------
 
@@ -201,14 +246,16 @@ CREATE TABLE IF NOT EXISTS `reserve` (
   PRIMARY KEY (`ID`),
   KEY `PID` (`PatientID`),
   KEY `DID` (`DoctorID`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `reserve`
 --
 
 INSERT INTO `reserve` (`ID`, `PatientID`, `DoctorID`, `Date`, `isdeleted`, `isviewed`) VALUES
-(49, 16, 8, '2019-12-31 12:59:00.000000', 'false', 0);
+(67, 16, 5, '2020-12-31 12:59:00.000000', 'false', 0),
+(68, 11, 5, '2021-11-30 23:59:00.000000', 'false', 0),
+(69, 16, 8, '2021-12-31 12:59:00.000000', 'false', 0);
 
 -- --------------------------------------------------------
 
@@ -252,7 +299,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   PRIMARY KEY (`id`),
   KEY `addressid` (`addressid`),
   KEY `UTID` (`usertypeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -271,8 +318,9 @@ INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `socialnumber`, `pas
 (12, 'Makm', 'a', 'email@email.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 11, 'AAA', '2015-12-29', 4, 'false'),
 (13, 'Nour', 'Nour', 'Email@email.com', '13431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'NA', '2004-09-28', 2, 'true'),
 (15, 'Oo', 'A1', 'Email@email.com', '1234', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 2, 'OA1', '2019-12-31', 4, 'false'),
-(16, 'O', 'A2', 'Email@email.com', '12343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 11, 'OA2', '2017-12-30', 4, 'false'),
-(17, 'Singleton', 'Dude', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'TEST', '1997-03-03', 2, 'false');
+(16, 'O', 'A2', 'Email@email.com', '12343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'OA2', '2017-12-30', 4, 'false'),
+(19, 'Singleton', 'Dude', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'TEST', '1997-03-03', 2, 'false'),
+(20, 'Harry', 'Kane', 'Email@email.com', '1343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 10, 'HJ', '1980-01-01', 4, 'false');
 
 -- --------------------------------------------------------
 
@@ -318,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `useropvalue` (
   PRIMARY KEY (`id`),
   KEY `userTyOpId` (`userTyOpId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `useropvalue`
@@ -372,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `usertypelinks` (
   PRIMARY KEY (`id`),
   KEY `LID` (`linkid`),
   KEY `TID` (`typeid`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usertypelinks`
@@ -385,7 +433,8 @@ INSERT INTO `usertypelinks` (`id`, `typeid`, `linkid`, `isdeleted`) VALUES
 (5, 11, 1, 'false'),
 (8, 12, 1, 'false'),
 (11, 3, 3, 'false'),
-(12, 14, 3, 'false');
+(12, 14, 3, 'false'),
+(14, 10, 5, 'false');
 
 -- --------------------------------------------------------
 
@@ -426,6 +475,12 @@ ALTER TABLE `address`
   ADD CONSTRAINT `address_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `address` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `notification`
+--
+ALTER TABLE `notification`
+  ADD CONSTRAINT `notification_ibfk_1` FOREIGN KEY (`SenderID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
@@ -441,6 +496,13 @@ ALTER TABLE `patientreport`
   ADD CONSTRAINT `patientreport_ibfk_1` FOREIGN KEY (`docid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `patientreport_ibfk_2` FOREIGN KEY (`patid`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `patientreport_ibfk_3` FOREIGN KEY (`radid`) REFERENCES `radiology` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `recievednoti`
+--
+ALTER TABLE `recievednoti`
+  ADD CONSTRAINT `recievednoti_ibfk_1` FOREIGN KEY (`nid`) REFERENCES `notification` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `recievednoti_ibfk_2` FOREIGN KEY (`recieverID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `reservationdetails`
