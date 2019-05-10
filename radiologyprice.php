@@ -6,10 +6,6 @@ class radiologyprice  implements Iinvoice
     {
         return 0;
     }
-    public  function list()
-    {
-        return " ";
-    }
 }
 
 ?>
