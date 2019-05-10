@@ -19,6 +19,12 @@ if(isset($_POST['addreserve']))
 
 class reservecontroller
 {
+
+	static  function showpatients()
+	{
+		$view = new reserveview();
+		$view->showdropdownforpatients();
+	}
 	static  function selectforadminview()
 	{
 		$model = new reserve();

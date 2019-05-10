@@ -39,6 +39,7 @@ class doctorcontroller
     }
     static  function viewreport($id,$lid)
 	{
+        echo $id;
         $model = new patient();
         $model->setviewreport($lid);
 		$view = new doctorview();

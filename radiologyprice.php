@@ -1,10 +1,10 @@
 <?php
-
-class radiologyprice implements Iradiologyprice
+require_once "Iinvoice.php";
+class radiologyprice  implements Iinvoice
 {
-    public static function tax()
+    public  function price()
     {
-        return 0.0;
+        return 0;
     }
 }
 
