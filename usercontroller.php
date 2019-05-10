@@ -5,37 +5,49 @@ require_once 'userview.php';
 
 if(isset($_POST['signin_submit']))
 { 
-$username=$_POST['username'];
-$password=$_POST['password'];
-$encrpassword = sha1($password);
-$user= new user();
-$user->login($username,$encrpassword);
+	$username=$_POST['username'];
+	$password=$_POST['password'];
+	$encrpassword = sha1($password);
+	$user= new user();
+	$user->login($username,$encrpassword);
 }
 
+
+$usernamevalidate =  $firstnamevalidate = 
+$lastnamevalidate = $emailvalidate = 
+$passwordvalidate = $passwordvalidate2 = 
+$gendervalidate = $dobvalidate = $socialnumbervalidate =
+$cityvalidate = "";
+
+
 if(isset($_POST['signup_submit']))
-{ 
-$firstname = $_POST['FName'];
-$lastname = $_POST['LName'];
-$username = $_POST['UName'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$encrpassword = sha1($password);
-$Gender = $_POST['gender'];
-$socialnumber = $_POST['SSN'];	
-$dob = $_POST['DOB'];
-$City = $_POST['City'];
+{
+	$firstname = $_POST['FName'];
+	$lastname = $_POST['LName'];
+	$username = $_POST['UName'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$encrpassword = sha1($password);
+	$password2 = $_POST['password2'];
+	$encrpassword2 = sha1($password2);
+	$Gender = $_POST['gender'];
+	$socialnumber = $_POST['SSN'];	
+	$dob = $_POST['DOB'];
+	//$City = $_POST['City'];
 
-$user= new user();
-$user->email=$email;
-$user->password=$encrpassword;
-$user->firstname=$firstname;
-$user->lastname=$lastname;
-$user->username=$username;
-$user->City=$City;
-$user->dob=$dob;
-$user->socialnumber=$socialnumber;
+	$user= new user();
+	$user->email=$email;
+	$user->password=$encrpassword;
+	$user->password2=$encrpassword2;
+	$user->firstname=$firstname;
+	$user->lastname=$lastname;
+	$user->username=$username;
+	//$user->City=$City;
+	$user->dob=$dob;
+	$user->socialnumber=$socialnumber;
 
-$user->adduser($user);
+	$user->adduser($user);
+
 }
 if(isset($_POST['edit'])){ 
     $DB=database::getinstance();   
