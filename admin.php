@@ -94,32 +94,69 @@ static function admindeleteuser ($obj)
 
 
 static function adminedituser ($obj){
+    $usernamevalidate =  $firstnamevalidate = 
+    $lastnamevalidate = $emailvalidate = 
+    $passwordvalidate = $gendervalidate = $dobvalidate = 
+    $socialnumbervalidate = $cityvalidate = "";
+
+    if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
+    {
+      $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
+      header("Location:signup.php");
+    }
+    else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
+    {
+      $emailvalidate = "Invalid email format.";
+      header("Location:edituser.php");
+    }
+    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $obj->password))
+    {
+      //$passwordvalidate = 
+      echo "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+      header("Location:edituser.php");
+    }
+    else
+    {
     $DB=database::getinstance();
         $result = $DB->update4query("user", 
         "email" ,"password", "username" , "usertypeid"
         ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
          "id='$obj->id'" );
        header("Location:userCRUD.php");
+    }
 
 }
 static function addradiology ($obj)
 {
-  
-    $DB=database::getinstance();
-    $result = $DB->insertquery("radiology", "Name,price" , "'$obj->name' ,'$obj->price'" );
-    header("Location:radiologyCRUD.php");
-
+    $radpricevalidate;
+    if($obj->price < 0)
+    {
+      $socialnumbervalidate = "Price cannot be negative values.";
+      header("Location:createrad.php");
+    }
+    else
+    {
+        $DB=database::getinstance();
+        $result = $DB->insertquery("radiology", "Name,price" , "'$obj->name' ,'$obj->price'" );
+        header("Location:radiologyCRUD.php");
+    }
 }
 
 
 static function editradiology ($obj)
 {
-    $DB=database::getinstance();
-    $result = $DB->update2query("radiology", "Name" , "price" , "'$obj->name'" , "'$obj->price'" ,
-                               "ID = '$obj->id'"); 
-
-      //  header("Location:radiologyCRUD.php");
-
+    if($obj->price < 0)
+    {
+      $socialnumbervalidate = "Price cannot be negative values.";
+      header("Location:editrad.php");
+    }
+    else
+    {
+        $DB=database::getinstance();
+        $result = $DB->update2query("radiology", "Name" , "price" , "'$obj->name'" , "'$obj->price'" ,
+                                "ID = '$obj->id'"); 
+          header("Location:radiologyCRUD.php");
+    }
 }
 
 static function deleteradiology ($obj)

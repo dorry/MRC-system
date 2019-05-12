@@ -83,16 +83,16 @@ public static function showradiologydropdown()
 public static function showeditradiologyform()
     {
         ?>
-        <input type="text" name="name" placeholder="type Rad name"/>
-        <input type="text" name="price" placeholder="type Rad price"/>
+        <input type="text" name="name" placeholder="type Rad name" required = ''/>
+        <input type="number" name="price" placeholder="type Rad price" required = ''/>
         <input type="submit" value="Edit" name="doeditadminrad"/>
         <?php
     }
 public static function showcreateradiologyform()
     {
         ?>
-        <input type="text" name="name" placeholder="type Rad name"/>
-        <input type="text" name="price" placeholder="type Rad price"/>
+        <input type="text" name="name" placeholder="type Rad name" required = ''/>
+        <input type="number" name="price" placeholder="type Rad price" required = ''/>
         <input type="submit" value="Create" name = "docreateadminrad"/>
         <?php
 }
@@ -220,7 +220,7 @@ public static function showeavtypeform(){
 
 public static function showeditoptionform(){
 ?>
-    <input type="text" name="new" placeholder="Type new option name">
+    <input type="text" name="new" placeholder="Type new option name" required = ''>
     <input type="submit" name="doeditoption" value="Edit" />
 
 <?php
@@ -258,8 +258,8 @@ public static function showdeleteoptionform(){
 public static function showcreateoptionform(){
 ?>
      <h3>Create Option</h3>
-    <input type="text" name="name" placeholder="Type Option name" />
-    <input type="text" name="datatype" placeholder="Type it's datatype in capslock" />
+    <input type="text" name="name" placeholder="Type Option name" required = ''/>
+    <input type="text" name="datatype" placeholder="Type it's datatype in capslock" required = ''/>
     <input type="submit" name="docreateoption" value="Create" />
 <?php
 }
@@ -287,8 +287,8 @@ echo "</select>";
 public static function CreateLinkForm()
 {
 ?>
-<input type="text" name="link" placeholder="type linkname"/>
-<input type="text" name="plink" placeholder="type physicalname" />
+<input type="text" name="link" placeholder="type linkname" required = ''/>
+<input type="text" name="plink" placeholder="type physicalname" required = ''/>
     <input type="submit" value="Create" name="CreateAuthorize" />
 
 <?php
@@ -309,7 +309,7 @@ public static function edittypeform (){
 
 ?>
    
-       <input type="text" name="newname" placeholder="Type the new usertype name">
+       <input type="text" name="newname" placeholder="Type the new usertype name" required = ''>
        <input type="submit" name="doedittype" value="Edit"/>
 
 <?php
@@ -321,7 +321,7 @@ public static function createtypeform (){
 
 ?>
    <h3>Add UserType</h3>
-    <input type="text" name="name" placeholder="Type name" />
+    <input type="text" name="name" placeholder="Type name" required = ''/>
     <input type="submit" name="docreatetype" value="Create" />
 
 <?php
@@ -441,11 +441,11 @@ public static function showusertypedropdown(){
 public static function showedituserform(){
 ?>
   <label>Username</label>
-    <input type="text" name="UName" placeholder="Username" />
+    <input type="text" name="UName" placeholder="Username" required = ''/>
     <label>email</label>
-    <input type="text" name="email" placeholder="E-mail" />
+    <input type="text" name="email" placeholder="E-mail" required = ''/>
     <label>password</label>
-    <input type="password" name="password" placeholder="Password"/>
+    <input type="password" name="password" placeholder="Password" required = ''/>
     <label>Usertype</label>
 <?php
 }

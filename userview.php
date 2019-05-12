@@ -81,19 +81,19 @@ static function showprofileedit($lid)
         ?>  
     <form action='' method='post'>
          FirstName:
-        <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName'><br>
+        <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName' required = ""><br>
          LastName:
-        <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' ><br>
+        <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' required = ""><br>
          Email: 
-        <input type='text' value="<?php echo $result[$i]['email'];?>" name='Email'><br>
+        <input type='text' value="<?php echo $result[$i]['email'];?>" name='Email' required = ""><br>
         Password: 
-        <input type='text' value='' name='Password'><br>
-        Social Security Number: 
-        <input type='text' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber'><br>
-        Date of birth:
-        <input type='text' value="<?php echo $result[$i]['dob'];?>"name='dob'><br>
+        <input type='text' value='' name='Password' required = ""><br>
+        Social Security Number: <br><br>
+        <input type='number' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber' required = ""><br><br>
+        Date of birth:<br><br>
+        <input type='date' value="<?php echo $result[$i]['dob'];?>"name='dob' required = ""><br><br>
         username: 
-        <input type='text' value="<?php echo $result[$i]['username'];?>" name='username'><br> 
+        <input type='text' value="<?php echo $result[$i]['username'];?>" name='username' required = ""><br> 
         <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
         </form> ;
 <?php

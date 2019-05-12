@@ -49,7 +49,8 @@ if(isset($_POST['signup_submit']))
 	$user->adduser($user);
 
 }
-if(isset($_POST['edit'])){ 
+if(isset($_POST['edit']))
+{ 
     $DB=database::getinstance();   
 
     $F =$_POST["FName"];
@@ -60,7 +61,42 @@ if(isset($_POST['edit'])){
     $D =$_POST["dob"];
     $U =$_POST["username"];
     $ID = $_SESSION['ID'];
-
+	$usernamevalidate =  $firstnamevalidate = 
+    $lastnamevalidate = $emailvalidate = 
+    $passwordvalidate = $gendervalidate = $dobvalidate = 
+    $socialnumbervalidate = $cityvalidate = "";
+    
+    if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $U))
+    {
+      $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
+      header("Location:EditProfile.php");
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $F))
+    {
+      $firstnamevalidate = "First Name must contain letters and spaces only!";
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $L))
+    {
+      $lastnamevalidate = "Last Name must contain letters and spaces only!";
+    }
+    else if(!filter_var($E, FILTER_VALIDATE_EMAIL))
+    {
+      $emailvalidate = "Invalid email format.";
+      header("Location:signup.php");
+    }
+    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $P))
+    {
+      //$passwordvalidate = 
+      echo "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+      header("Location:signup.php");
+    }
+    else if($S < 0)
+    {
+      $socialnumbervalidate = "Social number cannot be negative values.";
+      header("Location:signup.php");
+    }
+    else
+    {
     $result = $DB->update7query("user","firstname","lastname","email","socialnumber","password","dob","username" , "'$F'", "'$L'","'$E'" , "'$S'", "'$P'","'$D'", "'$U'"," id = '$ID'");
        if($result){
             $_SESSION["FirstName"] = $_POST["FName"];
@@ -68,8 +104,9 @@ if(isset($_POST['edit'])){
             $_SESSION["Email"] = $_POST["Email"];
             $_SESSION["username"] = $_POST["username"];
             // header("Location:index.php");
-        }
-    }
+		}
+	}
+}
 class usercontroller
 {
 
