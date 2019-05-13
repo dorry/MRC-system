@@ -13,8 +13,8 @@ else{header("Location:index.php");}
   <h2>View Profile: </h2>
 <?php  
 require_once"usercontroller.php";
-$user= new usercontroller();
-$user->viewmyprofile($_SESSION['ID']);
+$user= new SharedFacade();
+$user->User->viewmyprofile($_SESSION['ID']);
 ?>
 </div>
   <?php include("footer.php"); ?>

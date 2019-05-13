@@ -17,7 +17,7 @@ public $socialnumber;
 public $username;
 public $usertypeid;
 public $City;
-
+public $gender;
   static function selecttype($lid)
   {
     $DB=database::getinstance();
@@ -276,9 +276,9 @@ public $City;
         $CIDs= $x[0];
       }        
       $sql = $DB->insertquery("user", " firstname,lastname,username,email,Password,
-      usertypeid,addressid,socialnumber,dob,isdeleted" ,
+      usertypeid,addressid,socialnumber,dob,isdeleted,gender" ,
       "'$obj->firstname','$obj->lastname','$obj->username','$obj->email',
-      '$obj->password','2','2','$obj->socialnumber','$obj->dob','false'");
+      '$obj->password','2','2','$obj->socialnumber','$obj->dob','false','$obj->gender'");
       //header("Location:index.php");
     }
   }

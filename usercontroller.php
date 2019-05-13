@@ -33,6 +33,7 @@ if(isset($_POST['signup_submit']))
 	$Gender = $_POST['gender'];
 	$socialnumber = $_POST['SSN'];	
 	$dob = $_POST['DOB'];
+	$gender=$_POST['gender'];
 	//$City = $_POST['City'];
 
 	$user= new user();
@@ -45,7 +46,7 @@ if(isset($_POST['signup_submit']))
 	//$user->City=$City;
 	$user->dob=$dob;
 	$user->socialnumber=$socialnumber;
-
+	$user->$gender=$gender;
 	$user->adduser($user);
 
 }

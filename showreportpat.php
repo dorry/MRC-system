@@ -4,6 +4,8 @@
 require_once "doctor.php";
 require_once "doctorcontroller.php";
 require_once "SharedFacadeUserAndDoctor.php";
+require_once "session.php";
+
 if(!empty($_SESSION))
 {
   

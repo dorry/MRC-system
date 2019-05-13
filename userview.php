@@ -112,7 +112,7 @@ static function showprofile($lid)
              echo'<span><b> Full Name: </b></span>';echo $result[$i]['firstname'];echo ' ';  echo $result[$i]['lastname']; echo '<br>'; 
              echo'<span><b>Social Number: </b><span>'; echo $result[$i]['socialnumber']; echo '<br>'; 
              echo'<span><b>Email: </b></span>'; echo $result[$i]['email']; echo '<br>'; 
-             echo'<span><b> Password:</b></span> '; echo $result[$i]['password']; echo '<br>'; 
+              echo'<span><b> Gender:</b></span> '; echo $result[$i]['gender']; echo '<br>'; 
              echo'<span><b>Username: </b></span>'; echo $result[$i]['username']; echo '<br>'; 
              echo'<span><b>Date Of Birth: </b></span>'; echo $result[$i]['dob']; echo '<br>';            
            ?> </h4>  
