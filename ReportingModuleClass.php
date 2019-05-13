@@ -14,7 +14,9 @@ class StrategyContext {
             case "UserTypes": 
                 $this->strategy = new UserTypesRep();
             break;
-
+            case"Gender":
+                $this->strategy = new GenderRep();
+                break;
         }
         $GLOBALS['dataPoints']=$this->strategy->Statistics();
 
@@ -83,7 +85,32 @@ class UserTypesRep implements IReport
         
         return $dataPoints;
     }
-
-
 }
+    class GenderRep implements IReport
+    {
+    
+        static function Statistics()
+        {
+            $DB=database::getinstance();
+            //SELECT gender FROM `user` GROUP BY gender
+            $result = $DB->query("user","isdeleted='false' GROUP BY gender");
+            $genderarrayname = array();
+            while($row = mysqli_fetch_array($result))
+                {
+                    array_push($genderarrayname, $row['gender']);
+                }
+            $i= 0;
+            $dataPoints = array();
+            for($i; $i < sizeof($genderarrayname); $i++)
+            {
+                // $query = "SELECT  COUNT(*)  FROM reservationdetails WHERE RadiologyID = '$radioarrayid[$i]'";
+                $result = $DB->chooseCountQuery("gender","user","Where gender='$genderarrayname[$i]'");
+    
+                    $row = mysqli_fetch_array($result);
+                    $x = array("label"=> $genderarrayname[$i], "y"=> intval($row[0]));
+                    array_push($dataPoints, $x);
+                }
+            return $dataPoints;
+        }
+    }
 ?>

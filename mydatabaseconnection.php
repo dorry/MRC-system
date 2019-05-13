@@ -42,6 +42,15 @@ Class database{
         //echo "<br>";
         return $result;
         }
+
+        function chooseCountQuery($obj,$table,$condition)
+        {
+        $sql = "select COUNT(".$obj.") from ".$table." ".$condition." ";
+        $result = mysqli_query($this->conn,$sql);
+        //echo $sql;
+        //echo "<br>";
+        return $result;
+        }
     function idquery($table, $condition) {
         $sql = "select id from ".$table." where ".$condition." ";
         $result = mysqli_query($this->conn,$sql);

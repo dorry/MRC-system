@@ -22,12 +22,15 @@ else
 <form action="" method="POST">
 <input type="submit" class="template-btn mt-3" value="Radiology" name="Radiology"/>
 <input type="submit" class="template-btn mt-3" value="User Types" name="UserTypes"/>
+<input type="submit" class="template-btn mt-3" value="User Types" name="Gender"/>
+
 </form>
 <?php
 // $report = new IReport();
 if(isset($_POST['Radiology']))
 {$report =new StrategyContext("Radiology");}
-else{$report = new StrategyContext("UserTypes");}
+else if(isset($_POST['UserTypes'])){$report = new StrategyContext("UserTypes");}
+else{$report = new StrategyContext("Gender");}
 
 
 ?>
