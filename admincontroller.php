@@ -363,7 +363,7 @@ if(isset($_POST['doeditadminrad']))
   $Rad->price = $P;
   $Rad->id = $ID;
   $admin->editradiology($Rad);
-  header("Location:radiologyCRUD.php");
+  //header("Location:radiologyCRUD.php");
 }
 
 if(isset($_POST['dodeleteadminrad']))
@@ -385,7 +385,7 @@ if(isset($_POST['docreateadminrad']))
   $Rad->name = $R;
   $Rad->price = $P;
   $admin->addradiology($Rad);  
-  header("Location:index.php");
+  //header("Location:index.php");
 }
 
 if(isset($_POST['CreateAuthorize']))

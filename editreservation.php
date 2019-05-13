@@ -203,9 +203,9 @@ $c->DoctorDropdown();
 ?>
 <br>
 <label>Change date</label>
-<input type="date" name="date" min="<?php $date=date("Y-m-d");echo $date;?>" max="2022-01-01"/>
+<input type="date" name="date" min="<?php $date=date("Y-m-d");echo $date;?>" max="2022-01-01" required = ''/>
 <label>Change Time</label><br>
-<input type="time" name="time"/>
+<input type="time" name="time" required = ''/>
 
     <input type="submit" value="Edit" name="AdminEditReservation" />
  </form>

@@ -231,21 +231,29 @@ public $City;
     $lastnamevalidate = $emailvalidate = 
     $passwordvalidate = $gendervalidate = $dobvalidate = 
     $socialnumbervalidate = $cityvalidate = "";
-
-    if(!preg_match('/^\w{5,}$/', $obj->username))
+    
+    if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
     {
-      $usernamevalidate = "Username must be alphanumeric & longer than or equals 5 chars.";
+      $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
       header("Location:signup.php");
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $obj->firstname))
+    {
+      $firstnamevalidate = "First Name must contain letters and spaces only!";
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $obj->lastname))
+    {
+      $lastnamevalidate = "Last Name must contain letters and spaces only!";
     }
     else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
     {
       $emailvalidate = "Invalid email format.";
       header("Location:signup.php");
     }
-    else if(strlen($obj->password) < 6)
+    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $obj->password))
     {
       //$passwordvalidate = 
-      echo "minimum 6 character";
+      echo "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
       header("Location:signup.php");
     }
     else if($obj->password != $obj->password2)
