@@ -160,9 +160,9 @@ public static function showoptionsforeav($rid){
       for ($i=0; $i<$length;$i++)
     {
 ?>
+<label><?php echo $result[$i]['name']; ?></label>
     <input name="<?php echo $result[$i]['name']?>" 
-         type="<?php echo $result[$i]['type']; ?>" 
-         placeholder="Type<?php echo $result[$i]['name']; ?>"> 
+         type="<?php echo $result[$i]['type']; ?>"> 
 <?php
 }
 }

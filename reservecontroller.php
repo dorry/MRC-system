@@ -35,15 +35,23 @@ class reservecontroller
 		$model = new reserveview();
 		$model->addreserveform();
 	}
-	static  function viewreservedropdowndoc()
+	static  function viewreservedropdowndoc($doc)
 	{
 		$model = new reserveview();
-		$model->addreservedropdowndoc();
+		$model->addreservedropdowndoc($doc);
 	}
 	static  function viewreservedropdownrad()
 	{
 		$model = new reserveview();
 		$model->addreservedropdownradiology();
 	}
+
+	static  function showdocdropdown()
+	{
+		$model = new reserveview();
+		$model->showdocdropdown();
+	}
+
+	
 }
 ?>

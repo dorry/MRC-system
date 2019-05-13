@@ -13,7 +13,7 @@ public $id;
 static function selectUTO($rid){
   $OID = usertypeoptions::selectUTOeav($rid);  
   $length = count($OID);
-  $array;
+  $array=array();
   for ($i=0; $i<$length;$i++)
   { 
     $ID=$OID[$i]['optionsId']; 
@@ -24,9 +24,9 @@ static function selectUTO($rid){
     $array[$i] = $row;
     } 
 
-  return $array;
 
 }
+return $array;
 
 }
 static function selectalloptions(){

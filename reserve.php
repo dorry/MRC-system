@@ -90,6 +90,30 @@ public static function reserveadddropdopselectdoctor()
       }
       return $array;
 }
+public static function reserveadddropdopselectspecificdoctor($obj)
+{
+    $DB=database::getinstance();
+    $result = $DB->query("`schedule`,`user`", "schedule.isdeleted = 'false' AND '$obj' BETWEEN StartTime AND EndTime AND schedule.DocId=user.id" );
+    $i = 0;
+      while($row = mysqli_fetch_assoc($result))
+      {
+        $array[$i] = $row;
+        $i++; 
+      }
+      return $array;
+}
+// public static function doctorsavailable($obj)
+// {
+//     $DB=database::getinstance();
+//     $result = $DB->query("user","id='$obj' isdeleted = 'false'" );
+//     $i = 0;
+//       while($row = mysqli_fetch_assoc($result))
+//       {
+//         $array[$i] = $row;
+//         $i++; 
+//       }
+//       return $array;
+// }
 public static function reserveadddropdopselectradiology(){
     $DB=database::getinstance();
     $result = $DB->query("radiology", "isdeleted = 'false'");

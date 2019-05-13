@@ -51,6 +51,7 @@ static function deleteuseroptions ($obj)
 {
     $DB=database::getinstance();
     $result = $DB->updatequery("useroptions", "isdeleted" , "'true'" , "id = '$obj->id'");
+    $result = $DB->updatequery("usertypeoptions", "isdeleted" , "'true'" , "optionsId = '$obj->id'");
     header("Location:UTD.php");
 }
 
