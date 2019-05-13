@@ -23,7 +23,6 @@ class reserveview
     }
     public static function addreservedropdowndoc($doc)
     {
-        echo "<form  method='post' action = 'reservecontroller.php'> ";
         echo" Choose doctor:<br>";
         echo "<select name = 'doctor'>";
         $result = reserve::reserveadddropdopselectspecificdoctor($doc);
@@ -38,6 +37,7 @@ class reserveview
     }
     public static function addreserveform()
     {
+        echo "<form  method='post' action = 'reservecontroller.php'> ";
         $date=date('Y-m-d');
         echo "<div id='login-box'>";
         echo "<div class='left'>";

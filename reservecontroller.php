@@ -14,6 +14,7 @@ if(isset($_POST['addreserve']))
 	$reserve->doctorId=$_POST['doctor'];
 	$reserve->date=$_POST['date']." ".$_POST['time'].":00";
 	$reservesend->addreserve($reserve);
+	header("Location:reservation.php");
 }
 	
 
