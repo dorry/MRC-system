@@ -8,7 +8,7 @@ class reserveview
     {
         $result = receptionist::showpatientsforinvoice();
         $length =  count($result);
-        echo "<form  method='post' action = 'receptioncontroller.php'> ";
+        echo "<form  method='post' action = 'doctorcontroller.php'> ";
         echo "<div id='login-box'>";
         echo "<div class='left'>";
         echo" <h2> Generate Invoice: </h2>";
