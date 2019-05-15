@@ -35,12 +35,13 @@ static function viewpatientinvoice($pid)
            }
 
         }       
-       echo $DW->lis();
-       echo "<br>";
-       echo $DW->price();
-
-    //    echo $DW->list();
-        //return $DW;
+        $content = '';
+       $content .= $DW->lis();
+       $content .= "<br>";
+       $content .= "Total Cost : ";
+       $content .= $DW->price();
+       echo $content;
+       return $content;
 }
 static function showpatientsforinvoice()
 {

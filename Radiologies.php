@@ -42,11 +42,10 @@ class CT extends radiologypricedecorator
         $DB=database::getinstance();  
         $result = $DB->query("radiology", "Name = 'CT' and isdeleted='false'");
         $row = mysqli_fetch_array($result);
-        return "<li>" . $row['Name'] . " ". $row['price'] ."</li>"." " ;
+        return  $row['Name'] . " ". $row['price'] ." " ;
     }
     private function addradprice()
     {
-
         $DB=database::getinstance();  
         $result = $DB->query("radiology", "Name = 'CT' and isdeleted='false'");
         $row = mysqli_fetch_array($result);
@@ -76,7 +75,7 @@ class UVray extends radiologypricedecorator
         $DB=database::getinstance();  
         $result = $DB->query("radiology", "Name = 'UV-Ray' and isdeleted='false'");
         $row = mysqli_fetch_array($result);
-        return "<li>" . $row['Name'] . " ". $row['price'] ."</li>"." " ;
+        return  $row['Name'] . " ". $row['price'] ." " ;
     }
 
     private function addradprice()
@@ -85,7 +84,8 @@ class UVray extends radiologypricedecorator
         $DB=database::getinstance();  
         $result = $DB->query("radiology", "Name = 'UV-Ray' and isdeleted='false'");
         $row = mysqli_fetch_array($result);
-        return $row['price'];
+        echo "Total Cost : ";
+        return  $row['price'];
 
     }
 }
