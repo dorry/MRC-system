@@ -4,8 +4,14 @@ class radiologyprice  implements Iinvoice
 {
     public  function price()
     {
+    	echo " Total cost : ";
         return 0;
     }
+    public  function lis()
+    {
+        return "Radiologies reserved : ";
+    }
+
 }
 
 ?>

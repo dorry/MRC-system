@@ -29,12 +29,21 @@ class CT extends radiologypricedecorator
     {
         parent::__construct($rad);
     }
-
     public function price()
     {
-    	return parent::price() + $this::addradprice(); 
+    	return parent::price() + $this::addradprice();
     }
-
+    public function lis()
+    {
+        return parent::lis() . $this::addlist(); 
+    }
+    private function addlist()
+    {
+        $DB=database::getinstance();  
+        $result = $DB->query("radiology", "Name = 'CT' and isdeleted='false'");
+        $row = mysqli_fetch_array($result);
+        return "<li>" . $row['Name'] . " ". $row['price'] ."</li>"." " ;
+    }
     private function addradprice()
     {
 
@@ -56,6 +65,18 @@ class UVray extends radiologypricedecorator
     public function price()
     {
         return parent::price() + $this::addradprice(); 
+    }
+
+        public function lis()
+    {
+        return parent::lis() . $this::addlist(); 
+    }
+    private function addlist()
+    {
+        $DB=database::getinstance();  
+        $result = $DB->query("radiology", "Name = 'UV-Ray' and isdeleted='false'");
+        $row = mysqli_fetch_array($result);
+        return "<li>" . $row['Name'] . " ". $row['price'] ."</li>"." " ;
     }
 
     private function addradprice()

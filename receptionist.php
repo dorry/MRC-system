@@ -16,7 +16,7 @@ static function viewpatientinvoice($pid)
     $DW = new radiologyprice();
         for ($i = 0; $i < $length; $i++)
         {
-           echo "<h2>". $array[$i]['RadiologyID'] . "</h2>";
+           //secho "<h2>". $array[$i]['RadiologyID'] . "</h2>";
            if($array[$i]['RadiologyID'] == 4)
            {
             $DW = new UVray($DW);
@@ -34,8 +34,11 @@ static function viewpatientinvoice($pid)
             $DW = new XRay($DW);
            }
 
-        }
+        }       
+       echo $DW->lis();
+       echo "<br>";
        echo $DW->price();
+
     //    echo $DW->list();
         //return $DW;
 }
