@@ -17,6 +17,9 @@ require_once "reservecontroller.php";
 <br>
 <span id="form"></span>
 </div>
+      <input type="submit" name="GenerateInvoice" value="Sign me in" />
+
+</form>
 
 
     <?php include("footer.php"); ?>
