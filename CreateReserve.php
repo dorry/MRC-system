@@ -193,18 +193,22 @@ $reserve->viewreservedropdownrad();
 
 
   <?php include("footer.php"); ?>
-  </body>
-  <script type="text/javascript">
-function getdoctor(val){
+</body>
 
+<script type="text/javascript">
+function getdoctor(val)
+{
   var xhttp;
-  if (val.length == 0) { 
+  if (val.length == 0)
+  { 
     document.getElementById("doctorname").innerHTML = "";
     return;
   }
   xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
+  xhttp.onreadystatechange = function() 
+  {
+    if (this.readyState == 4 && this.status == 200) 
+    {
       document.getElementById("doctorname").innerHTML = this.responseText;
     }
   };

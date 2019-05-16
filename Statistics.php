@@ -28,9 +28,17 @@ else
 <?php
 // $report = new IReport();
 if(isset($_POST['Radiology']))
-{$report =new StrategyContext("Radiology");}
-else if(isset($_POST['UserTypes'])){$report = new StrategyContext("UserTypes");}
-else{$report = new StrategyContext("Gender");}
+{
+  $report =new StrategyContext("Radiology");
+}
+else if(isset($_POST['UserTypes']))
+{
+  $report = new StrategyContext("UserTypes");
+}
+else
+{
+  $report = new StrategyContext("Gender");
+}
 
 
 ?>

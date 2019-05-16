@@ -12,11 +12,10 @@ if(isset($_POST['addreserve']))
 	$reservesend = new reserve();
 	$reserve->patientId=$_SESSION['ID'];
 	$reserve->doctorId=$_POST['doctor'];
-	$reserve->date=$_POST['date']." ".$_POST['time'].":00";
+	$reserve->date=$_POST['date']." ".$_POST['time'];
 	$reservesend->addreserve($reserve);
-	header("Location:reservation.php");
+	//header("Location:reservation.php");
 }
-	
 
 class reservecontroller
 {

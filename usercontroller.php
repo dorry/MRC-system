@@ -107,6 +107,11 @@ if(isset($_POST['edit']))
 		$socialnumbervalidate = "Social number cannot be negative values.";
 		header("Location:EditProfile.php");
 	}
+	else if(strlen($S) != 14)
+    {
+      $socialnumbervalidate = "Social number must be 14 numbers only.";
+      header("Location:signup.php");
+    }
 	else
 	{
 		$result = $DB->update7query("user","firstname","lastname","email","socialnumber","password","dob","username" , "'$F'", "'$L'","'$E'" , "'$S'", "'$P'","'$D'", "'$U'"," id = '$ID'");
