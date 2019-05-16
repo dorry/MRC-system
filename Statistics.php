@@ -22,7 +22,7 @@ else
 <form action="" method="POST">
 <input type="submit" class="template-btn mt-3" value="Radiology" name="Radiology"/>
 <input type="submit" class="template-btn mt-3" value="User Types" name="UserTypes"/>
-<input type="submit" class="template-btn mt-3" value="User Types" name="Gender"/>
+<input type="submit" class="template-btn mt-3" value="Gender" name="Gender"/>
 
 </form>
 <?php
