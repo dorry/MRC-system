@@ -152,180 +152,168 @@ public static function showuserdropdowneav($rid){
 else {echo " No User Avaliabe";}
 }
 
-public static function showoptionsforeav($rid){
-
+public static function showoptionsforeav($rid)
+{
   $result = useroptions::selectUTO($rid);
   $length =  count($result);
-  if ($length > 0){
-      for ($i=0; $i<$length;$i++)
-    {
-?>
-<label><?php echo $result[$i]['name']; ?></label>
-    <input name="<?php echo $result[$i]['name']?>" 
-         type="<?php echo $result[$i]['type']; ?>"> 
-<?php
-}
-}
-else {echo " No Option Avaliabe";}
-}
-
-public static function showediteavtypeform(){
-?>
-<span id="users"></span>
-<br>
-<span id="form"></span>
-  <input type="submit" name="eutd_submit">
-
-<?php
-}
-public static function showusertypedropdowneav(){
-
-  $result = usertype::selectallusertypes();
-  $length =  count($result);
- 
-    echo"<label>Usertypes</label>";
-   echo "<select name = 'roleid' onchange='getform(this.value)'>";
+  if ($length > 0)
+  {
     for ($i=0; $i<$length;$i++)
     {
-?>
-    <option value = "<?php echo $result[$i]['id'];?>">
-              <?php 
-              echo $result[$i]['type'];
-              ?>
-      </option>
-<?php
-
+      ?>
+      <label><?php echo $result[$i]['name']; ?></label>
+      <input name="<?php echo $result[$i]['name']?>" 
+      type="<?php echo $result[$i]['type']; ?>"> 
+      <?php
+    }
   }
+  else 
+  {
+    echo " No Option Avaliabe";
+  }
+}
+
+public static function showediteavtypeform()
+{
+  ?>
+  <span id="users"></span>
+  <br>
+  <span id="form"></span>
+  <input type="submit" name="eutd_submit">
+  <?php
+}
+
+public static function showusertypedropdowneav()
+{
+  $result = usertype::selectallusertypes();
+  $length =  count($result);
+  echo"<label>Usertypes</label>";
+  echo "<select name = 'roleid' onchange='getform(this.value)'>";
+    for ($i=0; $i<$length;$i++)
+    {
+    ?>
+    <option value = "<?php echo $result[$i]['id'];?>">
+    <?php 
+    echo $result[$i]['type'];
+    ?>
+    </option>
+    <?php
+    }
   echo "</select>";
  }
 
-
-public static function showgiveform(){
-?>
-       <input type="submit" name="dogiveoption" value="Add"/>
-
-
-<?php
+public static function showgiveform()
+{
+  ?>
+  <input type="submit" name="dogiveoption" value="Add"/>
+  <?php
 }
 
-public static function showeavtypeform(){
-?>
-<span id="users"></span>
-<br>
-<span id="form"></span>
-<input type="submit" name="utd_submit">
-
-<?php
+public static function showeavtypeform()
+{
+  ?>
+  <span id="users"></span>
+  <br>
+  <span id="form"></span>
+  <input type="submit" name="utd_submit">
+  <?php
 }
 
-public static function showeditoptionform(){
-?>
-    <input type="text" name="new" placeholder="Type new option name" required = ''>
-    <input type="submit" name="doeditoption" value="Edit" />
+public static function showeditoptionform()
+{
+  ?>
+  <input type="text" name="new" placeholder="Type new option name" required = ''>
+  <input type="submit" name="doeditoption" value="Edit" />
 
-<?php
-
+  <?php
 }
-public static function showoptiondropdown(){
+
+public static function showoptiondropdown()
+{
   $result = useroptions::selectalloptions();
   $length =  count($result);
-    echo"<label>Options</label>";
-    echo" <select name='option'>";
-    for ($i=0; $i<$length;$i++)
-    {
-?>
+  echo"<label>Options</label>";
+  echo" <select name='option'>";
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
     <option value = "<?php echo $result[$i]['id'];?>">
-                <?php 
-                echo $result[$i]['name'];
-                ?>
-      </option>
-
-
-<?php
-
-}
+    <?php 
+    echo $result[$i]['name'];
+    ?>
+    </option>
+    <?php
+  }
   echo "</select>";
 }
 
-
-public static function showdeleteoptionform(){
-?>
- <input type="submit" name="dodeleteoption" value="Delete"/>
-<?php
+public static function showdeleteoptionform()
+{
+  ?>
+  <input type="submit" name="dodeleteoption" value="Delete"/>
+  <?php
 }
 
 
-public static function showcreateoptionform(){
-?>
-     <h3>Create Option</h3>
-    <input type="text" name="name" placeholder="Type Option name" required = ''/>
-    <input type="text" name="datatype" placeholder="Type it's datatype in capslock" required = ''/>
-    <input type="submit" name="docreateoption" value="Create" />
-<?php
+public static function showcreateoptionform()
+{
+  ?>
+  <h3>Create Option</h3>
+  <input type="text" name="name" placeholder="Type Option name" required = ''/>
+  <input type="text" name="datatype" placeholder="Type it's datatype in capslock" required = ''/>
+  <input type="submit" name="docreateoption" value="Create" />
+  <?php
 }
-
 
 public static function ShowLinksdropdown()
 {
-    $result = links::retriveforgivelink();
+  $result = links::retriveforgivelink();
   $length =  count($result);
-    echo"<label>Links</label>";
-    echo" <select name='link'>";
-    for ($i=0; $i<$length;$i++)
-    {
-            ?>
-            <option value = "<?php echo $result[$i]['id'];?>">
-            <?php echo $result[$i]['linkname'];?>
-            </option>  
-   <?php
-
-    }
+  echo"<label>Links</label>";
+  echo" <select name='link'>";
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
+    <option value = "<?php echo $result[$i]['id'];?>">
+    <?php echo $result[$i]['linkname'];?>
+    </option>  
+    <?php
+  }
 echo "</select>";
-
 }
 
 public static function CreateLinkForm()
 {
-?>
-<input type="text" name="link" placeholder="type linkname" required = ''/>
-<input type="text" name="plink" placeholder="type physicalname" required = ''/>
-    <input type="submit" value="Create" name="CreateAuthorize" />
-
-<?php
+  ?>
+  <input type="text" name="link" placeholder="type linkname" required = ''/>
+  <input type="text" name="plink" placeholder="type physicalname" required = ''/>
+  <input type="submit" value="Create" name="CreateAuthorize" />
+  <?php
 }
 
 public static function deletetypeform ()
 {
+  ?>
+  <input type="submit" name="dodeletetype" value="Delete"/>
+  <?php
+}
 
-?>
-         <input type="submit" name="dodeletetype" value="Delete"/>
-<?php
-
+public static function edittypeform ()
+{
+  ?>
+  <input type="text" name="newname" placeholder="Type the new usertype name" required = ''>
+  <input type="submit" name="doedittype" value="Edit"/>
+  <?php
 }
 
 
-
-public static function edittypeform (){
-
-?>
-   
-       <input type="text" name="newname" placeholder="Type the new usertype name" required = ''>
-       <input type="submit" name="doedittype" value="Edit"/>
-
-<?php
-
-}
-
-
-public static function createtypeform (){
-
-?>
-   <h3>Add UserType</h3>
-    <input type="text" name="name" placeholder="Type name" required = ''/>
-    <input type="submit" name="docreatetype" value="Create" />
-
-<?php
-
+public static function createtypeform ()
+{
+  ?>
+  <h3>Add UserType</h3>
+  <input type="text" name="name" placeholder="Type name" required = ''/>
+  <input type="submit" name="docreatetype" value="Create" />
+  <?php
 }
 
 
@@ -368,7 +356,8 @@ public static function showusertypes(){
   echo "</select>";
 }
 
-public static function showuser(){
+public static function showuser()
+{
   echo "<table width='30%'>";
   echo "<tr>
         <th>ID</th>
@@ -376,33 +365,30 @@ public static function showuser(){
         <th>Last Name</th>
         <th>User Name</th>
         </tr>"; 
-    $result = user::selectallusers();
-    $length =  count($result);
-    for ($i=0; $i<$length;$i++)
-    {
-?>
-<tr><td> <?php echo $result[$i]['id'];?> </td>
-<td> <?php echo $result[$i]['firstname'];?> </td>
-<td> <?php echo $result[$i]['lastname'];?> </td>
-<td> <?php echo $result[$i]['username'];?> </td></tr>
-
-<?php
-
-    }   
-    echo "</table>";
-  }
-
-public static function showuserdropdown(){
-
-
   $result = user::selectallusers();
   $length =  count($result);
- 
-    echo"<label>Users</label>";
-    echo" <select name='user'>";
-    for ($i=0; $i<$length;$i++)
-    {
-?>
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
+    <tr><td> <?php echo $result[$i]['id'];?> </td>
+    <td> <?php echo $result[$i]['firstname'];?> </td>
+    <td> <?php echo $result[$i]['lastname'];?> </td>
+    <td> <?php echo $result[$i]['username'];?> </td></tr>
+
+    <?php
+  }
+    echo "</table>";
+}
+
+public static function showuserdropdown()
+{
+  $result = user::selectallusers();
+  $length =  count($result);
+  echo"<label>Users</label>";
+  echo" <select name='user'>";
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
     <option  value = "<?php echo $result[$i]['id'];?>">
                 <?php 
                 echo $result[$i]['firstname'];
@@ -411,42 +397,38 @@ public static function showuserdropdown(){
                 ?>
       </option>
 <?php
-
-}
+  }
   echo "</select>";
 }
 
-public static function showusertypedropdown(){
-
+public static function showusertypedropdown()
+{
   $result = usertype::selectallusertypes();
   $length =  count($result);
- 
-    echo"<label>Usertypes</label>";
-    echo" <select name='role'>";
-    for ($i=0; $i<$length;$i++)
-    {
-?>
+  echo" <select name='role'>";
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
     <option value = "<?php echo $result[$i]['id'];?>">
               <?php 
               echo $result[$i]['type'];
               ?>
       </option>
-<?php
-
-}
+    <?php
+  }
   echo "</select>";
 }
  
 
 public static function showedituserform(){
 ?>
-  <label>Username</label>
-    <input type="text" name="UName" placeholder="Username" required = ''/>
-    <label>email</label>
-    <input type="text" name="email" placeholder="E-mail" required = ''/>
-    <label>password</label>
-    <input type="password" name="password" placeholder="Password" required = ''/>
-    <label>Usertype</label>
+  <label>Username</label><span style= "color:red;">*</span>
+    <input type="text" name="UName" placeholder="Username" required = ''/><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span><br><br>
+    <label>E-mail</label><span style= "color:red;">*</span>
+    <input type="text" name="email" placeholder="E-mail" required = ''/><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
+    <label>Password</label><span style= "color:red;">*</span>
+    <input type="password" name="password" placeholder="Password" required = ''/><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
+    <label>Usertype</label><span style= "color:red;">*</span>
 <?php
 }
 

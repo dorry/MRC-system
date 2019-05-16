@@ -78,20 +78,20 @@ class userview
         { 
             ?>  
         <form action='' method='post'>
-            FirstName:
-            <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName' required = ""><br>
-            LastName:
-            <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' required = ""><br>
-            Email: <br><br>
-            <input type='email' value="<?php echo $result[$i]['email'];?>" name='Email' required = ""><br><br><br>
-            Password: 
-            <input type='text' value='' name='Password' required = ""><br>
-            Social Security Number: <br><br>
-            <input type='number' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber' required = ""><br><br>
-            Date of birth:<br><br>
-            <input type='date' value="<?php echo $result[$i]['dob'];?>"name='dob' required = "" max = "2003-01-01"><br><br>
-            username: 
-            <input type='text' value="<?php echo $result[$i]['username'];?>" name='username' required = ""><br> 
+            FirstName:<span style= "color:red;">*</span>
+            <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName' required = ""><span style= "font-size:10px;">First Name must contain letters and spaces only.</span><br><br>
+            LastName:<span style= "color:red;">*</span>
+            <input type='text' value="<?php echo $result[$i]['lastname'];?>" name='LName' required = ""><span style= "font-size:10px;">Last Name must contain letters and spaces only.</span><br><br>
+            Email:<span style= "color:red;">*</span> <br><br>
+            <input type='email' value="<?php echo $result[$i]['email'];?>" name='Email' required = ""><br><br><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
+            Password:<span style= "color:red;">*</span>
+            <input type='text' value='' name='Password' required = ""><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
+            Social Security Number:<span style= "color:red;">*</span> <br><br>
+            <input type='number' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber' required = ""><br><br><span style= "font-size:10px;">Social Number Should be 14 digits.</span><br><br>
+            Date of birth:<span style= "color:red;">*</span><br><br>
+            <input type='date' value="<?php echo $result[$i]['dob'];?>"name='dob' required = "" max = "2003-01-01"><br><br><span style= "font-size:10px;">Select your Date of Birth.</span><br><br>
+            Username:<span style= "color:red;">*</span> 
+            <input type='text' value="<?php echo $result[$i]['username'];?>" name='username' required = ""><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span><br>
             <input type='submit' value='edit' name='edit' class='template-btn mt-3'><br> 
             </form> ;
     <?php
@@ -126,8 +126,8 @@ class userview
         <h1>Sign In</h1>
         <br><br><br>
         <form action="usercontroller.php" method="POST">
-        <input type="text" name="username" placeholder="Username" required = ""/>
-        <input type="password" name="password" placeholder="Password" required = ""/>
+        <span style= "color:red;padding-left:100%;">*</span><input type="text" name="username" placeholder="Username" required = ""/>
+        <span style= "color:red;padding-left:100%;">*</span><input type="password" name="password" placeholder="Password" required = ""/>
         <span>Don't have an account?</span> <a href="signup.php"> Create one</a>
         <br>
             <input type="submit" name="signin_submit" value="Sign me in" />
@@ -151,17 +151,16 @@ class userview
         <div class="left">
         <form action="usercontroller.php" method="POST">
         <h1>Sign Up</h1>
-        <input type="text" name="FName" placeholder="First Name" required = ""/>
-        <input type="text" name="LName" placeholder="Last Name" required = ""/>
-        <input type="text" name="UName" placeholder="Username" required = ""/>
-        <!-- <h4><?php echo $usernamevalidate; ?></h4> -->
-        <input type="email" name="email" placeholder="E-mail" required = ""/><br><br>
-        <input type="number" name="SSN" placeholder="Social Security Number" required = ""/><br><br>
-        <input type="radio" name="gender" value="male" checked required = ""> Male 
+        <span style= "color:red;padding-left:100%;">*</span><input type="text" name="FName" placeholder="First Name" required = ""/><span style= "font-size:10px;">First Name must contain letters and spaces only.</span>
+        <span style= "color:red;padding-left:100%;">*</span><input type="text" name="LName" placeholder="Last Name" required = ""/><span style= "font-size:10px;">Last Name must contain letters and spaces only.</span>
+        <span style= "color:red;padding-left:100%;">*</span><input type="text" name="UName" placeholder="Username" required = ""/><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span>
+        <span style= "color:red;padding-left:80%;">*</span><input type="email" name="email" placeholder="E-mail" required = ""/><br><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br>
+        <span style= "color:red;padding-left:80%;">*</span><input type="number" name="SSN" placeholder="Social Security Number" required = ""/><br><span style= "font-size:10px;">Social Number Should be 14 digits.</span><br><br>
+        <span style= "color:red;">*</span><input type="radio" name="gender" value="male" checked required = ""> Male 
         <input type="radio" name="gender" value="female" required = ""> Female<br>  <br> 
-        <input type="date" name="DOB" max = "2003-01-01"><br> <br>
-        <input type="password" name="password" placeholder="Password" required = ""/>
-        <input type="password" name="password2" placeholder="Retype password" required = ""/>
+        <span style= "color:red;padding-left:70%;">*</span><input type="date" name="DOB" max = "2003-01-01"><br><span style= "font-size:10px;">Select your Date of Birth.</span><br>
+        <span style= "color:red;padding-left:100%;">*</span><input type="password" name="password" placeholder="Password" required = ""/><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span>
+        <span style= "color:red;padding-left:100%;">*</span><input type="password" name="password2" placeholder="Retype password" required = ""/>
 
         <label>Country</label>
         <?php

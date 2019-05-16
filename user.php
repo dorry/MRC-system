@@ -298,7 +298,7 @@ class user
       usertypeid,addressid,socialnumber,dob,isdeleted,gender" ,
       "'$obj->firstname','$obj->lastname','$obj->username','$obj->email',
       '$obj->password','2','2','$obj->socialnumber','$obj->dob','false','$obj->gender'");
-      //header("Location:index.php");
+      header("Location:index.php");
     }
   }
 

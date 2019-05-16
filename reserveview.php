@@ -32,7 +32,7 @@ class reserveview
         // $result2 = reserve::doctorsavailable($result[$i]['DocId']);
         echo "<option value='" . $result[$i]['DocId'] . "'> Dr. " . $result[$i]['firstname'] . " " .$result[$i]['lastname'] . "</option>";
         }
-        echo "</select>";
+        echo "</select><br>";
     }
     public static function addreserveform()
     {
@@ -42,9 +42,9 @@ class reserveview
         echo "<div class='left'>";
         echo" <h2> Make a reservation: </h2>";
         echo"<br> Reservation date:";
-        echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01' required = ''/>";
+        echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01' required = ''/><br>";
         echo"<br> Time:";
-        echo"<br> <input type='time' name = 'time' onchange='getdoctor(this.value)'/>";
+        echo"<br> <input type='time' name = 'time' onchange='getdoctor(this.value)'/><br>";
     }
     public static function addreservedropdownradiology()
     {
