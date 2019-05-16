@@ -51,60 +51,72 @@ if(isset($_POST['signup_submit']))
 
 }
 if(isset($_POST['edit']))
-{ 
-    $DB=database::getinstance();   
-
-    $F =$_POST["FName"];
-    $L =$_POST["LName"];
-    $E =$_POST["Email"];
-    $S =$_POST["socialnumber"];
-    $P =sha1($_POST["Password"]);
-    $D =$_POST["dob"];
-    $U =$_POST["username"];
-    $ID = $_SESSION['ID'];
+{
+	$F =$_POST["FName"];
+	$L =$_POST["LName"];
+	$E =$_POST["Email"];
+	$S =$_POST["socialnumber"];
+	$P =sha1($_POST["Password"]);
+	$D =$_POST["dob"];
+	$U =$_POST["username"];
+	$ID = $_SESSION['ID'];
 	$usernamevalidate =  $firstnamevalidate = 
-    $lastnamevalidate = $emailvalidate = 
-    $passwordvalidate = $gendervalidate = $dobvalidate = 
-    $socialnumbervalidate = $cityvalidate = "";
-    
-    if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $U))
-    {
-      $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
-      header("Location:EditProfile.php");
-    }
-    else if(!preg_match('/^[\p{L} ]+$/u', $F))
-    {
-      $firstnamevalidate = "First Name must contain letters and spaces only!";
-    }
-    else if(!preg_match('/^[\p{L} ]+$/u', $L))
-    {
-      $lastnamevalidate = "Last Name must contain letters and spaces only!";
-    }
-    else if(!filter_var($E, FILTER_VALIDATE_EMAIL))
-    {
-      $emailvalidate = "Invalid email format.";
-      header("Location:signup.php");
-    }
-    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $P))
-    {
-      //$passwordvalidate = 
-      echo "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
-      header("Location:signup.php");
-    }
-    else if($S < 0)
-    {
-      $socialnumbervalidate = "Social number cannot be negative values.";
-      header("Location:signup.php");
-    }
-    else
-    {
-    $result = $DB->update7query("user","firstname","lastname","email","socialnumber","password","dob","username" , "'$F'", "'$L'","'$E'" , "'$S'", "'$P'","'$D'", "'$U'"," id = '$ID'");
-       if($result){
-            $_SESSION["FirstName"] = $_POST["FName"];
-            $_SESSION["LastName"] = $_POST["LName"];
-            $_SESSION["Email"] = $_POST["Email"];
-            $_SESSION["username"] = $_POST["username"];
-            // header("Location:index.php");
+	$lastnamevalidate = $emailvalidate = 
+	$passwordvalidate = $gendervalidate = $dobvalidate = 
+	$socialnumbervalidate = $cityvalidate = "";
+	$DB=database::getinstance();
+	$result = $DB->query("user", "isdeleted='false' and username ='$U'");
+	$result2 = $DB->query("user", "isdeleted='false' and email ='$E'");
+	if(mysqli_num_rows($result)>0)
+	{
+		$usernamevalidate = "Username already taken!.";
+		header("Location:EditProfile.php");
+	}
+	if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $U))
+	{
+		$usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
+		header("Location:EditProfile.php");
+	}
+	else if(!preg_match('/^[\p{L} ]+$/u', $F))
+	{
+		$firstnamevalidate = "First Name must contain letters and spaces only!";
+		header("Location:EditProfile.php");
+	}
+	else if(!preg_match('/^[\p{L} ]+$/u', $L))
+	{
+		$lastnamevalidate = "Last Name must contain letters and spaces only!";
+		header("Location:EditProfile.php");
+	}
+	else if(mysqli_num_rows($result2)>0)
+	{
+		$usernamevalidate = "E-mail already taken!.";
+		header("Location:EditProfile.php");
+	}
+	else if(!filter_var($E, FILTER_VALIDATE_EMAIL))
+	{
+		$emailvalidate = "Invalid email format.";
+		header("Location:EditProfile.php");
+	}
+	else if(!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $P))
+	{
+		$passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+		header("Location:EditProfile.php");
+	}
+	else if($S < 0)
+	{
+		$socialnumbervalidate = "Social number cannot be negative values.";
+		header("Location:EditProfile.php");
+	}
+	else
+	{
+		$result = $DB->update7query("user","firstname","lastname","email","socialnumber","password","dob","username" , "'$F'", "'$L'","'$E'" , "'$S'", "'$P'","'$D'", "'$U'"," id = '$ID'");
+		if($result)
+		{
+			$_SESSION["FirstName"] = $_POST["FName"];
+			$_SESSION["LastName"] = $_POST["LName"];
+			$_SESSION["Email"] = $_POST["Email"];
+			$_SESSION["username"] = $_POST["username"];
+			// header("Location:index.php");
 		}
 	}
 }

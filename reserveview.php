@@ -23,7 +23,7 @@ class reserveview
     }
     public static function addreservedropdowndoc($doc)
     {
-        echo" Choose doctor:<br>";
+        echo" <br>Choose doctor:<br>";
         echo "<select name = 'doctor'>";
         $result = reserve::reserveadddropdopselectspecificdoctor($doc);
         // echo $result[$i]['DocId'];

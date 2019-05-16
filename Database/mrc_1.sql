@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 10, 2019 at 08:44 PM
+-- Generation Time: May 14, 2019 at 09:53 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -86,13 +86,15 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `SenderID` int(90) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `SID` (`SenderID`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notification`
 --
 
 INSERT INTO `notification` (`id`, `SenderID`) VALUES
+(16, 1),
+(17, 1),
 (13, 5),
 (14, 11),
 (11, 16),
@@ -190,17 +192,19 @@ CREATE TABLE IF NOT EXISTS `recievednoti` (
   PRIMARY KEY (`id`),
   KEY `nid` (`nid`),
   KEY `rid` (`recieverID`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `recievednoti`
 --
 
 INSERT INTO `recievednoti` (`id`, `nid`, `recieverID`, `isviewed`) VALUES
-(3, 11, 5, 0),
+(3, 11, 5, 1),
 (5, 13, 16, 1),
-(7, 14, 5, 0),
-(8, 15, 8, 0);
+(7, 14, 5, 1),
+(8, 15, 8, 0),
+(9, 16, 5, 0),
+(10, 17, 5, 0);
 
 -- --------------------------------------------------------
 
@@ -260,6 +264,31 @@ INSERT INTO `reserve` (`ID`, `PatientID`, `DoctorID`, `Date`, `isdeleted`, `isvi
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `schedule`
+--
+
+DROP TABLE IF EXISTS `schedule`;
+CREATE TABLE IF NOT EXISTS `schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `StartTime` time NOT NULL,
+  `EndTime` time NOT NULL,
+  `DocId` int(255) NOT NULL,
+  `isdeleted` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `DocId` (`DocId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`id`, `StartTime`, `EndTime`, `DocId`, `isdeleted`) VALUES
+(1, '00:00:00', '12:00:00', 5, 'false'),
+(2, '11:59:00', '23:59:59', 8, 'false');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `static`
 --
 
@@ -295,6 +324,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(255) NOT NULL,
   `dob` date NOT NULL,
   `addressid` int(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
   `isdeleted` varchar(255) NOT NULL DEFAULT 'false',
   PRIMARY KEY (`id`),
   KEY `addressid` (`addressid`),
@@ -305,22 +335,22 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `socialnumber`, `password`, `usertypeid`, `username`, `dob`, `addressid`, `isdeleted`) VALUES
-(1, 'Mohamed', 'Radrod', 'reda@reda.com', '123456789', '123', 2, 'Mreda', '1998-09-23', 2, 'false'),
-(2, 'Sherif', 'Nayad', 'Email@email.com', '987654321', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'admin', '1998-10-25', 2, 'false'),
-(3, 'Omar', 'Anas', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'oanas', '1997-11-29', 2, 'false'),
-(4, 'Alley', 'Dorry', 'Email@email.com', '748394827', '123', 2, 'Dorry3', '1997-09-22', 2, 'false'),
-(5, 'Mohamed', 'Abo El Rejal', 'Email@email.com', '134983', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'MA', '2010-02-13', 2, 'false'),
-(6, 'Ahmed', 'Reda', 'Email@email.com', '123431', '123', 2, 'areda', '1996-03-04', 2, 'false'),
-(7, 'Karim', 'Dorry', 'email@email.com', '73894857481', '123', 6, 'kdorry', '2006-10-23', 4, 'true'),
-(8, 'Sherif', 'Dorry', 'email@email.com', '87654131', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'sdorry', '1992-01-01', 4, 'false'),
-(11, 'pro', 'pro', 'pro@pro.com', '134543', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'pro', '1990-01-01', 4, 'false'),
-(12, 'Makm', 'a', 'email@email.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 11, 'AAA', '2015-12-29', 4, 'false'),
-(13, 'Nour', 'Nour', 'Email@email.com', '13431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'NA', '2004-09-28', 2, 'true'),
-(15, 'Oo', 'A1', 'Email@email.com', '1234', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 2, 'OA1', '2019-12-31', 4, 'false'),
-(16, 'O', 'A2', 'Email@email.com', '12343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'OA2', '2017-12-30', 4, 'false'),
-(19, 'Singleton', 'Dude', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'TEST', '1997-03-03', 2, 'false'),
-(20, 'Harry', 'Kane', 'Email@email.com', '1343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 10, 'HJ', '1980-01-01', 4, 'false');
+INSERT INTO `user` (`id`, `firstname`, `lastname`, `email`, `socialnumber`, `password`, `usertypeid`, `username`, `dob`, `addressid`, `gender`, `isdeleted`) VALUES
+(1, 'Mohamed', 'Radrod', 'reda@reda.com', '123456789', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Mreda', '1998-09-23', 2, 'male', 'false'),
+(2, 'Sherif', 'Nayad', 'Email@email.com', '987654321', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, 'admin', '1998-10-25', 2, 'male', 'false'),
+(3, 'Omar', 'Anas', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'oanas', '1997-11-29', 2, 'male', 'false'),
+(4, 'Alley', 'Dorry', 'Email@email.com', '748394827', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'Dorry3', '1997-09-22', 2, 'male', 'false'),
+(5, 'Mohamed', 'Abo El Rejal', 'Email@email.com', '134983', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'MA', '2010-02-13', 2, 'male', 'false'),
+(6, 'Ahmed', 'Reda', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'areda', '1996-03-04', 2, 'male', 'false'),
+(7, 'Karim', 'Dorry', 'email@email.com', '73894857481', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 6, 'kdorry', '2006-10-23', 4, 'male', 'true'),
+(8, 'Sherif', 'Dorry', 'email@email.com', '87654131', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 3, 'sdorry', '1992-01-01', 4, 'male', 'false'),
+(11, 'pro', 'pro', 'pro@pro.com', '134543', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'pro', '1990-01-01', 4, 'male', 'false'),
+(12, 'Makm', 'a', 'email@email.com', '1', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 11, 'AAA', '2015-12-29', 4, 'male', 'false'),
+(13, 'Nour', 'Nour', 'Email@email.com', '13431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'NA', '2004-09-28', 2, 'male', 'true'),
+(15, 'Oo', 'A1', 'Email@email.com', '1234', 'da39a3ee5e6b4b0d3255bfef95601890afd80709', 2, 'OA1', '2019-12-31', 4, 'male', 'false'),
+(16, 'O', 'A2', 'Email@email.com', '12343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'OA2', '2017-12-30', 4, 'male', 'false'),
+(19, 'Singleton', 'Dude', 'Email@email.com', '123431', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 2, 'TEST', '1997-03-03', 2, 'male', 'false'),
+(20, 'Harry', 'Kane', 'Email@email.com', '1343', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', 10, 'HJ', '1980-01-01', 4, 'female', 'false');
 
 -- --------------------------------------------------------
 
@@ -342,11 +372,11 @@ CREATE TABLE IF NOT EXISTS `useroptions` (
 --
 
 INSERT INTO `useroptions` (`id`, `name`, `type`, `isdeleted`) VALUES
-(1, 'working_hours', 'number', 'false'),
-(2, 'Field', 'text', 'false'),
-(4, 'Salary', 'number', 'true'),
+(1, 'working_hours', 'number', 'true'),
+(2, 'Field', 'text', 'true'),
+(4, 'Salary', 'number', 'false'),
 (5, 'Bonus', 'number', 'false'),
-(6, 'Test', 'text', 'true'),
+(6, 'Test', 'text', 'false'),
 (7, 'grade', 'number', 'false'),
 (8, 'Singleton test', 'test', 'true');
 
@@ -458,9 +488,9 @@ CREATE TABLE IF NOT EXISTS `usertypeoptions` (
 --
 
 INSERT INTO `usertypeoptions` (`id`, `userTypeId`, `optionsId`, `isdeleted`) VALUES
-(1, 3, 1, 'false'),
-(2, 3, 2, 'false'),
-(3, 6, 1, 'false'),
+(1, 3, 1, 'true'),
+(2, 3, 2, 'true'),
+(3, 6, 1, 'true'),
 (4, 11, 7, 'false'),
 (5, 11, 5, 'false');
 
@@ -517,6 +547,12 @@ ALTER TABLE `reservationdetails`
 ALTER TABLE `reserve`
   ADD CONSTRAINT `reserve_ibfk_1` FOREIGN KEY (`PatientID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `reserve_ibfk_2` FOREIGN KEY (`DoctorID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`DocId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user`

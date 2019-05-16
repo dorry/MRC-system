@@ -231,8 +231,15 @@ public $gender;
     $lastnamevalidate = $emailvalidate = 
     $passwordvalidate = $gendervalidate = $dobvalidate = 
     $socialnumbervalidate = $cityvalidate = "";
-    
-    if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
+    $DB=database::getinstance();
+    $result = $DB->query("user", "isdeleted='false' and username ='$obj->username'");
+    $result2 = $DB->query("user", "isdeleted='false' and email ='$obj->email'");
+    if(mysqli_num_rows($result)>0)
+    {
+      $usernamevalidate = "Username already taken!.";
+      header("Location:signup.php");
+    }
+    else if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
     {
       $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
       header("Location:signup.php");
@@ -240,20 +247,26 @@ public $gender;
     else if(!preg_match('/^[\p{L} ]+$/u', $obj->firstname))
     {
       $firstnamevalidate = "First Name must contain letters and spaces only!";
+      header("Location:signup.php");
     }
     else if(!preg_match('/^[\p{L} ]+$/u', $obj->lastname))
     {
       $lastnamevalidate = "Last Name must contain letters and spaces only!";
+      header("Location:signup.php");
+    }
+    else if(mysqli_num_rows($result2)>0)
+    {
+      $usernamevalidate = "E-mail already taken!.";
+      header("Location:signup.php");
     }
     else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
     {
       $emailvalidate = "Invalid email format.";
       header("Location:signup.php");
     }
-    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/", $obj->password))
+    else if(!preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $obj->password))
     {
-      //$passwordvalidate = 
-      echo "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+      $passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
       header("Location:signup.php");
     }
     else if($obj->password != $obj->password2)
