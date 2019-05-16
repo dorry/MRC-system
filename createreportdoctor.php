@@ -1,7 +1,7 @@
 <?php //Not Edited to Object Oriented , me7taga ta3del baset
 // session_start();
 
-
+require_once "session.php";
 if(!empty($_SESSION))
 {
   
@@ -34,8 +34,8 @@ body {
 #login-box {
   position: relative;
   margin: 5% auto;
-  width: 600px;
-  height: 480px;
+  width: 740px;
+  height: 730px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }

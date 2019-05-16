@@ -21,7 +21,7 @@ class reportview
     }
     public static function showradiologydropdown()
     {
-        echo"<h4>Radiologies</h4>";
+        echo"<br><br><h4>Radiologies</h4>";
         echo" <select name='rad'>";
         $result = report::getradforreport();
         $length =  count($result);
@@ -41,12 +41,13 @@ class reportview
     public static function showreportform()
     {
         ?>
+        <br><br>
         <h4>Technique: </h4>
-        <input type='text' name = 'tech' placeholder="Type the technique" required = "">
+        <textarea name = 'tech' rows = "3" cols = "60" placeholder="Type the technique" required = ""></textarea><br><br>
         <h4>Findings: </h4>
-        <input type='text' name = 'find' placeholder="Type the findings" required = "">
+        <textarea name = 'find' rows = "6" cols = "80" placeholder = "Type the findings" required = ""></textarea><br><br>
         <h4>Opinion: </h4>
-        <input type='text' name = 'opinion' placeholder="Type your opinion" required = "">
+        <textarea name = 'opinion' rows = "3" cols = "60" placeholder="Type your opinion" required = ""></textarea>
         <input type = 'submit' name = "savereport" value = 'SAVE REPORT' >
         </form>
         </div>

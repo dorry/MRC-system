@@ -5,19 +5,20 @@ require_once "report.php";
 require_once "IReport.php";
 class user
 {
-public $addressid;
-public $dob;
-public $email;
-public $firstname;
-public $lastname;
-public $id;
-public $password;
-public $password2;
-public $socialnumber;
-public $username;
-public $usertypeid;
-public $City;
-public $gender;
+  public $addressid;
+  public $dob;
+  public $email;
+  public $firstname;
+  public $lastname;
+  public $id;
+  public $password;
+  public $password2;
+  public $socialnumber;
+  public $username;
+  public $usertypeid;
+  public $City;
+  public $gender;
+
   static function selecttype($lid)
   {
     $DB=database::getinstance();
@@ -277,6 +278,11 @@ public $gender;
     else if($obj->socialnumber < 0)
     {
       $socialnumbervalidate = "Social number cannot be negative values.";
+      header("Location:signup.php");
+    }
+    else if(strlen($obj->socialnumber) != 14)
+    {
+      $socialnumbervalidate = "Social number must be 14 numbers only.";
       header("Location:signup.php");
     }
     else

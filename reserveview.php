@@ -3,7 +3,6 @@ require_once "receptionist.php";
 
 class reserveview
 {
-
     public static function showdropdownforpatients()
     {
         $result = receptionist::showpatientsforinvoice();
@@ -46,8 +45,6 @@ class reserveview
         echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01' required = ''/>";
         echo"<br> Time:";
         echo"<br> <input type='time' name = 'time' onchange='getdoctor(this.value)'/>";
-
-
     }
     public static function addreservedropdownradiology()
     {
@@ -66,10 +63,11 @@ class reserveview
         echo "</form>";
     }
 
-    public static function showdocdropdown(){
+    public static function showdocdropdown()
+    {
         ?>
         <span id="doctorname"></span>
         <?php
-        }
+    }
 }
 ?>

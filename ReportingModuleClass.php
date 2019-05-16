@@ -1,9 +1,10 @@
 <?php
-require_once"mydatabaseconnection.php";
-require_once"IReport.php";
+require_once "mydatabaseconnection.php";
+require_once "IReport.php";
 $GLOBALS['dataPoints'] = array();
 
-class StrategyContext {
+class StrategyContext 
+{
     private $strategy = NULL; 
     //bookList is not instantiated at construct time
     public function __construct($WhichStrategy) {
