@@ -6,58 +6,12 @@ require_once "doctorcontroller.php";
 require_once "SharedFacadeUserAndDoctor.php";
 require_once "session.php";
 
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
-?>
-  <head>
-  </head>
-  <body>
-    <!-- Preloader Starts -->
-    <!-- Preloader End -->
-    <!-- Header Area Starts -->
-    <?php include("navbar.php"); ?>
-    <!-- Header Area End -->
-    <!-- Banner Area Starts -->
+if(!empty($_SESSION)){}
+else{header("Location:index.php");} 
 
-<div>
-  <h2>Reports  : Select Doctor : </h2>
-  <table width='35%'>
-    <tr>
-          <th>Doctor name</th>
-          <th>Date</th>
-          <th>Time</th>
-          </tr>
-          </table>
-  <?php
-  $doc= new SharedFacade();
-  $doc->Doctor->viewdoctors();
-  // $doc = new doctorcontroller();
-  // $doc->viewdoctors();
+include("navbar.php"); 
 
-  ?>
-</div>
+$doc= new SharedFacade();
+$doc->Doctor->viewdoctors();
 
-
-  
-
-    <!-- Banner Area End -->
-    <!-- Welcome Area Starts -->
-    <!-- Welcome Area End -->
-    <!-- Patient Area Starts -->
-    <!-- Patient Area Starts -->
-
-
-
-
-    <!-- Footer Area Starts -->
-    <?php include("footer.php"); ?>
-    <!-- Footer Area End -->
-    <!-- Javascript -->
-  </body>
-</html>
+include("footer.php"); ?>

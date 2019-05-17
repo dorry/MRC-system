@@ -41,16 +41,28 @@ class doctorview
         $result2 = $doctor->getdoctorsforview($result);
         $length =  count($result2);
         $id = 0;
-
+        ?>
+          <h2>Reports  : Select Doctor : </h2>
+          <table width='35%'>
+          <tr>
+          <th>Doctor name</th>
+          <th>Date and Time</th>
+          </tr>
+        <?php
         for ($i = 0; $i < $length; $i++)
 		{
             
             $id = $result[$i]['id'];
             ?>
-            <a href="showreport.php?id=<?php echo $id; ?>"> 
-                <h3> <?php echo  "- ". $result2[$i]['firstname'] . " " . $result2[$i]['lastname'] . " " . $result[$i]['date'] ; ?> </h3></a>
+           <tr>
+            <td> <b><a href="showreport.php?id=<?php echo $id;?>">  
+                <?php echo  "- Dr. ". $result2[$i]['firstname'] . " " . $result2[$i]['lastname'] . " " ; ?>
+            </b></a></td>
+            <td><?php echo $result[$i]['date'] ; ?> </td>
+            </tr>
             <?php
         }
+        echo "</table>";
     }
     public static function showreport($id)
     {
