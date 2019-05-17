@@ -14,7 +14,7 @@ class userview
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-9 d-md-flex">
-                            <h6 class="mr-3"><span class="mr-2"><i class="fa fa-mobile"></i></span> call us now! +1 305 708 2563</h6>
+                            <h6 class="mr-3"><span class="mr-2"><i class="fa fa-mobile"></i></span> call us now! 19773</h6>
                             <h6 class="mr-3"><span class="mr-2"><i class="fa fa-envelope-o"></i></span> medical@example.com</h6>
                             <h6><span class="mr-2"><i class="fa fa-map-marker"></i></span> Find our Location</h6>
                         </div>
