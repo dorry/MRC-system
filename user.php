@@ -5,19 +5,20 @@ require_once "report.php";
 require_once "IReport.php";
 class user
 {
-public $addressid;
-public $dob;
-public $email;
-public $firstname;
-public $lastname;
-public $id;
-public $password;
-public $password2;
-public $socialnumber;
-public $username;
-public $usertypeid;
-public $City;
-public $gender;
+
+  public $addressid;
+  public $dob;
+  public $email;
+  public $firstname;
+  public $lastname;
+  public $id;
+  public $password;
+  public $password2;
+  public $socialnumber;
+  public $username;
+  public $usertypeid;
+  public $City;
+  public $gender;
 
   static function selectforpdf($lid)
   {
@@ -294,6 +295,11 @@ public $gender;
       $socialnumbervalidate = "Social number cannot be negative values.";
       header("Location:signup.php");
     }
+    else if(strlen($obj->socialnumber) != 14)
+    {
+      $socialnumbervalidate = "Social number must be 14 numbers only.";
+      header("Location:signup.php");
+    }
     else
     {
       $DB=database::getinstance();
@@ -307,7 +313,7 @@ public $gender;
       usertypeid,addressid,socialnumber,dob,isdeleted,gender" ,
       "'$obj->firstname','$obj->lastname','$obj->username','$obj->email',
       '$obj->password','2','2','$obj->socialnumber','$obj->dob','false','$obj->gender'");
-      header("Location:index.php");
+      //header("Location:index.php");
     }
   }
 
