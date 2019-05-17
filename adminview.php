@@ -6,6 +6,7 @@ class adminview{
 
 
 static function showformyres($lid){
+    include("navbar.php");
 
     $result = user::selectuserformyres($lid);
     $length =  count($result);

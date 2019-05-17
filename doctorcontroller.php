@@ -4,6 +4,7 @@ require_once "doctorcontroller.php";
 require_once "doctorview.php";
 require_once "report.php";
 require_once "patient.php";
+require_once "session.php";
 
 if(isset($_POST['savereport']))
 {
