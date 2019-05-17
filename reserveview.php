@@ -16,6 +16,7 @@ class reserveview
         echo "<option> </option>";
         for ($i = 0; $i < $length; $i++)
         {
+
             echo "<option value='" . $result[$i]['id'] . "'>" . $result[$i]['firstname'] . " " .$result[$i]['lastname'] . "</option>";
         }
         echo "</select>";

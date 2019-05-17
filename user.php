@@ -20,20 +20,6 @@ class user
   public $City;
   public $gender;
 
-  static function selectforpdf($lid)
-  {
-    $DB=database::getinstance();
-    $result = $DB->query("user", "isdeleted='false' and id ='$lid'");
-    $i = 0;
-    $array;
-    while($row = mysqli_fetch_array($result))
-    {
-      $array[$i]=$row;
-      $i++;
-    }
-    return $array;
-  }
-
   static function selecttype($lid)
   {
     $DB=database::getinstance();

@@ -4,33 +4,40 @@ require_once"reservationdetails.php";
 require_once"mydatabaseconnection.php";
 require_once "Radiologies.php";
 require_once "radiologyprice.php";
+require_once "invoice.php";
 
 class receptionist extends user{
 
 static function viewpatientinvoice($pid)
 {
     $DB=database::getinstance();  
-    $reserve = new reservationdetails();
+   /* $reserve = new reservationdetails();
     $user = new user();
     $array = $reserve->selectforinvoice($pid);
     $patientname = $user->selectforpdf($pid);
+    */
+    $invoice = new invoice();
+    $array =  $invoice->selectforpdfgen($pid);
+    $patientname = $invoice->selectforpdf($pid);
     $length = count($array);
+
+
     $DW = new radiologyprice();
         for ($i = 0; $i < $length; $i++)
         {
-           if($array[$i]['RadiologyID'] == 4)
+           if($array[$i]['radid'] == 4)
            {
             $DW = new UVray($DW);
            }
-           if($array[$i]['RadiologyID'] == 2)
+           if($array[$i]['radid'] == 2)
            {
             $DW = new CT($DW);
            }
-           if($array[$i]['RadiologyID'] == 1)
+           if($array[$i]['radid'] == 1)
            {
             $DW = new PET($DW);
            }
-           if($array[$i]['RadiologyID'] == 3)
+           if($array[$i]['radid'] == 3)
            {
             $DW = new XRay($DW);
            }

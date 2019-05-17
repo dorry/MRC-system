@@ -1,30 +1,14 @@
 <?php
  require_once"mydatabaseconnection.php";
  require_once"notifications.php";
+require_once"invoice.php";
+
 class reservationdetails
 {
 public $quantity;
 public $radiologyid;
 public $reserveid;
 public $id;
-
-
-
-public static function selectforinvoice($pid)
-{
-  $DB=database::getinstance();
-  $OID = reserve::selectpatientresforinvoice($pid);  
-  $array;
-  $length = count($OID);
-  for ($i=0; $i<$length;$i++)
-  { 
-    $ID=$OID[$i]['ID']; 
-    $result = $DB->query("reservationdetails", " ReserveID= '$ID' and isdeleted='false'");
-    while($row = mysqli_fetch_array($result)){$array[$i] = $row;}
-  } 
-    if($i>0){return $array;}
-    else return;
-}
 
 
 public static function selectformyres($lid)
@@ -61,7 +45,7 @@ public static function selectforadminview()
     return $array; 
 }
 
-public static function addreservationdetails ($lastidreserved)
+public static function addreservationdetails ($lastidreserved,$pid)
 {
     $DB=database::getinstance();
     echo"<h4> $lastidreserved</h4>";
@@ -71,8 +55,9 @@ public static function addreservationdetails ($lastidreserved)
     $reserveDetails->quantity=1;
     $insertReserveDet=$DB->insertquery("reservationdetails","ReserveID , RadiologyID, quantity", 
         "'$reserveDetails->reserveId', '$reserveDetails->radiologyId','$reserveDetails->quantity'");
-
-   // header("Location:reservation.php");
+    $invoice = new invoice();
+    $invoice->addtoinvoicelist($pid,$reserveDetails->radiologyId);
+ // header("Location:reservation.php");
 }
 
 

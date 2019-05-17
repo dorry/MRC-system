@@ -16,6 +16,7 @@ class reserve
   {
     $DB=database::getinstance();  
     $result = $DB->updatequery("reserve", "isdeleted" , "'true'" , "PatientID = '$pid'");
+    $result = $DB->updatequery("invoice", "ispaid" , "true" , "uid = '$pid'");
   }
   static function selectpatientresforinvoice($pid)
   {
@@ -152,6 +153,7 @@ class reserve
   public static function addreserve ($obj)
   {
     $datevalidate = "";
+
     $DB=database::getinstance();
     $result = $DB->query("reserve", "isdeleted='false' and date ='$obj->date'");
     if(mysqli_num_rows($result)>0)
@@ -164,9 +166,11 @@ class reserve
       $DB=database::getinstance();
       $lastidreserved = $DB->insertlast("reserve","PatientID , DoctorID, Date","'$obj->patientId', '$obj->doctorId','$obj->date'");
       $reservationdetails=new reservationdetails();
-      $reservationdetails->addreservationdetails($lastidreserved);
+      $reservationdetails->addreservationdetails($lastidreserved,$obj->patientId);
       $notification = new notification();
       $notification->addnotification($obj->patientId,$obj->doctorId);
+      header("Location:CreateReserve.php");
+
     }
   }  
   static function deletereserve($obj)
