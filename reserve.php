@@ -12,6 +12,11 @@ class reserve
   public $patientid;
   public $id;
 
+  static function checkoutpatient($pid)
+  {
+    $DB=database::getinstance();  
+    $result = $DB->updatequery("reserve", "isdeleted" , "'true'" , "PatientID = '$pid'");
+  }
   static function selectpatientresforinvoice($pid)
   {
     $DB=database::getinstance();  

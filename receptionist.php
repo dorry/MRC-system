@@ -18,7 +18,6 @@ static function viewpatientinvoice($pid)
     $DW = new radiologyprice();
         for ($i = 0; $i < $length; $i++)
         {
-           //secho "<h2>". $array[$i]['RadiologyID'] . "</h2>";
            if($array[$i]['RadiologyID'] == 4)
            {
             $DW = new UVray($DW);
@@ -37,9 +36,9 @@ static function viewpatientinvoice($pid)
            }
 
         }       
-        date_default_timezone_set('Africa/Cairo');
-        $timezone = date_default_timezone_get();
-        $date = date('m/d/Y h:i:s a', time()); 
+      date_default_timezone_set('Africa/Cairo');
+      $timezone = date_default_timezone_get();
+      $date = date('m/d/Y h:i:s a', time()); 
       $content = '<h2> Misr Radiology Center </h2> ';
       $content .= '<div style ="text-align=center;" >';
       $content = '<img  style ="height: 60px; width: 300px;" src="assets/images/logo/logo.png" alt="" title="" />';
@@ -57,7 +56,6 @@ static function viewpatientinvoice($pid)
        $content .= "Total Cost : ";
        $content .= $DW->price();
        $content .= '</div>';
-
        echo $content;
        return $content;
 }
