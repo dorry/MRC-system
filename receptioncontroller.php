@@ -1,11 +1,14 @@
 <?php
 require_once "receptionist.php";
 require_once "receptionistview.php";
-
+require_once "reserve.php";
 
 if(isset($_POST["GenerateInvoice"]))
 {
-		require_once("tcpdf/tcpdf.php");
+
+	$reserve = new reserve();
+	$reserve->checkoutpatient($_POST['patientreport']);
+	require_once("tcpdf/tcpdf.php");
 	$model = new receptionist();
 	$P = $model->viewpatientinvoice($_POST['patientreport']);
 	$obj_pdf = new TCPDF('P' , PDF_UNIT , PDF_PAGE_FORMAT , true , 'UTF-8',false);
@@ -24,7 +27,7 @@ if(isset($_POST["GenerateInvoice"]))
 	 $obj_pdf->SetFont('helvetica','',12);
 	$obj_pdf->writeHTML("<html>".$P."</html>" , true , 0 , true , 0);
 	ob_clean();
-	$obj_pdf->Output("testpdf.php", "I");
+	$obj_pdf->Output("testpdf.pdf", "I");
 }
 
 class receptionistcontroller
@@ -34,6 +37,13 @@ class receptionistcontroller
 		$model = new receptionist();
 		$model->viewpatientinvoice($pid);
 	}
+
+    static  function showinvoiceform()
+	{
+		$view = new receptionistview();
+		$view->invoiceform();
+    }
+	
     static  function viewrepatientsdropdowndoc()
 	{
 		$view = new reportview();
