@@ -6,40 +6,41 @@ require_once 'schedule.php';
 class adminview{
 
 
-static function showformyres($lid){
-    include("navbar.php");
+static function showformyres($lid)
+{
+  include("navbar.php");
 
-    $result = user::selectuserformyres($lid);
-    $length =  count($result);
-    $result1 = user::selectformyres($lid);
-    $length1 =  count($result1);
-    $result2 = reserve::selectmyres($lid);
-    $length2 = count($result2);
-    $result3 = radiology::selectformyres($lid);
-    $length3 = count($result3);
-    
-    echo "<h2>Patient Reservations</h2>";
-    echo "<table width='65%' id = 'tbl'>";
-    echo "<thead>
-          <tr>
-          <th>Doctor Name</th>         
-          <th>Patient Name</th>         
-          <th>Date</th>         
-          <th>Radiology</th>         
-          <th>Price</th>         
-          </tr>
-          </thead>
-          <tbody>";
-          
-  for ($i=0; $i<$length;$i++)
-  {
-    $firstn=$result[$i]['firstname'];
-    $lastn=$result[$i]['lastname']; 
-    $firstn2=$result1[$i]['firstname'];
-    $lastn2=$result1[$i]['lastname'];
-    $Date = $result2[$i]['Date'];
-    $Name = $result3[$i]['Name'];
-    $Price = $result3[$i]['price'];
+  $result = user::selectuserformyres($lid);
+  $length =  count($result);
+  $result1 = user::selectformyres($lid);
+  $length1 =  count($result1);
+  $result2 = reserve::selectmyres($lid);
+  $length2 = count($result2);
+  $result3 = radiology::selectformyres($lid);
+  $length3 = count($result3);
+  
+  echo "<h2>Patient Reservations</h2>";
+  echo "<table width='65%' id = 'tbl'>";
+  echo "<thead>
+        <tr>
+        <th>Doctor Name</th>         
+        <th>Patient Name</th>         
+        <th>Date</th>         
+        <th>Radiology</th>         
+        <th>Price</th>         
+        </tr>
+        </thead>
+        <tbody>";
+        
+for ($i=0; $i<$length;$i++)
+{
+  $firstn=$result[$i]['firstname'];
+  $lastn=$result[$i]['lastname']; 
+  $firstn2=$result1[$i]['firstname'];
+  $lastn2=$result1[$i]['lastname'];
+  $Date = $result2[$i]['Date'];
+  $Name = $result3[$i]['Name'];
+  $Price = $result3[$i]['price'];
 ?>
 
 <tr>
@@ -577,7 +578,7 @@ public static function showuser()
 
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
-  
+  echo '<form method="post" action="admincontroller.php">';
   echo "<table width='50%' id = 'tbl' >";
   echo "<thead>
         <tr>
@@ -591,10 +592,10 @@ public static function showuser()
   $result = user::selectallusers();
   $length =  count($result);
   echo "<tbody>";
+  
   for ($i=0; $i<$length;$i++)
   {
     ?>
-    <form method="post" action="admincontroller.php">
     <input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>">
     <tr>
     <td> <?php echo $result[$i]['id'];?> </td>
@@ -603,11 +604,12 @@ public static function showuser()
     <td> <?php echo $result[$i]['username'];?> </td>
     <td> <input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
     </tr>
-    </form>
     <?php
   }
+
   echo "</tbody>";
     echo "</table>";
+    echo "</form>";
     echo "<script>
     $('#tbl').DataTable();
     </script>";
