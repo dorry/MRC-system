@@ -11,11 +11,6 @@ class receptionist extends user{
 static function viewpatientinvoice($pid)
 {
     $DB=database::getinstance();  
-   /* $reserve = new reservationdetails();
-    $user = new user();
-    $array = $reserve->selectforinvoice($pid);
-    $patientname = $user->selectforpdf($pid);
-    */
     $invoice = new invoice();
     $array =  $invoice->selectforpdfgen($pid);
     $patientname = $invoice->selectforpdf($pid);
