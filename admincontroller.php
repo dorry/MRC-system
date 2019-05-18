@@ -192,6 +192,16 @@ static function viewtypes(){
     $view = new adminview();
     $view->showuser();
   }
+  static function showcreatedrsch()
+  {
+    $view = new adminview();
+    $view->createdrsch();
+  }
+    static function showcreatedrsch2()
+  {
+    $view = new adminview();
+    $view->createdrsch2();
+  }
   static function DoctorDropdown()
   {
     $view = new adminview();
@@ -330,6 +340,16 @@ $schedule->id = $_POST['id'];
 $schedule->starttime = $_POST['ST'];
 $schedule->endtime=$_POST['ET'];
 $admin->editdrsch($schedule);
+}
+
+if(isset($_POST['createdrsch']))
+{
+$schedule = new schedule();
+$admin = new admin();
+$schedule->docid = $_POST['doc'];
+$schedule->starttime = $_POST['ST'];
+$schedule->endtime=$_POST['ET'];
+$admin->createdrsch($schedule);
 }
 
 if(isset($_POST['EditProfile']))

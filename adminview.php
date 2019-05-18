@@ -292,6 +292,8 @@ public static function CreateLinkForm()
   <?php
 }
 
+
+
 public static function deletetypeform ()
 {
   ?>
@@ -338,25 +340,210 @@ public static function showusertypes(){
  echo "</table>";
 }
 
- public static function ShowDoctorNamesdropdown(){
-        $result = user::retrivedoctorsforeditres();
-        $length =  count($result);
-        echo" <select name='doc'>";
-        for ($i=0; $i<$length;$i++)
-            {
-    ?>
-          <option  value = "<?php echo $result[$i]['id'];?>">
-                    <?php 
-                    echo $result[$i]['firstname'];
-                    echo " "; 
-                    echo $result[$i]['lastname'];
-                    ?>
-          </option>
-    <?php 
-   }
-  echo "</select>";
+public static function createdrsch()
+  {
+    ?>    <style type="text/css">@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
+    *:focus {
+      outline: none;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      color: #222;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+    }
+
+    #login-box {
+      position: relative;
+      margin: 5% auto;
+      width: 400px;
+      height: 240px;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    }
+
+    .left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+      padding: 40px;
+      width: 300px;
+      height: 400px;
+    }
+
+    h1 {
+      margin: 0 0 20px 0;
+      font-weight: 300;
+      font-size: 28px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      display: block;
+      box-sizing: border-box;
+      margin-bottom: 20px;
+      padding: 4px;
+      width: 220px;
+      height: 32px;
+      border: none;
+      border-bottom: 1px solid #AAA;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      transition: 0.2s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      transition: 0.2s ease;
+    }
+
+    input[type="submit"] {
+      margin-top: 28px;
+      width: 120px;
+      height: 32px;
+      background:  linear-gradient(to right, #244cfd, #15e4fd);
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: 0.1s ease;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover,
+    input[type="submit"]:focus {
+      opacity: 0.8;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      transition: 0.1s ease;
+    }
+
+    input[type="submit"]:active {
+      opacity: 1;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: 0.1s ease;
+    }
+
+    .or {
+      position: absolute;
+      top: 180px;
+      left: 280px;
+      width: 40px;
+      height: 40px;
+      background: #DDD;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      line-height: 40px;
+      text-align: center;
+    }
+
+    .right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      box-sizing: border-box;
+      padding: 40px;
+      width: 300px;
+      height: 400px;
+      background: url('https://goo.gl/YbktSj');
+      background-size: cover;
+      background-position: center;
+      border-radius: 0 2px 2px 0;
+    }
+
+    .right .loginwith {
+      display: block;
+      margin-bottom: 40px;
+      font-size: 30px;
+      color: black;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    button.social-signin {
+      margin-bottom: 20px;
+      width: 220px;
+      height: 36px;
+      border: none;
+      border-radius: 2px;
+      color: #FFF;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 500;
+      transition: 0.2s ease;
+      cursor: pointer;
+    }
+
+    button.social-signin:hover,
+    button.social-signin:focus {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      transition: 0.2s ease;
+    }
+
+    button.social-signin:active {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+      transition: 0.2s ease;
+    }
+
+    button.social-signin.facebook {
+      background: #32508E;
+    }
+
+    button.social-signin.twitter {
+      background: #55ACEE;
+    }
+
+    button.social-signin.google {
+      background: #DD4B39;
+    }</style>
+        <title>Create Role</title>
+      </head>
+      <body>
+
+         <?php include("navbar.php");
+                require_once("admincontroller.php");
+           ?>
+    <div id="login-box">
+      <div class="left">
+        <form action="admincontroller.php" method="POST">
+      <?php
+    }
+
+     public static function ShowDoctorNamesdropdown(){
+            $result = user::retrivedoctorsforeditres();
+            $length =  count($result);
+            echo" <select name='doc'>";
+            for ($i=0; $i<$length;$i++)
+                {
+        ?>
+              <option  value = "<?php echo $result[$i]['id'];?>">
+                        <?php 
+                        echo $result[$i]['firstname'];
+                        echo " "; 
+                        echo $result[$i]['lastname'];
+                        ?>
+              </option>
+        <?php 
+       }
+    echo "</select>";
 }
 
+public static function createdrsch2()
+{?>
+  <label>Start time</label>
+  <input type="time" name="ST">
+  <label>End time</label>
+  <input type="time" name="ET">
+<input type="submit" name="createdrsch" value="Assign">
+</form>  
+
+<?php
+}
 public static function showuser()
 {
      require_once 'navbar.php';
@@ -501,7 +688,7 @@ public static function doctorsch()
     <td><?php echo $end;?></td>
     <td> <input type="submit" name="EditSchedule" value="Edit"></td>
     </tr>
-</form>
+    </form>
     <?php
     }
                 echo "</table>";
@@ -528,30 +715,30 @@ public static function showdrpatientdropdown(){
     $Plastn=$result1[$i]['lastname'];
     $Date = $result2[$i]['Date'];
     $Name = $result3[$i]['Name'];
-    $Price = $result3[$i]['price'];
-?>
+    $Price = $result3[$i]['price']; 
+    ?>
 
-<option  value = "<?php echo $result2[$i]['ID'];?>">
-                    <?php 
-echo $drfirstn; 
- echo " "; 
- echo $drlastn?> 
+    <option  value = "<?php echo $result2[$i]['ID'];?>">
+                        <?php 
+    echo $drfirstn; 
+     echo " "; 
+     echo $drlastn?> 
 
-<?php echo $Pfirstn; 
- echo " "; 
- echo $Plastn?> 
+    <?php echo $Pfirstn; 
+     echo " "; 
+     echo $Plastn?> 
 
-<?php echo $Date; ?> 
+    <?php echo $Date; ?> 
 
-<?php echo $Name; ?> 
+    <?php echo $Name; ?> 
 
-<?php echo $Price; ?> 
-          </option>
+    <?php echo $Price; ?> 
+              </option>
 
 
-<?php
-}
-            echo "</select>";
+    <?php
+    }
+    echo "</select>";
 }
 
 
@@ -576,13 +763,13 @@ static function adminpanel()
   </div>
   <?php
   include("footer.php"); 
-}
-static function userCRUD()
-{
-  if(!empty($_SESSION)){}
-  else{header("Location:index.php");}
-  include("navbar.php"); 
-  require_once"user.php";
+    }
+    static function userCRUD()
+    {
+      if(!empty($_SESSION)){}
+      else{header("Location:index.php");}
+      include("navbar.php"); 
+      require_once"user.php";
      if ( isset($_GET['success']) && $_GET['success'] == 1 )
      {
 
@@ -610,7 +797,8 @@ static function drCRUD()
   ?>
   <div>
     <h2>Admin Options : Manage Schedules </h2>
-    <a href="viewdrsch.php"> <h3>   - Show doctors schedule </h3></a>            
+    <a href="createdrsch.php"> <h3> - create doctors schedule </h3></a>            
+    <a href="viewdrsch.php">   <h3> - Show doctors schedule </h3></a>            
   </div>
   <?php
   include("footer.php"); 
