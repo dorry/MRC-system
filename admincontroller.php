@@ -14,6 +14,12 @@ require_once 'session.php';
 
 class admincontroller{
  
+
+ static  function showeditschform()
+  {
+        $view = new adminview();
+        $view->editschform();
+  }
  static  function showadminpanel()
   {
         $view = new adminview();
@@ -186,6 +192,16 @@ static function viewtypes(){
     $view = new adminview();
     $view->showuser();
   }
+  static function showcreatedrsch()
+  {
+    $view = new adminview();
+    $view->createdrsch();
+  }
+    static function showcreatedrsch2()
+  {
+    $view = new adminview();
+    $view->createdrsch2();
+  }
   static function DoctorDropdown()
   {
     $view = new adminview();
@@ -258,29 +274,19 @@ if(isset($_POST['utd_submit'])){
         while($row = mysqli_fetch_array($result5))
       {
         $OID = $row['optionsId'];
-     // $sql6 = "SELECT  * FROM `useroptions` where id= '$OID';";
-    //  $result6 = mysqli_query($conn, $sql6);
         $result6 = $DB->query("useroptions", "id= '$OID' and isdeleted='false'");
-
              while($rowUsOp = mysqli_fetch_array($result6))
           {
              array_push($oname, $rowUsOp['name']);
                       
                    }
                 }
- // $get_uto_id = "select id from usertypeoptions where userTypeId =$R" ;
-//  echo $get_uto_id;
- //   $result_uto = mysqli_query($conn, $get_uto_id);
     $result_uto = $DB->idquery("usertypeoptions", "userTypeId ='$R' and isdeleted='false'");      
         while($row = mysqli_fetch_array($result_uto))
       {
         $nid = $row['id'];
         $nu = $_POST['user'];
         $o = $_POST[$oname[$i]];
-       /* $insert_values = 
-       "insert into useropvalue (userTyOpId , userId , value) 
-       values (" . $row['id'] .",". $_POST['user']. ",". $_POST[$oname[$i]]." )" ;
-      */
             echo $insert_values;
      //   mysqli_query($conn , $insert_values);
     $insert_values = $DB->insertquery("useropvalue", "userTyOpId , userId , value" , "'$nid', '$nu','$o'");     
@@ -290,6 +296,51 @@ if(isset($_POST['utd_submit'])){
     header("Location:UTD.php");
   
 }
+
+
+if(isset($_POST['EditSchedule']))
+{
+  $DB=database::getinstance();
+  $id=$_POST['ScheduleID'];
+  $result = $DB->query("schedule", "id= '$id' and isdeleted='false'");
+  echo "<h1>". $id . "</h1>"; 
+
+  if($row = mysqli_fetch_array($result))
+  {
+    $st=$row['StartTime'];
+    $et=$row['EndTime'];
+    $schedule = new schedule();
+    $admin = new admin();
+    $schedule->id=$id;
+    $schedule->starttime =$st;
+    $schedule->endtime = $et;
+    $_SESSION['schedule']= serialize($schedule);
+    echo'<script>alert("Selected Succesfully redirecting")</script>';
+    header("refresh:1; url=editschedule.php");
+}
+echo "</form>";
+}
+
+if(isset($_POST['doeditschedule']))
+{
+$schedule = new schedule();
+$admin = new admin();
+$schedule->id = $_POST['id'];
+$schedule->starttime = $_POST['ST'];
+$schedule->endtime=$_POST['ET'];
+$admin->editdrsch($schedule);
+}
+
+if(isset($_POST['createdrsch']))
+{
+$schedule = new schedule();
+$admin = new admin();
+$schedule->docid = $_POST['doc'];
+$schedule->starttime = $_POST['ST'];
+$schedule->endtime=$_POST['ET'];
+$admin->createdrsch($schedule);
+}
+
 if(isset($_POST['EditProfile']))
 {
   $DB=database::getinstance();

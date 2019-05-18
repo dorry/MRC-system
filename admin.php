@@ -10,6 +10,15 @@ require_once 'radiology.php';
 
 class admin extends user{
 
+
+static function editdrsch ($obj)
+{
+    $DB=database::getinstance();
+    $result = $DB->updatequery("schedule", "StartTime" , "'$obj->starttime'" , "id = '$obj->id'");
+    $result = $DB->updatequery("schedule", "EndTime" , "'$obj->endtime'" , "id = '$obj->id'");
+    //header("Location:UTD.php");
+}
+
 public function update($array)
 {
 
@@ -181,6 +190,22 @@ static function addradiology ($obj)
         $DB=database::getinstance();
         $result = $DB->insertquery("radiology", "Name,price" , "'$obj->name' ,'$obj->price'" );
         header("Location:radiologyCRUD.php");
+    }
+}
+
+static function createdrsch ($obj)
+{
+    $radpricevalidate;
+    if($obj->starttime < 0)
+    {
+      $socialnumbervalidate = "Price cannot be negative values.";
+      header("Location:createrad.php");
+    }
+    else
+    {
+        $DB=database::getinstance();
+        $result = $DB->insertquery("schedule", "StartTime,EndTime,DocId" , "'$obj->starttime' ,'$obj->endtime', '$obj->docid'" );
+        header("Location:drCRUD.php");
     }
 }
 
