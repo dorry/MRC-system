@@ -578,7 +578,6 @@ public static function showuser()
 
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
-  echo '<form method="post" action="admincontroller.php">';
   echo "<table width='50%' id = 'tbl' >";
   echo "<thead>
         <tr>
@@ -596,8 +595,10 @@ public static function showuser()
   
   for ($i=0; $i<$length;$i++)
   {
+    
     ?>
     <tr>
+    <form method="post" action="admincontroller.php">
     <input style = "display:none;left:-200;top:-200 !important;" type="text" name="id" value="<?php echo $result[$i]['id'];?>"></td>
     <td> <?php echo $result[$i]['id'];?> </td>
     <td> <?php echo $result[$i]['firstname'];?> </td>
@@ -605,13 +606,13 @@ public static function showuser()
     <td> <?php echo $result[$i]['username'];?> </td>
     <td style = 'display: none;'><input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>"></td>
     <td> <input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
+    </form>
     </tr>
     <?php
   }
 
   echo "</tbody>";
     echo "</table>";
-    echo "</form>";
     echo "<script>
     $('#tbl').DataTable();
     </script>";
