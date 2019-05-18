@@ -212,7 +212,7 @@ class reserveview
         echo"<br> Reservation date:";
         echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01' required = ''/><br>";
         echo"<br> Time:";
-        echo"<br> <input type='time' name = 'time' onchange='getdoctor(this.value)'/><br>";
+        echo"<br> <input type='time' name = 'time' step='600' onchange='getdoctor(this.value)'/><br>";
       
         ?>
 
