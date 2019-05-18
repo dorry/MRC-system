@@ -134,10 +134,10 @@ static function adminedituser ($obj){
             "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber"
             ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
                 "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
-                if($result){//Echo successfully
+                if($result){       header("Location:userCRUD.php?success=1");
                 }
-                else{}
-       header("Location:userCRUD.php");
+                else{       header("Location:userCRUD.php?success=0");
+                }
     // }
 
 }

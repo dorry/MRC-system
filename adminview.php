@@ -1,5 +1,6 @@
 <?php
 require_once 'admin.php';
+require_once 'schedule.php';
 
 
 class adminview{
@@ -124,10 +125,9 @@ public static function showradiology()
 }
 public static function showuserdropdowneav($rid){
 
-
   $result = user::selectauserseav($rid);
   $length =  count($result);
- 
+  
     echo"<label>Users</label>";
     echo" <select name='user'>";
   if ($length > 0){
@@ -359,6 +359,11 @@ public static function showusertypes(){
 
 public static function showuser()
 {
+     require_once 'navbar.php';
+
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  
   echo "<table width='50%'>";
   echo "<tr>
         <th>ID</th>
@@ -383,6 +388,8 @@ public static function showuser()
     <?php
   }
     echo "</table>";
+   require_once 'footer.php';
+
 }
 
 public static function showuserdropdown()
@@ -446,6 +453,8 @@ public static function showedituserform(){
 }
 public static function doctorsch()
 {
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
   ?>
   <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
   <?php
@@ -532,12 +541,45 @@ echo $drfirstn;
             echo "</select>";
 }
 
+
+static function adminpanel()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+
+  include("navbar.php");
+  ?>
+  <div>
+      <h2>Admin Options : </h2>
+      <a href="userCRUD.php"> <h3>   - Manage Users </h3></a>
+      <a href="drCRUD.php"> <h3>   - Manage Doctor Schedules </h3></a>
+      <a href="Roles.php"> <h3>   - Manage Usertypes </h3></a>
+      <a href="linkCRUD.php"> <h3>   - Manage Links </h3></a>
+      <a href="UTD.php"> <h3>   - Manage Usertype details </h3></a>
+      <a href="radiologyCRUD.php"> <h3>   - Manage Radiologies </h3></a>
+      <a href="ReservationCRUD.php"> <h3>   - Manage Reservation </h3></a>
+      <a href="AllEditablePages.php"> <h3>   - Editable pages </h3></a>
+      <a href="Statistics.php"> <h3>   - Statistics page </h3></a>
+  </div>
+  <?php
+  include("footer.php"); 
+}
 static function userCRUD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
+  require_once"user.php";
+     if ( isset($_GET['success']) && $_GET['success'] == 1 )
+     {
+
+          user::ReturnMessages(1);
+     }
+     else if($_GET['success'] == 0)
+     {
+      user::ReturnMessages(0);
+
+     }
   ?>
   <div>
     <h2>Admin Options : Manage Users </h2>
@@ -550,7 +592,6 @@ static function userCRUD()
 
 static function drCRUD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
@@ -565,7 +606,6 @@ static function drCRUD()
 
 static function roleCRUD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
@@ -583,7 +623,6 @@ static function roleCRUD()
 
 static function linkCRUD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
@@ -602,7 +641,6 @@ static function linkCRUD()
 
 static function UTD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
@@ -622,8 +660,7 @@ static function UTD()
 
 static function radCRUD()
 {
-  session_start();
-  if(!empty($_SESSION)){}
+    if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
   ?>
@@ -640,7 +677,6 @@ static function radCRUD()
 
 static function resCRUD()
 {
-  session_start();
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   include("navbar.php"); 
