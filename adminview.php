@@ -596,12 +596,12 @@ public static function showuser()
   for ($i=0; $i<$length;$i++)
   {
     ?>
-    <input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>">
     <tr>
     <td> <?php echo $result[$i]['id'];?> </td>
     <td> <?php echo $result[$i]['firstname'];?> </td>
     <td> <?php echo $result[$i]['lastname'];?> </td>
     <td> <?php echo $result[$i]['username'];?> </td>
+    <td><input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>"></td>
     <td> <input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
     </tr>
     <?php
