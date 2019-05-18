@@ -366,7 +366,6 @@ public static function showuser()
         <th>Last Name</th>
         <th>User Name</th>
         <th></th>
-        <th></th>
         </tr>"; 
   $result = user::selectallusers();
   $length =  count($result);
@@ -380,7 +379,6 @@ public static function showuser()
     <td> <?php echo $result[$i]['lastname'];?> </td>
     <td> <?php echo $result[$i]['username'];?> </td>
     <td><input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
-    <td><input type="submit" value="Delete" name="DeleteProfile" class="template-btn"></td></tr>
     </form>
     <?php
   }
