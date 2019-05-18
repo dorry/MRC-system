@@ -4,6 +4,7 @@ include"ReportingModuleClass.php";
 require_once"IReport.php";
 
 if (empty($_SESSION)) { header("Location:index.php"); }
+?>
   <head>
     <title>Admin Panel</title>
   </head>

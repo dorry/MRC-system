@@ -7,7 +7,7 @@
 session_start();
 include("user.php");
 include("address.php");
-require_once("admincontroller.php")
+require_once("admincontroller.php");
 if (empty($_SESSION)) { header("Location:index.php"); }
 
 ?>
