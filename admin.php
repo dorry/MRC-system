@@ -10,6 +10,15 @@ require_once 'radiology.php';
 
 class admin extends user{
 
+
+static function editdrsch ($obj)
+{
+    $DB=database::getinstance();
+    $result = $DB->updatequery("schedule", "StartTime" , "'$obj->starttime'" , "id = '$obj->id'");
+    $result = $DB->updatequery("schedule", "EndTime" , "'$obj->endtime'" , "id = '$obj->id'");
+    //header("Location:UTD.php");
+}
+
 public function update($array)
 {
 

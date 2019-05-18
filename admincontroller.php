@@ -14,6 +14,12 @@ require_once 'session.php';
 
 class admincontroller{
  
+
+ static  function showeditschform()
+  {
+        $view = new adminview();
+        $view->editschform();
+  }
  static  function showadminpanel()
   {
         $view = new adminview();
@@ -290,6 +296,42 @@ if(isset($_POST['utd_submit'])){
     header("Location:UTD.php");
   
 }
+
+
+if(isset($_POST['EditSchedule']))
+{
+
+  $DB=database::getinstance();
+  $id=$_POST['ScheduleID'];
+  $result = $DB->query("schedule", "id= '$id' and isdeleted='false'");
+  echo "<h1>". $id . "</h1>"; 
+
+  if($row = mysqli_fetch_array($result))
+  {
+    $st=$row['StartTime'];
+    $et=$row['EndTime'];
+    $schedule = new schedule();
+    $admin = new admin();
+    $schedule->id=$id;
+    $schedule->starttime =$st;
+    $schedule->endtime = $et;
+    $_SESSION['schedule']= serialize($schedule);
+    echo'<script>alert("Selected Succesfully redirecting")</script>';
+    header("refresh:1; url=editschedule.php");
+}
+echo "</form>";
+}
+
+if(isset($_POST['doeditschedule']))
+{
+$schedule = new schedule();
+$admin = new admin();
+$schedule->id = $_POST['id'];
+$schedule->starttime = $_POST['ST'];
+$schedule->endtime=$_POST['ET'];
+$admin->editdrsch($schedule);
+}
+
 if(isset($_POST['EditProfile']))
 {
   $DB=database::getinstance();

@@ -432,6 +432,18 @@ public static function showusertypedropdown()
 }
  
 
+ public static function editschform()
+ {
+   require_once"schedule.php";
+    $obj=unserialize($_SESSION['schedule']);
+    echo'<label>Start Time</label><span style= "color:red;">*</span>
+    <input type="hidden" name="id" value="'.$obj->id.'">
+    <input type="time" name="ST" value="'.$obj->starttime.'" required = ""/><br><br>
+    <label>E-mail</label><span style= "color:red;">*</span>
+    <input type="time" name="ET" value="'.$obj->endtime.'" required = ""/><br><br>';
+}
+
+
 public static function showedituserform(){
   require_once"user.php";
   $obj=unserialize($_SESSION['user']);
@@ -483,12 +495,13 @@ public static function doctorsch()
     ?>
 
     <tr>
+    <input type="hidden" name="ScheduleID" value="<?php echo $array[$i]['id'];?>">
     <td><?php echo $drfirstn; echo " "; echo $drlastn?> </td>
     <td><?php echo $start;?></td>
     <td><?php echo $end;?></td>
-    <input type="hidden" name="ReserveID" value="<?php echo $array[$i]['id'];?>">
-    <td> <input type="submit" name="Edit Schedule" value="Edit"></td>
+    <td> <input type="submit" name="EditSchedule" value="Edit"></td>
     </tr>
+</form>
     <?php
     }
                 echo "</table>";
@@ -673,6 +686,8 @@ static function radCRUD()
   <?php
   include("footer.php"); 
 }
+
+
 
 static function resCRUD()
 {
