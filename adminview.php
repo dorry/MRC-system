@@ -575,10 +575,9 @@ static function userCRUD()
 
           user::ReturnMessages(1);
      }
-     else if($_GET['success'] == 0)
+     else if(isset($_GET['success']) &&$_GET['success'] == 0)
      {
       user::ReturnMessages(0);
-
      }
   ?>
   <div>
