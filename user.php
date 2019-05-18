@@ -114,6 +114,22 @@ class user
     else return $array;
   }
 
+  static function selectdocssch()
+  {
+    $DB=database::getinstance();
+    $DrId = schedule::selectall();  
+    $length = count($DrId);
+    $array;
+    for ($i=0; $i<$length;$i++)
+    { 
+      $ID=$DrId[$i]['DocId']; 
+      $result = $DB->query("user", "id= '$ID'");
+      while($row = mysqli_fetch_array($result))
+      {$array[$i] = $row;}
+    }
+    return $array;
+  }
+
   static function selectdocforresview()
   {
     $DB=database::getinstance();
