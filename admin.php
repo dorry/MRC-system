@@ -131,12 +131,13 @@ static function adminedituser ($obj){
     // {
         $DB=database::getinstance();
         $result = $DB->update7query("user", 
-        "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber",
-        "'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
-        "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
-        
-        if($result){header("Location:userCRUD.php?success=1");}
-        else{header("Location:userCRUD.php?success=0");}
+            "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber"
+            ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
+                "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
+                if($result){       header("Location:userCRUD.php?success=1");
+                }
+                else{       header("Location:userCRUD.php?success=0");
+                }
     // }
 
 }
@@ -152,8 +153,8 @@ static function addradiology ($obj)
     {
         $DB=database::getinstance();
         $result = $DB->insertquery("radiology", "Name,price" , "'$obj->name' ,'$obj->price'" );
-        if($result){header("Location:radiologyCRUD.php?success=1");}
-        else{header("Location:radiologyCRUD.php?success=0");}       }
+        header("Location:radiologyCRUD.php");
+    }
 }
 
 
@@ -169,8 +170,7 @@ static function editradiology ($obj)
         $DB=database::getinstance();
         $result = $DB->update2query("radiology", "Name" , "price" , "'$obj->name'" , "'$obj->price'" ,
                                 "ID = '$obj->id'"); 
-        if($result){header("Location:radiologyCRUD.php?success=1");}
-        else{header("Location:radiologyCRUD.php?success=0");}         
+          header("Location:radiologyCRUD.php");
     }
 }
 
