@@ -1,4 +1,5 @@
-<?php 
+<?php
+if (empty($_SESSION)) { header("Location:index.php"); }
   require_once("user.php");
   require_once("admincontroller.php");
   $c = new admincontroller();

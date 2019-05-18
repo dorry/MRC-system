@@ -3,14 +3,7 @@
 session_start();
 include("usertype.php");
 include("links.php");
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 
 

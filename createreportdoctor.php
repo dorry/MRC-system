@@ -4,7 +4,8 @@ require_once "session.php";
 require_once "doctor.php";
 require_once "doctorcontroller.php";
 require_once "reportcontroller.php";
-include("navbar.php");  
+include("navbar.php");
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 $doc = new reportcontroller();
 $doc->viewrepatientsdropdowndoc();

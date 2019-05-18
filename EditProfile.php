@@ -1,14 +1,7 @@
 <?php //Not Edited to Object Oriented , me7taga ta3del baset
 
 session_start();
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
+if (empty($_SESSION)) { header("Location:index.php"); }
 ?>
   <head>
 

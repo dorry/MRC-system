@@ -1,7 +1,8 @@
 <head>
 <?php 
 require_once"admincontroller.php";
-session_start(); 
+session_start();
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 $id=$_SESSION['ID'];
 $c= new admincontroller();

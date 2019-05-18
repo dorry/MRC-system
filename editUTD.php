@@ -1,14 +1,7 @@
 <?php
 
 session_start();
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 include"usertype.php";
 require_once"admincontroller.php";

@@ -158,12 +158,15 @@ static function adminedituser ($obj)
             "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber"
             ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
                 "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
-                if($result){       header("Location:userCRUD.php?success=1");
-                }
-                else{       header("Location:userCRUD.php?success=0");
-                }
-    // }
-
+        if($result)
+        { 
+            header("Location:userCRUD.php?success=1");
+        }
+        else
+        {
+            header("Location:userCRUD.php?success=0");
+        }
+    }
 }
 static function addradiology ($obj)
 {

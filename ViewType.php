@@ -1,14 +1,7 @@
 <?php
 //Edited to Object Oriented
 session_start();
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 ?>
   <head>

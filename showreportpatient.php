@@ -4,14 +4,7 @@
 require_once "doctor.php";
 // require_once "doctorcontroller.php";
 require_once "SharedFacadeUserAndDoctor.php";
-if(!empty($_SESSION))
-{
-  
-}
-else
-{
-  header("Location:index.php");
-}
+if (empty($_SESSION)) { header("Location:index.php"); }
 ?>
   <head>
   </head>

@@ -6,8 +6,7 @@ require_once "doctorcontroller.php";
 require_once "SharedFacadeUserAndDoctor.php";
 require_once "session.php";
 
-if(!empty($_SESSION)){}
-else{header("Location:index.php");} 
+if (empty($_SESSION)) { header("Location:index.php"); }
 
 include("navbar.php"); 
 

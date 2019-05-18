@@ -8,6 +8,7 @@ require_once("usertype.php");
 require_once("address.php");
 require_once("admincontroller.php");
 require_once("usertypecontroller.php");
+if (empty($_SESSION)) { header("Location:index.php"); }
 ?>
    
     <title>Edit User</title>
