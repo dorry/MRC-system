@@ -3,6 +3,7 @@ require_once "mydatabaseconnection.php";
 require_once "reserve.php";
 require_once "report.php";
 require_once "IReport.php";
+if (!isset($_SESSION)) { session_start(); }
 class user
 {
 

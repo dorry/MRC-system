@@ -31,7 +31,8 @@ Class database{
         $sql = "select * from ".$table." where ".$condition." ";
         $result = mysqli_query($this->conn,$sql);
          echo $sql;
-         echo "<br>"; 
+         echo "<br>";
+
         return $result;
         }
     function distinctquery($table, $condition)
@@ -92,11 +93,13 @@ Class database{
         echo $sql;
         echo "<br>";
         return $result;}
-    function update4query($table, $attribute, $attribute2 ,  $attribute3,  $attribute4 , $value, $value2, $value3 , $value4, $condition)
+    function update4query($table, $attribute, $attribute2 ,  $attribute3,  $attribute4, $attribute5, $attribute6 , $attribute7, $value, $value2, $value3 , $value4, $value5, $value6, $value7, $condition)
         {
                $sql = "UPDATE  ".$table." 
                 SET ".$attribute." = ".$value." , ".$attribute2." =".$value2." , 
-                    ".$attribute3." = ".$value3.", ".$attribute4." = ".$value4."
+                    ".$attribute3." = ".$value3.", ".$attribute4." = ".$value4.",
+                    ".$attribute5." = ".$value5." , ".$attribute6." =".$value6." , 
+                    ".$attribute7." = ".$value7."
                 WHERE ".$condition."  " ;  
         $result = mysqli_query($this->conn,$sql);
         echo $sql;

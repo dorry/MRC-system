@@ -77,7 +77,7 @@ class userview
          for ($i=0; $i<$length;$i++)
          { 
             ?>  
-        <form action='' method='post'>
+        <form action='usercontroller.php' method='post'>
             FirstName:<span style= "color:red;">*</span>
             <input type='text' value="<?php echo $result[$i]['firstname'];?>" name='FName' required = ""><span style= "font-size:10px;">First Name must contain letters and spaces only.</span><br><br>
             LastName:<span style= "color:red;">*</span>

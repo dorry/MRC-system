@@ -1,11 +1,12 @@
 <?php 
-require_once"user.php";
-require_once"IReserve.php";
-require_once"IRegister.php";
-require_once"mydatabaseconnection.php";
+require_once "user.php";
+require_once "IReserve.php";
+require_once "IRegister.php";
+require_once "mydatabaseconnection.php";
 require_once 'reserve.php';
 require_once 'reservationdetails.php';
 require_once 'radiology.php';
+
 
 class admin extends user{
 
@@ -94,51 +95,71 @@ static function admindeleteuser ($obj)
 }
 
 
-static function adminedituser ($obj){
-    // $usernamevalidate =  $firstnamevalidate = 
-    // $lastnamevalidate = $emailvalidate = 
-    // $passwordvalidate = $gendervalidate = $dobvalidate = 
-    // $socialnumbervalidate = $cityvalidate = "";
-    // $DB=database::getinstance();
-    // $result = $DB->query("user", "isdeleted='false' and username ='$obj->username'");
-    // $result2 = $DB->query("user", "isdeleted='false' and email ='$obj->email'");
-    // if(mysqli_num_rows($result)>0)
-    // {
-    //   $usernamevalidate = "Username already taken!.";
-    //   header("Location:edituser.php");
-    // }
-    // else if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
-    // {
-    //   $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
-    //   header("Location:edituser.php");
-    // }
-    // else if(mysqli_num_rows($result2)>0)
-	// {
-	// 	$usernamevalidate = "E-mail already taken!.";
-	// 	header("Location:edituser.php");
-	// }
-    // else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
-    // {
-    //   $emailvalidate = "Invalid email format.";
-    //   header("Location:edituser.php");
-    // }
-    // else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $obj->password))
-    // {
-    //   $passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
-    //   header("Location:edituser.php");
-    // }
-    // else
-    // {
+static function adminedituser ($obj)
+{
+    $usernamevalidate =  $firstnamevalidate = 
+    $lastnamevalidate = $emailvalidate = 
+    $passwordvalidate = $gendervalidate = $dobvalidate = 
+    $socialnumbervalidate = $cityvalidate = "";
+    $DB=database::getinstance();
+    $edituser = $_SESSION['editusername'];
+    $editemail = $_SESSION['editemail'];
+    $result = $DB->query("user", "isdeleted='false' and username ='$obj->username' and username != '$edituser'");
+    $result2 = $DB->query("user", "isdeleted='false' and email ='$obj->email' and email != '$editemail'");
+    if(mysqli_num_rows($result)>0)
+    {
+      $usernamevalidate = "Username already taken!.";
+      header("Location:edituser.php");
+    }
+    else if(!preg_match("/^[0-9a-zA-Z_]{5,}$/", $obj->username))
+    {
+      $usernamevalidate = "User must be bigger that 5 chars and contain only digits, letters and underscore";
+      header("Location:edituser.php");
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $obj->firstname))
+    {
+      $firstnamevalidate = "First Name must contain letters and spaces only!";
+      header("Location:signup.php");
+    }
+    else if(!preg_match('/^[\p{L} ]+$/u', $obj->lastname))
+    {
+      $lastnamevalidate = "Last Name must contain letters and spaces only!";
+      header("Location:signup.php");
+    }
+    else if(mysqli_num_rows($result2)>0)
+	{
+        $usernamevalidate = "E-mail already taken!.";
+		header("Location:edituser.php");
+	}
+    else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
+    {
+      $emailvalidate = "Invalid email format.";
+      header("Location:edituser.php");
+    }
+    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $obj->password))
+    {
+      $passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+      header("Location:edituser.php");
+    }
+    else if($obj->socialnumber < 0)
+    {
+      $socialnumbervalidate = "Social number cannot be negative values.";
+      header("Location:signup.php");
+    }
+    else if(strlen($obj->socialnumber) != 14)
+    {
+      $socialnumbervalidate = "Social number must be 14 numbers only.";
+      header("Location:signup.php");
+    }
+    else
+    {
         $DB=database::getinstance();
-        $result = $DB->update7query("user", 
-            "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber"
-            ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
-                "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
-                if($result){//Echo successfully
-                }
-                else{}
+        $result = $DB->update4query("user", 
+            "email" ,"password", "username" , "usertypeid", "firstname", "lastname", "socialnumber" 
+            ,"'$obj->email'" ,"'$obj->password'", "'$obj->username'", "'$obj->usertypeid'", "'$obj->firstname'", "'$obj->lastname'", "'$obj->socialnumber'",
+                "id='$obj->id'" );
        header("Location:userCRUD.php");
-    // }
+    }
 
 }
 static function addradiology ($obj)

@@ -432,13 +432,13 @@ public static function showedituserform(){
     <input type="hidden" name="user" value="'.$obj->id.'">
     <input type="text" name="UName" placeholder="Username" value="'.$obj->username.'" required = ""/><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span><br><br>
     <label>E-mail</label><span style= "color:red;">*</span>
-    <input type="email" name="email" placeholder="E-mail" value="'.$obj->email.'" required = ""/><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
+    <input type="email" name="email" placeholder="E-mail" value="'.$obj->email.'" required = ""/><span style= "font-size:10px;"><br><br>E-mail should be like this format: example@gmail.com</span><br><br>
     <label>First Name</label><span style= "color:red;">*</span>
-    <input type="text" name="firstname" placeholder="FirstName" value="'.$obj->firstname.'" required = ""/><br><br>
+    <input type="text" name="firstname" placeholder="FirstName" value="'.$obj->firstname.'" required = ""/><span style= "font-size:10px;">First Name must contain letters and spaces only.</span><br><br>
     <label>Last Name</label><span style= "color:red;">*</span>
-    <input type="text" name="lastname" placeholder="LastName" value="'.$obj->lastname.'" required = ""/><br><br>
+    <input type="text" name="lastname" placeholder="LastName" value="'.$obj->lastname.'" required = ""/><span style= "font-size:10px;">Last Name must contain letters and spaces only.</span><br><br>
     <label>Social Security Number</label><span style= "color:red;">*</span>
-    <input type="number" min="0" name="ssn" placeholder="Social Security Number" value="'.$obj->socialnumber.'" required = ""/><br><br>
+    <input type="number" min="0" name="ssn" placeholder="Social Security Number" value="'.$obj->socialnumber.'" required = ""/><br><br><span style= "font-size:10px;">Social Number Should be 14 digits.</span><br><br>
     <label>Password</label><span style= "color:red;">*</span>
     <input type="password" name="password" placeholder="Password" value="" required = ""/><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
     <label>Usertype</label><span style= "color:red;">*</span>';

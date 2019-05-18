@@ -59,14 +59,16 @@ if(isset($_POST['edit']))
 	$P =sha1($_POST["Password"]);
 	$D =$_POST["dob"];
 	$U =$_POST["username"];
+	$u = $_SESSION["username"];
+	$e = $_SESSION["Email"];
 	$ID = $_SESSION['ID'];
 	$usernamevalidate =  $firstnamevalidate = 
 	$lastnamevalidate = $emailvalidate = 
 	$passwordvalidate = $gendervalidate = $dobvalidate = 
 	$socialnumbervalidate = $cityvalidate = "";
 	$DB=database::getinstance();
-	$result = $DB->query("user", "isdeleted='false' and username ='$U'");
-	$result2 = $DB->query("user", "isdeleted='false' and email ='$E'");
+	$result = $DB->query("user", "isdeleted='false' and username ='$U' and username != '$u'");
+	$result2 = $DB->query("user", "isdeleted='false' and email ='$E'  and email != '$e'");
 	if(mysqli_num_rows($result)>0)
 	{
 		$usernamevalidate = "Username already taken!.";
@@ -110,7 +112,7 @@ if(isset($_POST['edit']))
 	else if(strlen($S) != 14)
     {
       $socialnumbervalidate = "Social number must be 14 numbers only.";
-      header("Location:signup.php");
+      header("Location:EditProfile.php");
     }
 	else
 	{
@@ -121,7 +123,7 @@ if(isset($_POST['edit']))
 			$_SESSION["LastName"] = $_POST["LName"];
 			$_SESSION["Email"] = $_POST["Email"];
 			$_SESSION["username"] = $_POST["username"];
-			// header("Location:index.php");
+			header("Location:ViewProfile.php");
 		}
 	}
 }

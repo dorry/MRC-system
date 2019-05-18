@@ -7,7 +7,9 @@ session_start();
 </head>
 <body>
     <!-- Header Area Starts -->
-  <?php include("navbar.php"); ?>
+    
+  <?php
+  include("navbar.php"); ?>
 
     <!-- Header Area End -->
 
