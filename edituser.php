@@ -24,9 +24,7 @@ require_once("usertypecontroller.php");
     <h3>Edit User</h3>
 <?php
 $c = new admincontroller();
-$c->viewuserdropdown();
 $c->showedituser();
-
 $c->viewUTdropdown();
 ?>
 

@@ -8,7 +8,7 @@ require_once 'usertype.php';
 require_once 'useroptions.php';
 require_once 'links.php';
 require_once 'doctor.php';
-
+require_once 'session.php';
 //USER OPTION MANAGER and EAV
 
 
@@ -243,6 +243,43 @@ if(isset($_POST['utd_submit'])){
     header("Location:UTD.php");
   
 }
+if(isset($_POST['EditProfile'])){
+
+  $DB=database::getinstance();
+  $id=$_POST['id'];
+  $result = $DB->query("user", "id= '$id' and isdeleted='false'");
+
+  if($row = mysqli_fetch_array($result))
+  {
+    $username=$row['username'];
+    $firstname=$row['firstname'];
+    $lastname=$row['lastname'];
+    $SSN=$row['socialnumber'];
+    $Email=$row['email'];
+    $DOB=$row['dob'];
+    $user = new user();
+    $user->id=$id;
+    $user->username =$username;
+    $user->email= $Email;
+    $user->firstname= $firstname;
+    $user->lastname=  $lastname;
+    $user->socialnumber=$SSN;
+    $user->dob=$DOB;
+    $_SESSION['user']= serialize($user);
+    echo'<script>alert("Selected Succesfully redirecting")</script>';
+    header("refresh:1; url=edituser.php");
+
+  }
+      // 
+
+?>
+</form>
+<?php
+
+      }
+
+
+
 
 if(isset($_POST['dogiveoption']))
 {
@@ -344,6 +381,9 @@ $encrpassword = sha1($password);
 $user = new user();
 $admin = new admin();
 $user->username = $_POST['UName'];
+$user->firstname=$_POST['firstname'];
+$user->lastname=$_POST['lastname'];
+$user->socialnumber=$_POST['ssn'];
 $user->email= $_POST['email'];
 $user->password = $encrpassword;
 $user->id=$_POST['user'];

@@ -359,23 +359,29 @@ public static function showusertypes(){
 
 public static function showuser()
 {
-  echo "<table width='30%'>";
+  echo "<table width='50%'>";
   echo "<tr>
         <th>ID</th>
         <th>First Name</th> 
         <th>Last Name</th>
         <th>User Name</th>
+        <th></th>
+        <th></th>
         </tr>"; 
   $result = user::selectallusers();
   $length =  count($result);
   for ($i=0; $i<$length;$i++)
   {
     ?>
+    <form method="post" action="admincontroller.php">
+    <input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>">
     <tr><td> <?php echo $result[$i]['id'];?> </td>
     <td> <?php echo $result[$i]['firstname'];?> </td>
     <td> <?php echo $result[$i]['lastname'];?> </td>
-    <td> <?php echo $result[$i]['username'];?> </td></tr>
-
+    <td> <?php echo $result[$i]['username'];?> </td>
+    <td><input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
+    <td><input type="submit" value="Delete" name="DeleteProfile" class="template-btn"></td></tr>
+    </form>
     <?php
   }
     echo "</table>";
@@ -422,15 +428,23 @@ public static function showusertypedropdown()
  
 
 public static function showedituserform(){
-?>
-  <label>Username</label><span style= "color:red;">*</span>
-    <input type="text" name="UName" placeholder="Username" required = ''/><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span><br><br>
+  require_once"user.php";
+  $obj=unserialize($_SESSION['user']);
+  echo'<label>Username</label><span style= "color:red;">*</span>
+    <input type="hidden" name="user" value="'.$obj->id.'">
+    <input type="text" name="UName" placeholder="Username" value="'.$obj->username.'" required = ""/><span style= "font-size:10px;">Username must be bigger that 5 chars and contain only digits, letters and underscore.</span><br><br>
     <label>E-mail</label><span style= "color:red;">*</span>
-    <input type="text" name="email" placeholder="E-mail" required = ''/><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
+    <input type="email" name="email" placeholder="E-mail" value="'.$obj->email.'" required = ""/><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
+    <label>First Name</label><span style= "color:red;">*</span>
+    <input type="text" name="firstname" placeholder="FirstName" value="'.$obj->firstname.'" required = ""/><br><br>
+    <label>Last Name</label><span style= "color:red;">*</span>
+    <input type="text" name="lastname" placeholder="LastName" value="'.$obj->lastname.'" required = ""/><br><br>
+    <label>Social Security Number</label><span style= "color:red;">*</span>
+    <input type="number" min="0" name="ssn" placeholder="Social Security Number" value="'.$obj->socialnumber.'" required = ""/><br><br>
     <label>Password</label><span style= "color:red;">*</span>
-    <input type="password" name="password" placeholder="Password" required = ''/><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
-    <label>Usertype</label><span style= "color:red;">*</span>
-<?php
+    <input type="password" name="password" placeholder="Password" value="" required = ""/><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
+    <label>Usertype</label><span style= "color:red;">*</span>';
+
 }
 
 
