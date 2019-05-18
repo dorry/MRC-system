@@ -154,12 +154,15 @@ static function adminedituser ($obj)
     else
     {
         $DB=database::getinstance();
-        $result = $DB->update4query("user", 
-            "email" ,"password", "username" , "usertypeid", "firstname", "lastname", "socialnumber" 
-            ,"'$obj->email'" ,"'$obj->password'", "'$obj->username'", "'$obj->usertypeid'", "'$obj->firstname'", "'$obj->lastname'", "'$obj->socialnumber'",
-                "id='$obj->id'" );
-       header("Location:userCRUD.php");
-    }
+        $result = $DB->update7query("user", 
+            "email" ,"password", "username" , "usertypeid" , "firstname" , "lastname" , "socialnumber"
+            ,"'$obj->email'" , "'$obj->password'" , "'$obj->username'" , "'$obj->usertypeid'" ,
+                "'$obj->firstname'" ,"'$obj->lastname'","'$obj->socialnumber'" ,"id='$obj->id'");
+                if($result){       header("Location:userCRUD.php?success=1");
+                }
+                else{       header("Location:userCRUD.php?success=0");
+                }
+    // }
 
 }
 static function addradiology ($obj)

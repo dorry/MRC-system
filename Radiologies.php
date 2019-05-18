@@ -34,6 +34,32 @@ class PET extends radiologypricedecorator
 
     }
 }
+class Tax extends radiologypricedecorator
+{
+    public function __construct($rad)
+    {
+        parent::__construct($rad);
+    }
+
+  public function price()
+    {
+        return parent::price() + $this::addradprice();
+    }
+    public function lis()
+    {
+        return parent::lis() . $this::addlist(); 
+    }
+    private function addlist()
+    {
+        return "<h4>- Tax -50  </h4>" ;
+    }
+    private function addradprice()
+    {
+
+        return -50;
+
+    }
+}
 class XRay extends radiologypricedecorator
 {
     public function __construct($rad)

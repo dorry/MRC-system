@@ -1,5 +1,6 @@
 <?php
 require_once 'admin.php';
+require_once 'schedule.php';
 
 
 class adminview{
@@ -124,10 +125,9 @@ public static function showradiology()
 }
 public static function showuserdropdowneav($rid){
 
-
   $result = user::selectauserseav($rid);
   $length =  count($result);
- 
+  
     echo"<label>Users</label>";
     echo" <select name='user'>";
   if ($length > 0){
@@ -359,6 +359,11 @@ public static function showusertypes(){
 
 public static function showuser()
 {
+     require_once 'navbar.php';
+
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  
   echo "<table width='50%'>";
   echo "<tr>
         <th>ID</th>
@@ -383,6 +388,8 @@ public static function showuser()
     <?php
   }
     echo "</table>";
+   require_once 'footer.php';
+
 }
 
 public static function showuserdropdown()
@@ -444,6 +451,48 @@ public static function showedituserform(){
     <label>Usertype</label><span style= "color:red;">*</span>';
 
 }
+public static function doctorsch()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  ?>
+  <link rel="stylesheet" type="text/css" href="assets/css/Signup.css">
+  <?php
+  $schedule = new schedule();
+  $user = new user();
+  $array = $schedule->selectall();
+  $length =  count($array);
+  $drnames = $user->selectdocssch();
+  echo "<h2>Doctor schedules</h2>";
+  echo "<table width='65%'>";
+  echo "<tr>
+          <th>Doctor Name</th>         
+          <th>Start Time</th>         
+          <th>End Time</th>            
+        </tr>"; 
+
+   for ($i=0; $i<$length;$i++)
+      { 
+    ?>
+    <form action="admincontroller.php" method="POST">
+    <?php 
+    $drfirstn=$drnames[$i]['firstname'];
+    $drlastn=$drnames[$i]['lastname'];
+    $start = $array[$i]['StartTime'];
+    $end = $array[$i]['EndTime'];
+    ?>
+
+    <tr>
+    <td><?php echo $drfirstn; echo " "; echo $drlastn?> </td>
+    <td><?php echo $start;?></td>
+    <td><?php echo $end;?></td>
+    <input type="hidden" name="ReserveID" value="<?php echo $array[$i]['id'];?>">
+    <td> <input type="submit" name="Edit Schedule" value="Edit"></td>
+    </tr>
+    <?php
+    }
+                echo "</table>";
+}
 
 
 public static function showdrpatientdropdown(){
@@ -490,6 +539,154 @@ echo $drfirstn;
 <?php
 }
             echo "</select>";
+}
+
+
+static function adminpanel()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+
+  include("navbar.php");
+  ?>
+  <div>
+      <h2>Admin Options : </h2>
+      <a href="userCRUD.php"> <h3>   - Manage Users </h3></a>
+      <a href="drCRUD.php"> <h3>   - Manage Doctor Schedules </h3></a>
+      <a href="Roles.php"> <h3>   - Manage Usertypes </h3></a>
+      <a href="linkCRUD.php"> <h3>   - Manage Links </h3></a>
+      <a href="UTD.php"> <h3>   - Manage Usertype details </h3></a>
+      <a href="radiologyCRUD.php"> <h3>   - Manage Radiologies </h3></a>
+      <a href="ReservationCRUD.php"> <h3>   - Manage Reservation </h3></a>
+      <a href="AllEditablePages.php"> <h3>   - Editable pages </h3></a>
+      <a href="Statistics.php"> <h3>   - Statistics page </h3></a>
+  </div>
+  <?php
+  include("footer.php"); 
+}
+static function userCRUD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  require_once"user.php";
+     if ( isset($_GET['success']) && $_GET['success'] == 1 )
+     {
+
+          user::ReturnMessages(1);
+     }
+     else if(isset($_GET['success']) &&$_GET['success'] == 0)
+     {
+      user::ReturnMessages(0);
+     }
+  ?>
+  <div>
+    <h2>Admin Options : Manage Users </h2>
+  <a href="Retrive.php"> <h3>   - Retrive/Edit Data of all accounts </h3></a>
+  <a href="deleteuser.php"> <h3>   - Delete an account </h3></a>
+   </div>
+  <?php
+  include("footer.php"); 
+}
+
+static function drCRUD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+  <div>
+    <h2>Admin Options : Manage Schedules </h2>
+    <a href="viewdrsch.php"> <h3>   - Show doctors schedule </h3></a>            
+  </div>
+  <?php
+  include("footer.php"); 
+}
+
+static function roleCRUD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+  <div>
+    <h2>Admin Options : Manage Usertypes </h2>
+    <a href="ViewType.php"> <h3>   - View all Roles </h3></a>
+    <a href="createtype.php"> <h3>   - Create a new Role </h3></a>
+    <a href="edittype.php"> <h3>   - Edit an existing Role </h3></a>
+    <a href="deleteusertype.php"> <h3>   - Delete a Role </h3></a>
+  </div>
+  <?php
+  include("footer.php"); 
+}
+
+static function linkCRUD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+  <div>
+    <h2>Admin Options : Manage Links </h2>
+    <a href="createlink.php"> <h3>   - Create a whole new Link </h3></a> 
+    <a href="Givelink.php"> <h3>     - Create role permissions </h3></a>
+    <a href="Typelinks.php"> <h3>    - Change role permissions </h3></a>
+    <a href="deletelink.php"> <h3>  -  Delete link </h3></a>
+  </div>
+  <?php
+  include("footer.php"); 
+}
+
+
+static function UTD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+  <div>
+    <h2>Admin Options : Manage Usertype detailss </h2>
+  <a href="createoption.php"> <h3>   - Create Option </h3></a>
+  <a href="deleteoption.php"> <h3>   - Delete Option </h3></a>
+  <a href="editoption.php"> <h3>   - Edit Option </h3></a>
+  <a href="addoption.php"> <h3>   - Add option to Usertype </h3></a>
+  <a href="modifyuser.php"> <h3>   - Add Usertype details to a certain user </h3></a>
+  <a href="editUTD.php"> <h3>   - Edit Usertype details of a certain user </h3></a>
+  </div>
+  <?php
+  include("footer.php"); 
+}
+
+static function radCRUD()
+{
+    if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+<div>
+  <h2>Admin Options : Manage Radiologies </h2>
+<a href="viewradiology.php"> <h3>   - View all Radiologies </h3></a>
+<a href="createrad.php"> <h3>   - Create a new Radiology </h3></a>
+<a href="editrad.php"> <h3>   - Edit an existing Radiology </h3></a>
+<a href="deleterad.php"> <h3>   - Delete a Radiology </h3></a>
+</div>
+  <?php
+  include("footer.php"); 
+}
+
+static function resCRUD()
+{
+  if(!empty($_SESSION)){}
+  else{header("Location:index.php");}
+  include("navbar.php"); 
+  ?>
+<div>
+  <h2>Admin Options : Manage Reservation </h2>
+  <a href="ViewAllReservation.php"> <h3>   - Retrive/Delete All Reservation </h3></a>
+  <a href="editreservation.php"> <h3>   - Edit Reservation </h3></a>
+</div>
+  <?php
+  include("footer.php"); 
 }
 
 public static function showdrpatient(){

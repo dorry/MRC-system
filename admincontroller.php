@@ -13,6 +13,53 @@ require_once 'session.php';
 
 
 class admincontroller{
+ 
+ static  function showadminpanel()
+  {
+        $view = new adminview();
+        $view->adminpanel();
+  }
+    static  function showdoctorsch()
+  {
+        $view = new adminview();
+        $view->doctorsch();
+  }
+  
+  static  function showuserCRUD()
+  {
+        $view = new adminview();
+        $view->userCRUD();
+  }
+  static  function showdrCRUD()
+  {
+        $view = new adminview();
+        $view->drCRUD();
+  }  
+  static  function showroleCRUD()
+  {
+        $view = new adminview();
+        $view->roleCRUD();
+  }
+  static  function showradCRUD()
+  {
+        $view = new adminview();
+        $view->radCRUD();
+  } 
+  static  function showresCRUD()
+  {
+        $view = new adminview();
+        $view->resCRUD();
+  }    
+  static  function showUTD()
+  {
+        $view = new adminview();
+        $view->UTD();
+  }  
+  static  function showlinkCRUD()
+  {
+        $view = new adminview();
+        $view->linkCRUD();
+  }    
  static function showmyres($lid)
  {
     $view = new adminview();
