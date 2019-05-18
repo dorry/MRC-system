@@ -511,6 +511,7 @@ public static function createdrsch()
     <div id="login-box">
       <div class="left">
         <form action="admincontroller.php" method="POST">
+          <h3>Assign working times</h3>
       <?php
     }
 

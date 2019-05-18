@@ -274,29 +274,19 @@ if(isset($_POST['utd_submit'])){
         while($row = mysqli_fetch_array($result5))
       {
         $OID = $row['optionsId'];
-     // $sql6 = "SELECT  * FROM `useroptions` where id= '$OID';";
-    //  $result6 = mysqli_query($conn, $sql6);
         $result6 = $DB->query("useroptions", "id= '$OID' and isdeleted='false'");
-
              while($rowUsOp = mysqli_fetch_array($result6))
           {
              array_push($oname, $rowUsOp['name']);
                       
                    }
                 }
- // $get_uto_id = "select id from usertypeoptions where userTypeId =$R" ;
-//  echo $get_uto_id;
- //   $result_uto = mysqli_query($conn, $get_uto_id);
     $result_uto = $DB->idquery("usertypeoptions", "userTypeId ='$R' and isdeleted='false'");      
         while($row = mysqli_fetch_array($result_uto))
       {
         $nid = $row['id'];
         $nu = $_POST['user'];
         $o = $_POST[$oname[$i]];
-       /* $insert_values = 
-       "insert into useropvalue (userTyOpId , userId , value) 
-       values (" . $row['id'] .",". $_POST['user']. ",". $_POST[$oname[$i]]." )" ;
-      */
             echo $insert_values;
      //   mysqli_query($conn , $insert_values);
     $insert_values = $DB->insertquery("useropvalue", "userTyOpId , userId , value" , "'$nid', '$nu','$o'");     
@@ -310,7 +300,6 @@ if(isset($_POST['utd_submit'])){
 
 if(isset($_POST['EditSchedule']))
 {
-
   $DB=database::getinstance();
   $id=$_POST['ScheduleID'];
   $result = $DB->query("schedule", "id= '$id' and isdeleted='false'");
