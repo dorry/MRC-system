@@ -8,21 +8,26 @@ class doctorview
         else{header("Location:index.php");}
         ?>
           <h2>Reports  : Select Patient : </h2>
-          <table width='75%'>
+          <table width='75%' id = 'tbl'>
+          <thead>
           <tr>
           <th>Patient name</th>
           <th>Date & Time</th>
         </tr>
+        </thead>
         <?php
+
         $result = doctor::getreportsforview();
         $doctor = new doctor();
         $result2 = $doctor->getpatientsforview($result);
         $length =  count($result2);
         $id = 0;
+        echo "<tbody>";
         for ($i = 0; $i < $length; $i++)
 		{
             $id = $result[$i]['id'];
             ?>
+            
             <tr>
             <td> <b><a href="showreport.php?id=<?php echo $id;?>">  
                 <?php echo  "- ". $result2[$i]['firstname'] . " " . $result2[$i]['lastname'] . " " ; ?>
@@ -31,7 +36,11 @@ class doctorview
             </tr>
             <?php
         }
+        echo "</tbody>";
         echo "</table>";
+        echo "<script>
+        $('#tbl').DataTable();
+        </script>";
     }
     
     public static function showdoctors()
@@ -43,26 +52,35 @@ class doctorview
         $id = 0;
         ?>
           <h2>Reports  : Select Doctor : </h2>
-          <table width='35%'>
+          <table width='35%'id = 'tbl'>
+          <thead>
           <tr>
           <th>Doctor name</th>
           <th>Date and Time</th>
           </tr>
+          </thead>
+          <tbody>
         <?php
         for ($i = 0; $i < $length; $i++)
 		{
             
             $id = $result[$i]['id'];
             ?>
+            
            <tr>
             <td> <b><a href="showreport.php?id=<?php echo $id;?>">  
                 <?php echo  "- Dr. ". $result2[$i]['firstname'] . " " . $result2[$i]['lastname'] . " " ; ?>
             </b></a></td>
             <td><?php echo $result[$i]['date'] ; ?> </td>
             </tr>
+            
             <?php
         }
+        echo "</tbody>";
         echo "</table>";
+        echo "<script>
+        $('#tbl').DataTable();
+        </script>";
     }
     public static function showreport($id)
     {

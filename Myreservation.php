@@ -1,7 +1,7 @@
 <head>
 <?php 
 require_once"admincontroller.php";
-session_start();
+if (!isset($_SESSION)) {session_start();}
 if (empty($_SESSION)) { header("Location:index.php"); }
 
 $id=$_SESSION['ID'];

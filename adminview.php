@@ -18,18 +18,21 @@ static function showformyres($lid){
     $result3 = radiology::selectformyres($lid);
     $length3 = count($result3);
     
- echo "<h2>Patient Reservations</h2>";
-        echo "<table width='65%'>";
-    echo "<tr>
+    echo "<h2>Patient Reservations</h2>";
+    echo "<table width='65%' id = 'tbl'>";
+    echo "<thead>
+          <tr>
           <th>Doctor Name</th>         
           <th>Patient Name</th>         
           <th>Date</th>         
           <th>Radiology</th>         
           <th>Price</th>         
-          </tr>";   
-               for ($i=0; $i<$length;$i++)
-        { 
-
+          </tr>
+          </thead>
+          <tbody>";
+          
+  for ($i=0; $i<$length;$i++)
+  {
     $firstn=$result[$i]['firstname'];
     $lastn=$result[$i]['lastname']; 
     $firstn2=$result1[$i]['firstname'];
@@ -38,6 +41,7 @@ static function showformyres($lid){
     $Name = $result3[$i]['Name'];
     $Price = $result3[$i]['price'];
 ?>
+
 <tr>
     <td>
         <?php echo $firstn; 
@@ -57,10 +61,15 @@ static function showformyres($lid){
 <td> <?php echo $Price; ?> 
 </td>
 </tr>
+
 <?php
 
     }
+    echo "</tbody>";
 echo "</table>";
+echo "<script>
+$('#tbl').DataTable();
+</script>";
   }
 public static function showradiologydropdown()
     {
@@ -100,28 +109,35 @@ public static function showcreateradiologyform()
 }
 
 public static function showradiology()
-    {
-        $result = radiology::retriveforgivelink();   
-        $length =  count($result);
-          echo "<table width='30%'>";
-          echo "<tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        </tr>"; 
-        for ($i=0; $i<$length;$i++)
-    {
-            ?>
-            <tr>
-            <td> <?php echo $result[$i]['ID'];?> </td>
-            <td> <?php echo $result[$i]['Name'];?> </td>
-            <td> <?php echo $result[$i]['price'];?> </td>
-            <br>
-            </tr>
-            <?php
-        }
-         echo "</table>";
-
+{
+  $result = radiology::retriveforgivelink();   
+  $length =  count($result);
+  echo "<table width='30%' id = 'tbl'>";
+  echo "
+  <thead>
+  <tr>
+  <th>ID</th>
+  <th>Name</th>
+  <th>Price</th>
+  </tr>
+  </thead>
+  <tbody>"; 
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
+    <tr>
+    <td> <?php echo $result[$i]['ID'];?> </td>
+    <td> <?php echo $result[$i]['Name'];?> </td>
+    <td> <?php echo $result[$i]['price'];?> </td>
+    <br>
+    </tr>
+    <?php
+  }
+    echo '</tbody>';
+    echo "</table>";
+    echo "<script>
+    $('#tbl').DataTable();
+    </script>";
 }
 public static function showuserdropdowneav($rid){
 
@@ -318,24 +334,34 @@ public static function createtypeform ()
 }
 
 
-public static function showusertypes(){
-  echo "<table width='30%'>";
-  echo "<tr>
+public static function showusertypes()
+{
+  echo "<table width='30%' id = 'tbl'>";
+  echo "<thead>
+        <tr>
         <th>Usertype</th>
         <th>id</th>
-        </tr>"; 
-        $result = usertype::selectallusertypes();
-        $length =  count($result);
-        for ($i=0; $i<$length;$i++)
-{
-?>
-<tr>
-<td> <?php echo $result[$i]['type'];?> </td>
-<td> <?php echo $result[$i]['id'];?> </td>
-</tr>
-<?php
-}
+        </tr>
+        </thead>"; 
+  $result = usertype::selectallusertypes();
+  $length =  count($result);
+  echo "<tbody>";
+  for ($i=0; $i<$length;$i++)
+  {
+    ?>
+    
+    <tr>
+    <td> <?php echo $result[$i]['type'];?> </td>
+    <td> <?php echo $result[$i]['id'];?> </td>
+    </tr>
+    <?php
+  }
+  echo "</tbody>";
  echo "</table>";
+ echo "<script>
+ $('#tbl').DataTable();
+ </script>";
+
 }
 
  public static function ShowDoctorNamesdropdown(){
@@ -364,30 +390,39 @@ public static function showuser()
   if(!empty($_SESSION)){}
   else{header("Location:index.php");}
   
-  echo "<table width='50%'>";
-  echo "<tr>
+  echo "<table width='50%' id = 'tbl' >";
+  echo "<thead>
+        <tr>
         <th>ID</th>
         <th>First Name</th> 
         <th>Last Name</th>
         <th>User Name</th>
-        <th></th>
-        </tr>"; 
+        <th>Action</th>
+        </tr>
+        </thead>"; 
   $result = user::selectallusers();
   $length =  count($result);
+  echo "<tbody>";
   for ($i=0; $i<$length;$i++)
   {
     ?>
     <form method="post" action="admincontroller.php">
     <input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>">
-    <tr><td> <?php echo $result[$i]['id'];?> </td>
+    <tr>
+    <td> <?php echo $result[$i]['id'];?> </td>
     <td> <?php echo $result[$i]['firstname'];?> </td>
     <td> <?php echo $result[$i]['lastname'];?> </td>
     <td> <?php echo $result[$i]['username'];?> </td>
-    <td><input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
+    <td> <input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
+    </tr>
     </form>
     <?php
   }
+  echo "</tbody>";
     echo "</table>";
+    echo "<script>
+    $('#tbl').DataTable();
+    </script>";
    require_once 'footer.php';
 
 }
@@ -464,13 +499,15 @@ public static function doctorsch()
   $length =  count($array);
   $drnames = $user->selectdocssch();
   echo "<h2>Doctor schedules</h2>";
-  echo "<table width='65%'>";
-  echo "<tr>
+  echo "<table width='65%' id = 'tbl'>";
+  echo " <thead>
+          <tr>
           <th>Doctor Name</th>         
           <th>Start Time</th>         
           <th>End Time</th>            
-        </tr>"; 
-
+        </tr>
+        </thead>"; 
+    echo "<tbody>";
    for ($i=0; $i<$length;$i++)
       { 
     ?>
@@ -481,7 +518,6 @@ public static function doctorsch()
     $start = $array[$i]['StartTime'];
     $end = $array[$i]['EndTime'];
     ?>
-
     <tr>
     <td><?php echo $drfirstn; echo " "; echo $drlastn?> </td>
     <td><?php echo $start;?></td>
@@ -491,7 +527,11 @@ public static function doctorsch()
     </tr>
     <?php
     }
-                echo "</table>";
+    echo "</tbody>";
+    echo "</table>";
+    echo "<script>
+    $('#tbl').DataTable();
+    </script>";
 }
 
 
@@ -674,23 +714,23 @@ static function radCRUD()
   include("footer.php"); 
 }
 
-static function resCRUD()
-{
-  if(!empty($_SESSION)){}
-  else{header("Location:index.php");}
-  include("navbar.php"); 
-  ?>
-<div>
-  <h2>Admin Options : Manage Reservation </h2>
-  <a href="ViewAllReservation.php"> <h3>   - Retrive/Delete All Reservation </h3></a>
-  <a href="editreservation.php"> <h3>   - Edit Reservation </h3></a>
-</div>
-  <?php
-  include("footer.php"); 
-}
+  static function resCRUD()
+  {
+    if(!empty($_SESSION)){}
+    else{header("Location:index.php");}
+    include("navbar.php"); 
+    ?>
+  <div>
+    <h2>Admin Options : Manage Reservation </h2>
+    <a href="ViewAllReservation.php"> <h3>   - Retrive/Delete All Reservation </h3></a>
+    <a href="editreservation.php"> <h3>   - Edit Reservation </h3></a>
+  </div>
+    <?php
+    include("footer.php"); 
+  }
 
-public static function showdrpatient(){
-
+  public static function showdrpatient()
+  {
     $result = user::selectdocforresview();
     $length =  count($result);
     $result1 = user::selectforresview();
@@ -701,49 +741,55 @@ public static function showdrpatient(){
     $length3 = count($result3);
     //echo $length1;
     echo "<h2>Patient Reservations</h2>";
-        echo "<table width='65%'>";
-    echo "<tr>
+    echo "<table width='65%' id = 'tbl'>";
+    echo "<thead>
+          <tr>
           <th>Doctor Name</th>         
           <th>Patient Name</th>         
           <th>Date</th>         
           <th>Radiology</th>         
-          <th>Price</th>         
-          </tr>";   
-        for ($i=0; $i<$length;$i++)
-        { echo'<form action="admincontroller.php" method="POST">';
-  
-    $drfirstn=$result[$i]['firstname'];
-    $drlastn=$result[$i]['lastname'];
-    $Pfirstn=$result1[$i]['firstname'];
-    $Plastn=$result1[$i]['lastname'];
-    $Date = $result2[$i]['Date'];
-    $Name = $result3[$i]['Name'];
-    $Price = $result3[$i]['price'];
-?>
+          <th>Price</th>
+          <th>Action</th>    
+          </tr>
+          </thead>
+          <tbody>";   
+    for ($i=0; $i<$length;$i++)
+    { 
+      echo'<form action="admincontroller.php" method="POST">';
+      $drfirstn=$result[$i]['firstname'];
+      $drlastn=$result[$i]['lastname'];
+      $Pfirstn=$result1[$i]['firstname'];
+      $Plastn=$result1[$i]['lastname'];
+      $Date = $result2[$i]['Date'];
+      $Name = $result3[$i]['Name'];
+      $Price = $result3[$i]['price'];
+  ?>
 
-<tr>
-<td> <?php echo $drfirstn; 
-           echo " "; 
-           echo $drlastn?> 
-</td>
-<td> <?php echo $Pfirstn; 
-           echo " "; 
-           echo $Plastn?> 
-</td>
-<td> <?php echo $Date; ?> 
-</td>
-<td> <?php echo $Name; ?> 
-</td>
-<td> <?php echo $Price; ?> 
-</td>
-<input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>">
-<td> <input type="submit" name="DeleteReservation" value="Delete"></td>
-</form>
-</tr>
-
-<?php
+  <tr>
+  <td> <?php echo $drfirstn; 
+            echo " "; 
+            echo $drlastn?> 
+  </td>
+  <td> <?php echo $Pfirstn; 
+            echo " "; 
+            echo $Plastn?> 
+  </td>
+  <td> <?php echo $Date; ?> 
+  </td>
+  <td> <?php echo $Name; ?> 
+  </td>
+  <td> <?php echo $Price; ?> 
+  </td>
+  <input type="hidden" name="ReserveID" value="<?php echo $result2[$i]['ID'];?>">
+  <td> <input type="submit" name="DeleteReservation" value="Delete"></td>
+  </tr>
+  </form>
+  <?php
+  }
+    echo "</tbody>";
+    echo "</table>";
+    echo "<script>
+      $('#tbl').DataTable();
+      </script>";
 }
-            echo "</table>";
-}
-
 }
