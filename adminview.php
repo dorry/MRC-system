@@ -586,6 +586,7 @@ public static function showuser()
         <th>First Name</th> 
         <th>Last Name</th>
         <th>User Name</th>
+        <th style = 'display: none;'></th>
         <th>Action</th>
         </tr>
         </thead>"; 
@@ -602,6 +603,7 @@ public static function showuser()
     <td> <?php echo $result[$i]['firstname'];?> </td>
     <td> <?php echo $result[$i]['lastname'];?> </td>
     <td> <?php echo $result[$i]['username'];?> </td>
+    <td style = 'display: none;'><input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>"></td>
     <td> <input type="submit" value="Edit" name="EditProfile" class="template-btn"></td>
     </tr>
     <?php
