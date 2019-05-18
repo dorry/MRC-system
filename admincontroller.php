@@ -344,7 +344,7 @@ $admin->createdrsch($schedule);
 if(isset($_POST['EditProfile']))
 {
   $DB=database::getinstance();
-  $id=$_POST['value'];
+  $id=$_POST['id'];
   $result = $DB->query("user", "id= '$id' and isdeleted='false'");
   if($row = mysqli_fetch_array($result))
   {

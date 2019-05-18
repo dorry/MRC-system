@@ -596,8 +596,8 @@ public static function showuser()
   for ($i=0; $i<$length;$i++)
   {
     ?>
-    <input type="hidden" name="id" value="<?php echo $result[$i]['id'];?>">
     <tr>
+    <input style = "display:none;left:-200;top:-200 !important;" type="text" name="id" value="<?php echo $result[$i]['id'];?>"></td>
     <td> <?php echo $result[$i]['id'];?> </td>
     <td> <?php echo $result[$i]['firstname'];?> </td>
     <td> <?php echo $result[$i]['lastname'];?> </td>
