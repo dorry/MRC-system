@@ -349,6 +349,8 @@ if(isset($_POST['EditProfile'])){
 
   if($row = mysqli_fetch_array($result))
   {
+    $_SESSION['editusername'] = $row['username'];
+    $_SESSION['editemail'] = $row['email'];
     $username=$row['username'];
     $firstname=$row['firstname'];
     $lastname=$row['lastname'];

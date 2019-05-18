@@ -128,16 +128,16 @@ static function adminedituser ($obj)
     else if(!preg_match('/^[\p{L} ]+$/u', $obj->firstname))
     {
       $firstnamevalidate = "First Name must contain letters and spaces only!";
-      header("Location:signup.php");
+      header("Location:edituser.php");
     }
     else if(!preg_match('/^[\p{L} ]+$/u', $obj->lastname))
     {
       $lastnamevalidate = "Last Name must contain letters and spaces only!";
-      header("Location:signup.php");
+      header("Location:edituser.php");
     }
     else if(mysqli_num_rows($result2)>0)
 	{
-        $usernamevalidate = "E-mail already taken!.";
+        $emailvalidate = "E-mail already taken!.";
 		header("Location:edituser.php");
 	}
     else if(!filter_var($obj->email, FILTER_VALIDATE_EMAIL))
@@ -145,20 +145,20 @@ static function adminedituser ($obj)
       $emailvalidate = "Invalid email format.";
       header("Location:edituser.php");
     }
-    else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $obj->password))
-    {
-      $passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
-      header("Location:edituser.php");
-    }
+    // else if(preg_match("/^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z]).*$/", $obj->password))
+    // {
+    //   $passwordvalidate = "Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit";
+    //   //header("Location:edituser.php");
+    // }
     else if($obj->socialnumber < 0)
     {
       $socialnumbervalidate = "Social number cannot be negative values.";
-      header("Location:signup.php");
+      header("Location:edituser.php");
     }
     else if(strlen($obj->socialnumber) != 14)
     {
       $socialnumbervalidate = "Social number must be 14 numbers only.";
-      header("Location:signup.php");
+      header("Location:edituser.php");
     }
     else
     {
