@@ -53,7 +53,7 @@ class reserve
   static function selectmyres($id)
   {
     $DB=database::getinstance();  
-    $result =$DB->query("reserve"," DoctorID = $id or PatientID = $id AND isdeleted = 'false'");
+    $result =$DB->query("reserve"," (DoctorID = $id or PatientID = $id) AND isdeleted = 'false'");
     $i = 0;
     $array;
     while($row = mysqli_fetch_array($result))
@@ -97,7 +97,9 @@ class reserve
       $array[$i]=$row;
       $i++;
     }
+    if($i != 0)
     return $array;
+  else return;
   } 
 
   public static function reserveadddropdopselectdoctor()

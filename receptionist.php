@@ -19,7 +19,7 @@ static function viewpatientinvoice($pid)
 
 
     $DW = new radiologyprice();
- ///   $DW = new Tax($DW);
+    $DW = new Tax($DW);
         for ($i = 0; $i < $length; $i++)
         {
           //echo "<h1>".$array[$i]['radid']."</h1>";
