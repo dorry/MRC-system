@@ -9,7 +9,11 @@ if (empty($_SESSION)) { header("Location:index.php"); }
     <!-- Preloader Starts -->
     <!-- Preloader End -->
     <!-- Header Area Starts -->
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php");
+     require_once"admincontroller.php";
+     $c = new admincontroller();
+     $c->showuserCRUD();
+    ?>
     <!-- Header Area End -->
     <!-- Banner Area Starts -->
 

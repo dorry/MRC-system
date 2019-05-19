@@ -25,7 +25,7 @@ body {
   position: relative;
   margin: 5% auto;
   width: 400px;
-  height: 400px;
+  height: 600px;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
@@ -173,19 +173,8 @@ button.social-signin.google {
 </head>
   <body>
  
- <?php include("navbar.php"); ?>
-   
+ <?php include("navbar.php");
 
-
-<div>
-    <form action="admincontroller.php" method="POST">
-
-
-<div id="login-box">
-  <div class="left">
-    <h3>Modify User</h3>
-    <br>
-    <?php
   $c = new admincontroller();
   $c->viewtypedropdowneav();
   $c->vieweavtypeform();

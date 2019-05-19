@@ -15,6 +15,7 @@ class radiology
     $array;
     for ($i=0; $i<$length;$i++)
     { 
+      //echo "<h1>".$i."</h1>";
       $ID=$PId[$i]['RadiologyID']; 
       $result = $DB->query("radiology", "ID = '$ID' and isdeleted='false'");
       while($row = mysqli_fetch_array($result)){$array[$i] = $row;}

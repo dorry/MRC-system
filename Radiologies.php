@@ -73,6 +73,7 @@ class XRay extends radiologypricedecorator
     }
     public function lis()
     {
+        
         return parent::lis() . $this::addlist(); 
     }
     private function addlist()

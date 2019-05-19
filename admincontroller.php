@@ -338,6 +338,7 @@ $admin = new admin();
 $schedule->docid = $_POST['doc'];
 $schedule->starttime = $_POST['ST'];
 $schedule->endtime=$_POST['ET'];
+
 $admin->createdrsch($schedule);
 }
 

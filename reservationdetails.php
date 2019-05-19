@@ -19,6 +19,7 @@ public static function selectformyres($lid)
   $array;
   for ($i=0; $i<$length;$i++)
   { 
+    //echo "<h1>".$i."</h1>";    
     $ID=$OID[$i]['ID']; 
     $result = $DB->query("reservationdetails", " ReserveID= '$ID' and isdeleted='false'");
     while($row = mysqli_fetch_array($result)){$array[$i] = $row;}

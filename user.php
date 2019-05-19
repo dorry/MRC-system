@@ -2,6 +2,7 @@
 require_once "mydatabaseconnection.php";
 require_once "reserve.php";
 require_once "report.php";
+require_once "invoice.php";
 require_once "IReport.php";
 if (!isset($_SESSION)) { session_start(); }
 class user
@@ -20,6 +21,25 @@ class user
   public $usertypeid;
   public $City;
   public $gender;
+
+static function selectforpdf($lid)
+{
+    $DB=database::getinstance();
+    $invoice  = new invoice();
+    $array = $invoice->selectforpdfgen($lid);
+    $length = count($array);
+    $i = 0;
+    $arr;
+    for ($i=0; $i<$length;$i++)
+    { 
+      $uid = $array[$i]['uid'];
+     $result = $DB->query("user","id = '$uid' and isdeleted='false'");
+      while($row = mysqli_fetch_array($result))
+        {$arr[$i] = $row;}
+    }
+    if($i != 0)
+    return $arr;
+}
 
 static function ReturnMessages($bool)
 {
@@ -203,7 +223,9 @@ echo'<div class="alert">
       while($row = mysqli_fetch_array($result))
       {$array[$i] = $row;}
     }
+    if($i != 0)
     return $array;
+    else return;
   }
 
   static function selectauserseav($id)

@@ -7,7 +7,12 @@ if (empty($_SESSION)) { header("Location:index.php"); }
   </head>
   <body>
   
-    <?php include("navbar.php"); ?>
+    <?php include("navbar.php"); 
+    require_once"admincontroller.php";
+    $c = new admincontroller();
+    $c->showuserCRUD();
+    ?>
+    
 <div>
   <h2>Reservation  : </h2>
   <a href="CreateReserve.php"> <h3>   - Make a new Reservation </h3></a>
