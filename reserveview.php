@@ -23,7 +23,7 @@ class reserveview
     }
     public static function addreservedropdowndoc($doc)
     {
-        echo" <br>Choose doctor:<br>";
+        echo" <br>Choose doctor:<span style= 'color:red;'>*</span><br>";
         echo "<select name = 'doctor'>";
         $result = reserve::reserveadddropdopselectspecificdoctor($doc);
         // echo $result[$i]['DocId'];
@@ -209,10 +209,10 @@ class reserveview
         echo "<div id='login-box'>";
         echo "<div class='left'>";
         echo" <h2> Make a reservation: </h2>";
-        echo"<br> Reservation date:";
+        echo"<br> Reservation date:<span style= 'color:red;'>*</span>";
         echo"<br> <input type='date' name = 'date' min='$date'  max='2022-01-01' required = ''/><br>";
-        echo"<br> Time:";
-        echo"<br> <input type='time' name = 'time' step='600' onkeydown='return false' onchange='getdoctor(this.value)'/><br>";
+        echo"<br> Time:<span style= 'color:red;'>*</span>";
+        echo"<br> <input type='time' name = 'time' required = '' step='600' onkeydown='return false' onchange='getdoctor(this.value)'/><br>";
       
         ?>
 
@@ -242,7 +242,7 @@ class reserveview
 }
     public static function addreservedropdownradiology()
     {
-        echo" <br>Choose radiology type: <br>";
+        echo" <br>Choose radiology type:<span style= 'color:red;'>*</span> <br>";
         echo "<select name = 'radiology'>";
         $result = reserve::reserveadddropdopselectradiology();
 		$length =  count($result);

@@ -85,7 +85,7 @@ class userview
             Email:<span style= "color:red;">*</span> <br><br>
             <input type='email' value="<?php echo $result[$i]['email'];?>" name='Email' required = ""><br><br><span style= "font-size:10px;">E-mail should be like this format: example@gmail.com</span><br><br>
             Password:<span style= "color:red;">*</span>
-            <input type='text' value='' name='Password' required = ""><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
+            <input type='password' value='' name='Password' required = ""><span style= "font-size:10px;">Password must be at least 8 characters and must contain at least one lower case letter, one upper case letter and one digit.</span><br><br>
             Social Security Number:<span style= "color:red;">*</span> <br><br>
             <input type='number' value="<?php echo $result[$i]['socialnumber'];?>"name='socialnumber' required = ""><br><br><span style= "font-size:10px;">Social Number Should be 14 digits.</span><br><br>
             Date of birth:<span style= "color:red;">*</span><br><br>
