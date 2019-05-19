@@ -194,18 +194,17 @@ static function addradiology ($obj)
 }
 
 static function createdrsch ($obj)
-{
-    $radpricevalidate;
-    if($obj->starttime < 0)
+{        
+    $DB=database::getinstance();
+    $result2 = $DB->query("schedule","DocId = $obj->docid");
+    if(mysqli_num_rows($result2)>0)
     {
-      $socialnumbervalidate = "Price cannot be negative values.";
-      header("Location:createrad.php");
+        header("Location:drCRUD.php?success=0");
     }
     else
     {
-        $DB=database::getinstance();
         $result = $DB->insertquery("schedule", "StartTime,EndTime,DocId" , "'$obj->starttime' ,'$obj->endtime', '$obj->docid'" );
-        header("Location:drCRUD.php");
+        header("Location:drCRUD.php?success=1");
     }
 }
 

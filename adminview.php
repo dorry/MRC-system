@@ -841,6 +841,16 @@ static function drCRUD()
     <a href="viewdrsch.php">   <h3> - Show doctors schedule </h3></a>            
   </div>
   <?php
+  require_once"user.php";
+     if ( isset($_GET['success']) && $_GET['success'] == 1 )
+     {
+
+          user::ReturnMessages(1);
+     }
+     else if(isset($_GET['success']) &&$_GET['success'] == 0)
+     {
+      user::ReturnMessages(0);
+     }
   include("footer.php"); 
 }
 
