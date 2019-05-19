@@ -223,7 +223,9 @@ echo'<div class="alert">
       while($row = mysqli_fetch_array($result))
       {$array[$i] = $row;}
     }
+    if($i != 0)
     return $array;
+    else return;
   }
 
   static function selectauserseav($id)
