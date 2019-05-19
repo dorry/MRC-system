@@ -375,10 +375,7 @@ if(isset($_POST['EditProfile'])){
 ?>
 </form>
 <?php
-
-      }
-
-
+}
 
 
 if(isset($_POST['dogiveoption']))

@@ -93,20 +93,20 @@ public static function showradiologydropdown()
         <?php
 }
 public static function showeditradiologyform()
-    {
-        ?>
-        <input type="text" name="name" placeholder="type Rad name" required = ''/>
-        <input type="number" name="price" placeholder="type Rad price" required = ''/>
-        <input type="submit" value="Edit" name="doeditadminrad"/>
-        <?php
-    }
+{
+  ?>
+  <input type="text" name="name" placeholder="type Rad name" required = ''/>
+  <input type="number" name="price" placeholder="type Rad price" required = ''/>
+  <input type="submit" value="Edit" name="doeditadminrad"/>
+  <?php
+}
 public static function showcreateradiologyform()
-    {
-        ?>
-        <input type="text" name="name" placeholder="type Rad name" required = ''/>
-        <input type="number" name="price" placeholder="type Rad price" required = ''/>
-        <input type="submit" value="Create" name = "docreateadminrad"/>
-        <?php
+{
+  ?>
+  <input type="text" name="name" placeholder="type Rad name" required = ''/>
+  <input type="number" name="price" placeholder="type Rad price" required = ''/>
+  <input type="submit" value="Create" name = "docreateadminrad"/>
+  <?php
 }
 
 public static function showradiology()
@@ -145,8 +145,8 @@ public static function showuserdropdowneav($rid){
   $result = user::selectauserseav($rid);
   $length =  count($result);
   
-    echo"<label>Users</label>";
-    echo" <select name='user'>";
+    echo"<label>Users</label><span style= 'color:red;'>*</span>";
+    echo" <select name='user' required = ''>";
   if ($length > 0){
      for ($i=0; $i<$length;$i++)
     { 
