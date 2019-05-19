@@ -123,8 +123,16 @@ if(isset($_POST['edit']))
 			$_SESSION["LastName"] = $_POST["LName"];
 			$_SESSION["Email"] = $_POST["Email"];
 			$_SESSION["username"] = $_POST["username"];
-			header("Location:ViewProfile.php");
+			// header("Location:ViewProfile.php");
 		}
+		if($result)
+      { 
+        header("Location:ViewProfile.php?success=1");
+      }
+      else
+      {
+        header("Location:ViewProfile.php?success=0");
+      }
 	}
 }
 class usercontroller

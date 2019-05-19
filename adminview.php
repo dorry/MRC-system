@@ -814,7 +814,6 @@ static function adminpanel()
     {
       if(!empty($_SESSION)){}
       else{header("Location:index.php");}
-      include("navbar.php"); 
       require_once"user.php";
      if ( isset($_GET['success']) && $_GET['success'] == 1 )
      {
@@ -826,13 +825,8 @@ static function adminpanel()
       user::ReturnMessages(0);
      }
   ?>
-  <div>
-    <h2>Admin Options : Manage Users </h2>
-  <a href="Retrive.php"> <h3>   - Retrive/Edit Data of all accounts </h3></a>
-  <a href="deleteuser.php"> <h3>   - Delete an account </h3></a>
-   </div>
+    
   <?php
-  include("footer.php"); 
 }
 
 static function drCRUD()

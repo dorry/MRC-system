@@ -36,6 +36,14 @@ public function update($array)
         $lastidreserved = $DB->insertlast("patientreport","docid , patid, radid, technique, findings, opinion, isdeleted" , "'$report->docid', '$report->patid', '$report->radid', '$report->technique', '$report->findings', '$report->opinion', 'false'");
      $notification = new notification();
     $notification->addnotification($report->docid,$report->patid);
+    if($lastidreserved)
+      { 
+        header("Location:doctorPanel.php?success=1");
+      }
+      else
+      {
+        header("Location:doctorPanel.php?success=0");
+      }
       //  header("Location:doctorPanel.php");
     }
     static function getreportsforview()

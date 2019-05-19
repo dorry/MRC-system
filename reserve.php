@@ -169,8 +169,15 @@ class reserve
       $reservationdetails->addreservationdetails($lastidreserved,$obj->patientId);
       $notification = new notification();
       $notification->addnotification($obj->patientId,$obj->doctorId);
-      header("Location:CreateReserve.php");
-
+      // header("Location:CreateReserve.php");
+      if($lastidreserved)
+      { 
+        header("Location:reservation.php?success=1");
+      }
+      else
+      {
+        header("Location:reservation.php?success=0");
+      }
     }
   }  
   static function deletereserve($obj)
