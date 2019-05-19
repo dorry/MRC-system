@@ -30,8 +30,8 @@ Class database{
         {
         $sql = "select * from ".$table." where ".$condition." ";
         $result = mysqli_query($this->conn,$sql);
-        // echo $sql;
-        // echo "<br>";
+         echo $sql;
+         echo "<br>";
 
         return $result;
         }

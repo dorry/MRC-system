@@ -12,15 +12,18 @@ static function viewpatientinvoice($pid)
 {
     $DB=database::getinstance();  
     $invoice = new invoice();
+    $user = new user();
     $array =  $invoice->selectforpdfgen($pid);
-    $patientname = $invoice->selectforpdf($pid);
+    $patientname = $user->selectforpdf($pid);
     $length = count($array);
 
 
     $DW = new radiologyprice();
-    $DW = new Tax($DW);
+ ///   $DW = new Tax($DW);
         for ($i = 0; $i < $length; $i++)
         {
+          //echo "<h1>".$array[$i]['radid']."</h1>";
+
            if($array[$i]['radid'] == 4)
            {
             $DW = new UVray($DW);

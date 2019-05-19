@@ -17,7 +17,7 @@ public function addtoinvoicelist($pid,$radid)
 public function selectforpdfgen($pid)
 {
 	$DB=database::getinstance();
-	$result = $DB->query("invoice","uid='$pid'");
+	$result = $DB->query("invoice","uid='$pid' and ispaid='0'");
 	$i = 0;
     $array;
   	while($row = mysqli_fetch_array($result))
@@ -25,22 +25,13 @@ public function selectforpdfgen($pid)
       $array[$i]=$row;
       $i++;
     }
+    if($i != 0)
     return $array;
+    else
+      return;
 }
 
-static function selectforpdf($lid)
-{
-    $DB=database::getinstance();
-    $result = $DB->query("user", "isdeleted='false' and id ='$lid'");
-    $i = 0;
-    $array;
-  while($row = mysqli_fetch_array($result))
-   {
-      $array[$i]=$row;
-      $i++;
-   }
-    return $array;
-}
+
 
 
 
