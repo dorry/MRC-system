@@ -51,12 +51,12 @@ class Tax extends radiologypricedecorator
     }
     private function addlist()
     {
-        return "<h4>- Tax -50  </h4>" ;
+        return "<h4>- Tax 50  </h4>" ;
     }
     private function addradprice()
     {
 
-        return -50;
+        return 50;
 
     }
 }
