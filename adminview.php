@@ -96,7 +96,7 @@ public static function showeditradiologyform()
 {
   ?>
   <input type="text" name="name" placeholder="type Rad name" required = ''/>
-  <input type="number" name="price" placeholder="type Rad price" required = ''/>
+  <input type="number" name="price" min="1" placeholder="type Rad price" required = ''/>
   <input type="submit" value="Edit" name="doeditadminrad"/>
   <?php
 }
