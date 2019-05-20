@@ -545,7 +545,7 @@ public static function createdrsch()
      public static function ShowDoctorNamesdropdown(){
             $result = user::retrivedoctorsforeditres();
             $length =  count($result);
-            echo" <select name='doc'>";
+            echo" <select name='doc' required = ''>";
             for ($i=0; $i<$length;$i++)
                 {
         ?>
@@ -562,11 +562,12 @@ public static function createdrsch()
 }
 
 public static function createdrsch2()
-{?>
-  <label>Start time</label>
-  <input type="time" name="ST">
-  <label>End time</label>
-  <input type="time" name="ET">
+{
+  ?>
+  <label>Start time:</label><span style= "color:red;">*</span><br>
+  <input type="time" name="ST" required = ''><br>
+  <label>End time:</label><span style= "color:red;">*</span><br>
+  <input type="time" name="ET" required = ''>
 <input type="submit" name="createdrsch" value="Assign">
 </form>  
 
@@ -841,6 +842,16 @@ static function drCRUD()
     <a href="viewdrsch.php">   <h3> - Show doctors schedule </h3></a>            
   </div>
   <?php
+  require_once"user.php";
+     if ( isset($_GET['success']) && $_GET['success'] == 1 )
+     {
+
+          user::ReturnMessages(1);
+     }
+     else if(isset($_GET['success']) &&$_GET['success'] == 0)
+     {
+      user::ReturnMessages(0);
+     }
   include("footer.php"); 
 }
 

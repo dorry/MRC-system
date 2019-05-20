@@ -22,7 +22,7 @@ static function viewpatientinvoice($pid)
     $DW = new Tax($DW);
         for ($i = 0; $i < $length; $i++)
         {
-          //echo "<h1>".$array[$i]['radid']."</h1>";
+          echo "<h1>".$array[$i]['radid']."</h1>";
 
            if($array[$i]['radid'] == 4)
            {
