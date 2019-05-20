@@ -30,8 +30,8 @@ Class database{
         {
         $sql = "select * from ".$table." where ".$condition." ";
         $result = mysqli_query($this->conn,$sql);
-         echo $sql;
-         echo "<br>";
+        // echo $sql;
+        // echo "<br>";
 
         return $result;
         }
@@ -39,8 +39,8 @@ Class database{
         {
         $sql = "select DISTINCT * from ".$table." where ".$condition." ";
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
-        echo "<br>"; 
+      //  echo $sql;
+     ///   echo "<br>"; 
         return $result;
         }
     function cquery($table, $condition)
@@ -83,15 +83,15 @@ Class database{
         {
         $sql = "Insert INTO ".$table." (".$attribute.") values(".$value.") ";
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
-        echo "<br>";
+       // echo $sql;
+      //  echo "<br>";
         return $result;
         }
      function updatequery($table, $attribute , $value, $condition) {
         $sql = "UPDATE  ".$table." SET ".$attribute." = ".$value." WHERE ".$condition."  " ;
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
-        echo "<br>";
+      //  echo $sql;
+      //  echo "<br>";
         return $result;}
     function update4query($table, $attribute, $attribute2 ,  $attribute3,  $attribute4, $attribute5, $attribute6 , $attribute7, $value, $value2, $value3 , $value4, $value5, $value6, $value7, $condition)
         {
@@ -102,7 +102,7 @@ Class database{
                     ".$attribute7." = ".$value7."
                 WHERE ".$condition."  " ;  
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
+     //   echo $sql;
         return $result;
         }
         function update7query($table, $attribute, $attribute2 ,  $attribute3,  $attribute4, $attribute5, $attribute6 , $attribute7 , $value, $value2, $value3 , $value4, $value5, $value6, $value7,$condition)
@@ -121,7 +121,7 @@ Class database{
                 SET ".$attribute." = ".$value." , ".$attribute2." =".$value2."
                 WHERE ".$condition."  " ;
         $result = mysqli_query($this->conn,$sql);
-        echo $sql;
+       // echo $sql;
         return $result;
         }
         function deletequery($table, $attribute , $value, $condition)

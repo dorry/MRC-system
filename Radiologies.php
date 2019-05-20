@@ -41,7 +41,7 @@ class Tax extends radiologypricedecorator
         parent::__construct($rad);
     }
 
-  public function price()
+    public function price()
     {
         return parent::price() + $this::addradprice();
     }
